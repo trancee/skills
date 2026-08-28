@@ -4,6 +4,8 @@ How-to guides are **directions** that guide the reader through a problem or towa
 
 A how-to guide helps the user **get something done**, correctly and safely. It guides the user's **action** in the context of **real work**.
 
+Current source: [How-to guides](https://diataxis.fr/how-to-guides/) and [The difference between a tutorial and how-to guide](https://diataxis.fr/tutorials-how-to/).
+
 ## How-to Guides Are About Problems and Goals
 
 How-to guides must be written from the **perspective of the user, not the machinery**.
@@ -42,6 +44,8 @@ Tools appear as incidental bit-players, the means to the user's end. Sometimes a
 
 - **Not tutorials** — tutorials serve study; how-to guides serve work. Conflating them causes widespread documentation problems.
 - **Not just procedures** — real-world problems don't always reduce to linear sequences. They fork, overlap, have multiple entry and exit points, and require judgment.
+
+The distinction is not basic versus advanced. A how-to guide may cover a basic procedure; what defines it is that a competent user is applying skill to real work. The real world can force branches, alternatives, warnings, and recovery paths. The user—not the absent tutor—retains responsibility for judgement and outcomes.
 
 ## Key Principles
 

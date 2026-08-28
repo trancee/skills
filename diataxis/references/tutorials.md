@@ -1,8 +1,10 @@
 # Writing Tutorials
 
-A tutorial is a **lesson** — a learning experience that takes place under the guidance of a tutor. It is always **learning-oriented** and **practical**: the user does something meaningful under your guidance.
+A tutorial is a guided **learning experience**. It is always **learning-oriented** and practical: the learner does something meaningful under a tutor's guidance.
 
 A tutorial serves the user's **acquisition of skills and knowledge** (their study). Its purpose is not to help them get something done, but to help them **learn**.
+
+Current source: [Tutorials](https://diataxis.fr/tutorials/) and [The difference between a tutorial and how-to guide](https://diataxis.fr/tutorials-how-to/).
 
 ## The Tutorial as a Lesson
 
@@ -27,6 +29,12 @@ The exercise must be:
 - **Successful** — the pupil can complete it
 - **Logical** — the path makes sense
 - **Usefully complete** — the pupil encounters all needed actions, concepts, and tools
+
+### Study, Not Difficulty Level
+
+A tutorial serves study, whether the subject is elementary or advanced. It uses a contrived, safe, repeatable setting and one carefully managed path. It eliminates the unexpected so the learner can acquire confidence and familiarity.
+
+A how-to guide can cover a basic task, while a tutorial can require advanced prerequisites. Classify by the user's relationship to the work—acquiring skill or applying it—not by complexity.
 
 ## Key Principles
 

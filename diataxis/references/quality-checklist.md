@@ -1,101 +1,98 @@
-# Diataxis Quality Checklist
+# Diátaxis quality assessment
 
-Use this checklist to verify that a document stays true to its type. Check the column for the type you're writing.
+Current source: [Towards a theory of quality in documentation](https://diataxis.fr/quality/).
 
-## Universal Checks
+Assess quality in two layers. Diátaxis helps reveal functional problems and create conditions for deep quality; it does not replace technical verification, user research, information design, or editorial judgement.
 
-- [ ] The document clearly belongs to ONE type (not a mix)
-- [ ] The title accurately reflects the content and type
-- [ ] Cross-references link to the correct type (e.g., "For more details, see [explanation doc]" not inline explanation)
-- [ ] The document lives in the correct section of the docs architecture
+## Functional quality
 
----
+Functional qualities are independent, objective constraints measured against the product and the user's real work.
 
-## Tutorial Checklist
+- [ ] **Accuracy:** facts, commands, APIs, outputs, and examples match the current product.
+- [ ] **Completeness:** the document covers everything required by its declared scope.
+- [ ] **Consistency:** terminology, structure, examples, and cross-references agree.
+- [ ] **Usefulness:** the content serves an actual user need rather than merely describing available material.
+- [ ] **Precision:** claims, prerequisites, conditions, and outcomes are unambiguous.
+- [ ] Executable journeys have been run end-to-end in the documented environment.
+- [ ] Reference coverage has been checked against the machinery it describes.
 
-- [ ] It is a practical, hands-on lesson (the user does things)
-- [ ] The teacher takes full responsibility for the learner's success
-- [ ] It shows where the learner will end up at the start
-- [ ] Every step produces a visible, meaningful result
-- [ ] It provides expected output or confirms the user is on track
-- [ ] Explanation is minimal (one sentence max, with link to more)
-- [ ] It stays concrete — no abstraction or generalization
-- [ ] Options and alternatives are ignored
-- [ ] It uses "we" language ("We will...", "Now, let's...")
-- [ ] It has been tested end-to-end and works reliably
-- [ ] It does NOT assume the learner knows the domain
-- [ ] It does NOT present choices to the learner
+A document can satisfy one functional quality and fail another. Verify each independently. Functional quality is a prerequisite for deep quality.
 
----
+## Deep quality
 
-## How-to Guide Checklist
+Deep qualities are interdependent and assessed through judgement against human experience.
 
-- [ ] It addresses a specific real-world goal or problem
-- [ ] The title clearly states what the user will accomplish
-- [ ] It assumes the user is already competent
-- [ ] It provides executable, actionable steps
-- [ ] It stays focused on the task — no digressions
-- [ ] It does NOT teach or explain background concepts inline
-- [ ] It does NOT list every possible option (links to reference instead)
-- [ ] It handles real-world complexity (not just the happy path)
-- [ ] It starts and ends at reasonable points (doesn't need to be end-to-end)
-- [ ] It addresses the user's needs, not the tool's capabilities
-- [ ] The ordering of steps has logical flow
+- [ ] The document fits the user's need at that moment.
+- [ ] It has flow: the user's action or thought progresses without avoidable interruption.
+- [ ] It anticipates the user's next concern, tool, decision, or uncertainty.
+- [ ] It feels coherent and good to use.
+- [ ] Its form, language, and navigation reinforce its purpose.
 
----
+Diátaxis can help create these conditions but cannot guarantee beauty, flow, or excellent user experience.
 
-## Reference Checklist
+## Form and boundary checks
 
-- [ ] It describes the machinery — nothing more
-- [ ] It is austere, neutral, and factual
-- [ ] It is accurate and complete
-- [ ] It follows a consistent, standard pattern
-- [ ] Its structure mirrors the structure of what it describes
-- [ ] It includes examples where helpful
-- [ ] It does NOT contain opinions or interpretations
-- [ ] It does NOT include instructional "how to" steps
-- [ ] It does NOT explain "why" (links to explanation instead)
-- [ ] All parameters, options, return values, and errors are documented
-- [ ] Similar items use the same format
+- [ ] The dominant user need is clear: learning, a goal, information, or understanding.
+- [ ] The compass confirms the form: action/cognition and acquisition/application.
+- [ ] The title signals the document's purpose accurately.
+- [ ] Supporting material from another form is brief and does not disrupt the dominant purpose.
+- [ ] Sustained material serving another need has its own appropriate home and an intentional cross-link.
+- [ ] Navigation and placement make the page predictable to find; literal four-part top-level directories are not required.
+- [ ] The documentation structure has grown from real content needs rather than empty Diátaxis scaffolding.
 
----
+## Tutorial checklist
 
-## Explanation Checklist
+- [ ] It is a practical, hands-on learning experience rather than a task guide.
+- [ ] The tutor takes responsibility for the learner's safety and success.
+- [ ] The setting and path are controlled, concrete, and repeatable.
+- [ ] It shows the destination at the start without claiming what the user will learn.
+- [ ] Every step produces a visible, meaningful result.
+- [ ] It maintains a narrative of expected outcomes and points out what to notice.
+- [ ] It permits useful repetition.
+- [ ] Explanation, information, abstraction, choices, and alternatives are minimised.
+- [ ] It has been observed or tested end-to-end with representative learners/environments.
 
-- [ ] It provides context, background, and "why"
-- [ ] The title works with an implicit "About..." prefix
-- [ ] It makes connections to other concepts and broader context
-- [ ] It considers multiple perspectives and alternatives
-- [ ] It admits opinions where appropriate
-- [ ] It is bounded — doesn't try to cover everything
-- [ ] It does NOT include step-by-step instructions
-- [ ] It does NOT provide detailed technical reference
-- [ ] It could be read away from the product and still make sense
-- [ ] It helps the reader form a mental model or deeper understanding
+## How-to guide checklist
 
----
+- [ ] It addresses a specific real-world goal or problem from the user's perspective.
+- [ ] It assumes the user is already competent and familiar with the tools.
+- [ ] It provides executable actions and the judgement needed to apply them.
+- [ ] Its sequence has logical flow and avoids unnecessary context switching.
+- [ ] It prepares for realistic branches, alternatives, risks, and recovery paths.
+- [ ] It starts and ends at meaningful points rather than forcing an end-to-end lesson.
+- [ ] It prefers practical usability to completeness and links to reference for options.
+- [ ] The title states exactly what the guide helps achieve.
 
-## Common Boundary Violations
+## Reference checklist
 
-| Symptom | Problem | Fix |
-|---------|---------|-----|
-| Tutorial has paragraphs of "why" | Explanation leaked into tutorial | Extract to explanation doc, add link |
-| How-to guide teaches basics first | Tutorial content in how-to | Assume competence; link to tutorial |
-| Reference says "you should..." | How-to guidance in reference | Move to how-to guide |
-| Reference explains design decisions | Explanation in reference | Move to explanation doc |
-| Explanation has code blocks with steps | How-to guide in explanation | Move steps to how-to guide |
-| One page tries to do everything | Mixed document | Split into separate docs by type |
+- [ ] It describes the product or machinery succinctly and neutrally.
+- [ ] It is accurate, complete, precise, consistent, and authoritative within scope.
+- [ ] Its structure mirrors the logical structure of the thing described where useful.
+- [ ] Similar APIs, commands, or configuration items use the same pattern.
+- [ ] Facts, parameters, defaults, constraints, return values, errors, and warnings are documented.
+- [ ] Examples illustrate usage without becoming lessons or goal-oriented procedures.
+- [ ] Motivation, opinion, and extended interpretation link to explanation.
 
-## The Compass Quick-Check
+## Explanation checklist
 
-When in doubt about classification, ask:
+- [ ] It illuminates a bounded topic and supports reflection.
+- [ ] It provides context, reasons, history, implications, and connections.
+- [ ] It considers useful perspectives, alternatives, opinions, and counter-examples.
+- [ ] Its viewpoint is higher and wider than an immediate task or close machinery description.
+- [ ] The title works with an implicit “About …” or “Why …”.
+- [ ] It forms or strengthens a coherent mental model.
+- [ ] Step-by-step procedures and detailed technical listings live elsewhere.
 
-1. **Action or cognition?**
-   - Action = tutorial or how-to guide
-   - Cognition = reference or explanation
+## Boundary diagnosis
 
-2. **Acquisition or application?**
-   - Acquisition (study) = tutorial or explanation
-   - Application (work) = how-to guide or reference
+| Symptom | Conflict | Improvement |
+| --- | --- | --- |
+| Tutorial pauses for paragraphs of background | Explanation interrupts the learning experience | Keep immediate context; link to explanation |
+| How-to guide starts by teaching the domain | Study interrupts real work | Link to a tutorial; retain task guidance |
+| Reference discusses motives and trade-offs | Explanation obscures authoritative facts | Move discussion to explanation |
+| Explanation contains a sequence to execute | How-to content interrupts reflection | Move the procedure to a how-to guide |
+| A page repeatedly changes audience or purpose | Multiple needs compete and break flow | Split coherent sections and cross-link |
 
-The intersection gives you the type.
+## Completion
+
+A quality review is complete when every functional claim has evidence, the dominant user need and form are explicit, boundary problems have concrete moves or edits, and deep quality has been judged against the intended user's experience—not inferred from correct classification alone.

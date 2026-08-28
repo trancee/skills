@@ -6,6 +6,10 @@ It deepens and broadens the reader's understanding. It brings **clarity, light, 
 
 Explanation is the only kind of documentation that might make sense to read **away from the product itself** — in the bath, on the train, over coffee.
 
+Current source: [Explanation](https://diataxis.fr/explanation/) and [The difference between reference and explanation](https://diataxis.fr/reference-explanation/).
+
+Its perspective is higher and wider than a how-to guide's eye-level view or reference's close-up view of machinery. It joins knowledge into a mental model rather than directing immediate work.
+
 ## The Value of Explanation
 
 ### Explanation and Understanding

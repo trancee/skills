@@ -4,6 +4,10 @@ Reference guides are **technical descriptions** of the machinery and how to oper
 
 Reference contains **propositional or theoretical knowledge** that a user needs to do things correctly: accurate, complete, reliable information, free of distraction and interpretation.
 
+Current source: [Reference](https://diataxis.fr/reference/) and [The difference between reference and explanation](https://diataxis.fr/reference-explanation/).
+
+Tutorials and how-to guides are led by user journeys and goals. Reference is led by the product or machinery it describes. Its organisation should help a working user locate authoritative facts with minimum interpretation.
+
 ## Reference as Description
 
 Reference material **describes the machinery**. It should be **austere**. One hardly reads reference material — one **consults** it.
