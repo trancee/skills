@@ -9,7 +9,7 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 | Skill | Purpose |
 | --- | --- |
 | [`diataxis`](diataxis/) | Write, audit, and improve tutorials, how-to guides, reference, explanation, documentation architecture, and documentation quality. |
-| [`nist-cavp-test-vectors`](nist-cavp-test-vectors/) | Find, download, parse, and integrate NIST CAVP or ACVP test vectors for cryptographic algorithms and primitive components. |
+| [`nist-cavp`](nist-cavp/) | Find, download, parse, and integrate NIST CAVP archives and ACVP vector sets for cryptographic primitives and components. |
 | [`ristretto255`](ristretto255/) | Implement, integrate, and review ristretto255, including canonical encoding, hash-to-group, scalars, constant-time operations, protocol use, and RFC vectors. |
 | [`wycheproof`](wycheproof/) | Integrate and audit current Project Wycheproof vectors against cryptographic implementations, schemas, and result semantics. |
 | [`xtool`](xtool/) | Install, configure, use, and troubleshoot xtool for SwiftPM-driven iOS development and device deployment. |
@@ -42,8 +42,8 @@ To make a skill available only within one project, link or copy the complete ski
 
 ```bash
 mkdir -p .omp/skills
-ln -s "$HOME/src/agent-skills/nist-cavp-test-vectors" \
-  .omp/skills/nist-cavp-test-vectors
+ln -s "$HOME/src/agent-skills/nist-cavp" \
+  .omp/skills/nist-cavp
 ```
 
 Use an absolute symlink target so it remains valid regardless of the project's working directory. Commit a copied directory rather than a machine-specific symlink when the whole team needs the skill from the repository.
@@ -59,7 +59,7 @@ Review a skill before installing it. Skills are instructions executed by an agen
 Skills with a `description` can be selected automatically when a request matches their scope. You can also invoke one explicitly by name:
 
 ```text
-Use the nist-cavp-test-vectors skill to add AES-GCM vectors to this test suite.
+Use the nist-cavp skill to add AES-GCM vectors to this test suite.
 ```
 
 The agent should read `SKILL.md` before acting, follow relative references from the skill directory, and satisfy the skill's completion checks. Explicit project instructions and user requirements still take precedence.
