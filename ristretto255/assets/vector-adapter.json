@@ -1,0 +1,27 @@
+{
+  "transport": "json-lines",
+  "requestResponse": "Write one JSON response line for each JSON request line. Write diagnostics only to stderr.",
+  "operations": {
+    "identity": {
+      "request": {"op": "identity"},
+      "response": {"hex": "32-byte canonical element encoding as 64 lowercase hexadecimal characters"}
+    },
+    "generator": {
+      "request": {"op": "generator"},
+      "response": {"hex": "32-byte canonical element encoding as 64 lowercase hexadecimal characters"}
+    },
+    "decode": {
+      "request": {"op": "decode", "hex": "32-byte candidate encoding as 64 hexadecimal characters"},
+      "successResponse": {"ok": true, "hex": "canonical re-encoding as 64 lowercase hexadecimal characters"},
+      "failureResponse": {"ok": false}
+    },
+    "add": {
+      "request": {"op": "add", "left": "canonical element hex", "right": "canonical element hex"},
+      "response": {"hex": "canonical sum encoding as 64 lowercase hexadecimal characters"}
+    },
+    "from_uniform": {
+      "request": {"op": "from_uniform", "hex": "64-byte uniform input as 128 hexadecimal characters"},
+      "response": {"hex": "canonical mapped element encoding as 64 lowercase hexadecimal characters"}
+    }
+  }
+}
