@@ -2,7 +2,7 @@
 
 Reusable skills for AI coding agents. Each skill packages a focused workflow, domain rules, primary references, and completion checks in a self-contained directory.
 
-The repository uses the Agent Skills layout understood by Oh My Pi and compatible skill loaders: a directory containing a `SKILL.md` file with YAML frontmatter. Some skills include additional material under `references/` or `resources/`.
+The repository uses the Agent Skills layout understood by Oh My Pi and compatible skill loaders. Each skill lives in a directory with a `SKILL.md` file. A skill can also include `assets/`, `references/`, and `scripts/`.
 
 ## Available skills
 
@@ -10,6 +10,7 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 | --- | --- |
 | [`diataxis`](diataxis/) | Write, audit, and improve tutorials, how-to guides, reference, explanation, documentation architecture, and documentation quality. |
 | [`nist-cavp`](nist-cavp/) | Find, download, parse, and integrate NIST CAVP archives and ACVP vector sets for cryptographic primitives and components. |
+| [`omp-skill-hardener`](omp-skill-hardener/) | Mine repeated failures from OMP sessions, turn them into approved skill or `AGENTS.md` changes, and test the new rules. |
 | [`ristretto255`](ristretto255/) | Implement, integrate, and review ristretto255, including canonical encoding, hash-to-group, scalars, constant-time operations, protocol use, and RFC vectors. |
 | [`wycheproof`](wycheproof/) | Integrate and audit current Project Wycheproof vectors against cryptographic implementations, schemas, and result semantics. |
 | [`xtool`](xtool/) | Install, configure, use, and troubleshoot xtool for SwiftPM-driven iOS development and device deployment. |
@@ -82,8 +83,9 @@ skills/
 ├── README.md
 ├── <skill-name>/
 │   ├── SKILL.md
+│   ├── assets/        # optional fixtures and templates
 │   ├── references/    # optional detailed guidance
-│   └── resources/     # optional supporting material
+│   └── scripts/       # optional executable helpers
 └── ...
 ```
 
@@ -112,7 +114,7 @@ metadata:
 
 1. Create a lower-kebab-case directory containing `SKILL.md`.
 2. Give the skill one focused responsibility and a precise discovery description.
-3. Put universal steps in `SKILL.md`; move branch-specific detail into `references/` or `resources/` when that keeps the main procedure legible.
+3. Put the main procedure in `SKILL.md`. Move fixtures and templates to `assets/`, detailed guidance to `references/`, and executable helpers to `scripts/`.
 4. Prefer primary, versioned sources. State which source wins when references disagree.
 5. Keep secrets, credentials, generated output, and machine-specific paths out of the skill.
 6. Exercise commands and behavioral procedures in an appropriate disposable environment.
