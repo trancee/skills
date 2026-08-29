@@ -1,0 +1,24 @@
+{"type":"title","v":1,"title":"Sanitized fixture"}
+{"type":"session","version":3,"id":"fixture-one","timestamp":"2026-08-01T10:00:00Z","cwd":"/workspace/demo"}
+{"type":"mode_change","id":"m1","parentId":null,"timestamp":"2026-08-01T10:00:01Z","mode":"plan"}
+{"type":"custom_message","customType":"skill-prompt","content":"[IMPORTANT: User invoked the \"demo-skill\" skill.][Skill directory: /workspace/skills/demo-skill]","id":"s1","parentId":"m1","timestamp":"2026-08-01T10:00:02Z"}
+{"type":"message","id":"u0","parentId":"s1","timestamp":"2026-08-01T10:00:03Z","message":{"role":"user","attribution":"user","content":[{"type":"text","text":"Implement the approved narrow change."}]}}
+{"type":"message","id":"abandoned1","parentId":"u0","timestamp":"2026-08-01T10:00:04Z","message":{"role":"user","attribution":"user","content":[{"type":"text","text":"THIS ABANDONED BRANCH IS WRONG AND MUST NOT COUNT"}]}}
+{"type":"message","id":"abandoned2","parentId":"abandoned1","timestamp":"2026-08-01T10:00:05Z","message":{"role":"assistant","content":[{"type":"text","text":"Done."}]}}
+{"type":"mode_change","id":"m2","parentId":"u0","timestamp":"2026-08-01T10:00:06Z","mode":"default"}
+{"type":"message","id":"u1","parentId":"m2","timestamp":"2026-08-01T10:00:07Z","message":{"role":"user","attribution":"user","content":[{"type":"text","text":"That's not the plan; go back to the approved scope."}]}}
+{"type":"message","id":"a1","parentId":"u1","timestamp":"2026-08-01T10:00:08Z","message":{"role":"assistant","content":[{"type":"toolCall","id":"edit1","name":"edit","arguments":{"input":"[src/example.py#AAAA]\nPUT 1.=1:\n+first"}}]}}
+{"type":"message","id":"r1","parentId":"a1","timestamp":"2026-08-01T10:00:09Z","message":{"role":"toolResult","toolCallId":"edit1","toolName":"edit","isError":false,"content":[{"type":"text","text":"edited"}]}}
+{"type":"message","id":"a2","parentId":"r1","timestamp":"2026-08-01T10:00:10Z","message":{"role":"assistant","content":[{"type":"toolCall","id":"edit2","name":"edit","arguments":{"input":"[src/example.py#BBBB]\nPUT 1.=1:\n+second"}}]}}
+{"type":"message","id":"r2","parentId":"a2","timestamp":"2026-08-01T10:00:11Z","message":{"role":"toolResult","toolCallId":"edit2","toolName":"edit","isError":false,"content":[{"type":"text","text":"edited"}]}}
+{"type":"message","id":"a3","parentId":"r2","timestamp":"2026-08-01T10:00:12Z","message":{"role":"assistant","content":[{"type":"toolCall","id":"edit3","name":"edit","arguments":{"input":"[src/example.py#CCCC]\nPUT 1.=1:\n+third"}}]}}
+{"type":"message","id":"r3","parentId":"a3","timestamp":"2026-08-01T10:00:13Z","message":{"role":"toolResult","toolCallId":"edit3","toolName":"edit","isError":false,"content":[{"type":"text","text":"edited"}]}}
+{"type":"message","id":"a4","parentId":"r3","timestamp":"2026-08-01T10:00:14Z","message":{"role":"assistant","content":[{"type":"toolCall","id":"bad1","name":"bash","arguments":{"command":"false"}}]}}
+{"type":"message","id":"e1","parentId":"a4","timestamp":"2026-08-01T10:00:15Z","message":{"role":"toolResult","toolCallId":"bad1","toolName":"bash","isError":true,"content":[{"type":"text","text":"command failed"}]}}
+{"type":"message","id":"a5","parentId":"e1","timestamp":"2026-08-01T10:00:16Z","message":{"role":"assistant","content":[{"type":"toolCall","id":"bad2","name":"bash","arguments":{"command":"false"}}]}}
+{"type":"message","id":"e2","parentId":"a5","timestamp":"2026-08-01T10:00:17Z","message":{"role":"toolResult","toolCallId":"bad2","toolName":"bash","isError":true,"content":[{"type":"text","text":"hook blocked the operation"}]}}
+{"type":"message","id":"a6","parentId":"e2","timestamp":"2026-08-01T10:00:18Z","message":{"role":"assistant","content":[{"type":"toolCall","id":"bad3","name":"bash","arguments":{"command":"false"}}]}}
+{"type":"message","id":"e3","parentId":"a6","timestamp":"2026-08-01T10:00:19Z","message":{"role":"toolResult","toolCallId":"bad3","toolName":"bash","isError":true,"content":[{"type":"text","text":"approval denied"}]}}
+{"type":"message","id":"u2","parentId":"e3","timestamp":"2026-08-01T10:00:20Z","message":{"role":"user","attribution":"user","content":[{"type":"text","text":"You still didn't do what I asked."}]}}
+{"type":"message","id":"a7","parentId":"u2","timestamp":"2026-08-01T10:00:21Z","message":{"role":"assistant","content":[{"type":"text","text":"Done and complete."}]}}
+{"type":"message","id":"a8","parentId":"a7","timestamp":"2026-08-01T10:00:22Z","message":{"role":"assistant","stopReason":"aborted","content":[{"type":"text","text":"I will keep changing files"}]}}

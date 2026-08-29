@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "skill": "replace-with-target-skill-name",
+  "structural": [
+    {
+      "name": "approved guardrail exists once",
+      "path": "replace-with-target-skill-name/SKILL.md",
+      "contains": [
+        "replace with the exact approved instruction"
+      ],
+      "notContains": [
+        "replace with contradictory obsolete wording"
+      ],
+      "regex": [],
+      "notRegex": [],
+      "maxOccurrences": [
+        {
+          "text": "replace with the exact approved instruction",
+          "max": 1
+        }
+      ]
+    }
+  ],
+  "replays": [
+    {
+      "name": "replace with the recurrence scenario name",
+      "prompt": "Replace with a redacted realistic prompt that preserves the failed decision.",
+      "requireSkillRead": true,
+      "expect": {
+        "exitCode": 0,
+        "contains": [
+          "replace with an observable required answer fragment"
+        ],
+        "notContains": [
+          "replace with an observable failed answer fragment"
+        ],
+        "regex": [],
+        "notRegex": []
+      }
+    }
+  ]
+}

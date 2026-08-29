@@ -1,0 +1,15 @@
+{"type":"session","version":3,"id":"fixture-reset","timestamp":"2026-08-03T10:00:00Z","cwd":"/workspace/demo"}
+{"type":"custom_message","customType":"skill-prompt","content":"[IMPORTANT: User invoked the \"demo-skill\" skill.][Skill directory: /workspace/skills/demo-skill]","id":"s1","parentId":null,"timestamp":"2026-08-03T10:00:01Z"}
+{"type":"message","id":"a1","parentId":"s1","timestamp":"2026-08-03T10:00:02Z","message":{"role":"assistant","content":[{"type":"toolCall","id":"w1","name":"write","arguments":{"path":"src/reset.py","content":"one"}}]}}
+{"type":"message","id":"r1","parentId":"a1","timestamp":"2026-08-03T10:00:03Z","message":{"role":"toolResult","toolCallId":"w1","toolName":"write","isError":false,"content":[{"type":"text","text":"written"}]}}
+{"type":"message","id":"a2","parentId":"r1","timestamp":"2026-08-03T10:00:04Z","message":{"role":"assistant","content":[{"type":"toolCall","id":"w2","name":"write","arguments":{"path":"src/reset.py","content":"two"}}]}}
+{"type":"message","id":"r2","parentId":"a2","timestamp":"2026-08-03T10:00:05Z","message":{"role":"toolResult","toolCallId":"w2","toolName":"write","isError":false,"content":[{"type":"text","text":"written"}]}}
+{"type":"reset_boundary","id":"reset","parentId":"r2","timestamp":"2026-08-03T10:00:06Z"}
+{"type":"message","id":"a3","parentId":"reset","timestamp":"2026-08-03T10:00:07Z","message":{"role":"assistant","content":[{"type":"toolCall","id":"w3","name":"write","arguments":{"path":"src/reset.py","content":"three"}}]}}
+{"type":"message","id":"r3","parentId":"a3","timestamp":"2026-08-03T10:00:08Z","message":{"role":"toolResult","toolCallId":"w3","toolName":"write","isError":false,"content":[{"type":"text","text":"written"}]}}
+{"type":"message","id":"a4","parentId":"r3","timestamp":"2026-08-03T10:00:09Z","message":{"role":"assistant","content":[{"type":"toolCall","id":"b1","name":"bash","arguments":{"command":"false"}}]}}
+{"type":"message","id":"e1","parentId":"a4","timestamp":"2026-08-03T10:00:10Z","message":{"role":"toolResult","toolCallId":"b1","toolName":"bash","isError":true,"content":[{"type":"text","text":"failed"}]}}
+{"type":"message","id":"a5","parentId":"e1","timestamp":"2026-08-03T10:00:11Z","message":{"role":"assistant","content":[{"type":"toolCall","id":"read1","name":"read","arguments":{"path":"missing"}}]}}
+{"type":"message","id":"e2","parentId":"a5","timestamp":"2026-08-03T10:00:12Z","message":{"role":"toolResult","toolCallId":"read1","toolName":"read","isError":true,"content":[{"type":"text","text":"not found"}]}}
+{"type":"message","id":"a6","parentId":"e2","timestamp":"2026-08-03T10:00:13Z","message":{"role":"assistant","content":[{"type":"toolCall","id":"b2","name":"bash","arguments":{"command":"false"}}]}}
+{"type":"message","id":"e3","parentId":"a6","timestamp":"2026-08-03T10:00:14Z","message":{"role":"toolResult","toolCallId":"b2","toolName":"bash","isError":true,"content":[{"type":"text","text":"failed again"}]}}

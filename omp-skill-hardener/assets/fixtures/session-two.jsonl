@@ -1,0 +1,22 @@
+{"type":"session","version":3,"id":"fixture-two","timestamp":"2026-08-02T10:00:00Z","cwd":"/workspace/demo"}
+{"type":"message","id":"u0","parentId":null,"timestamp":"2026-08-02T10:00:01Z","message":{"role":"user","attribution":"user","content":[{"type":"text","text":"Use the demo skill and make the approved change."}]}}
+{"type":"message","id":"load","parentId":"u0","timestamp":"2026-08-02T10:00:02Z","message":{"role":"assistant","content":[{"type":"toolCall","id":"read1","name":"read","arguments":{"path":"skill://demo-skill:1-5"}}]}}
+{"type":"message","id":"load-result","parentId":"load","timestamp":"2026-08-02T10:00:03Z","message":{"role":"toolResult","toolCallId":"read1","toolName":"read","isError":false,"content":[{"type":"text","text":"demo skill content"}]}}
+{"type":"mode_change","id":"m1","parentId":"load-result","timestamp":"2026-08-02T10:00:04Z","mode":"plan"}
+{"type":"mode_change","id":"m2","parentId":"m1","timestamp":"2026-08-02T10:00:05Z","mode":"default"}
+{"type":"message","id":"u1","parentId":"m2","timestamp":"2026-08-02T10:00:06Z","message":{"role":"user","attribution":"user","content":[{"type":"text","text":"Don't do that; that's not the plan."}]}}
+{"type":"message","id":"u2","parentId":"u1","timestamp":"2026-08-02T10:00:07Z","message":{"role":"user","attribution":"user","content":[{"type":"text","text":"This is still wrong and not what I asked."}]}}
+{"type":"message","id":"a1","parentId":"u2","timestamp":"2026-08-02T10:00:08Z","message":{"role":"assistant","content":[{"type":"toolCall","id":"edit1","name":"write","arguments":{"path":"src/example.py","content":"first"}}]}}
+{"type":"message","id":"r1","parentId":"a1","timestamp":"2026-08-02T10:00:09Z","message":{"role":"toolResult","toolCallId":"edit1","toolName":"write","isError":false,"content":[{"type":"text","text":"written"}]}}
+{"type":"message","id":"a2","parentId":"r1","timestamp":"2026-08-02T10:00:10Z","message":{"role":"assistant","content":[{"type":"toolCall","id":"edit2","name":"write","arguments":{"path":"src/example.py","content":"second"}}]}}
+{"type":"message","id":"r2","parentId":"a2","timestamp":"2026-08-02T10:00:11Z","message":{"role":"toolResult","toolCallId":"edit2","toolName":"write","isError":false,"content":[{"type":"text","text":"written"}]}}
+{"type":"message","id":"a3","parentId":"r2","timestamp":"2026-08-02T10:00:12Z","message":{"role":"assistant","content":[{"type":"toolCall","id":"edit3","name":"write","arguments":{"path":"src/example.py","content":"third"}}]}}
+{"type":"message","id":"r3","parentId":"a3","timestamp":"2026-08-02T10:00:13Z","message":{"role":"toolResult","toolCallId":"edit3","toolName":"write","isError":false,"content":[{"type":"text","text":"written"}]}}
+{"type":"message","id":"a4","parentId":"r3","timestamp":"2026-08-02T10:00:14Z","message":{"role":"assistant","content":[{"type":"toolCall","id":"bad1","name":"bash","arguments":{"command":"exit 1"}}]}}
+{"type":"message","id":"e1","parentId":"a4","timestamp":"2026-08-02T10:00:15Z","message":{"role":"toolResult","toolCallId":"bad1","toolName":"bash","isError":true,"content":[{"type":"text","text":"failed"}]}}
+{"type":"message","id":"a5","parentId":"e1","timestamp":"2026-08-02T10:00:16Z","message":{"role":"assistant","content":[{"type":"toolCall","id":"bad2","name":"bash","arguments":{"command":"exit 1"}}]}}
+{"type":"message","id":"e2","parentId":"a5","timestamp":"2026-08-02T10:00:17Z","message":{"role":"toolResult","toolCallId":"bad2","toolName":"bash","isError":true,"content":[{"type":"text","text":"policy hook blocked retry"}]}}
+{"type":"message","id":"a6","parentId":"e2","timestamp":"2026-08-02T10:00:18Z","message":{"role":"assistant","content":[{"type":"toolCall","id":"bad3","name":"bash","arguments":{"command":"exit 1"}}]}}
+{"type":"message","id":"e3","parentId":"a6","timestamp":"2026-08-02T10:00:19Z","message":{"role":"toolResult","toolCallId":"bad3","toolName":"bash","isError":true,"content":[{"type":"text","text":"approval rejected"}]}}
+{"type":"message","id":"a7","parentId":"e3","timestamp":"2026-08-02T10:00:20Z","message":{"role":"assistant","content":[{"type":"text","text":"Fixed. All set."}]}}
+{"type":"message","id":"a8","parentId":"a7","timestamp":"2026-08-02T10:00:21Z","message":{"role":"assistant","stopReason":"aborted","content":[{"type":"text","text":"continuing"}]}}
