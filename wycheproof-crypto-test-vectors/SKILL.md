@@ -1,6 +1,10 @@
 ---
 name: wycheproof-crypto-test-vectors
-description: "Use Project Wycheproof test vectors to validate cryptographic implementations against known attacks, specification edge cases, and implementation bugs across 30+ algorithms including AES-GCM, ECDSA, RSA, ECDH, EdDSA, ChaCha20-Poly1305, HKDF, HMAC, ML-KEM, ML-DSA, and more."
+description: "Integrates Project Wycheproof vectors to test cryptographic implementations against known attacks, specification edge cases, and implementation bugs. Use when adding Wycheproof JSON vectors, mapping result semantics, or auditing crypto test coverage. Don't use for NIST CAVP validation, generating new cryptographic vectors, or general unit tests unrelated to Wycheproof."
+metadata:
+  source: "https://github.com/C2SP/wycheproof"
+  createdAt: "2026-08-28T19:26:56+02:00"
+  updatedAt: "2026-08-29T17:06:38+02:00"
 ---
 
 # Wycheproof Crypto Test Vectors

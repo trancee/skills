@@ -93,11 +93,18 @@ A skill's frontmatter provides its discovery contract:
 ---
 name: example-skill
 description: Perform a specific workflow when its triggering conditions apply.
+metadata:
+  source: "https://example.com/canonical-source"
+  createdAt: "2026-01-01T12:00:00+00:00"
+  updatedAt: "2026-01-02T12:00:00+00:00"
 ---
 ```
 
 - `name` matches the lower-kebab-case directory name.
 - `description` states what the skill does and the distinct situations that should trigger it.
+- `metadata.source` identifies the canonical source used to author and refresh the skill.
+- `metadata.createdAt` records the skill's first repository creation time as an ISO 8601 string.
+- `metadata.updatedAt` records the latest skill content or metadata update as an ISO 8601 string.
 - The body contains ordered actions, decision points, constraints, and checkable completion criteria.
 - Relative links resolve from the skill directory.
 

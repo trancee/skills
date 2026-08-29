@@ -1,6 +1,10 @@
 ---
 name: nist-cavp-test-vectors
-description: "Find, download, parse, and integrate NIST CAVP or ACVP test vectors for cryptographic algorithms and primitive components."
+description: "Finds, downloads, parses, and integrates NIST CAVP or ACVP test vectors for cryptographic algorithms and primitive components. Use when adding NIST vectors, building an ACVP client, or verifying implementations against CAVP data. Don't use for Project Wycheproof attack vectors, formal validation without an accredited laboratory, or non-cryptographic test fixtures."
+metadata:
+  source: "https://csrc.nist.gov/projects/cryptographic-algorithm-validation-program/"
+  createdAt: "2026-08-28T19:38:42+02:00"
+  updatedAt: "2026-08-29T17:06:38+02:00"
 ---
 
 # NIST CAVP and ACVP test vectors

@@ -1,6 +1,10 @@
 ---
 name: xtool-ios-development
-description: "Install, configure, troubleshoot, and use xtool for SwiftPM-driven iOS development on Linux, WSL, or macOS."
+description: "Installs, configures, troubleshoots, and uses xtool for SwiftPM-driven iOS development on Linux, WSL, or macOS. Use when setting up xtool, building or deploying an iOS app with SwiftPM, managing the Darwin SDK, or diagnosing device setup. Don't use for Xcode project development without xtool, Android development, or unrelated Swift tooling."
+metadata:
+  source: "https://xtool.sh/documentation/xtool/"
+  createdAt: "2026-08-28T19:26:56+02:00"
+  updatedAt: "2026-08-29T17:06:38+02:00"
 ---
 
 # xtool iOS development
