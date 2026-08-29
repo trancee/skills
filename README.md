@@ -12,7 +12,7 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 | [`nist-cavp-test-vectors`](nist-cavp-test-vectors/) | Find, download, parse, and integrate NIST CAVP or ACVP test vectors for cryptographic algorithms and primitive components. |
 | [`ristretto255`](ristretto255/) | Implement, integrate, and review ristretto255, including canonical encoding, hash-to-group, scalars, constant-time operations, protocol use, and RFC vectors. |
 | [`wycheproof`](wycheproof/) | Integrate and audit current Project Wycheproof vectors against cryptographic implementations, schemas, and result semantics. |
-| [`xtool-ios-development`](xtool-ios-development/) | Install, configure, troubleshoot, and use xtool for SwiftPM-driven iOS development on Linux, WSL, or macOS. |
+| [`xtool`](xtool/) | Install, configure, use, and troubleshoot xtool for SwiftPM-driven iOS development and device deployment. |
 
 Open a skill's `SKILL.md` for its full procedure and source material.
 
