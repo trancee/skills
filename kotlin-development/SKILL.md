@@ -2,12 +2,14 @@
 name: kotlin-development
 description: "Implements, reviews, builds, tests, and troubleshoots Kotlin projects across JVM, Android, Kotlin Multiplatform, JavaScript, Wasm, and Native. Use when editing Kotlin source, configuring Kotlin with Gradle or Maven, aligning Kotlin and JVM toolchains, working with coroutines or Java interop, or diagnosing compiler and test failures. Don't use for Java-only projects, Android UI work without Kotlin code, or build-system tasks unrelated to Kotlin."
 metadata:
-  source: "https://kotlinlang.org/docs/home.html"
   category: "development"
+  source: "https://kotlinlang.org/docs/home.html"
   sourceVersion: "Kotlin 2.4.10; Kotlin Help build 1155; Kotlin Multiplatform Help build 554"
   sourceBuiltAt: "2026-08-26"
+  createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T10:56:53+02:00"
-  updatedAt: "2026-08-30T11:05:26+02:00"
+  updatedBy: "github-copilot/gpt-5.6-sol"
+  updatedAt: "2026-08-30T11:16:59+02:00"
 ---
 
 # Kotlin development

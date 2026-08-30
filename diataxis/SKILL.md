@@ -2,10 +2,13 @@
 name: diataxis
 description: "Authors, audits, and restructures technical documentation with the Diátaxis framework. Use when creating or reviewing tutorials, how-to guides, reference, explanation, documentation architecture, content classification, or documentation quality. Don't use for general prose editing without a documentation need, API implementation, or product design."
 metadata:
-  source: "https://diataxis.fr/"
   category: "documentation"
+  source: "https://diataxis.fr/"
+  sourceVersion: "evildmp/diataxis-documentation-framework@957c09ca40b4a1edc23874f713e01937d50d54d5"
+  createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-28T19:26:56+02:00"
-  updatedAt: "2026-08-30T11:05:26+02:00"
+  updatedBy: "github-copilot/gpt-5.6-sol"
+  updatedAt: "2026-08-30T11:16:59+02:00"
 ---
 
 # Diátaxis documentation workflow

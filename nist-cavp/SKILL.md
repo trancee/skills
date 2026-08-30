@@ -2,10 +2,13 @@
 name: nist-cavp
 description: "Finds, downloads, parses, and integrates NIST CAVP and ACVP cryptographic test vectors. Use when locating vectors for primitives or components, building offline regression tests from CAVP archives, implementing ACVP request/response handling, or preparing algorithm validation work. Don't use for Project Wycheproof attack vectors, claiming certification from static vectors, or non-cryptographic fixtures."
 metadata:
-  source: "https://csrc.nist.gov/projects/cryptographic-algorithm-validation-program/"
   category: "cryptography"
+  source: "https://csrc.nist.gov/projects/cryptographic-algorithm-validation-program/"
+  sourceVersion: "CAVP page revision 2026-08-12; draft-ietf-acvp-spec-01"
+  createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-28T19:38:42+02:00"
-  updatedAt: "2026-08-30T11:05:26+02:00"
+  updatedBy: "github-copilot/gpt-5.6-sol"
+  updatedAt: "2026-08-30T11:16:59+02:00"
 ---
 
 # NIST CAVP and ACVP vectors

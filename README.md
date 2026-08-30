@@ -6,15 +6,32 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 
 ## Available skills
 
-| Skill | Category | Purpose |
-| --- | --- | --- |
-| [`diataxis`](diataxis/) | Documentation | Write, audit, and improve tutorials, how-to guides, reference, explanation, documentation architecture, and documentation quality. |
-| [`kotlin-development`](kotlin-development/) | Development | Implement, review, build, test, and troubleshoot Kotlin projects across JVM, Android, Kotlin Multiplatform, JavaScript, Wasm, and Native. |
-| [`nist-cavp`](nist-cavp/) | Cryptography | Find, download, parse, and integrate NIST CAVP archives and ACVP vector sets for cryptographic primitives and components. |
-| [`omp-skill-hardener`](omp-skill-hardener/) | Agent tooling | Mine repeated failures from OMP sessions, turn them into approved skill or `AGENTS.md` changes, and test the new rules. |
-| [`ristretto255`](ristretto255/) | Cryptography | Implement, integrate, and review ristretto255, including canonical encoding, hash-to-group, scalars, constant-time operations, protocol use, and RFC vectors. |
-| [`wycheproof`](wycheproof/) | Cryptography | Integrate and audit current Project Wycheproof vectors against cryptographic implementations, schemas, and result semantics. |
-| [`xtool`](xtool/) | Development | Install, configure, use, and troubleshoot xtool for SwiftPM-driven iOS development and device deployment. |
+### Agent tooling
+
+| Skill | Purpose |
+| --- | --- |
+| [`omp-skill-hardener`](omp-skill-hardener/) | Mine repeated failures from OMP sessions, turn them into approved skill or `AGENTS.md` changes, and test the new rules. |
+
+### Cryptography
+
+| Skill | Purpose |
+| --- | --- |
+| [`nist-cavp`](nist-cavp/) | Find, download, parse, and integrate NIST CAVP archives and ACVP vector sets for cryptographic primitives and components. |
+| [`ristretto255`](ristretto255/) | Implement, integrate, and review ristretto255, including canonical encoding, hash-to-group, scalars, constant-time operations, protocol use, and RFC vectors. |
+| [`wycheproof`](wycheproof/) | Integrate and audit current Project Wycheproof vectors against cryptographic implementations, schemas, and result semantics. |
+
+### Development
+
+| Skill | Purpose |
+| --- | --- |
+| [`kotlin-development`](kotlin-development/) | Implement, review, build, test, and troubleshoot Kotlin projects across JVM, Android, Kotlin Multiplatform, JavaScript, Wasm, and Native. |
+| [`xtool`](xtool/) | Install, configure, use, and troubleshoot xtool for SwiftPM-driven iOS development and device deployment. |
+
+### Documentation
+
+| Skill | Purpose |
+| --- | --- |
+| [`diataxis`](diataxis/) | Write, audit, and improve tutorials, how-to guides, reference, explanation, documentation architecture, and documentation quality. |
 
 Open a skill's `SKILL.md` for its full procedure and source material.
 
@@ -99,9 +116,12 @@ A skill's frontmatter provides its discovery contract:
 name: example-skill
 description: Perform a specific workflow when its triggering conditions apply.
 metadata:
-  source: "https://example.com/canonical-source"
   category: "development"
+  source: "https://example.com/canonical-source"
+  sourceVersion: "upstream release, document, page revision, or commit"
+  createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-01-01T12:00:00+00:00"
+  updatedBy: "github-copilot/gpt-5.6-sol"
   updatedAt: "2026-01-02T12:00:00+00:00"
 ---
 ```
@@ -110,7 +130,10 @@ metadata:
 - `description` states what the skill does and the distinct situations that should trigger it.
 - `metadata.category` groups the skill under `agent-tooling`, `cryptography`, `development`, or `documentation` in this repository.
 - `metadata.source` identifies the canonical source used to author and refresh the skill.
+- `metadata.sourceVersion` records the upstream release, document identifier, dated page revision, or commit used to author or refresh the skill.
+- `metadata.createdBy` records the `provider/model` identifier that first created the skill.
 - `metadata.createdAt` records the skill's first repository creation time as an ISO 8601 string.
+- `metadata.updatedBy` records the `provider/model` identifier that made the latest content or metadata change.
 - `metadata.updatedAt` records the latest skill content or metadata update as an ISO 8601 string.
 - The body contains ordered actions, decision points, constraints, and checkable completion criteria.
 - Relative links resolve from the skill directory.

@@ -3,10 +3,13 @@ name: omp-skill-hardener
 description: "Hardens OMP skills and AGENTS.md rules from recurring failures in persisted OMP sessions. Use when repeated agent friction should be mined, attributed, converted into approved guardrails, and locked down with regression tests. Don't use for one-off mistakes, brand-new skills without history, general code debugging, or automatic edits without review."
 license: MIT
 metadata:
-  source: https://github.com/eristoddle/agent-skills/tree/main/skills/skill-hardener
   category: "agent-tooling"
+  source: "https://github.com/eristoddle/agent-skills/tree/main/skills/skill-hardener"
+  sourceVersion: "eristoddle/agent-skills@0bb8bd82e0db30ac955938914f78685338112c82"
+  createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-29T18:07:51+02:00"
-  updatedAt: "2026-08-30T11:05:26+02:00"
+  updatedBy: "github-copilot/gpt-5.6-sol"
+  updatedAt: "2026-08-30T11:16:59+02:00"
 ---
 
 # OMP skill hardener
@@ -154,4 +157,4 @@ Stop without editing when attribution is unresolved, the cluster misses the recu
 
 ## Provenance
 
-This OMP-specific adaptation preserves the evidence-first, approval-gated workflow of Stephan Miller's `skill-hardener`, retrieved from `eristoddle/agent-skills` at observed revision `b0b9ab82e0db`. See [the upstream license](references/upstream-license.txt).
+This OMP-specific adaptation preserves the evidence-first, approval-gated workflow of Stephan Miller's `skill-hardener`, retrieved from `eristoddle/agent-skills` at observed revision `0bb8bd82e0db`. See [the upstream license](references/upstream-license.txt).

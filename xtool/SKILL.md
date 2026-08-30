@@ -2,10 +2,13 @@
 name: xtool
 description: "Installs, configures, uses, and troubleshoots xtool for SwiftPM-driven iOS development. Use when setting up xtool on Linux, WSL, or macOS; installing a Darwin Swift SDK; authenticating with Apple; creating, building, signing, or deploying an iOS app; or diagnosing device failures. Don't use for Xcode-only projects, Android development, or unrelated Swift tooling."
 metadata:
-  source: "https://xtool.sh/"
   category: "development"
+  source: "https://xtool.sh/"
+  sourceVersion: "xtool 1.17.0 (9e8bfd432c99c7ef9ade6c4b6723f1321ed0e7ed)"
+  createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-28T19:26:56+02:00"
-  updatedAt: "2026-08-30T11:05:26+02:00"
+  updatedBy: "github-copilot/gpt-5.6-sol"
+  updatedAt: "2026-08-30T11:16:59+02:00"
 ---
 
 # xtool iOS development

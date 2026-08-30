@@ -2,10 +2,13 @@
 name: ristretto255
 description: "Implements, integrates, and reviews ristretto255 safely, including canonical encoding, hash-to-group, scalar handling, constant-time operations, protocol use, and RFC test vectors. Use when working with the ristretto255 group, integrating a maintained library, designing a protocol over it, auditing an implementation, or implementing RFC 9496. Don't use for raw Ed25519/X25519 operations, decaf448, or unrelated elliptic-curve protocol design."
 metadata:
-  source: "https://ristretto.group/"
   category: "cryptography"
+  source: "https://ristretto.group/"
+  sourceVersion: "RFC 9496 (December 2023)"
+  createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-28T19:45:01+02:00"
-  updatedAt: "2026-08-30T11:05:26+02:00"
+  updatedBy: "github-copilot/gpt-5.6-sol"
+  updatedAt: "2026-08-30T11:16:59+02:00"
 ---
 
 # ristretto255 implementation and use
