@@ -26,6 +26,7 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 
 | Skill | Context tokens | Purpose |
 | --- | ---: | --- |
+| [`android-ble`](android-ble/) | 5,921 | Implement, migrate, test, and troubleshoot Android BLE scanning, GATT, background, permissions, and Android 17 behavior. |
 | [`ble-protocol-stack`](ble-protocol-stack/) | 5,486 | Design, validate, and troubleshoot BLE GAP, GATT, ATT, L2CAP schemas, procedures, caching, and channels. |
 | [`ble-throughput`](ble-throughput/) | 5,004 | Measure, model, diagnose, and optimize BLE throughput across PHY, Link Layer, ATT/GATT, mobile, and application queues. |
 | [`compose-multiplatform`](compose-multiplatform/) | 5,483 | Design, implement, test, and ship shared Compose UI across Android, iOS, desktop, and web. |
