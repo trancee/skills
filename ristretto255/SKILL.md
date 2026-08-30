@@ -1,6 +1,6 @@
 ---
 name: ristretto255
-description: "Implements, integrates, and reviews ristretto255 safely, including canonical encoding, hash-to-group, scalar handling, constant-time operations, protocol use, and RFC test vectors. Use when working with the ristretto255 group, integrating a maintained library, designing a protocol over it, auditing an implementation, or implementing RFC 9496. Don't use for raw Ed25519/X25519 operations, decaf448, or unrelated elliptic-curve protocol design."
+description: "Implements/integrates/audits ristretto255: canonical encoding, hash-to-group, scalars, constant-time operations, protocol use, RFC vectors. Use for ristretto255 libraries/protocols/RFC 9496 implementations. Don't use for raw Ed25519/X25519, decaf448, or unrelated curves."
 metadata:
   category: "cryptography"
   source: "https://ristretto.group/"
@@ -8,104 +8,78 @@ metadata:
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-28T19:45:01+02:00"
   updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-30T11:16:59+02:00"
+  updatedAt: "2026-08-30T11:48:01+02:00"
 ---
 
-# ristretto255 implementation and use
+# ristretto255
 
-## Procedures
+## 1. Route
 
-**Step 1: Classify the task**
+1. CLASSIFY: library integration | protocol design/review | abstraction implementation/audit.
+2. Normative: [RFC 9496](https://www.rfc-editor.org/rfc/rfc9496.html); rationale: [ristretto.group](https://ristretto.group/); check [errata](https://www.rfc-editor.org/errata/rfc9496).
+3. Protocol underspecified scalar derivation/hash-to-group/identity/transcript/KDF => STOP.
+4. Library selection -> READ `references/libraries.md`.
+5. Internals -> READ `references/implementation.md`.
+6. Protocol/hash/transcript/shared element -> READ `references/protocol-use.md`.
 
-1. Identify whether the task integrates a maintained library, designs or reviews a protocol, or implements the ristretto255 abstraction.
-2. Use [RFC 9496](https://www.rfc-editor.org/rfc/rfc9496.html) as the interoperability specification and [ristretto.group](https://ristretto.group/) for rationale and derivations. Check [RFC 9496 errata](https://www.rfc-editor.org/errata/rfc9496) before implementing formulas.
-3. Keep the scope on ristretto255. Treat decaf448, Ed25519, Edwards25519, and X25519 as distinct constructions.
-4. Reject underspecified protocol requests until the protocol defines scalar derivation, hash-to-group, identity handling, transcript encoding, and KDF behavior.
+## 2. Implementation choice
 
-**Step 2: Select the implementation path**
+PREFER maintained dedicated API. VERIFY version, maintenance, strict decode, canonical scalar parse, wide reduction, CT secret multiplication, 64-byte map, RFC vectors.
+From-scratch only if project owns CT Curve25519 field + complete Edwards ops AND required platform/interoperability excludes libraries.
 
-1. Prefer a maintained library exposing dedicated ristretto255 element, compressed-element, and scalar types.
-2. Read `references/libraries.md` when selecting Rust, C/libsodium, Go, or another implementation.
-3. Verify the installed library version, maintenance status, strict decoding, constant-time guarantees, uniform-element map, scalar API, and RFC 9496 vector coverage.
-4. Implement from scratch only when the project already owns constant-time Curve25519 field arithmetic and complete Edwards operations, and a concrete platform or interoperability requirement excludes maintained libraries.
-5. If implementing or auditing the abstraction, read `references/implementation.md` before editing code. Otherwise, continue to Step 3.
+## 3. Type boundary
 
-**Step 3: Establish opaque boundaries**
+Distinct opaque types: validated element | compressed 32B | scalar mod `l` | protocol nonzero scalar.
+PRIVATE: Edwards reps/coordinates/field/map/constants.
+Construct elements only via strict decode, 64B map, identity/generator, valid group ops.
+No public arbitrary-Edwards conversion; no Ristretto/Ed25519/Edwards25519/X25519 mixing. Keep internal elements decoded across ops.
 
-1. Define separate types for validated ristretto255 elements, 32-byte compressed encodings, scalars modulo the group order, and protocol-specific nonzero scalars when needed.
-2. Keep Edwards representatives, coordinates, field elements, map internals, and implementation constants private.
-3. Construct elements only through strict decoding, the 64-byte element-derivation function, identity/generator constants, or group operations on valid elements.
-4. Remove public conversions from arbitrary Edwards25519 points and prevent mixing Ristretto, Ed25519, Edwards25519, and X25519 values.
-5. Keep validated opaque elements internal across operations instead of encoding and decoding every intermediate.
+## 4. External parse
 
-**Step 4: Validate external values**
+- element: exactly 32B; strict decode rejects noncanonical `s`, negative `s`, nonsquare, negative `x*y`, `y=0`; never mask high bit
+- identity: valid generic element; protocol restriction after decode
+- scalar input: canonical `0 <= s < l`; reject, never reduce
+- scalar derivation: 64 uniform LE bytes mod `l`; retry zero iff protocol requires nonzero/invertible
+- NEVER clamp ristretto255 scalar
 
-1. Require exactly 32 bytes for an external element encoding.
-2. Call strict ristretto255 decoding; reject noncanonical field encodings, negative `s`, nonsquare cases, negative `x*y`, and `y = 0`.
-3. Preserve the high bit during validation. Reject it through canonical decoding rather than silently masking it.
-4. Apply protocol-specific identity restrictions only after successful decoding. Treat the all-zero identity encoding as a valid group element at the generic group layer.
-5. Parse external scalars canonically by accepting only values in `0 <= s < l`; reject noncanonical encodings instead of reducing them.
-6. Derive scalars from 64 uniform little-endian bytes reduced modulo `l`. Resample or rederive zero only when the protocol requires a nonzero or invertible scalar.
-7. Never clamp ristretto255 scalars.
+## 5. Derive+operate
 
-**Step 5: Derive elements and scalars**
+- element map input exactly 64 uniform bytes
+- arbitrary message => RFC 9380 `hash_to_ristretto255`, exact expander+DST; distinct logical oracle => distinct nonempty DST
+- random element => maintained CSPRNG API OR map 64 uniform bytes; never rejection-sample encodings
+- 64B map is many-to-one; not digest/commitment/encoding/proof
+- use dedicated identity/generator/equality/add/sub/neg/mul/fixed-base/MSM
+- secrets/control selections => CT; variable-time only all-public + protocol permits
+- equality => Ristretto equality OR CT canonical-byte compare; never Edwards coordinates
+- no manual cofactor clearing; check every return code; map library identity policy explicitly
 
-1. Use the library's element-derivation function only with exactly 64 uniform bytes.
-2. For arbitrary messages, read `references/protocol-use.md` and implement RFC 9380 `hash_to_ristretto255` with the protocol's exact `expand_message` construction and domain separation tag.
-3. Give distinct logical random oracles distinct nonempty domain separation tags.
-4. Generate random elements with the library's CSPRNG-backed API or by mapping 64 uniform random bytes. Avoid rejection-sampling random compressed encodings.
-5. Treat the 64-byte map as a many-to-one map, not as a digest, commitment, encoding, or one-way proof.
+## 6. Protocol binding
 
-**Step 6: Perform group operations**
+Canonical element encodings in unambiguous transcript. Bind protocol+ciphersuite versions, roles, public elements, associated data, purpose.
+Shared element -> canonical bytes + full transcript/context -> specified KDF; never direct symmetric key.
+Protocol explicitly defines authentication, contributory behavior, forward secrecy, key confirmation, identity rejection.
 
-1. Use dedicated operations for identity, generator, equality, addition, subtraction, negation, scalar multiplication, fixed-base multiplication, and multiscalar multiplication.
-2. Use constant-time algorithms whenever a scalar, point selection, or control value is secret.
-3. Use variable-time algorithms only when every value influencing control flow and memory access is public and the protocol permits it.
-4. Compare elements with Ristretto equality or a constant-time comparison of canonical encodings. Never compare underlying Edwards coordinates.
-5. Omit manual cofactor clearing; Ristretto already supplies the prime-order quotient abstraction.
-6. Check every library return code and map library-specific identity errors to the invoking protocol explicitly.
+## 7. Proof
 
-**Step 7: Bind protocol context**
-
-1. Read `references/protocol-use.md` for key exchange, transcripts, challenges, random oracles, or shared-element handling.
-2. Encode elements canonically before adding them to a transcript.
-3. Bind protocol and ciphersuite versions, roles, public elements, associated data, and operation purpose through an unambiguous transcript grammar.
-4. Feed a shared element's canonical encoding and the full transcript/context to the specified KDF. Never use the encoded shared element directly as a symmetric key.
-5. Specify authentication, contributory behavior, forward secrecy, key confirmation, and identity rejection at the protocol layer; do not infer them from Ristretto.
-
-**Step 8: Verify interoperability and invariants**
-
-1. Run the repository's existing ristretto255 tests first.
-2. Run every RFC 9496 Appendix A vector class: generator multiples, invalid encodings, 64-byte element derivation, and `SQRT_RATIO_M1` when implementing internals.
-3. To exercise a black-box implementation, copy the operation shapes from `assets/vector-adapter.json`, implement a tiny JSON-lines adapter, and run:
-
+1. Existing tests first.
+2. Full RFC 9496 Appendix A: `0B..15B`, all invalid encodings, every 64B map vector, `SQRT_RATIO_M1` for internals.
+3. Black-box: implement `assets/vector-adapter.json`; RUN:
    ```bash
    python3 scripts/check-vectors.py -- path/to/adapter [args...]
    ```
+   Script=smoke only; retain full RFC+project tests.
+4. Arbitrary-message hashing => RFC 9380 Appendix B separately.
+5. Properties: encode/decode, identity/inverse, distributivity, order (do not reduce `l` first).
+6. From-scratch => independent differential test + decode/op fuzz + side-channel/generated-code inspection.
+7. OUT: exact library/version, ops, vector classes, unverified side-channel/protocol assumptions.
 
-4. Treat the script as a smoke checker: it covers canonical generator multiples, all RFC invalid encodings, and seven uniform-byte mappings. Retain full Appendix A and implementation-specific tests in the project's suite.
-5. Test RFC 9380 Appendix B separately when the protocol hashes arbitrary messages; RFC 9496 uniform-byte vectors do not test the expander or domain separation tag.
-6. Add property tests for encode/decode round trips, identity and inverse laws, scalar distributivity, and the group order without reducing `l` to the zero scalar first.
-7. Differential-test against an independent maintained implementation and fuzz arbitrary decodes and operation sequences when implementing the abstraction.
-8. Inspect secret-dependent paths with platform-appropriate side-channel tooling or generated-code review.
+## Fail
 
-**Step 9: Complete the review**
-
-1. Confirm that external elements and scalars use strict canonical parsing.
-2. Confirm that Ristretto, compressed bytes, scalars, Edwards25519, Ed25519, and X25519 remain distinct types.
-3. Confirm that every secret-dependent operation uses a constant-time path.
-4. Confirm that identity handling is explicit at each protocol boundary.
-5. Confirm that hash-to-group, transcripts, and KDF inputs use the specified domain separation and canonical encodings.
-6. Confirm that relevant RFC 9496 and RFC 9380 vectors pass and that negative decoding vectors fail.
-7. Report the exact tested library/version, operations, vector classes, and any unverified side-channel or protocol assumptions.
-
-## Error Handling
-
-- If metadata, element length, scalar length, algorithm identity, or protocol rules are ambiguous, stop the affected path and obtain the specification rather than guessing.
-- If a maintained library lacks strict decoding, canonical scalar parsing, constant-time secret multiplication, or RFC vectors, select another library or isolate and implement the missing boundary with explicit tests.
-- If `scripts/check-vectors.py` reports `adapter returned invalid JSON`, emit exactly one JSON object per request on stdout and send diagnostics to stderr.
-- If the vector checker reports an accepted invalid encoding, fix strict decoding before debugging higher-level arithmetic.
-- If generator multiples fail, check the canonical generator, addition, encoding, and quotient equality in that order.
-- If uniform-byte vectors fail while generator multiples pass, inspect the two-map element derivation, field sign convention, and `SQRT_RATIO_M1` semantics.
-- If RFC 9380 vectors fail while RFC 9496 uniform vectors pass, inspect `expand_message`, the domain separation tag, and the 64-byte boundary rather than the Ristretto map.
-- If only variable-time multiplication is available for secret scalars, treat the implementation as unsuitable for that protocol path.
+- ambiguity in metadata/length/algorithm/protocol => STOP for spec
+- library missing strict decode/canonical scalar/CT secret mul/RFC vectors => replace OR isolate+test boundary
+- adapter invalid JSON => one JSON response/request line; diagnostics stderr
+- accepted invalid encoding => fix decode first
+- generator failure => generator -> add -> encode -> quotient equality
+- map-only failure => two-map derivation/sign/`SQRT_RATIO_M1`
+- RFC9380-only failure => expander/DST/64B boundary
+- secret scalar only variable-time => unsuitable

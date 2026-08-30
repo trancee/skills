@@ -1,6 +1,6 @@
 ---
 name: omp-skill-hardener
-description: "Hardens OMP skills and AGENTS.md rules from recurring failures in persisted OMP sessions. Use when repeated agent friction should be mined, attributed, converted into approved guardrails, and locked down with regression tests. Don't use for one-off mistakes, brand-new skills without history, general code debugging, or automatic edits without review."
+description: "Hardens OMP skills/AGENTS.md from repeated persisted-session failures. Use to mine, attribute, propose approved guardrails, and add regressions. Don't use for one-off errors, new skills without history, general debugging, or automatic edits."
 license: MIT
 metadata:
   category: "agent-tooling"
@@ -9,60 +9,42 @@ metadata:
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-29T18:07:51+02:00"
   updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-30T11:16:59+02:00"
+  updatedAt: "2026-08-30T11:48:01+02:00"
 ---
 
 # OMP skill hardener
 
-Turn repeated failures in persisted OMP sessions into narrow, approved changes to the responsible skill or `AGENTS.md`. Never edit from one anecdote or from a generated proposal alone.
+## Gates
 
-## Non-negotiable gates
+- recurrence >=3 matching events AND >=2 sessions
+- post-fix: 1 event => inspect; >=2 independent => review
+- source lines + effective target read before proposal
+- exclude environment/user indecision/tool outage/already-forbidden behavior
+- before edit: show evidence,target,path,exact text,before/after,replay; require explicit wording+target approval
+- max 3 narrow instruction edits/pass
+- raw/events/report/ledger: outside skill dir; mode `0600`; never share without manual redaction
 
-1. Require at least three matching events across at least two sessions. More than one recurrence after a recorded fix is strong evidence for another review.
-2. Read the cited session lines and the effective target before proposing a change. A signature is a lead, not proof of root cause.
-3. Reject environmental failures, user indecision, unrelated tool outages, and failures already forbidden by a stronger active instruction.
-4. Show the user the evidence, attributed target, exact proposed wording, affected file, and regression scenario. Obtain explicit approval before editing.
-5. Apply at most three narrow instruction edits per approved hardening pass. Do not refactor the rest of the skill opportunistically.
-6. Keep raw sessions, mined events, reports, and the fix ledger outside the skill installation directory with permissions limited to the user.
+READ `references/omp-session-format.md` for unusual records/miner changes. READ `references/signatures.md` before accepting clusters.
 
-Read [the session format](references/omp-session-format.md) before changing the miner or interpreting unusual records. Read [the signature catalogue](references/signatures.md) before accepting a cluster.
-
-## 1. Establish private state
-
-Resolve `<skill-directory>` from the path supplied when this skill was loaded. Use a private state directory, not the repository:
+## 1. Private state
 
 ```bash
 umask 077
 mkdir -p "${OMP_SKILL_HARDENER_STATE:-$HOME/.local/state/omp-skill-hardener}"
 ```
 
-Do not copy entire transcripts into reports or prompts. The miner emits short, redacted excerpts and writes JSON with mode `0600`; reports and the ledger also use mode `0600`.
-
-## 2. Mine persisted OMP sessions
-
-Default to the current project and a 30-day window. Broaden only when the recurrence evidence is too sparse:
+## 2. Mine
 
 ```bash
 python3 <skill-directory>/scripts/mine_friction.py \
-  --project "$(basename "$PWD")" \
-  --days 30 \
-  --min-cluster 3 \
+  --project "$(basename "$PWD")" --days 30 --min-cluster 3 \
   --json "${OMP_SKILL_HARDENER_STATE:-$HOME/.local/state/omp-skill-hardener}/events.json"
 ```
 
-Use `--session <file>` for a sanitized fixture or one known session, `--sessions-dir <dir>` for a nonstandard store, and `--days 0` only for an intentional all-history scan.
+Options: `--session FILE`; `--sessions-dir DIR`; intentional all-history=`--days 0`.
+Signals: frustration, interrupt, same-tool error loop, post-plan reversal, hook/approval block, same-file edit loop, done-without-verifier.
 
-The miner reconstructs the latest persisted branch, excludes injected user-like messages, tracks explicit and model-loaded skills, and detects:
-
-- direct user frustration or correction;
-- user interruption;
-- repeated consecutive tool errors;
-- plan reversal immediately after leaving plan mode;
-- hook or approval blocks;
-- repeated edits to one file;
-- completion claims without an observed verification action.
-
-## 3. Rank clusters and check recurrence
+## 3. Rank+confirm
 
 ```bash
 python3 <skill-directory>/scripts/report.py \
@@ -71,90 +53,55 @@ python3 <skill-directory>/scripts/report.py \
   --output "${OMP_SKILL_HARDENER_STATE:-$HOME/.local/state/omp-skill-hardener}/report.md"
 ```
 
-Open the report. For each cluster above the recurrence gate:
+For each gated cluster:
+1. READ `sessionFile:line` vicinity.
+2. CONFIRM same failure, independent sessions, active branch, timestamps/tool/correction.
+3. Generated guardrail=seed only.
 
-1. Inspect its `sessionFile` and `line` locators in the private events file. Read only enough surrounding lines to establish what happened.
-2. Confirm that independent sessions express the same failure mode, not merely the same word.
-3. Confirm timestamps, active branch, tool name, and relevant user correction.
-4. Treat the generated guardrail as a seed. Rewrite it against the surrounding target instead of pasting it blindly.
+## 4. Attribute
 
-## 4. Resolve attribution
+- explicit `custom_message(skill-prompt)` + dir => high
+- `read skill://name`, no dir => medium; compare effective `skill://name` with authored file/provider precedence
+- no active skill => low; inspect nearest active `AGENTS.md`
+- duplicate skill names => BLOCK
+- parent rule caused failure => edit parent, not duplicate child rule
 
-Attribution is intentionally conservative:
+## 5. Propose+approve
 
-- `custom_message` with `customType: skill-prompt` and a skill directory: high confidence; edit that `SKILL.md`.
-- Assistant `read` of `skill://<name>` without a recorded directory: medium confidence; read `skill://<name>` to verify the effective content, then locate the matching authored source under OMP's provider precedence.
-- No active skill: low confidence; inspect the nearest active `AGENTS.md` rules before attributing to `base:AGENTS.md`.
+Root cause form: `WHEN <condition>, agent does <failure> vs <required>`.
+Guardrail: imperative+observable at failed decision; no generic advice.
+Present: counts; 2-3 excerpts; root cause+rejected alternatives; effective target; exact patch; behavior delta; red regression.
+ASK approval. Tool approval != behavioral-rule approval.
 
-Duplicate skill names are a blocking ambiguity. The effective `skill://<name>` content must match the file proposed for editing. If the evidence comes from a rule supplied by a parent `AGENTS.md`, edit that parent rather than adding a second rule to a child file.
+## 6. Edit
 
-## 5. Design and approve the guardrail
+1. CAPTURE tree status + original affected lines; preserve pre-existing work; inseparable dirty patch => STOP.
+2. READ full affected section + referenced controlling rules.
+3. APPLY <=3 narrow edits; remove direct contradictions; show diff/lines.
+4. Broader restructure => separate approval.
 
-A useful guardrail is imperative, observable, and placed at the decision point that failed. It names the prohibited branch and the required replacement behavior. It does not restate generic good practice.
+## 7. Regression
 
-Before any edit, present:
-
-- event and session counts;
-- two or three short excerpts;
-- root-cause judgment and rejected alternatives;
-- effective target and exact insertion/replacement;
-- expected behavior before and after;
-- structural assertion and fresh replay that will fail without the change.
-
-Ask for approval. A normal tool approval is not approval to change behavioral instructions; the user must approve the wording and target.
-
-## 6. Apply the approved change
-
-Before editing, capture the working-tree status and exact original affected lines. A dirty tree is a warning, not permission to overwrite: identify pre-existing changes and preserve them. Stop if the hardening patch cannot be separated from the user's work.
-
-Read the complete affected section and every referenced instruction that controls the same decision. Reuse its vocabulary and remove directly contradictory obsolete wording. Make no more than three narrow edits. Show the resulting diff or exact changed lines.
-
-If the approved change requires broader restructuring, stop and request separate approval rather than hiding it inside the hardening pass.
-
-## 7. Add and run regressions
-
-Copy [the regression template](assets/regression-test.json) outside the installed skill, customize it for the approved behavior, and follow [the regression guide](references/regression-testing.md).
-
-Run deterministic structural assertions first:
+Copy `assets/regression-test.json` outside installed skill; READ `references/regression-testing.md`.
 
 ```bash
-python3 <skill-directory>/scripts/run_regression.py <regression.json> \
-  --root <target-root> \
-  --skip-replay
+python3 <skill-directory>/scripts/run_regression.py SPEC --root TARGET --skip-replay
+python3 <skill-directory>/scripts/run_regression.py SPEC --root TARGET --replay "SCENARIO"
 ```
 
-Then run the selected fresh OMP replay. The runner filters discovery to the target skill, appends an instruction to read it, requires an observed `read` call for its `skill://` URI, and evaluates only final assistant text:
+GATE: red before edit; green after; target `skill://` read observed. Never weaken assertion to pass.
+Edit-caused failure => restore only captured lines; never reset/checkout broad user work. Flaky/unrelated => diagnose, keep approved text.
 
-```bash
-python3 <skill-directory>/scripts/run_regression.py <regression.json> \
-  --root <target-root> \
-  --replay "<scenario name>"
-```
-
-A replay that did not load the target skill is invalid, even if its answer looks correct. Compare the fixed behavior against the preserved pre-fix failure evidence; do not weaken assertions until a failing result turns green.
-
-If a regression fails because of the hardening edit, restore only the captured lines changed by this pass and show the rollback. Never use a reset, checkout, or broad restore that could discard pre-existing work. Diagnose an unrelated or flaky failure without modifying the approved guardrail.
-
-## 8. Record and monitor the fix
-
-After approval, application, and passing regressions:
+## 8. Record
 
 ```bash
 python3 <skill-directory>/scripts/record_fix.py \
   --ledger "${OMP_SKILL_HARDENER_STATE:-$HOME/.local/state/omp-skill-hardener}/ledger.json" \
-  --target 'skill:<name>' \
-  --signature '<signature>' \
-  --guardrail '<exact approved instruction or concise change summary>' \
-  --changed-file '<path>' \
-  --source-report '<private report path>'
+  --target 'skill:<name>' --signature '<signature>' \
+  --guardrail '<approved text/change>' --changed-file '<path>' \
+  --source-report '<private report>'
 ```
 
-Rerun mining and reporting after enough new sessions exist. One post-fix event triggers inspection; two independent post-fix recurrences trigger another hardening review. No recurrence is evidence of absence only within the scanned sessions and window.
+STOP without edit if: unresolved attribution; recurrence gate miss; environmental cause; duplicate stronger rule; rejected wording; no distinguishing regression.
 
-## Stop conditions
-
-Stop without editing when attribution is unresolved, the cluster misses the recurrence gate, the source failure is environmental, the proposed rule duplicates a stronger active rule, the user rejects the wording, or no regression can distinguish the desired behavior from the failure.
-
-## Provenance
-
-This OMP-specific adaptation preserves the evidence-first, approval-gated workflow of Stephan Miller's `skill-hardener`, retrieved from `eristoddle/agent-skills` at observed revision `0bb8bd82e0db`. See [the upstream license](references/upstream-license.txt).
+Provenance: Stephan Miller `skill-hardener`, `eristoddle/agent-skills@0bb8bd82e0db`; MIT in `references/upstream-license.txt`.

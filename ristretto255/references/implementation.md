@@ -1,103 +1,57 @@
-# ristretto255 implementation reference
+# ristretto255 internals
 
-Read this reference only when implementing or auditing the ristretto255 abstraction itself. Treat [RFC 9496](https://www.rfc-editor.org/rfc/rfc9496.html) as normative for interoperability and [ristretto.group](https://ristretto.group/) as rationale and derivation.
+Normative: [RFC 9496](https://www.rfc-editor.org/rfc/rfc9496.html); rationale: [ristretto.group](https://ristretto.group/).
 
-## Parameters and types
+## Constants/types
 
-- Field: `p = 2^255 - 19`.
-- Scalar order: `l = 2^252 + 27742317777372353535851937790883648493`.
-- Element encoding: exactly 32 bytes, little-endian.
-- Scalar encoding: 32 bytes, little-endian.
-- Uniform input to the element map: exactly 64 bytes.
-- Canonical generator encoding: `e2f2ae0a6abc4e71a884a961c500515f58e30b6aa582dd8db6a65945e08d2d76`.
-- Identity encoding: 32 zero bytes.
+- `p=2^255-19`
+- `l=2^252+27742317777372353535851937790883648493`
+- element/scalar encoding: 32B LE; map input: 64B
+- generator: `e2f2ae0a6abc4e71a884a961c500515f58e30b6aa582dd8db6a65945e08d2d76`
+- identity: 32 zero bytes
+- opaque distinct: valid element, compressed bytes, scalar mod `l`, protocol nonzero scalar; Edwards/field private
 
-Keep separate opaque types for a validated element, compressed bytes, a scalar modulo `l`, and any protocol-specific nonzero scalar. Keep Edwards representatives and field elements private.
+## Foundation
 
-## Required field foundation
+Reuse CT field arithmetic + complete extended Edwards `(x,y,z,t)`: CT equality/select/neg/abs, canonical encode/decode, sign where negative=least representative odd.
+Implement RFC4.2 `SQRT_RATIO_M1(u,v)` exactly for zero/square/nonsquare; nonnegative root+`was_square`; all checks/select CT. Copy constants; verify canonical encodings.
 
-Reuse constant-time field arithmetic and complete extended-Edwards operations `(x, y, z, t)`. Provide constant-time field equality, conditional selection, conditional negation/absolute value, canonical field encoding/decoding, and sign testing. A field element is negative when its least nonnegative representative is odd.
+## Decode RFC4.3.1
 
-Implement `SQRT_RATIO_M1(u, v)` exactly as RFC 9496 Section 4.2. Preserve its behavior for zero numerator, zero denominator, square ratios, and nonsquare ratios. Return a nonnegative root and `was_square`; implement all equality checks and selections in constant time.
+1. input exactly 32B; LE `s`; reject `s>=p`; no high-bit mask
+2. reject negative `s`
+3. compute RFC `ss,u1,u2,u2_sqr,v,invsqrt,den_x,den_y,x,y,t`
+4. reject nonsquare OR negative `t` OR `y=0`
+5. return opaque `(x,y,1,t)` only; no partial result
 
-Copy every RFC implementation constant exactly. Verify constants through canonical field encodings rather than reconstructing alternate-sign square roots.
+## Encode RFC4.3.2
 
-## Decode
-
-Implement RFC 9496 Section 4.3.1 in order:
-
-1. Require exactly 32 bytes.
-2. Interpret the input as little-endian `s`; reject `s >= p`. Do not mask the high bit.
-3. Reject negative `s`.
-4. Compute the RFC values `ss`, `u1`, `u2`, `u2_sqr`, `v`, `invsqrt`, `den_x`, `den_y`, `x`, `y`, and `t`.
-5. Reject when the ratio is nonsquare, `t` is negative, or `y` is zero.
-6. Return the opaque element represented internally by `(x, y, 1, t)`.
-
-A decode function returns either a valid opaque element or an error. It never returns a partially validated representative.
-
-## Encode
-
-Implement RFC 9496 Section 4.3.2 on a valid representative:
-
-1. Compute `u1`, `u2`, the inverse square root, `den1`, `den2`, and `z_inv`.
-2. Apply the specified constant-time conditional rotation using `SQRT_M1` and `INVSQRT_A_MINUS_D`.
-3. Apply the specified conditional sign correction.
-4. Compute nonnegative `s`.
-5. Return canonical 32-byte little-endian `s`.
-
-Encoding equivalent Edwards representatives must produce identical bytes. Decoding a valid encoding and encoding it again must reproduce the input exactly.
+Compute `u1,u2,invsqrt,den1,den2,z_inv`; CT rotate via `SQRT_M1`,`INVSQRT_A_MINUS_D`; sign-correct; nonnegative `s`; canonical 32B LE.
+Equivalent reps => same bytes. `encode(decode(s))=s` for accepted `s`.
 
 ## Equality
 
-Compare quotient-group elements with:
+`CT_EQ(x1*y2,y1*x2) OR CT_EQ(y1*y2,x1*x2)`. Never raw coordinate/Edwards equality. CT canonical encoding compare valid but slower.
 
-```text
-CT_EQ(x1*y2, y1*x2) OR CT_EQ(y1*y2, x1*x2)
-```
+## Map RFC4.3.4
 
-Use constant-time operations. Never compare coordinates or underlying Edwards points directly. A constant-time comparison of canonical encodings is equivalent but less efficient.
+1. input exactly 64B; split 32+32
+2. `MAP` each half; MAP masks half MSB before field reduction (strict decode does not)
+3. add mapped elements
 
-## Element derivation
+MAP private, many-to-one, no preimage resistance.
 
-Implement RFC 9496 Section 4.3.4:
+## Scalar/ops
 
-1. Require a 64-byte uniform input.
-2. Split it into two 32-byte strings.
-3. Apply the RFC `MAP` function to each half. The map masks each half's most significant bit before reducing to a field element; this differs deliberately from strict element decoding.
-4. Add the two mapped elements.
+- input scalar canonical `0<=s<l`; reject
+- derive 64 uniform LE bytes mod `l`; retry zero iff protocol requires
+- never clamp
+- addition/sub/neg/mul via complete Edwards on valid reps
+- secret scalar/selection => CT; variable-time MSM only all-public+protocol allows
+- no cofactor multiplication
 
-Keep the map and its constants internal. The map is many-to-one and intentionally lacks preimage resistance.
+## Proof
 
-## Scalar handling
-
-- Parse received canonical scalars by requiring `0 <= s < l`; reject noncanonical encodings.
-- Derive scalars by interpreting 64 uniform bytes as a little-endian integer and reducing modulo `l`.
-- Sample again when a protocol requires nonzero or invertible scalars and reduction produces zero.
-- Never clamp ristretto255 scalars.
-
-## Group operations
-
-Forward addition, subtraction, negation, and scalar multiplication to complete Edwards operations on valid representatives. Use constant-time algorithms whenever scalars or selections are secret. Permit variable-time multiscalar multiplication only when every relevant input is public and the invoking protocol allows it.
-
-Do not multiply by the Curve25519 cofactor. Ristretto is a quotient construction, not a subgroup-validation wrapper.
-
-## Implementation verification
-
-Run RFC 9496 Appendix A in full:
-
-- generator multiples `0B` through `15B`;
-- every invalid encoding class;
-- every 64-byte element-derivation vector, including colliding map inputs;
-- every `SQRT_RATIO_M1` vector.
-
-Add properties:
-
-- `decode(encode(P)) == P`;
-- `encode(decode(s)) == s` for accepted encodings;
-- `P + 0 == P`, `P + (-P) == 0`, and `0*P == 0`;
-- `(l-1)*P + P == 0`, without reducing `l` to a scalar first;
-- scalar distributivity and group laws;
-- equivalent internal representatives compare equal and encode identically;
-- arbitrary 32-byte decode inputs never panic or create an invalid element.
-
-Differential-test against an independent maintained implementation. Fuzz decoding and operation sequences. Audit generated code or use suitable side-channel tooling to check field, scalar, square-root, and multiplication paths for secret-dependent branches or table accesses.
+RFC9496 Appendix A full: `0B..15B`; all invalids; all 64B maps/collisions; all `SQRT_RATIO_M1`.
+Properties: `decode(encode(P))=P`; accepted roundtrip; identity/inverse/zero; `(l-1)P+P=0` without reducing `l`; distributivity/laws; equivalent reps same; arbitrary 32B decode no panic/invalid result.
+From-scratch: independent differential, decode/op fuzz, generated-code/side-channel audit for secret-dependent branches/tables.

@@ -1,60 +1,48 @@
 # Documentation audit: [scope]
 
 ## Context
-
-- **Audience:** [practitioner and competence level]
-- **Product/task:** [documented product or craft]
-- **Evidence checked:** [product version, commands, source, user journey]
-- **Audit boundary:** [included and excluded pages]
+- audience+competence:
+- product/task+version:
+- evidence:
+- included/excluded:
 
 ## Findings
 
-### [DIA-001] [Concise finding]
+### DIA-001 [finding]
+- location:
+- need: [learning|goal|information|understanding]
+- current -> intended form:
+- evidence:
+- impact:
+- exact change:
 
-- **Location:** `[path:line or URL]`
-- **User need:** [learning | goal | information | understanding]
-- **Current form:** [tutorial | how-to guide | reference | explanation | mixed/unclear]
-- **Intended form:** [tutorial | how-to guide | reference | explanation]
-- **Evidence:** [quoted or observed behavior]
-- **Impact:** [functional or deep-quality consequence]
-- **Change:** [specific add, remove, move, split, merge, rename, or rewrite]
+## Need coverage
+| need | coverage | gap | next change |
+|---|---|---|---|
+| learning | | | |
+| goals | | | |
+| information | | | |
+| understanding | | | |
 
-## Coverage by user need
+## Functional
+| quality | evidence | result |
+|---|---|---|
+| accuracy | | |
+| bounded completeness | | |
+| consistency | | |
+| usefulness | | |
+| precision | | |
 
-| Need | Existing coverage | Gap | Next improvement |
-| --- | --- | --- | --- |
-| Learning | [pages] | [gap] | [small concrete action] |
-| Goals | [pages] | [gap] | [small concrete action] |
-| Information | [pages] | [gap] | [small concrete action] |
-| Understanding | [pages] | [gap] | [small concrete action] |
+## Deep
+- fit/flow/anticipation/coherence/usability:
 
-## Functional quality
+## Sequence
+1. [highest-impact complete change]
+2. [next]
 
-| Quality | Evidence | Result |
-| --- | --- | --- |
-| Accuracy | [checks] | [pass/fail] |
-| Completeness | [scope comparison] | [pass/fail] |
-| Consistency | [terminology/structure checks] | [pass/fail] |
-| Usefulness | [user need/task] | [pass/fail] |
-| Precision | [ambiguities found] | [pass/fail] |
-
-## Deep quality
-
-- **Fit to need:** [judgement and evidence]
-- **Flow:** [interruptions or smooth transitions]
-- **Anticipation:** [whether likely next concerns are served]
-- **Experience:** [how the documentation feels to use]
-
-## Improvement sequence
-
-1. [Smallest complete improvement with highest user impact]
-2. [Next improvement revealed by the first]
-3. [Later structural change, only if real content demands it]
-
-## Verification
-
-- [ ] Product facts and examples were checked against the current product.
-- [ ] Executable tutorials and how-to journeys were exercised.
-- [ ] Reference coverage was compared with the machinery.
-- [ ] Internal links were checked.
-- [ ] Findings distinguish functional quality from deep quality.
+## Proof
+- [ ] product facts/examples
+- [ ] executable journeys
+- [ ] reference vs machinery
+- [ ] links
+- [ ] functional vs deep findings separated

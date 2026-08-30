@@ -140,6 +140,8 @@ metadata:
 
 ## Contributing
 
+Write for the consumer. Keep `SKILL.md`, agent-facing references, and agent-filled templates terse. Use stable labels, fragments, symbols, and exact commands when they preserve meaning. Remove connective prose. Write human-facing documentation, including this README, in clear natural English.
+
 1. Use `skill-creator` to create a skill or revise its procedure.
 2. Run `agent-skills-standard` on every new or updated package before calling the package complete.
 3. Give the skill one focused responsibility and a precise discovery description.

@@ -1,32 +1,21 @@
-# Kotlin change report
+# Kotlin change: [scope]
 
-## Scope
-
-- Modules:
-- Source sets and targets:
-- Public APIs:
-- Build system and wrapper:
+## Target
+- modules/source sets/targets:
+- public APIs:
+- build/wrapper:
 
 ## Versions
+- Kotlin/KGP:
+- Gradle|Maven; JDK/JVM target; AGP|native toolchain:
 
-- Kotlin and Kotlin Gradle plugin:
-- Gradle or Maven:
-- JDK and JVM target:
-- Android Gradle plugin or native toolchain:
+## Delta
+- source/build/tests:
 
-## Changes
+## Proof
+| command/scenario | target | result |
+|---|---|---|
+| | | |
 
-- Source behavior:
-- Build configuration:
-- Tests:
-
-## Verification
-
-| Command or scenario | Target | Result |
-| --- | --- | --- |
-|  |  |  |
-
-## Unverified boundaries
-
-- Target or scenario:
-- Reason:
+## Unverified
+- target/scenario + reason:

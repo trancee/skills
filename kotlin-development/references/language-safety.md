@@ -1,41 +1,26 @@
-# Kotlin language safety and interop
+# Kotlin safety/interop
 
-## Nullability
+## Null
 
-Model absence with nullable types. Use smart casts, safe calls, Elvis expressions, `requireNotNull`, or an explicit boundary error according to the contract. Use `!!` only when the code proves the invariant locally and a violation is a programmer error.
+Absence stays nullable until handled. Prefer smart cast, `?.`, `?:`, `requireNotNull`, explicit boundary error. `!!` only local proven invariant + programmer-error violation. Never map absence to empty/zero unless contract. Details: [null safety](https://kotlinlang.org/docs/null-safety.html).
 
-Keep nullable values nullable until the code handles the absent case. Avoid replacing a meaningful absence with an empty string, zero, or empty collection unless that value is the contract.
+## Java
 
-Read [Null safety](https://kotlinlang.org/docs/null-safety.html) when a diagnostic involves smart casts, initialization order, nullable receivers, or Java values.
-
-## Java interop
-
-Java declarations without recognized nullability annotations produce platform types. Kotlin allows a platform value to flow into either a nullable or non-null type, but a runtime `null` can then fail at the assignment or call. Add an explicit Kotlin type at the boundary or add correct Java annotations when the Java API is owned by the project.
-
-Check these boundary behaviors when relevant:
-
-- Java getters and setters appear as Kotlin properties.
-- Java collections can expose uncertain mutability.
-- `void` returns `Unit` in Kotlin.
-- Java keywords used as identifiers require backticks in Kotlin.
-- SAM conversion, checked exceptions, wildcards, default arguments, and generated JVM names affect Java callers of Kotlin APIs.
-
-Read [Calling Java from Kotlin](https://kotlinlang.org/docs/java-interop.html) and [Calling Kotlin from Java](https://kotlinlang.org/docs/java-to-kotlin-interop.html) before changing a cross-language public API.
+Unannotated Java reference=>platform type; runtime null can fail assignment/call. At boundary: explicit Kotlin type OR correct owned-Java nullability annotation.
+Check as relevant: getter/setter properties; collection mutability; `void`=>`Unit`; keyword backticks; SAM; checked exceptions; wildcards; defaults; generated JVM names.
+READ [Java from Kotlin](https://kotlinlang.org/docs/java-interop.html)+[Kotlin from Java](https://kotlinlang.org/docs/java-to-kotlin-interop.html) before cross-language public API change.
 
 ## Coroutines
 
-Kotlin's standard library provides the low-level coroutine language support. High-level builders such as `launch`, `async`, and `flow` come from `kotlinx.coroutines`, which is a separate dependency.
+High-level `launch`/`async`/`flow` belong to separate `kotlinx.coroutines` dep.
+- owned structured scope (app/request/lifecycle/test); ordinary work not `GlobalScope`
+- `coroutineScope`: child failure cancels siblings
+- `supervisorScope`: siblings intentionally independent + each error path
+- cancellation cooperative; CPU loop uses `yield`/`ensureActive`; caught `CancellationException` rethrown after cleanup
+- `launch`: completion; `async`: concurrent value consumed by `await`; no orphan `Deferred`
+READ [guide](https://kotlinlang.org/docs/coroutines-guide.html), [cancellation](https://kotlinlang.org/docs/coroutines-cancellation.html), [exceptions](https://kotlinlang.org/docs/exception-handling.html) before scope/failure change.
 
-Keep work in structured scopes owned by the application, request, lifecycle, or test. Avoid `GlobalScope` for ordinary application work. Use `coroutineScope` when one child failure must cancel its siblings. Use `supervisorScope` only when sibling failures are intentionally independent and each child has an error-handling path.
+## API/style
 
-Cancellation is cooperative. Suspending calls check cancellation. CPU loops must call `yield`, `ensureActive`, or another cancellation check. If code catches `CancellationException`, rethrow it after cleanup.
-
-Use `launch` for work whose result is completion. Use `async` when the caller consumes a concurrent result with `await`. An exception held in an unawaited `Deferred` can be missed by the intended error path.
-
-Read the [Coroutines guide](https://kotlinlang.org/docs/coroutines-guide.html), [Cancellation](https://kotlinlang.org/docs/coroutines-cancellation.html), and [Coroutine exception handling](https://kotlinlang.org/docs/exception-handling.html) before changing scope or failure propagation.
-
-## Public APIs and style
-
-Preserve explicit public types when inference could change the ABI or generated JVM signature. Check default parameters, inline declarations, sealed hierarchies, value classes, variance, and nullability before changing a published declaration.
-
-Follow the repository's formatter and static analysis first. Without a repository rule, follow [Kotlin coding conventions](https://kotlinlang.org/docs/coding-conventions.html): use four spaces, keep package names lowercase, use upper camel case for types, and use lower camel case for functions and properties. Put related declarations together instead of creating generic utility files.
+Published declaration: explicit type if inference may alter ABI/JVM signature. Check defaults, inline, sealed, value class, variance, nullability.
+Style precedence: repo formatter/static rules > [Kotlin conventions](https://kotlinlang.org/docs/coding-conventions.html). Default: 4 spaces; lowercase package; UpperCamel type; lowerCamel function/property; related declarations together; no generic utility bucket.

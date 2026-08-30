@@ -1,98 +1,69 @@
-# Diátaxis quality assessment
+# Documentation quality gate
 
-Current source: [Towards a theory of quality in documentation](https://diataxis.fr/quality/).
+Source: [Diátaxis quality](https://diataxis.fr/quality/).
+Functional PASS required before deep-quality judgment.
 
-Assess quality in two layers. Diátaxis helps reveal functional problems and create conditions for deep quality; it does not replace technical verification, user research, information design, or editorial judgement.
+## All docs
 
-## Functional quality
+- [ ] dominant need explicit: learning | goal | information | understanding
+- [ ] compass/form matches action/cognition + acquisition/application
+- [ ] title/intro/location signal purpose
+- [ ] product facts/commands/API/outputs/examples accurate
+- [ ] complete within declared scope
+- [ ] terms/structure/examples/links consistent
+- [ ] real practitioner need served
+- [ ] conditions/prereqs/outcomes precise
+- [ ] cross-form support brief; sustained other need split+linked
+- [ ] navigation emerged from real content, not empty four-part shell
 
-Functional qualities are independent, objective constraints measured against the product and the user's real work.
+## Functional proof
 
-- [ ] **Accuracy:** facts, commands, APIs, outputs, and examples match the current product.
-- [ ] **Completeness:** the document covers everything required by its declared scope.
-- [ ] **Consistency:** terminology, structure, examples, and cross-references agree.
-- [ ] **Usefulness:** the content serves an actual user need rather than merely describing available material.
-- [ ] **Precision:** claims, prerequisites, conditions, and outcomes are unambiguous.
-- [ ] Executable journeys have been run end-to-end in the documented environment.
-- [ ] Reference coverage has been checked against the machinery it describes.
+- [ ] executable journey run end-to-end
+- [ ] reference compared with current machinery/version
+- [ ] external/local links checked
+- [ ] every claim has evidence or explicit unresolved marker
 
-A document can satisfy one functional quality and fail another. Verify each independently. Functional quality is a prerequisite for deep quality.
+## Tutorial
+
+- [ ] practical study, tutor-owned safety/success
+- [ ] controlled repeatable path; destination first
+- [ ] every step visible meaningful result+expected observation
+- [ ] explanation/options/reference minimized
+- [ ] representative end-to-end run
+
+## How-to
+
+- [ ] specific real goal; competent user
+- [ ] executable flow + needed judgment/branches/risk/recovery
+- [ ] meaningful start/end; usability > completeness
+- [ ] task title exact
+
+## Reference
+
+- [ ] neutral concise authoritative machinery mirror
+- [ ] consistent item patterns
+- [ ] params/defaults/constraints/returns/errors/warnings covered
+- [ ] examples illustrate only; motives link out
+
+## Explanation
+
+- [ ] one bounded why/about topic
+- [ ] context/reasons/history/implications/connections
+- [ ] alternatives/viewpoints/counterexamples
+- [ ] coherent mental model; no procedure/listing
 
 ## Deep quality
 
-Deep qualities are interdependent and assessed through judgement against human experience.
+Judge together: need fit; flow; anticipation; coherence; ease. Never infer from classification.
 
-- [ ] The document fits the user's need at that moment.
-- [ ] It has flow: the user's action or thought progresses without avoidable interruption.
-- [ ] It anticipates the user's next concern, tool, decision, or uncertainty.
-- [ ] It feels coherent and good to use.
-- [ ] Its form, language, and navigation reinforce its purpose.
+## Boundary symptoms
 
-Diátaxis can help create these conditions but cannot guarantee beauty, flow, or excellent user experience.
+| symptom | move |
+|---|---|
+| tutorial background block | explanation link |
+| how-to teaches domain | tutorial link |
+| reference argues motives | explanation |
+| explanation gives steps | how-to |
+| audience/purpose oscillates | split+cross-link |
 
-## Form and boundary checks
-
-- [ ] The dominant user need is clear: learning, a goal, information, or understanding.
-- [ ] The compass confirms the form: action/cognition and acquisition/application.
-- [ ] The title signals the document's purpose accurately.
-- [ ] Supporting material from another form is brief and does not disrupt the dominant purpose.
-- [ ] Sustained material serving another need has its own appropriate home and an intentional cross-link.
-- [ ] Navigation and placement make the page predictable to find; literal four-part top-level directories are not required.
-- [ ] The documentation structure has grown from real content needs rather than empty Diátaxis scaffolding.
-
-## Tutorial checklist
-
-- [ ] It is a practical, hands-on learning experience rather than a task guide.
-- [ ] The tutor takes responsibility for the learner's safety and success.
-- [ ] The setting and path are controlled, concrete, and repeatable.
-- [ ] It shows the destination at the start without claiming what the user will learn.
-- [ ] Every step produces a visible, meaningful result.
-- [ ] It maintains a narrative of expected outcomes and points out what to notice.
-- [ ] It permits useful repetition.
-- [ ] Explanation, information, abstraction, choices, and alternatives are minimised.
-- [ ] It has been observed or tested end-to-end with representative learners/environments.
-
-## How-to guide checklist
-
-- [ ] It addresses a specific real-world goal or problem from the user's perspective.
-- [ ] It assumes the user is already competent and familiar with the tools.
-- [ ] It provides executable actions and the judgement needed to apply them.
-- [ ] Its sequence has logical flow and avoids unnecessary context switching.
-- [ ] It prepares for realistic branches, alternatives, risks, and recovery paths.
-- [ ] It starts and ends at meaningful points rather than forcing an end-to-end lesson.
-- [ ] It prefers practical usability to completeness and links to reference for options.
-- [ ] The title states exactly what the guide helps achieve.
-
-## Reference checklist
-
-- [ ] It describes the product or machinery succinctly and neutrally.
-- [ ] It is accurate, complete, precise, consistent, and authoritative within scope.
-- [ ] Its structure mirrors the logical structure of the thing described where useful.
-- [ ] Similar APIs, commands, or configuration items use the same pattern.
-- [ ] Facts, parameters, defaults, constraints, return values, errors, and warnings are documented.
-- [ ] Examples illustrate usage without becoming lessons or goal-oriented procedures.
-- [ ] Motivation, opinion, and extended interpretation link to explanation.
-
-## Explanation checklist
-
-- [ ] It illuminates a bounded topic and supports reflection.
-- [ ] It provides context, reasons, history, implications, and connections.
-- [ ] It considers useful perspectives, alternatives, opinions, and counter-examples.
-- [ ] Its viewpoint is higher and wider than an immediate task or close machinery description.
-- [ ] The title works with an implicit “About …” or “Why …”.
-- [ ] It forms or strengthens a coherent mental model.
-- [ ] Step-by-step procedures and detailed technical listings live elsewhere.
-
-## Boundary diagnosis
-
-| Symptom | Conflict | Improvement |
-| --- | --- | --- |
-| Tutorial pauses for paragraphs of background | Explanation interrupts the learning experience | Keep immediate context; link to explanation |
-| How-to guide starts by teaching the domain | Study interrupts real work | Link to a tutorial; retain task guidance |
-| Reference discusses motives and trade-offs | Explanation obscures authoritative facts | Move discussion to explanation |
-| Explanation contains a sequence to execute | How-to content interrupts reflection | Move the procedure to a how-to guide |
-| A page repeatedly changes audience or purpose | Multiple needs compete and break flow | Split coherent sections and cross-link |
-
-## Completion
-
-A quality review is complete when every functional claim has evidence, the dominant user need and form are explicit, boundary problems have concrete moves or edits, and deep quality has been judged against the intended user's experience—not inferred from correct classification alone.
+DONE: all functional claims evidenced; form explicit; boundary fixes concrete; deep quality judged against practitioner experience.

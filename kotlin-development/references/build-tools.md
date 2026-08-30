@@ -1,58 +1,41 @@
-# Kotlin build tools
+# Kotlin build
 
-Read the sections that match the detected build. Preserve the repository's wrapper, DSL, plugin aliases, and dependency policy.
+Preserve wrapper/DSL/plugin aliases/dependency policy.
 
 ## Gradle
 
-Use `./gradlew` or `gradlew.bat` when the repository contains a wrapper. Inspect `settings.gradle.kts`, each affected `build.gradle.kts`, `gradle.properties`, and `gradle/libs.versions.toml` before editing versions.
+- use `./gradlew`/`gradlew.bat`
+- inspect `settings.gradle.kts`, affected `build.gradle.kts`, `gradle.properties`, `gradle/libs.versions.toml`
+- version change -> live [KGP/Gradle/AGP table](https://kotlinlang.org/docs/gradle-configure-project.html); resolution success != supported
+- compiler config=`compilerOptions {}`; `kotlinOptions {}` deprecated
+- precedence: extension default < target override < task override
+- JVM: existing Java toolchain; align `jvmTarget`+`targetCompatibility`; Gradle>=8 mismatch default=error
 
-The current compatibility table lives in [Configure a Gradle project](https://kotlinlang.org/docs/gradle-configure-project.html). Check it when changing the Kotlin Gradle plugin, Gradle, or Android Gradle plugin. A newer version outside the fully supported range can compile with warnings or lose features, so a successful dependency resolution is not enough.
-
-Use `compilerOptions {}` for compiler settings. The older `kotlinOptions {}` form is deprecated. Put common settings in `kotlin.compilerOptions`, target-specific settings in the target block, and task-specific exceptions on the compilation task. Lower levels override higher levels.
-
-For JVM modules, prefer the repository's Java toolchain declaration. A toolchain sets the JDK used by Java tasks and supplies the Kotlin compiler's JDK and default `jvmTarget`. Keep Kotlin `jvmTarget` and Java `targetCompatibility` aligned. Gradle 8 and later fail mismatches by default.
-
-Discover tasks before selecting one:
-
+Discover then run owning task:
 ```bash
 ./gradlew tasks --all
 ./gradlew projects
 ```
-
-Use the smallest owning task first. Common JVM checks include `compileKotlin`, `compileTestKotlin`, `test`, `check`, and `build`. Android and Kotlin Multiplatform task names include variants or target names. Use task output from the project instead of constructing a name from memory.
-
-Use `--stacktrace` for the failing task. Use `--info` or `--debug` only when resolution or compiler arguments remain unclear. Gradle debug logs expose `Kotlin compiler args:` for JVM, JavaScript, and Wasm tasks and `Arguments =` for Native tasks.
+Typical JVM: `compileKotlin`, `compileTestKotlin`, `test`, `check`, `build`; Android/KMP use discovered variant/target names. Failure: `--stacktrace`; resolution/args only: `--info`/`--debug`. Debug key: JVM/JS/Wasm `Kotlin compiler args:`; Native `Arguments =`.
 
 ## Maven
 
-Kotlin Maven projects target the JVM. Use `./mvnw` or `mvnw.cmd` when present. Inspect `pom.xml`, parent dependency management, profiles, and the `kotlin-maven-plugin` before changing source roots or versions.
-
-Keep the Kotlin plugin version and Kotlin standard library version aligned through the project's existing property or dependency management. Preserve plugin execution order in mixed Kotlin and Java modules. Run the Kotlin compilation before Java compilation when both languages depend on Kotlin declarations.
-
-Typical verification commands are:
-
+JVM only. Use `./mvnw`/`mvnw.cmd`. Inspect `pom.xml`, parent management, profiles, `kotlin-maven-plugin`. Align plugin+stdlib via existing property/management. Mixed Kotlin/Java: preserve plugin order; Kotlin compile before Java if Java depends on Kotlin.
 ```bash
 ./mvnw test
 ./mvnw verify
 ```
+Use existing module selector. Never duplicate parent/BOM version control.
 
-Select the affected module with the repository's existing Maven module pattern. Do not add a second version property when a parent or bill of materials already controls Kotlin dependencies.
+## Standalone
 
-## Standalone compiler
-
-Use `kotlinc` for a small standalone program, a script, or a reduced compiler reproduction. Build managed applications and libraries with their checked-in build system.
-
-Compile and run a self-contained JVM program with:
-
+Only small program/script/repro:
 ```bash
 kotlinc Main.kt -include-runtime -d app.jar
 java -jar app.jar
 ```
+Library omits `-include-runtime`; consumer supplies runtime. `kotlinc -help`; `-X` unstable.
 
-Compile a library without `-include-runtime`. Its consumer must provide the Kotlin runtime. Inspect current options with `kotlinc -help`; advanced `-X` options can change without compatibility guarantees.
+## Upgrade
 
-## Version changes
-
-Read [Kotlin releases](https://kotlinlang.org/docs/releases.html) and the migration guide for the destination language release. Update kotlinx libraries and compiler plugins only when their compatibility requires it. Keep a behavior fix separate from a Kotlin upgrade unless the old compiler is the cause.
-
-Do not copy the latest version from this reference. The Kotlin documentation homepage observed during authoring reported Kotlin 2.4.10 on 2026-08-30, but the live release and compatibility pages are authoritative.
+READ [releases](https://kotlinlang.org/docs/releases.html)+destination migration guide. Update kotlinx/compiler plugins only for compatibility. Separate upgrade from behavior fix unless compiler is cause. Authoring snapshot=Kotlin 2.4.10 on 2026-08-30; live docs win.

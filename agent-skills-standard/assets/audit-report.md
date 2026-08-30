@@ -1,54 +1,44 @@
-# Agent Skills standard audit
+# Agent Skills audit: [target]
 
 ## Scope
 
-- Package, catalog, or client:
-- Agent Skills source revision:
-- Client and version:
-- Audited paths and scopes:
+- source revision:
+- client/version:
+- package/catalog/scopes:
 
-## Specification validation
+## Spec
 
-| Check | Evidence | Result |
-| --- | --- | --- |
-| Layout and `SKILL.md` |  |  |
-| Frontmatter fields and types |  |  |
-| Name and directory match |  |  |
-| Resource containment and links |  |  |
+| check | evidence | result |
+|---|---|---|
+| layout/frontmatter | | |
+| name/directory | | |
+| resources/links | | |
 
-## Instruction quality
+## Instructions
 
-- Declared task and boundaries:
-- Progressive disclosure:
-- Decision points and completion criteria:
-- Script interfaces and dependencies:
+- scope/boundary:
+- JIT disclosure:
+- decisions/done gates:
+- scripts/deps:
 
-## Client lifecycle
+## Client
 
-- Discovery scopes and limits:
-- Collision precedence:
-- Trust policy:
-- Catalog disclosure:
-- Activation path:
-- Resource resolution:
-- Reload and diagnostics:
+- discovery limits/scopes:
+- precedence/trust:
+- catalog/activation:
+- resource/reload/diagnostics:
 
-## Behavioral evidence
+## Behavior
 
-| Scenario | Expected behavior | Observed evidence | Result |
-| --- | --- | --- | --- |
-|  |  |  |  |
+| scenario | expected | observed | result |
+|---|---|---|---|
+| | | | |
 
-## Client-specific extensions
+## Extensions/limits
 
-- Extension:
-- Portability effect:
-
-## Unverified behavior
-
-- Behavior:
-- Reason:
+- extension + portability:
+- unverified + reason:
 
 ## Required changes
 
-1. [Required change]
+1. [change]

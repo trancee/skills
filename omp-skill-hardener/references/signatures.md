@@ -1,38 +1,25 @@
 # Friction signatures
 
-Every signature is triage evidence. Accept a hardening candidate only after reading the source context and finding the same failure mode in at least three events across at least two sessions.
+Gate: same failure >=3 events AND >=2 sessions. Detector=lead only; read source.
 
-| Signature | Detector | Confirm manually | Common false positive |
-| --- | --- | --- | --- |
-| `user_frustration` | Corrective/frustrated phrases or sustained all-caps in a human message | The user corrects agent behavior governed by the target | Quoted text, emphasis, or frustration with an external system |
-| `user_interrupt` | Assistant message ends with `stopReason: aborted` | The user stopped an unhelpful or unsafe direction | Network cancellation, terminal closure, or intentional early stop |
-| `repeated_tool_error` | Third, fifth, or eighth consecutive error result from the same tool before a successful result | Retries share an unchanged approach or missed prerequisite | Different invocations of one tool fail for unrelated reasons |
-| `plan_reversal` | A reversal phrase within two human turns after leaving plan mode | The implementation diverged from the approved plan | The user deliberately changed requirements |
-| `hook_block` | Error result mentions a hook, denial, block, or approval rejection | Agent behavior should have anticipated or handled the policy | Correct policy enforcement with no agent mistake |
-| `repeated_edit` | Same path edited for the third, fifth, or eighth time in one session | Fragmented edits came from weak skill guidance | Legitimate staged migration in a large file |
-| `claimed_done_no_verify` | Completion phrase after the last human turn without an observed verifier | The claim concerns changed behavior and verification was required | Pure writing/research task, verifier unknown to the miner, or quoted completion text |
+| signature | detector | confirm | false positive |
+|---|---|---|---|
+| `user_frustration` | corrective phrase/all-caps human | agent behavior corrected | quote/external frustration |
+| `user_interrupt` | assistant `stopReason:aborted` | unhelpful/unsafe path stopped | network/intentional stop |
+| `repeated_tool_error` | same tool errors #3/#5/#8 before success | unchanged approach/prereq | unrelated invocations |
+| `plan_reversal` | reversal <=2 human turns post-plan | approved plan diverged | requirement changed |
+| `hook_block` | error says hook/deny/block/approval | policy should be anticipated/handled | correct policy |
+| `repeated_edit` | same path edit #3/#5/#8/session | fragmented root-cause miss | legitimate staged migration |
+| `claimed_done_no_verify` | done phrase after human turn; no verifier | changed behavior required proof | writing/research/unknown verifier/quote |
 
-## Ranking
+Rank key=`(signature,target)`; score orders review only, not confidence.
 
-The report groups by `(signature, target)`. Its score is a review-order heuristic: signature severity multiplied by independent session count, plus event count. It is not a confidence measure and must not override weak attribution.
+## Rule test
 
-## Turning evidence into a rule
+Only controllable recurring decision:
+`WHEN <condition>: MUST <replacement>; NEVER <failure> [because <risk>]`
+Place at decision point; delete direct contradiction.
 
-Write a rule only when a controllable decision caused the recurrence. Prefer this shape:
+REJECT rule if session-specific, incidental names/paths, generic advice, duplicate stronger rule, symptom suppression, or unstated durable preference.
 
-> When `<observable condition>`, MUST `<replacement behavior>`; NEVER `<failed branch>` because `<specific risk>`.
-
-Omit the reason when the risk is already obvious in surrounding text. Place the rule immediately before the decision it governs. Delete a directly contradicted obsolete rule rather than adding a later exception.
-
-Reject proposed rules that:
-
-- describe the single transcript instead of the general decision;
-- name incidental file paths, people, sessions, or tools;
-- say only “be careful,” “verify,” or “follow instructions”;
-- duplicate an active system or repository rule;
-- suppress an error instead of fixing the behavioral cause;
-- encode a user preference that was never stated as durable.
-
-## Recurrence after a fix
-
-The ledger records a precise `fixedAt` timestamp. The report counts later matching events for the same signature and target. Inspect one recurrence for an attribution or coverage mistake. Two independent recurrences justify a new review but do not authorize automatic edits.
+Post-fix: count events after exact `fixedAt`; 1=>inspect; >=2 independent=>review, never auto-edit.

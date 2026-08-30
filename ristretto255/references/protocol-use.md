@@ -1,58 +1,38 @@
-# Protocol use of ristretto255
+# ristretto255 protocol
 
-Read this reference when designing or reviewing a protocol that consumes ristretto255. Ristretto supplies a prime-order group abstraction; it does not supply a complete protocol.
+Ristretto=prime-order group, not complete protocol.
 
-## Element boundaries
+## Boundary/transcript
 
-Strictly decode every external 32-byte element. Apply identity restrictions after successful decoding according to the protocol. The identity is a valid group element; it is neither globally forbidden nor globally acceptable.
+External element: strict 32B decode, then protocol identity policy. Identity valid generically.
+Transcript uses canonical encodings + protocol/ciphersuite versions + roles + all public elements + associated data + purpose; specified framework or unambiguous length-prefix grammar.
 
-Build transcripts from canonical element encodings. Bind protocol and ciphersuite versions, roles, all relevant public elements, associated data, and the operation purpose. Use a specified transcript framework or an unambiguous length-prefixed grammar.
+## Hash-to-group
 
-## Hash to group
-
-Use [RFC 9380 Appendix B](https://www.rfc-editor.org/rfc/rfc9380.html#appendix-B) for arbitrary messages:
-
+RFC9380 Appendix B:
 ```text
 uniform_bytes = expand_message(msg, DST, 64)
 P = ristretto255_map(uniform_bytes)
 ```
+XMD SHA-512 id: `ristretto255_XMD:SHA-512_R255MAP_RO_`.
+DST nonempty+protocol-specific; distinct logical oracle => distinct DST. Bind stable protocol/version/ciphersuite/role/purpose/operation.
+Never substitute `SHA-512(msg)` absent explicit legacy protocol; never hash then strict-decode.
 
-For `expand_message_xmd` with SHA-512, use the required identifier:
+## Random
 
-```text
-ristretto255_XMD:SHA-512_R255MAP_RO_
-```
+- element: maintained CSPRNG API OR map 64 uniform bytes; no rejection-sampled 32B encoding
+- scalar: protocol DST expander -> 64 uniform bytes -> mod `l`; retry iff nonzero required
 
-Choose a nonempty protocol-specific domain separation tag. Give distinct logical random oracles distinct tags. Include stable protocol, version, ciphersuite, role/purpose, and operation labels as the protocol requires.
+## Shared element
 
-Do not substitute `SHA-512(msg)` for RFC 9380 expansion unless an existing protocol explicitly specifies that legacy construction. Do not hash a message and attempt strict element decoding.
+1. strict peer decode
+2. protocol identity check
+3. CT scalar multiplication
+4. canonical encode
+5. encoded element + full transcript/context -> specified KDF
 
-## Random elements and scalars
+Never direct symmetric key. Protocol separately specifies authentication, contributory behavior, forward secrecy, key confirmation.
 
-Generate a random element with a maintained library's random-element API and a CSPRNG, or map 64 uniform random bytes. Do not rejection-sample random 32-byte encodings.
+## Reject substitutions
 
-Derive scalars through a protocol-specified, domain-separated expander that produces 64 uniform bytes, then reduce modulo the scalar order. Reject and derive again when a protocol requires nonzero output.
-
-## Shared elements
-
-For a Diffie-Hellman-like construction:
-
-1. Strictly decode the peer element.
-2. Apply the protocol's identity check.
-3. Perform constant-time scalar multiplication.
-4. Encode the shared element canonically.
-5. Feed that encoding and the full transcript/context to the protocol's KDF.
-
-Never use the encoded shared element directly as a symmetric key. Specify authentication, contributory behavior, forward secrecy, and key confirmation separately.
-
-## Common substitutions to reject
-
-- Ed25519 or X25519 public bytes used as Ristretto encodings.
-- Ed25519 keypairs reused as Ristretto keypairs without protocol-defined derivation.
-- Scalars clamped instead of reduced modulo the group order.
-- Noncanonical external elements or scalars silently reduced or masked.
-- The high bit of an element encoding silently cleared.
-- Manual cofactor clearing.
-- Variable-time multiplication with secret inputs.
-- One domain separation tag reused across distinct protocol roles.
-- The many-to-one 64-byte map treated as a digest, commitment, or proof.
+Ed25519/X25519 bytes as Ristretto; reused Ed25519 keypair absent derivation; clamped scalar; reduced/masked external value; cleared high bit; cofactor clearing; variable-time secret mul; reused DST; 64B map as digest/commitment/proof.

@@ -1,6 +1,6 @@
 ---
 name: nist-cavp
-description: "Finds, downloads, parses, and integrates NIST CAVP and ACVP cryptographic test vectors. Use when locating vectors for primitives or components, building offline regression tests from CAVP archives, implementing ACVP request/response handling, or preparing algorithm validation work. Don't use for Project Wycheproof attack vectors, claiming certification from static vectors, or non-cryptographic fixtures."
+description: "Finds/parses/integrates NIST CAVP and ACVP vectors. Use for primitive/component vectors, offline regression corpora, ACVP clients, or validation preparation. Don't use for Wycheproof attack vectors, certification claims from static vectors, or non-crypto fixtures."
 metadata:
   category: "cryptography"
   source: "https://csrc.nist.gov/projects/cryptographic-algorithm-validation-program/"
@@ -8,100 +8,86 @@ metadata:
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-28T19:38:42+02:00"
   updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-30T11:16:59+02:00"
+  updatedAt: "2026-08-30T11:48:01+02:00"
 ---
 
-# NIST CAVP and ACVP vectors
+# NIST CAVP/ACVP
 
-## Procedures
+## 1. Track
 
-**Step 1: Choose the validation track**
+- static CAVP: deterministic offline legacy regression
+- ACVP/ACVTS: capability-matched current vectors/client/validation prep
+- Demo: practice only
+- Production: certificate path only via accredited CST/17ACVT lab
+- static/Demo success != certificate
 
-1. Choose static CAVP archives for deterministic offline regression tests of algorithms and components with published legacy vectors.
-2. Choose ACVP/ACVTS for capability-matched JSON vector sets, current algorithms or revisions absent from static pages, ACVP client work, or preparation for formal validation.
-3. Use ACVTS Demo for client and implementation practice. Use ACVTS Production through an accredited CST or 17ACVT laboratory for certificate-issuing work.
-4. State explicitly that static vectors and Demo results do not create a CAVP certificate.
+## 2. Capability
 
-**Step 2: Identify the exact primitive and operation**
+RECORD exact algorithm, standard revision, mode/component operation, parameters, sizes, lengths, byte/bit orientation, test types, directions, implementation API.
+Distinguish nearby operations (`GCM`/`GMAC`, `sigVer`/`sigGen`, full algorithm/component, `keyGen`/`encapDecap`). Define implemented capability before vector selection/registration.
 
-1. Record the algorithm, standard revision, mode or component operation, parameter set, key size, curve, hash/XOF, tag/output size, supported lengths, and byte/bit orientation.
-2. Distinguish nearby operations such as AES-GCM versus GMAC, ECDSA `sigVer` versus a `sigGen` component, KAS-ECC versus CDH component, SHA-512 versus SHA-512/256, and KEM `keyGen` versus `encapDecap`.
-3. Record required test types such as KAT/AFT, MMT, MCT, LDT, generation, verification, negative, or stateful scenarios.
-4. Define the implementation's actual capabilities before selecting vectors or registering with ACVTS.
+## 3. Source
 
-**Step 3: Locate the authoritative source**
+1. READ `references/algorithm-sources.md`.
+2. Static: current landing page -> Test Vectors link; never guessed media URL.
+3. Component: check Component Testing.
+4. ACVP: supported index -> exact algorithm spec/revision/schema.
+5. Formal path: include current prerequisite table.
+6. Historical download availability != current approval/support.
 
-1. Read `references/algorithm-sources.md`.
-2. Start from the current CAVP algorithm landing page and follow its Test Vectors links instead of guessing a media URL.
-3. For a primitive component, inspect Component Testing before selecting a full-algorithm archive.
-4. For ACVP, use the current supported-algorithms index and linked algorithm-specific specification to select the exact algorithm name, revision, mode, capability fields, test types, and response schema.
-5. Check the current prerequisite table and include every separately required primitive validation.
-6. Do not infer current approval or support from a historical ZIP that remains downloadable.
+## 4. Acquire
 
-**Step 4: Acquire and preserve vectors**
+- static -> READ `references/legacy-vectors.md`; HTTPS; temp download; archive test; path/symlink safety; SHA-256; atomic rename; same checks nested archives
+- preserve original + landing/direct URLs + UTC retrieval + digest + algorithm/revision/operation + members/README/governing doc
+- ACVP -> READ `references/acvp.md`; preserve envelope/IDs; secrets never repo/argv/chat/log
 
-1. For static archives, read `references/legacy-vectors.md`, download over HTTPS from the current landing page, verify archive integrity, inspect safe member paths, and calculate a local SHA-256 digest.
-2. Preserve the original archive unchanged with landing page, direct URL, retrieval time, digest, algorithm/revision, selected members, README, and governing validation-system document.
-3. Apply the same path and integrity checks to every nested archive.
-4. For ACVP, read `references/acvp.md`, preserve the protocol envelope and identifiers, and protect client certificates, private keys, JWTs, and credentials.
+## 5. Parse
 
-**Step 5: Parse without changing semantics**
-
-1. Read every bundled README and governing algorithm/validation-system document before writing an adapter.
-2. Parse legacy CAVS files as ordered headers, ordered field pairs, repeated fields, bare markers, cases, and source line numbers.
-3. Run the structural checker on applicable response files:
-
+1. READ bundled README + governing spec.
+2. Legacy CAVS = ordered headers/fields/repeats/markers/cases/source lines, not INI.
+3. RUN:
    ```bash
    python3 scripts/check-rsp.py path/to/vectors
    ```
+4. Add `--require-field`, `--hex-field`, `--allow-marker` only from selected spec.
+5. PRESERVE empty values, leading zeros, widths, repeats, bit lengths, case IDs.
+6. REJECT malformed hex, unknown revision/type, impossible length, missing field, duplicate singleton, unsupported bit input.
 
-4. Add `--require-field` and `--hex-field` only after the selected specification defines those fields. Add `--allow-marker` only for a documented bare marker.
-5. Preserve empty values, leading zeroes, fixed widths, repeated DRBG inputs, bit lengths, and case-local identifiers.
-6. Reject malformed hex, unknown test types/revisions, impossible lengths, missing fields, duplicate singleton fields, and unsupported bit-oriented inputs.
+## 6. Execute
 
-**Step 6: Execute static vectors by test type**
+Static:
+- KAT/AFT/MMT: exact operation+group context
+- MCT: exact recurrence; carry key/IV/state/message/output
+- LDT: prescribed generator; stream input
+- authenticated decrypt `FAIL`: reject; no plaintext
+- signature `P`=>accept; `F`=>reject
+- DRBG: exact prediction-resistance/reseed sequence
+- randomized generation: only controlled entropy/nonce/private-state seam
 
-1. Build typed cases from lossless parsed data plus section/group context.
-2. Execute KAT/AFT/MMT cases directly against the exact implementation operation.
-3. Implement MCT recurrences from the governing document; carry key, IV/state, message, and output between iterations rather than treating results independently.
-4. Stream LDT inputs according to the prescribed generation rule instead of avoidably allocating a giant message.
-5. Require authenticated-decrypt `FAIL` cases to reject without releasing plaintext.
-6. Require signature `Result = P` cases to accept and `Result = F (...)` cases to reject.
-7. Execute DRBG operations in the exact prediction-resistance/reseed scenario and sequence.
-8. Reproduce randomized generation only through a controlled entropy/nonce/private-state seam explicitly supplied by the vector procedure.
+ACVP:
+1. Register implemented capabilities+prerequisites only.
+2. Preserve every `vsId/tgId/tcId`; dispatch exact algorithm/revision/mode/group/`testType`; unknown=>FAIL CLOSED.
+3. Emit spec-required response fields/order; one response per `vsId`.
+4. Submit; retrieve disposition; diagnose by original IDs.
+5. Expected endpoint only if `isSample:true`; Production independent.
 
-**Step 7: Execute ACVP vector sets**
+## 7. Coverage+report
 
-1. Follow `references/acvp.md` and the current base protocol.
-2. Register only implemented capabilities and required prerequisites.
-3. Retrieve every vector set in the test session and preserve `vsId`, `tgId`, and `tcId` exactly.
-4. Dispatch by algorithm, revision, mode, group parameters, and `testType`; fail closed on unknown values.
-5. Emit only the response fields required by that algorithm specification, including ordered arrays or stateful outputs for MCT, DRBG, and KAS cases.
-6. Submit one response per `vsId`, retrieve the disposition, and diagnose failures by the original identifier hierarchy.
-7. Use expected-result endpoints only for sample sessions that advertise `isSample: true`; keep Production clients independent of expected-answer access.
+- run every applicable positive/negative/direction/size/parameter/stateful group for each claimed capability
+- unsupported groups explicit; no silent filtering
+- fast subset allowed only with defined full-corpus job
+- parser/API separated by narrow operation adapter
+- failure: source, entry/vector set, group context, `COUNT` or IDs, operation, lengths, expected, actual, first divergent state
+- OUT: copy `assets/integration-report.md`; exact provenance/coverage/prereqs/commands/outcomes/limits
+- formal-validation claim only with qualifying Production lab work + listed certificate
 
-**Step 8: Integrate complete capability coverage**
+## Fail
 
-1. Run every applicable positive, negative, verification, direction, key size, parameter set, curve, tag/output size, and stateful group represented by each claimed capability.
-2. Identify unsupported groups explicitly instead of silently filtering them.
-3. Keep a fast subset only when the complete applicable corpus remains in a defined full-suite job.
-4. Report failures with source/archive, entry or vector set, section/group context, `COUNT` or `vsId/tgId/tcId`, operation, lengths, expected value, actual value, and first divergent stateful checkpoint.
-5. Keep parsers independent of the cryptographic API through a narrow operation adapter.
-
-**Step 9: Report evidence accurately**
-
-1. Copy `assets/integration-report.md` for an integration or validation report.
-2. Record the exact test identity, vector source, provenance, coverage, prerequisites, commands, outcomes, unsupported capabilities, and limitations.
-3. Describe static archive and Demo success as regression/test evidence only.
-4. Claim formal algorithm validation only with qualifying ACVTS Production work through an accredited laboratory and the resulting listed certificate.
-
-## Error Handling
-
-- If the algorithm/revision cannot be selected unambiguously, stop vector selection and resolve the exact implementation capability first.
-- If a direct media URL works but the landing page no longer lists the vector, treat it as historical until current status is established.
-- If archive members contain unsafe paths or unexpected symlinks, reject extraction and inspect the archive without writing members.
-- If `scripts/check-rsp.py` rejects a documented marker or field shape, read the governing validation-system document before extending parser rules.
-- If a bit-oriented case reaches a byte-only API, mark the capability unsupported or implement a verified bit adapter; never round the length.
-- If MCT or DRBG output first diverges internally, compare the bundled intermediate checkpoints before changing the primitive.
-- If ACVP returns an unknown revision or test type, update against the linked algorithm specification rather than applying another revision's semantics.
-- If Production access or prerequisite evidence is unavailable, complete offline or Demo work and report formal validation as blocked, not achieved.
+- ambiguous algorithm/revision => STOP selection
+- direct URL absent from landing => historical
+- unsafe archive path/symlink => reject extraction
+- checker vs documented shape => read governing doc before parser change
+- bit case vs byte API => unsupported OR verified bit adapter; never round
+- MCT/DRBG divergence => compare first internal checkpoint
+- unknown ACVP revision/type => update from its spec; never borrow another revision
+- Production unavailable => complete offline/Demo; status=not validated

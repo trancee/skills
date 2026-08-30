@@ -1,49 +1,31 @@
-# Wycheproof integration: [algorithm or scope]
+# Wycheproof: [algorithm/scope]
 
 ## Source
+- repo/commit:
+- vectors/schemas:
+- update: [submodule|vendor|package]
 
-- **Repository:** `https://github.com/C2SP/wycheproof`
-- **Pinned commit:** `[full commit SHA]`
-- **Vector files:** `[testvectors_v1/...json]`
-- **Schemas:** `[schemas/...json and dependencies]`
-- **Update mechanism:** [submodule | vendored files | package]
+## Boundary
+- library/version/API:
+- operations/params/groups:
+- unsupported+reason:
 
-## Implementation boundary
-
-- **Library/version:** [implementation under test]
-- **Public API:** [exact functions or methods]
-- **Operations:** [encrypt/decrypt, sign/verify, derive, encap/decap, parse]
-- **Supported groups:** [group types and parameter sets]
-- **Unsupported groups:** [explicit limitations and rationale]
-
-## Result policy
-
-| Result | Required behavior | Project policy |
-| --- | --- | --- |
-| `valid` | Accept and return the exact expected output | [policy] |
-| `invalid` | Reject without releasing unauthorized output | [accepted rejection signals] |
-| `acceptable` | Apply flag-specific compatibility policy | [accept/reject by flag] |
+## Policy
+| result | required | project policy |
+|---|---|---|
+| valid | accept+exact output | |
+| invalid | reject; no unauthorized output | |
+| acceptable | flag policy | |
 
 ## Coverage
+| file | schema | valid | invalid | acceptable+ | acceptable- | unsupported |
+|---|---|---:|---:|---:|---:|---:|
+| | | 0 | 0 | 0 | 0 | 0 |
 
-| Vector file | Schema | Valid | Invalid | Acceptable accepted | Acceptable rejected | Unsupported |
-| --- | --- | ---: | ---: | ---: | ---: | ---: |
-| `[file]` | `[schema]` | 0 | 0 | 0 | 0 | 0 |
+## Proof
+- schema/structural/tests/CI:
 
-## Verification
-
-- **Schema validation:** `[command and result]`
-- **Structural validation:** `[command and result]`
-- **Implementation tests:** `[command and result]`
-- **CI job:** `[workflow/job]`
-
-## Failures
-
-### `[file]` tcId `[id]`: [summary]
-
-- **Group type/source:** [type, source name/version]
-- **Result/flags:** [result and resolved flag descriptions]
-- **Expected:** [behavior/output]
-- **Observed:** [return/error/output]
-- **Security impact:** [assessment or unresolved]
-- **Disposition:** [fixed, accepted policy, unsupported, reported privately]
+## Failure: `[file]` tcId `[id]`
+- group source; result/flags:
+- expected/observed:
+- security/disposition:
