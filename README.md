@@ -26,6 +26,7 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 
 | Skill | Context tokens | Purpose |
 | --- | ---: | --- |
+| [`compose-multiplatform`](compose-multiplatform/) | 5,483 | Design, implement, test, and ship shared Compose UI across Android, iOS, desktop, and web. |
 | [`detekt`](detekt/) | 3,556 | Configure, run, migrate, and troubleshoot detekt static analysis for Kotlin projects. |
 | [`kover`](kover/) | 3,182 | Configure, verify, aggregate, and troubleshoot Kotlinx Kover JVM coverage for Kotlin projects. |
 | [`kotlin-api-reference`](kotlin-api-reference/) | 3,279 | Find and verify versioned, platform-specific Kotlin ecosystem API declarations and source. |
