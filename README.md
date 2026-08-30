@@ -40,6 +40,7 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 | [`kotlin-power-assert`](kotlin-power-assert/) | 3,850 | Configure, use, debug, and expose Kotlin Power-assert diagnostics, transformed functions, and assertion APIs. |
 | [`kotlinx-benchmark`](kotlinx-benchmark/) | 4,430 | Configure, run, compare, and troubleshoot multiplatform Kotlin microbenchmarks with kotlinx-benchmark. |
 | [`kotlinx-serialization`](kotlinx-serialization/) | 4,613 | Design, configure, evolve, test, and troubleshoot kotlinx.serialization wire formats and schemas. |
+| [`ksp`](ksp/) | 5,118 | Configure, author, test, migrate, and troubleshoot Kotlin Symbol Processing consumers and processors. |
 | [`lincheck`](lincheck/) | 3,787 | Design, run, interpret, and troubleshoot JVM concurrency tests with Lincheck model checking and stress strategies. |
 | [`skie`](skie/) | 3,315 | Install, migrate, configure, and troubleshoot Touchlab SKIE for Kotlin Multiplatform Swift interop. |
 | [`spotless`](spotless/) | 3,947 | Configure, apply, verify, migrate, and troubleshoot Spotless formatting for Gradle and Maven projects. |
