@@ -39,41 +39,35 @@ Categories are catalog metadata. They do not affect skill invocation, and skill 
 
 ## Install
 
-### Oh My Pi: user-wide installation
+The [skills CLI](https://github.com/vercel-labs/skills) requires Node.js and `npx`.
 
-Clone the repository somewhere stable:
-
-```bash
-git clone https://github.com/trancee/skills.git "$HOME/src/agent-skills"
-mkdir -p "$HOME/.omp/agent/skills"
-```
-
-Install a skill by linking its complete directory into the user skill directory:
+List the skills in this repository before installing them:
 
 ```bash
-ln -s "$HOME/src/agent-skills/diataxis" \
-  "$HOME/.omp/agent/skills/diataxis"
+npx skills add trancee/skills --list
 ```
 
-Repeat the link for each skill you want available. Linking instead of copying keeps relative `references/` and `resources/` intact and makes a later `git pull` immediately visible to the loader.
-
-### Oh My Pi: project-local installation
-
-To make a skill available only within one project, link or copy the complete skill directory under that project's `.omp/skills/` directory:
+Install skills for the current project:
 
 ```bash
-mkdir -p .omp/skills
-ln -s "$HOME/src/agent-skills/nist-cavp" \
-  .omp/skills/nist-cavp
+npx skills add trancee/skills
 ```
 
-Use an absolute symlink target so it remains valid regardless of the project's working directory. Commit a copied directory rather than a machine-specific symlink when the whole team needs the skill from the repository.
+The CLI detects supported agents and prompts you to choose the skills and target agents. Project installation is the default.
 
-### Other agents
+To install one skill, pass its name:
 
-Use the skill directory configured by the agent or harness. Preserve the complete directory—not only `SKILL.md`—because a skill may load relative files at runtime.
+```bash
+npx skills add trancee/skills --skill kotlin-development
+```
 
-Review a skill before installing it. Skills are instructions executed by an agent and can direct file, network, or command-line operations.
+To make the selected skills available across projects, use global scope:
+
+```bash
+npx skills add trancee/skills --global
+```
+
+Review each skill before installing it. Skills can direct an agent to edit files, run commands, or access the network.
 
 ## Use
 
@@ -87,14 +81,19 @@ The agent should read `SKILL.md` before acting, follow relative references from 
 
 ## Update
 
-For linked installations:
+Update installed skills and choose the scope when prompted:
 
 ```bash
-cd "$HOME/src/agent-skills"
-git pull --ff-only
+npx skills update
 ```
 
-Restart or reload the agent if its skill index is cached. Copied installations must be copied again or updated separately.
+Select project scope, global scope, or one named skill directly:
+
+```bash
+npx skills update --project
+npx skills update --global
+npx skills update kotlin-development
+```
 
 ## Repository layout
 
