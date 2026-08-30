@@ -27,6 +27,7 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 | --- | ---: | --- |
 | [`detekt`](detekt/) | 3,556 | Configure, run, migrate, and troubleshoot detekt static analysis for Kotlin projects. |
 | [`kover`](kover/) | 3,182 | Configure, verify, aggregate, and troubleshoot Kotlinx Kover JVM coverage for Kotlin projects. |
+| [`kotlin-api-reference`](kotlin-api-reference/) | 3,279 | Find and verify versioned, platform-specific Kotlin ecosystem API declarations and source. |
 | [`kotlin-binary-compatibility`](kotlin-binary-compatibility/) | 4,351 | Configure, run, migrate, and review Kotlin ABI validation with built-in KGP or the legacy validator. |
 | [`kotlin-development`](kotlin-development/) | 3,245 | Implement, review, build, test, and troubleshoot Kotlin projects across JVM, Android, Kotlin Multiplatform, JavaScript, Wasm, and Native. |
 | [`kotlin-gradle`](kotlin-gradle/) | 4,366 | Configure, migrate, optimize, and troubleshoot Kotlin Gradle builds, toolchains, compiler options, and caches. |
