@@ -37,6 +37,7 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 | Skill | Context tokens | Purpose |
 | --- | ---: | --- |
 | [`diataxis`](diataxis/) | 2,693 | Write, audit, and improve tutorials, how-to guides, reference, explanation, documentation architecture, and documentation quality. |
+| [`dokka`](dokka/) | 4,486 | Configure, generate, publish, migrate, and troubleshoot Dokka API documentation for Kotlin and mixed Java projects. |
 
 Open a skill's `SKILL.md` for its full procedure and source material.
 
