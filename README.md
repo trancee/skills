@@ -10,6 +10,7 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 
 | Skill | Purpose |
 | --- | --- |
+| [`agent-skills-standard`](agent-skills-standard/) | Audit new and updated Agent Skills packages, gate skill repository commits, migrate catalogs, and add standards-compatible discovery and activation to agent clients. |
 | [`omp-skill-hardener`](omp-skill-hardener/) | Mine repeated failures from OMP sessions, turn them into approved skill or `AGENTS.md` changes, and test the new rules. |
 
 ### Cryptography
@@ -139,13 +140,15 @@ metadata:
 
 ## Contributing
 
-1. Create a lower-kebab-case directory containing `SKILL.md`.
-2. Give the skill one focused responsibility and a precise discovery description.
-3. Put the main procedure in `SKILL.md`. Move fixtures and templates to `assets/`, detailed guidance to `references/`, and executable helpers to `scripts/`.
-4. Prefer primary, versioned sources. State which source wins when references disagree.
-5. Keep secrets, credentials, generated output, and machine-specific paths out of the skill.
-6. Exercise commands and behavioral procedures in an appropriate disposable environment.
-7. Verify relative links, referenced files, and completion criteria before committing.
-8. Use [Conventional Commits](https://www.conventionalcommits.org/) for repository history.
+1. Use `skill-creator` to create a skill or revise its procedure.
+2. Run `agent-skills-standard` on every new or updated package before calling the package complete.
+3. Give the skill one focused responsibility and a precise discovery description.
+4. Put the main procedure in `SKILL.md`. Move fixtures and templates to `assets/`, detailed guidance to `references/`, and executable helpers to `scripts/`.
+5. Prefer primary, versioned sources. State which source wins when references disagree.
+6. Keep secrets, credentials, generated output, and machine-specific paths out of the skill.
+7. Exercise commands and behavioral procedures in an appropriate disposable environment.
+8. Before committing skill repository changes, invoke `agent-skills-standard` again and run its strict package, metadata, link, discovery, and diff checks.
+9. If the catalog changed, run `npx skills add . --list` and confirm that it exposes every intended skill.
+10. Use [Conventional Commits](https://www.conventionalcommits.org/) for repository history.
 
 A useful contribution leaves no ambiguity about when the skill applies, what the agent must do, or how completion is verified.
