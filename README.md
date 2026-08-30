@@ -32,6 +32,7 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 | [`kotlin-coroutines`](kotlin-coroutines/) | 4,709 | Design, implement, test, and troubleshoot Kotlin coroutines, Flow, channels, cancellation, and structured concurrency. |
 | [`kotlin-development`](kotlin-development/) | 3,245 | Implement, review, build, test, and troubleshoot Kotlin projects across JVM, Android, Kotlin Multiplatform, JavaScript, Wasm, and Native. |
 | [`kotlin-gradle`](kotlin-gradle/) | 4,366 | Configure, migrate, optimize, and troubleshoot Kotlin Gradle builds, toolchains, compiler options, and caches. |
+| [`kotlin-native-apple-interop`](kotlin-native-apple-interop/) | 4,644 | Configure, export, import, and troubleshoot Kotlin/Native interoperability with Swift, Objective-C, and Apple frameworks. |
 | [`kotlinx-benchmark`](kotlinx-benchmark/) | 4,430 | Configure, run, compare, and troubleshoot multiplatform Kotlin microbenchmarks with kotlinx-benchmark. |
 | [`kotlinx-serialization`](kotlinx-serialization/) | 4,613 | Design, configure, evolve, test, and troubleshoot kotlinx.serialization wire formats and schemas. |
 | [`lincheck`](lincheck/) | 3,787 | Design, run, interpret, and troubleshoot JVM concurrency tests with Lincheck model checking and stress strategies. |
