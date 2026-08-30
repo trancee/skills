@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "device": {
+    "gapRoles": ["peripheral"],
+    "gattRoles": ["server"],
+    "advertising": {
+      "mode": "legacy",
+      "dataBytes": 8,
+      "scanResponseBytes": 0,
+      "serviceUuids": ["12345678-1234-5678-1234-56789abcdef0"]
+    }
+  },
+  "database": {
+    "mutable": false,
+    "serviceChanged": false,
+    "databaseHash": false,
+    "robustCaching": false,
+    "services": [
+      {
+        "id": "telemetry",
+        "uuid": "12345678-1234-5678-1234-56789abcdef0",
+        "namespace": "vendor",
+        "kind": "primary",
+        "characteristics": [
+          {
+            "id": "measurement",
+            "uuid": "12345678-1234-5678-1234-56789abcdef1",
+            "namespace": "vendor",
+            "properties": ["read", "notify"],
+            "permissions": {
+              "read": "encrypted",
+              "write": "denied"
+            },
+            "value": {
+              "minBytes": 4,
+              "maxBytes": 4,
+              "encoding": "uint32",
+              "byteOrder": "little",
+              "unit": "count",
+              "version": 1
+            },
+            "subscription": {
+              "cccd": "stack-managed",
+              "security": "encrypted",
+              "persistForBonded": true
+            },
+            "descriptors": []
+          }
+        ]
+      }
+    ]
+  },
+  "l2capChannels": []
+}
