@@ -26,6 +26,7 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 | Skill | Purpose |
 | --- | --- |
 | [`kotlin-development`](kotlin-development/) | Implement, review, build, test, and troubleshoot Kotlin projects across JVM, Android, Kotlin Multiplatform, JavaScript, Wasm, and Native. |
+| [`skie`](skie/) | Install, migrate, configure, and troubleshoot Touchlab SKIE for Kotlin Multiplatform Swift interop. |
 | [`xtool`](xtool/) | Install, configure, use, and troubleshoot xtool for SwiftPM-driven iOS development and device deployment. |
 
 ### Documentation
