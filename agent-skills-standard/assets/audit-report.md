@@ -5,6 +5,7 @@
 - source revision:
 - client/version:
 - package/catalog/scopes:
+- token encoding/core/resources/total/baseline/delta:
 
 ## Spec
 

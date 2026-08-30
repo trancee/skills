@@ -149,8 +149,9 @@ Write for the consumer. Keep `SKILL.md`, agent-facing references, and agent-fill
 5. Prefer primary, versioned sources. State which source wins when references disagree.
 6. Keep secrets, credentials, generated output, and machine-specific paths out of the skill.
 7. Exercise commands and behavioral procedures in an appropriate disposable environment.
-8. Before committing skill repository changes, invoke `agent-skills-standard` again and run its strict package, metadata, link, discovery, and diff checks.
-9. If the catalog changed, run `npx skills add . --list` and confirm that it exposes every intended skill.
-10. Use [Conventional Commits](https://www.conventionalcommits.org/) for repository history.
+8. After any `SKILL.md`, direct `references/*`, or direct `assets/*` change, run `python3 agent-skills-standard/scripts/count-context.py --root . --baseline HEAD path/to/skill`. Record the `o200k_base` core, resource, total, baseline, and delta counts.
+9. Before committing skill repository changes, invoke `agent-skills-standard` again. Re-run its strict audit and token count against the final files, then run metadata, link, discovery, and diff checks.
+10. If the catalog changed, run `npx skills add . --list` and confirm that it exposes every intended skill.
+11. Use [Conventional Commits](https://www.conventionalcommits.org/) for repository history.
 
 A useful contribution leaves no ambiguity about when the skill applies, what the agent must do, or how completion is verified.

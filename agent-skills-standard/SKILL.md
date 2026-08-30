@@ -1,7 +1,7 @@
 ---
 name: agent-skills-standard
-description: "Audits Agent Skills packages and commits; implements client support. Use for skill create/update gates, package/spec/portability audits, catalog migration, or client discovery, activation, and resource loading. Don't use for third-party install/update, AGENTS.md rules, or session-friction mining."
-compatibility: "scripts/audit-package.py: Python 3.11+ and PyYAML. Client work: target source/tests."
+description: "Audits Agent Skills packages/commits, counts GPT-5.6 context tokens, and implements client support. Use for skill create/update gates, token deltas, package/spec/portability audits, catalog migration, or client discovery/activation/resource loading. Don't use for third-party install/update, AGENTS.md rules, or session-friction mining."
+compatibility: "Python 3.11+; PyYAML for audit-package.py; tiktoken>=0.14 for count-context.py."
 metadata:
   category: "agent-tooling"
   source: "https://agentskills.io/home"
@@ -9,7 +9,7 @@ metadata:
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T11:28:53+02:00"
   updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-30T11:48:01+02:00"
+  updatedAt: "2026-08-30T12:42:03+02:00"
 ---
 
 # Agent Skills standard
@@ -30,7 +30,7 @@ metadata:
 2. RECORD immutable revision; compare `metadata.sourceVersion` (baseline only).
 3. SEPARATE shared fields from client extensions (`context`, hooks, invocation controls).
 
-## 3. Audit package
+## 3. Audit+count package
 
 1. READ `references/package-spec.md`.
 2. RUN:
@@ -39,8 +39,13 @@ metadata:
    skills-ref validate path/to/skill  # iff installed
    ```
 3. CHECK: spec errors; package integrity; coherent scope; decisions; done criteria; progressive disclosure; root-relative resources.
-4. Trigger/output concerns -> READ `references/evaluation.md`.
-5. OUT: copy `assets/audit-report.md`; include package, spec revision, exact results, warnings, unverified clients.
+4. Any created/changed `SKILL.md`, direct `references/*`, or direct `assets/*` -> RUN from skill repository:
+   ```bash
+   python3 scripts/count-context.py --root . --baseline HEAD path/to/skill
+   ```
+5. RECORD encoding, core/resource/total tokens, baseline, delta. New package baseline=0. Local count=`o200k_base` ordinary text; provider framing/tools excluded.
+6. Trigger/output concerns -> READ `references/evaluation.md`.
+7. OUT: copy `assets/audit-report.md`; include package, spec revision, token count+delta, exact results, warnings, unverified clients.
 
 ## 4. Catalog/client
 
@@ -78,16 +83,18 @@ metadata:
 2. RUN each changed package:
    ```bash
    python3 scripts/audit-package.py path/to/skill --strict
+   python3 scripts/count-context.py --root . --baseline HEAD path/to/skill
    ```
-3. RUN repo metadata validator + local-link checker.
-4. Catalog changed -> update it; RUN:
+3. RECORD final encoding, token total, baseline, delta; recalculate after every later AI-facing edit.
+4. RUN repo metadata validator + local-link checker.
+5. Catalog changed -> update it; RUN:
    ```bash
    npx skills add . --list
    ```
-5. REQUIRE final-file behavioral proof.
-6. CHECK metadata policy: `category` first; `source`, `sourceVersion`, `createdBy`, `createdAt`, `updatedBy`, `updatedAt`.
-7. CHECK staged diff: secrets, generated/cache files, broken/untracked resources, unrelated edits.
-8. COMMIT only after all pass; use repo convention.
+6. REQUIRE final-file behavioral proof.
+7. CHECK metadata policy: `category` first; `source`, `sourceVersion`, `createdBy`, `createdAt`, `updatedBy`, `updatedAt`.
+8. CHECK staged diff: secrets, generated/cache files, broken/untracked resources, unrelated edits.
+9. COMMIT only after audits, token count, discovery, links, metadata, behavior, staged diff pass; use repo convention.
 
 ## Fail
 
