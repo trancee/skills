@@ -18,6 +18,7 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 | Skill | Context tokens | Purpose |
 | --- | ---: | --- |
 | [`nist-cavp`](nist-cavp/) | 2,729 | Find, download, parse, and integrate NIST CAVP archives and ACVP vector sets for cryptographic primitives and components. |
+| [`noise-protocol`](noise-protocol/) | 4,426 | Design, integrate, test, and review Noise handshakes, protocol suites, transport states, and key lifecycles. |
 | [`ristretto255`](ristretto255/) | 2,790 | Implement, integrate, and review ristretto255, including canonical encoding, hash-to-group, scalars, constant-time operations, protocol use, and RFC vectors. |
 | [`wycheproof`](wycheproof/) | 2,060 | Integrate and audit current Project Wycheproof vectors against cryptographic implementations, schemas, and result semantics. |
 
