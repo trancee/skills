@@ -4,7 +4,9 @@ description: "Hardens OMP skills and AGENTS.md rules from recurring failures in 
 license: MIT
 metadata:
   source: https://github.com/eristoddle/agent-skills/tree/main/skills/skill-hardener
+  category: "agent-tooling"
   createdAt: "2026-08-29T18:07:51+02:00"
+  updatedAt: "2026-08-30T11:05:26+02:00"
 ---
 
 # OMP skill hardener

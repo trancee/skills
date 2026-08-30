@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Kotlin project inspection report",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "root",
+    "buildSystem",
+    "wrappers",
+    "buildFiles",
+    "plugins",
+    "kotlinVersionHints",
+    "declaredTargetCalls",
+    "sourceSets",
+    "kotlinSourceFileCount",
+    "kotlinScriptFileCount",
+    "deprecatedKotlinOptionsFiles",
+    "warnings"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "root": {
+      "type": "string"
+    },
+    "buildSystem": {
+      "enum": ["gradle", "maven", "mixed", "standalone", "unknown"]
+    },
+    "wrappers": {
+      "$ref": "#/$defs/stringArray"
+    },
+    "buildFiles": {
+      "$ref": "#/$defs/stringArray"
+    },
+    "plugins": {
+      "$ref": "#/$defs/stringArray"
+    },
+    "kotlinVersionHints": {
+      "$ref": "#/$defs/stringArray"
+    },
+    "declaredTargetCalls": {
+      "$ref": "#/$defs/stringArray"
+    },
+    "sourceSets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["module", "name"],
+        "properties": {
+          "module": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "kotlinSourceFileCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "kotlinScriptFileCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "deprecatedKotlinOptionsFiles": {
+      "$ref": "#/$defs/stringArray"
+    },
+    "warnings": {
+      "$ref": "#/$defs/stringArray"
+    }
+  },
+  "$defs": {
+    "stringArray": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    }
+  }
+}

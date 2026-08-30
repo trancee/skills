@@ -6,16 +6,19 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 
 ## Available skills
 
-| Skill | Purpose |
-| --- | --- |
-| [`diataxis`](diataxis/) | Write, audit, and improve tutorials, how-to guides, reference, explanation, documentation architecture, and documentation quality. |
-| [`nist-cavp`](nist-cavp/) | Find, download, parse, and integrate NIST CAVP archives and ACVP vector sets for cryptographic primitives and components. |
-| [`omp-skill-hardener`](omp-skill-hardener/) | Mine repeated failures from OMP sessions, turn them into approved skill or `AGENTS.md` changes, and test the new rules. |
-| [`ristretto255`](ristretto255/) | Implement, integrate, and review ristretto255, including canonical encoding, hash-to-group, scalars, constant-time operations, protocol use, and RFC vectors. |
-| [`wycheproof`](wycheproof/) | Integrate and audit current Project Wycheproof vectors against cryptographic implementations, schemas, and result semantics. |
-| [`xtool`](xtool/) | Install, configure, use, and troubleshoot xtool for SwiftPM-driven iOS development and device deployment. |
+| Skill | Category | Purpose |
+| --- | --- | --- |
+| [`diataxis`](diataxis/) | Documentation | Write, audit, and improve tutorials, how-to guides, reference, explanation, documentation architecture, and documentation quality. |
+| [`kotlin-development`](kotlin-development/) | Development | Implement, review, build, test, and troubleshoot Kotlin projects across JVM, Android, Kotlin Multiplatform, JavaScript, Wasm, and Native. |
+| [`nist-cavp`](nist-cavp/) | Cryptography | Find, download, parse, and integrate NIST CAVP archives and ACVP vector sets for cryptographic primitives and components. |
+| [`omp-skill-hardener`](omp-skill-hardener/) | Agent tooling | Mine repeated failures from OMP sessions, turn them into approved skill or `AGENTS.md` changes, and test the new rules. |
+| [`ristretto255`](ristretto255/) | Cryptography | Implement, integrate, and review ristretto255, including canonical encoding, hash-to-group, scalars, constant-time operations, protocol use, and RFC vectors. |
+| [`wycheproof`](wycheproof/) | Cryptography | Integrate and audit current Project Wycheproof vectors against cryptographic implementations, schemas, and result semantics. |
+| [`xtool`](xtool/) | Development | Install, configure, use, and troubleshoot xtool for SwiftPM-driven iOS development and device deployment. |
 
 Open a skill's `SKILL.md` for its full procedure and source material.
+
+Categories are catalog metadata. They do not affect skill invocation, and skill directories remain at the repository root.
 
 ## Install
 
@@ -97,6 +100,7 @@ name: example-skill
 description: Perform a specific workflow when its triggering conditions apply.
 metadata:
   source: "https://example.com/canonical-source"
+  category: "development"
   createdAt: "2026-01-01T12:00:00+00:00"
   updatedAt: "2026-01-02T12:00:00+00:00"
 ---
@@ -104,6 +108,7 @@ metadata:
 
 - `name` matches the lower-kebab-case directory name.
 - `description` states what the skill does and the distinct situations that should trigger it.
+- `metadata.category` groups the skill under `agent-tooling`, `cryptography`, `development`, or `documentation` in this repository.
 - `metadata.source` identifies the canonical source used to author and refresh the skill.
 - `metadata.createdAt` records the skill's first repository creation time as an ISO 8601 string.
 - `metadata.updatedAt` records the latest skill content or metadata update as an ISO 8601 string.

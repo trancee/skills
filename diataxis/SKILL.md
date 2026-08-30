@@ -3,8 +3,9 @@ name: diataxis
 description: "Authors, audits, and restructures technical documentation with the Diátaxis framework. Use when creating or reviewing tutorials, how-to guides, reference, explanation, documentation architecture, content classification, or documentation quality. Don't use for general prose editing without a documentation need, API implementation, or product design."
 metadata:
   source: "https://diataxis.fr/"
+  category: "documentation"
   createdAt: "2026-08-28T19:26:56+02:00"
-  updatedAt: "2026-08-29T17:06:38+02:00"
+  updatedAt: "2026-08-30T11:05:26+02:00"
 ---
 
 # Diátaxis documentation workflow

@@ -3,8 +3,9 @@ name: wycheproof
 description: "Integrates and audits Project Wycheproof test vectors for cryptographic implementations. Use when selecting current vector files, validating them against repository schemas, mapping algorithm inputs to an API, enforcing valid/invalid/acceptable outcomes, or adding regression coverage. Don't use for NIST CAVP certification, generating new vectors, benchmarking, or general cryptographic design."
 metadata:
   source: "https://github.com/C2SP/wycheproof"
+  category: "cryptography"
   createdAt: "2026-08-28T19:26:56+02:00"
-  updatedAt: "2026-08-29T17:13:08+02:00"
+  updatedAt: "2026-08-30T11:05:26+02:00"
 ---
 
 # Project Wycheproof integration
