@@ -33,6 +33,7 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 | [`kotlin-development`](kotlin-development/) | 3,245 | Implement, review, build, test, and troubleshoot Kotlin projects across JVM, Android, Kotlin Multiplatform, JavaScript, Wasm, and Native. |
 | [`kotlin-gradle`](kotlin-gradle/) | 4,366 | Configure, migrate, optimize, and troubleshoot Kotlin Gradle builds, toolchains, compiler options, and caches. |
 | [`kotlinx-benchmark`](kotlinx-benchmark/) | 4,430 | Configure, run, compare, and troubleshoot multiplatform Kotlin microbenchmarks with kotlinx-benchmark. |
+| [`kotlinx-serialization`](kotlinx-serialization/) | 4,613 | Design, configure, evolve, test, and troubleshoot kotlinx.serialization wire formats and schemas. |
 | [`skie`](skie/) | 3,315 | Install, migrate, configure, and troubleshoot Touchlab SKIE for Kotlin Multiplatform Swift interop. |
 | [`spotless`](spotless/) | 3,947 | Configure, apply, verify, migrate, and troubleshoot Spotless formatting for Gradle and Maven projects. |
 | [`xtool`](xtool/) | 2,285 | Install, configure, use, and troubleshoot xtool for SwiftPM-driven iOS development and device deployment. |
