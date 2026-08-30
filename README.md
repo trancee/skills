@@ -8,34 +8,42 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 
 ### Agent tooling
 
-| Skill | Purpose |
-| --- | --- |
-| [`agent-skills-standard`](agent-skills-standard/) | Audit new and updated Agent Skills packages, gate skill repository commits, migrate catalogs, and add standards-compatible discovery and activation to agent clients. |
-| [`omp-skill-hardener`](omp-skill-hardener/) | Mine repeated failures from OMP sessions, turn them into approved skill or `AGENTS.md` changes, and test the new rules. |
+| Skill | Context tokens | Purpose |
+| --- | ---: | --- |
+| [`agent-skills-standard`](agent-skills-standard/) | 2,880 | Audit new and updated Agent Skills packages, gate skill repository commits, migrate catalogs, and add standards-compatible discovery and activation to agent clients. |
+| [`omp-skill-hardener`](omp-skill-hardener/) | 2,412 | Mine repeated failures from OMP sessions, turn them into approved skill or `AGENTS.md` changes, and test the new rules. |
 
 ### Cryptography
 
-| Skill | Purpose |
-| --- | --- |
-| [`nist-cavp`](nist-cavp/) | Find, download, parse, and integrate NIST CAVP archives and ACVP vector sets for cryptographic primitives and components. |
-| [`ristretto255`](ristretto255/) | Implement, integrate, and review ristretto255, including canonical encoding, hash-to-group, scalars, constant-time operations, protocol use, and RFC vectors. |
-| [`wycheproof`](wycheproof/) | Integrate and audit current Project Wycheproof vectors against cryptographic implementations, schemas, and result semantics. |
+| Skill | Context tokens | Purpose |
+| --- | ---: | --- |
+| [`nist-cavp`](nist-cavp/) | 2,729 | Find, download, parse, and integrate NIST CAVP archives and ACVP vector sets for cryptographic primitives and components. |
+| [`ristretto255`](ristretto255/) | 2,790 | Implement, integrate, and review ristretto255, including canonical encoding, hash-to-group, scalars, constant-time operations, protocol use, and RFC vectors. |
+| [`wycheproof`](wycheproof/) | 2,060 | Integrate and audit current Project Wycheproof vectors against cryptographic implementations, schemas, and result semantics. |
 
 ### Development
 
-| Skill | Purpose |
-| --- | --- |
-| [`kotlin-development`](kotlin-development/) | Implement, review, build, test, and troubleshoot Kotlin projects across JVM, Android, Kotlin Multiplatform, JavaScript, Wasm, and Native. |
-| [`skie`](skie/) | Install, migrate, configure, and troubleshoot Touchlab SKIE for Kotlin Multiplatform Swift interop. |
-| [`xtool`](xtool/) | Install, configure, use, and troubleshoot xtool for SwiftPM-driven iOS development and device deployment. |
+| Skill | Context tokens | Purpose |
+| --- | ---: | --- |
+| [`kotlin-development`](kotlin-development/) | 3,245 | Implement, review, build, test, and troubleshoot Kotlin projects across JVM, Android, Kotlin Multiplatform, JavaScript, Wasm, and Native. |
+| [`skie`](skie/) | 3,315 | Install, migrate, configure, and troubleshoot Touchlab SKIE for Kotlin Multiplatform Swift interop. |
+| [`xtool`](xtool/) | 2,285 | Install, configure, use, and troubleshoot xtool for SwiftPM-driven iOS development and device deployment. |
 
 ### Documentation
 
-| Skill | Purpose |
-| --- | --- |
-| [`diataxis`](diataxis/) | Write, audit, and improve tutorials, how-to guides, reference, explanation, documentation architecture, and documentation quality. |
+| Skill | Context tokens | Purpose |
+| --- | ---: | --- |
+| [`diataxis`](diataxis/) | 2,693 | Write, audit, and improve tutorials, how-to guides, reference, explanation, documentation architecture, and documentation quality. |
 
 Open a skill's `SKILL.md` for its full procedure and source material.
+
+Context tokens use `tiktoken>=0.14` with the GPT-5.6-compatible `o200k_base` encoding. Each value is the sum of `SKILL.md` and direct files under `assets/` and `references/`; scripts and license files are excluded. Resources load only when needed, so the table is a packaged-context upper bound rather than the cost of every activation.
+
+Regenerate the table values from the repository root:
+
+```bash
+python3 agent-skills-standard/scripts/count-context.py --root .
+```
 
 Categories are catalog metadata. They do not affect skill invocation, and skill directories remain at the repository root.
 
