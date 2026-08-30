@@ -34,6 +34,7 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 | [`kotlin-gradle`](kotlin-gradle/) | 4,366 | Configure, migrate, optimize, and troubleshoot Kotlin Gradle builds, toolchains, compiler options, and caches. |
 | [`kotlin-multiplatform`](kotlin-multiplatform/) | 4,276 | Design, configure, migrate, test, publish, and troubleshoot Kotlin Multiplatform targets, source sets, hierarchies, and variants. |
 | [`kotlin-native-apple-interop`](kotlin-native-apple-interop/) | 4,644 | Configure, export, import, and troubleshoot Kotlin/Native interoperability with Swift, Objective-C, and Apple frameworks. |
+| [`kotlin-power-assert`](kotlin-power-assert/) | 3,850 | Configure, use, debug, and expose Kotlin Power-assert diagnostics, transformed functions, and assertion APIs. |
 | [`kotlinx-benchmark`](kotlinx-benchmark/) | 4,430 | Configure, run, compare, and troubleshoot multiplatform Kotlin microbenchmarks with kotlinx-benchmark. |
 | [`kotlinx-serialization`](kotlinx-serialization/) | 4,613 | Design, configure, evolve, test, and troubleshoot kotlinx.serialization wire formats and schemas. |
 | [`lincheck`](lincheck/) | 3,787 | Design, run, interpret, and troubleshoot JVM concurrency tests with Lincheck model checking and stress strategies. |
