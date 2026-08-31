@@ -20,7 +20,7 @@ Real-device tests:
 - direct/auto GATT, API 37 automatic MTU, bond loss/autonomous repair/failure
 - service-changed cache invalidation, API 33 value snapshots, characteristic/descriptor failures
 - companion presence and connectedDevice FGS start/user stop/revocation
-- advertise success/failure where supported; LE CoC connect/EOF/partial framing if used
+- advertise success/failure where supported
 - background audio hardening/BAL/cross-profile gateway only if product uses them
 
 Evidence: timestamped state/epoch/status logs without payload secrets, `adb dumpsys bluetooth_manager`, bugreport, Bluetooth HCI snoop, notification/FGS state, permission/AppOps, process-death trigger, and peripheral trace.

@@ -20,7 +20,7 @@ metadata:
 2. IDENTIFY GAP roles, Link Layer central/peripheral, GATT client/server per procedure, service owner, peer/platform/controller/stack/Core/profile versions, UUID namespace, value schemas, permissions/security levels, cache policy, ATT bearers, L2CAP channels, failure/reconnect behavior, and compatibility matrix.
 3. READ `references/layers-roles.md`, then the current Core 6.2 GAP/GATT/ATT/L2CAP sections it identifies for the change.
 4. SEPARATE roles: central/peripheral controls link establishment; client/server controls each GATT procedure. Either connected peer can be client, server, or both.
-5. ROUTE Apple platform mechanics to `corebluetooth`, Android platform mechanics to `android-ble`, PHY/DLE/interval/throughput tuning to `ble-throughput`, and application cryptographic handshakes to `noise-protocol`.
+5. ROUTE Apple platform mechanics to `corebluetooth`, Android GATT mechanics to `android-ble`, Android RFCOMM/LE CoC socket mechanics to `android-bluetooth-sockets`, PHY/DLE/interval/throughput tuning to `ble-throughput`, and application cryptographic handshakes to `noise-protocol`.
 
 Completion: roles, discovery/connection flow, logical schema, wire procedures, security/cache/channel ownership, and target matrix are explicit.
 

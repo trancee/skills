@@ -25,5 +25,5 @@
 
 - manifest/lint/build results:
 - HCI/logcat/dumpsys artifacts:
-- RFCOMM/audio/BAL/loopback relevance:
+- audio/BAL/loopback relevance:
 - unverified hardware/background conditions:

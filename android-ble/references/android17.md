@@ -6,7 +6,7 @@ Sources: [Android 17 summary](https://developer.android.com/about/versions/17/su
 |---|---|---|---|
 | autonomous Bluetooth re-pairing | all apps on Android 17 | bond loss for LE or Classic | read `EXTRA_PAIRING_CONTEXT`; leave `PAIRING_CONTEXT_REPAIRING` to system flow; keys replace only on successful equal/stronger repair; handle failed `ACTION_KEY_MISSING` |
 | new GATT connection settings | API 37 surface | BLE GATT client | migrate deprecated Context/autoConnect overloads to settings + Executor + callback; branch older SDK |
-| RFCOMM InputStream EOF | target API 37 | Classic RFCOMM only; aligns with LE CoC | break on `read() == -1`; still catch I/O failure; never pass negative length |
+| RFCOMM InputStream EOF | target API 37 | Classic RFCOMM only; aligns with LE CoC | route implementation and verification to `android-bluetooth-sockets`; never apply to GATT callbacks |
 | BAL hardening | target API 37 | dashboard auto-launch from BLE callback | use user-tapped notification or documented exception; migrate legacy BAL mode |
 | background audio hardening | all Android 17, stricter target 37 | BLE-triggered beep/alert | visible activity or valid FGS; target 37 background FGS needs WIU unless alarm exception; inspect `AudioHardening` logs |
 | cross-profile loopback block | all apps on Android 17 | only BLE gateways bridging profiles via localhost | same-profile unaffected; redesign/document cross-profile transport; no guessed permission |

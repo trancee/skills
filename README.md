@@ -26,9 +26,10 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 
 | Skill | Context tokens | Purpose |
 | --- | ---: | --- |
-| [`android-ble`](android-ble/) | 5,895 | Implement, migrate, test, and troubleshoot Android BLE scanning, GATT lifecycle, background, permissions, and Android 17 behavior. |
+| [`android-ble`](android-ble/) | 5,858 | Implement, migrate, test, and troubleshoot Android BLE scanning, GATT lifecycle, background, permissions, and Android 17 behavior. |
 | [`android-ble-gatt-queue`](android-ble-gatt-queue/) | 4,664 | Implement, review, test, and debug coroutine-serialized Android GATT operations, callbacks, cancellation, and timeout reset. |
-| [`ble-protocol-stack`](ble-protocol-stack/) | 5,495 | Design, validate, and troubleshoot BLE GAP, GATT, ATT, L2CAP schemas, procedures, caching, and channels. |
+| [`android-bluetooth-sockets`](android-bluetooth-sockets/) | 5,438 | Implement, review, test, and troubleshoot Android RFCOMM and LE CoC socket clients, servers, streams, and lifecycle. |
+| [`ble-protocol-stack`](ble-protocol-stack/) | 5,515 | Design, validate, and troubleshoot BLE GAP, GATT, ATT, L2CAP schemas, procedures, caching, and channels. |
 | [`ble-throughput`](ble-throughput/) | 5,004 | Measure, model, diagnose, and optimize BLE throughput across PHY, Link Layer, ATT/GATT, mobile, and application queues. |
 | [`compose-multiplatform`](compose-multiplatform/) | 5,483 | Design, implement, test, and ship shared Compose UI across Android, iOS, desktop, and web. |
 | [`corebluetooth`](corebluetooth/) | 5,280 | Implement, review, test, and troubleshoot Apple Core Bluetooth central/peripheral apps, lifecycle, data flow, and restoration. |

@@ -1,6 +1,6 @@
 ---
 name: android-ble
-description: "Implements, migrates, tests, and troubleshoots Android Bluetooth Low Energy clients and peripherals. Use when building scan, advertise, GATT connection lifecycle, subscription, or LE CoC flows; handling Nearby Devices permissions; maintaining background connections with CompanionDeviceService or connectedDevice foreground services; adopting Android 17 BluetoothGattConnectionSettings and autonomous re-pairing; or diagnosing scan, bond, MTU, process-death, and OEM failures. Don't use for coroutine GATT operation-queue internals, Bluetooth Classic or RFCOMM-only code, generic GAP/GATT schema design, PHY and throughput tuning, iOS CoreBluetooth, pairing cryptography, or UI unrelated to BLE."
+description: "Implements, migrates, tests, and troubleshoots Android Bluetooth Low Energy GATT clients and peripherals. Use when building scan, advertise, GATT connection lifecycle, or subscription flows; handling Nearby Devices permissions; maintaining background connections with CompanionDeviceService or connectedDevice foreground services; adopting Android 17 BluetoothGattConnectionSettings and autonomous re-pairing; or diagnosing scan, bond, MTU, process-death, and OEM failures. Don't use for coroutine GATT operation-queue internals, BluetoothSocket RFCOMM or LE L2CAP CoC transports, Bluetooth Classic profiles, generic GAP/GATT schema design, PHY and throughput tuning, iOS CoreBluetooth, pairing cryptography, or UI unrelated to BLE."
 compatibility: "Targets Android 17/API 37 while preserving explicit branches for Android 12/API 31 Nearby Devices permissions, Android 13/API 33 memory-safe GATT APIs, and Android 14/API 34 foreground-service types/MTU behavior. Android 17 affects all apps and target-37 apps differently; verify live behavior pages and SDK stubs. Helper requires Python 3.11+."
 metadata:
   category: "development"
@@ -9,18 +9,18 @@ metadata:
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T23:09:17+02:00"
   updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-31T08:23:27+02:00"
+  updatedAt: "2026-08-31T08:45:01+02:00"
 ---
 
 # Android BLE
 
 ## Step 1: Define the Android BLE contract
 
-1. DEFINE scan/discovery | advertise/peripheral | direct/automatic GATT connection | service discovery/cache | read/write/subscribe | LE CoC | background presence/connection | bond/re-pairing | Android 17 migration | OEM failure.
+1. DEFINE scan/discovery | advertise/peripheral | direct/automatic GATT connection | service discovery/cache | read/write/subscribe | background presence/connection | bond/re-pairing | Android 17 migration | OEM failure.
 2. IDENTIFY min/compile/target SDK, device/Android/OEM matrix, BLE central/peripheral and GATT client/server roles, identity/filter, foreground/background/process-death behavior, permissions, association/bond model, connection owner, callback executor, operation queue, timeout/retry policy, and user-visible behavior.
 3. READ the official [Android BLE background guide](https://developer.android.com/develop/connectivity/bluetooth/ble/background), [Bluetooth permissions](https://developer.android.com/develop/connectivity/bluetooth/bt-permissions), and relevant API-level branch before editing.
 4. READ `references/source-audit.md` before applying Android 17 claims from secondary sources. Separate all-app changes, target-37 changes, older enforced requirements, empirical OEM behavior, and Bluetooth Classic-only changes.
-5. ROUTE coroutine GATT operation serialization/races to `android-ble-gatt-queue`, logical GAP/GATT/ATT/L2CAP design to `ble-protocol-stack`, PHY/MTU throughput tuning to `ble-throughput`, and generic Kotlin/coroutine/build mechanics to their dedicated skills.
+5. ROUTE coroutine GATT operation serialization/races to `android-ble-gatt-queue`, RFCOMM and LE L2CAP CoC socket transports to `android-bluetooth-sockets`, logical GAP/GATT/ATT/L2CAP design to `ble-protocol-stack`, PHY/MTU throughput tuning to `ble-throughput`, and generic Kotlin/coroutine/build mechanics to their dedicated skills.
 
 Completion: SDK/device matrix, roles, permission/background model, connection/operation owner, and observable success/failure states are explicit.
 
@@ -31,7 +31,7 @@ RUN from the Android project root:
 python3 scripts/inspect-project.py --root . --json
 ```
 
-CONFIRM SDK levels, BLE features/permissions, `neverForLocation`, foreground service types/permissions, scan API/filter/failure handling, advertisement callbacks, legacy/new `connectGatt`, connection settings/executor, GATT operation serialization, API 33 value-taking methods/callbacks, CCCD writes, MTU handling, Companion Device APIs, bond/pairing-context handling, RFCOMM read loops, background activity/audio/loopback paths, device-address identity, and cleanup.
+CONFIRM SDK levels, BLE features/permissions, `neverForLocation`, foreground service types/permissions, scan API/filter/failure handling, advertisement callbacks, legacy/new `connectGatt`, connection settings/executor, GATT operation serialization, API 33 value-taking methods/callbacks, CCCD writes, MTU handling, Companion Device APIs, bond/pairing-context handling, background activity/audio/loopback paths, device-address identity, and cleanup.
 
 Completion: every reported candidate is inspected in its lifecycle owner and mapped to an API-level branch.
 
@@ -99,22 +99,22 @@ READ `references/android17.md`.
 
 1. TEST autonomous re-pairing on all apps running Android 17. Read `EXTRA_PAIRING_CONTEXT`; recognize `PAIRING_CONTEXT_REPAIRING`, preserve system UI/key replacement, and handle `ACTION_KEY_MISSING` only after failed repair.
 2. MIGRATE target-37 GATT connections to `BluetoothGattConnectionSettings` plus explicit callback `Executor`.
-3. FIX RFCOMM-only read loops to treat `InputStream.read() == -1` as EOF. This target-37 change aligns RFCOMM with LE CoC and is not a GATT read change.
+3. ROUTE target-37 RFCOMM EOF migration and all `BluetoothSocket` behavior to `android-bluetooth-sockets`; never apply socket EOF behavior to GATT callbacks.
 4. REPLACE background activity auto-launch with a user-visible notification/action unless a documented BAL exception applies.
 5. FOR BLE-triggered audio, meet Android 17 visibility/foreground-service/WIU rules. A background-started `connectedDevice` service alone does not grant target-37 audio capability.
 6. IF the BLE gateway uses loopback across Android profiles, redesign for Android 17's cross-profile block; same-profile loopback is unaffected. Do not add an undocumented permission as a guess.
 
-Completion: each Android 17 item is classified as all-app, target-37, RFCOMM-only, cross-profile-only, or unrelated and has an exercised branch.
+Completion: each Android 17 item is classified as all-app, target-37, socket-only, cross-profile-only, or unrelated and has an exercised branch.
 
-## Step 9: Handle pairing, identity, and LE CoC
+## Step 9: Handle pairing and identity
 
 1. LET system pairing UI own ordinary user pairing. General apps do not silently set PINs/confirm pairing; API 37 deprecates `setPin(byte[])` and autonomous repair must not be intercepted.
 2. TRACK bond transitions, pairing context, key-missing reason, transport, and connection epoch; wait for the required bond/security state before retrying protected GATT operations.
 3. USE Companion Device association, bonded identity, or authenticated application identifier according to product threat model. Raw MAC/name/manufacturer data alone is not authenticated identity.
-4. FOR LE CoC, use secure/insecure L2CAP APIs deliberately, discover PSM as specified, handle `InputStream` EOF and partial reads, frame messages, serialize close, and bound buffers.
+4. ROUTE LE L2CAP CoC PSM, security, stream framing, EOF, buffer, and close ownership to `android-bluetooth-sockets`.
 5. ROUTE application-layer authentication/encryption protocol design to its protocol skill.
 
-Completion: bond loss/repair/rejection, address rotation, protected access, and CoC EOF/framing are deterministic.
+Completion: bond loss/repair/rejection, address rotation, and protected GATT access are deterministic.
 
 ## Step 10: Verify and report
 
@@ -122,7 +122,7 @@ READ `references/testing.md`.
 
 1. COMPILE with API 37/37.1 SDK and run lint for target 37 plus supported older branches.
 2. RUN instrumentation on Android 17 and representative Android 12–16/OEM devices for permissions, scan/advertise, direct/auto connection, service cache, operations, subscriptions, background/process death, bond repair, and user stop.
-3. USE Android 17 compatibility toggles/ADB commands for RFCOMM/audio behaviors where documented; capture logcat, bugreport/dumpsys, HCI snoop, callbacks, epochs, and statuses.
+3. USE Android 17 compatibility toggles/ADB commands for audio behaviors where documented; capture logcat, bugreport/dumpsys, HCI snoop, callbacks, epochs, and statuses.
 4. TEST platform API availability branches without reflection/string constant fallbacks and verify release manifest merging.
 5. COPY `assets/android-ble-report.md`; fill SDK/device matrix, manifest/permissions, session states, GATT queue, background mechanism, Android 17 classification, evidence, and OEM limitations.
 
@@ -138,4 +138,4 @@ Completion: release build and real-device matrix prove every changed Android bra
 - Notifications enabled locally but absent -> write/confirm CCCD, preserve connection process, handle security/service change, and inspect characteristic properties.
 - Android 17 repair prompt misclassified -> use `PAIRING_CONTEXT_REPAIRING`; `PAIRING_CONTEXT_AUTONOMOUS` from secondary examples is not the API 37 constant.
 - Android 17 audio silently fails -> inspect `AudioHardening` logs and visibility/FGS/WIU; use user-visible notification if unsolicited background playback is not allowed.
-- Socket read hangs -> apply EOF `-1` handling to RFCOMM and all stream loops; do not conflate BluetoothSocket/RFCOMM with GATT callbacks.
+- Bluetooth socket transport issue -> switch to `android-bluetooth-sockets`; keep GATT callback and socket stream lifecycle separate.

@@ -46,9 +46,6 @@ SIGNALS = {
     "repairing_context": re.compile(r"\bPAIRING_CONTEXT_REPAIRING\b"),
     "wrong_pairing_constant": re.compile(r"\bPAIRING_CONTEXT_AUTONOMOUS\b"),
     "set_pin": re.compile(r"\.setPin\s*\("),
-    "rfcomm": re.compile(r"\b(?:createRfcommSocket|listenUsingRfcomm|RFCOMM)\b", re.IGNORECASE),
-    "socket_read": re.compile(r"\.read\s*\("),
-    "socket_eof_check": re.compile(r"(?:==|<=)\s*-1|<\s*0"),
     "background_activity_mode": re.compile(r"\bMODE_BACKGROUND_ACTIVITY_START_ALLOWED\b"),
     "background_activity_start": re.compile(r"\bstartActivity\s*\("),
     "audio": re.compile(r"\b(?:AudioTrack|AudioManager|requestAudioFocus|setStreamVolume|adjustStreamVolume|MediaPlayer)\b"),
@@ -246,9 +243,6 @@ def inspect(root: Path) -> dict[str, Any]:
         warnings.append("PAIRING_CONTEXT_AUTONOMOUS is not the API 37 constant; use PAIRING_CONTEXT_REPAIRING.")
     if "set_pin" in signals and (compile_sdk or 0) >= 37:
         warnings.append("setPin usage found; API 37 deprecates byte-array PIN setting and ordinary apps should preserve system pairing UI.")
-    rfcomm_files = [entry for entry in sources if "rfcomm" in entry["signals"] and "socket_read" in entry["signals"]]
-    if target is not None and target >= 37 and any("socket_eof_check" not in entry["signals"] for entry in rfcomm_files):
-        warnings.append("RFCOMM InputStream read loop candidate lacks explicit -1 EOF handling required by target-37 behavior.")
     if "background_activity_mode" in signals and (target or 0) >= 37:
         warnings.append("MODE_BACKGROUND_ACTIVITY_START_ALLOWED is deprecated for target 37; use granular visibility mode or user notification flow.")
     if "audio" in signals and (target or 0) >= 37 and "mediaPlayback" not in service_types:
