@@ -4,12 +4,12 @@ description: "Implements, migrates, tests, and troubleshoots Android Bluetooth L
 compatibility: "Targets Android 17/API 37 while preserving explicit branches for Android 12/API 31 Nearby Devices permissions, Android 13/API 33 memory-safe GATT APIs, and Android 14/API 34 foreground-service types/MTU behavior. Android 17 affects all apps and target-37 apps differently; verify live behavior pages and SDK stubs. Helper requires Python 3.11+."
 metadata:
   category: "development"
-  source: "https://developer.android.com/about/versions/17/summary"
-  sourceVersion: "Android 17 API 37/37.1 documentation (2026-08-28); supplied Medium articles reviewed 2026-08-30"
+  source: "https://developer.android.com/develop/connectivity/bluetooth/ble/ble-overview"
+  sourceVersion: "Android BLE overview 2026-02-26; Android 17 API 37/37.1 documentation 2026-08-28; supplied articles reviewed 2026-08-30"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T23:09:17+02:00"
   updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-31T08:45:01+02:00"
+  updatedAt: "2026-08-31T08:58:21+02:00"
 ---
 
 # Android BLE
@@ -18,11 +18,14 @@ metadata:
 
 1. DEFINE scan/discovery | advertise/peripheral | direct/automatic GATT connection | service discovery/cache | read/write/subscribe | background presence/connection | bond/re-pairing | Android 17 migration | OEM failure.
 2. IDENTIFY min/compile/target SDK, device/Android/OEM matrix, BLE central/peripheral and GATT client/server roles, identity/filter, foreground/background/process-death behavior, permissions, association/bond model, connection owner, callback executor, operation queue, timeout/retry policy, and user-visible behavior.
-3. READ the official [Android BLE background guide](https://developer.android.com/develop/connectivity/bluetooth/ble/background), [Bluetooth permissions](https://developer.android.com/develop/connectivity/bluetooth/bt-permissions), and relevant API-level branch before editing.
-4. READ `references/source-audit.md` before applying Android 17 claims from secondary sources. Separate all-app changes, target-37 changes, older enforced requirements, empirical OEM behavior, and Bluetooth Classic-only changes.
-5. ROUTE coroutine GATT operation serialization/races to `android-ble-gatt-queue`, RFCOMM and LE L2CAP CoC socket transports to `android-bluetooth-sockets`, logical GAP/GATT/ATT/L2CAP design to `ble-protocol-stack`, PHY/MTU throughput tuning to `ble-throughput`, and generic Kotlin/coroutine/build mechanics to their dedicated skills.
+3. READ `references/ble-overview.md` and the current [Android BLE overview](https://developer.android.com/develop/connectivity/bluetooth/ble/ble-overview) before choosing the platform flow, role names, or security boundary.
+4. SEPARATE central/peripheral link roles from GATT client/server procedure roles. Name both axes in state, logs, and tests.
+5. TREAT pairing/link protection as shared device transport security, not app isolation. For sensitive data, define application-layer confidentiality, authentication, and key ownership.
+6. READ the official [Android BLE background guide](https://developer.android.com/develop/connectivity/bluetooth/ble/background), [Bluetooth permissions](https://developer.android.com/develop/connectivity/bluetooth/bt-permissions), and relevant API-level branch before editing.
+7. READ `references/source-audit.md` before applying Android 17 claims from secondary sources. Separate all-app changes, target-37 changes, older enforced requirements, empirical OEM behavior, and Bluetooth Classic-only changes.
+8. ROUTE coroutine GATT operation serialization/races to `android-ble-gatt-queue`, RFCOMM and LE L2CAP CoC socket transports to `android-bluetooth-sockets`, logical GAP/GATT/ATT/L2CAP design to `ble-protocol-stack`, PHY/MTU throughput tuning to `ble-throughput`, application security protocols to `noise-protocol`, and generic Kotlin/coroutine/build mechanics to their dedicated skills.
 
-Completion: SDK/device matrix, roles, permission/background model, connection/operation owner, and observable success/failure states are explicit.
+Completion: SDK/device matrix, both role axes, permission/background model, transport/application security boundary, connection/operation owner, and observable success/failure states are explicit.
 
 ## Step 2: Inspect the app
 
