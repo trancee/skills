@@ -1,6 +1,6 @@
 ---
 name: android-ble
-description: "Implements, migrates, tests, and troubleshoots Android Bluetooth Low Energy clients and peripherals. Use when building scan, advertise, GATT, or LE CoC flows; handling Nearby Devices permissions; serializing GATT operations; subscribing to characteristics; maintaining background connections with CompanionDeviceService or connectedDevice foreground services; adopting Android 17 BluetoothGattConnectionSettings and autonomous re-pairing; or diagnosing scan, bond, callback, MTU, process-death, and OEM failures. Don't use for Bluetooth Classic or RFCOMM-only code, generic GAP/GATT schema design, PHY and throughput tuning, iOS CoreBluetooth, pairing cryptography, or UI unrelated to BLE."
+description: "Implements, migrates, tests, and troubleshoots Android Bluetooth Low Energy clients and peripherals. Use when building scan, advertise, GATT connection lifecycle, subscription, or LE CoC flows; handling Nearby Devices permissions; maintaining background connections with CompanionDeviceService or connectedDevice foreground services; adopting Android 17 BluetoothGattConnectionSettings and autonomous re-pairing; or diagnosing scan, bond, MTU, process-death, and OEM failures. Don't use for coroutine GATT operation-queue internals, Bluetooth Classic or RFCOMM-only code, generic GAP/GATT schema design, PHY and throughput tuning, iOS CoreBluetooth, pairing cryptography, or UI unrelated to BLE."
 compatibility: "Targets Android 17/API 37 while preserving explicit branches for Android 12/API 31 Nearby Devices permissions, Android 13/API 33 memory-safe GATT APIs, and Android 14/API 34 foreground-service types/MTU behavior. Android 17 affects all apps and target-37 apps differently; verify live behavior pages and SDK stubs. Helper requires Python 3.11+."
 metadata:
   category: "development"
@@ -9,7 +9,7 @@ metadata:
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T23:09:17+02:00"
   updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-30T23:09:17+02:00"
+  updatedAt: "2026-08-31T08:23:27+02:00"
 ---
 
 # Android BLE
@@ -20,7 +20,7 @@ metadata:
 2. IDENTIFY min/compile/target SDK, device/Android/OEM matrix, BLE central/peripheral and GATT client/server roles, identity/filter, foreground/background/process-death behavior, permissions, association/bond model, connection owner, callback executor, operation queue, timeout/retry policy, and user-visible behavior.
 3. READ the official [Android BLE background guide](https://developer.android.com/develop/connectivity/bluetooth/ble/background), [Bluetooth permissions](https://developer.android.com/develop/connectivity/bluetooth/bt-permissions), and relevant API-level branch before editing.
 4. READ `references/source-audit.md` before applying Android 17 claims from secondary sources. Separate all-app changes, target-37 changes, older enforced requirements, empirical OEM behavior, and Bluetooth Classic-only changes.
-5. ROUTE logical GAP/GATT/ATT/L2CAP design to `ble-protocol-stack`, PHY/MTU throughput tuning to `ble-throughput`, and generic Kotlin/coroutines/build mechanics to their dedicated skills.
+5. ROUTE coroutine GATT operation serialization/races to `android-ble-gatt-queue`, logical GAP/GATT/ATT/L2CAP design to `ble-protocol-stack`, PHY/MTU throughput tuning to `ble-throughput`, and generic Kotlin/coroutine/build mechanics to their dedicated skills.
 
 Completion: SDK/device matrix, roles, permission/background model, connection/operation owner, and observable success/failure states are explicit.
 
@@ -71,16 +71,15 @@ READ `references/gatt-lifecycle.md`.
 
 Completion: direct/auto connection, timeout, remote/local disconnect, status failure, reconnect, and stale callback tests pass without leaked GATT instances.
 
-## Step 6: Serialize GATT operations and subscriptions
+## Step 6: Integrate the dedicated GATT operation queue
 
-1. KEEP one bounded operation queue per `BluetoothGatt`/epoch; start the next request only from the matching completion callback or explicit synchronous submission failure.
+1. READ and apply `android-ble-gatt-queue` for coroutine serialization, callback matching, cancellation, timeout/reset, and composite operation ownership.
 2. USE API 33+ value-taking `writeCharacteristic`/`writeDescriptor` and value-bearing read/notification callbacks; copy byte arrays and avoid mutable characteristic/descriptor value fields.
-3. VALIDATE characteristic property, discovered handle/UUID, payload size, permission/security state, submission result, callback status, expected callback kind, and timeout.
-4. TO subscribe, call `setCharacteristicNotification` and write the CCCD with notification/indication value; consider the subscription ready only after descriptor-write success.
-5. ON `onServiceChanged`, invalidate cached objects/queued handles and rediscover before further access.
-6. ON Android 14+, account for first-client ATT MTU 517 request behavior; use automatic MTU settings/callback effective value rather than repeated requests.
+3. KEEP subscription semantics explicit: local `setCharacteristicNotification` followed by queued CCCD write; ready only after descriptor success.
+4. ON `onServiceChanged`, reset the queue epoch, invalidate cached objects/queued handles, and rediscover before further access.
+5. ON Android 14+, account for first-client ATT MTU 517 request behavior; use automatic MTU settings/callback effective value rather than repeated requests.
 
-Completion: reads/writes/descriptors/subscriptions/MTU/service-changed paths correlate one request to one callback and fail closed on disconnect.
+Completion: the dedicated queue owns every callback-completing request while this connection lifecycle owns readiness, discovery, service changes, and MTU policy.
 
 ## Step 7: Choose background execution from the use case
 
