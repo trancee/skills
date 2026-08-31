@@ -33,16 +33,17 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 | [`android-ble-inspector`](android-ble-inspector/) | 4,890 | Build, review, test, and troubleshoot Android Compose BLE scanners, GATT trees, operation controls, and value decoders. |
 | [`android-bluetooth-sockets`](android-bluetooth-sockets/) | 5,438 | Implement, review, test, and troubleshoot Android RFCOMM and LE CoC socket clients, servers, streams, and lifecycle. |
 | [`android-debug-bridge`](android-debug-bridge/) | 5,229 | Install, configure, use, and troubleshoot adb device targeting, USB/Wi-Fi transports, shell commands, apps, files, ports, and diagnostics. |
+| [`arrange-act-assert`](arrange-act-assert/) | 4,174 | Structure, review, and refactor example-based tests into clear Arrange, Act, and Assert phases. |
 | [`ble-protocol-stack`](ble-protocol-stack/) | 5,532 | Design, validate, and troubleshoot BLE GAP, GATT, ATT, L2CAP schemas, procedures, caching, and channels. |
 | [`ble-throughput`](ble-throughput/) | 5,004 | Measure, model, diagnose, and optimize BLE throughput across PHY, Link Layer, ATT/GATT, mobile, and application queues. |
-| [`compose-multiplatform`](compose-multiplatform/) | 5,498 | Design, implement, test, and ship shared Compose UI across Android, iOS, desktop, and web. |
+| [`compose-multiplatform`](compose-multiplatform/) | 5,518 | Design, implement, test, and ship shared Compose UI across Android, iOS, desktop, and web. |
 | [`corebluetooth`](corebluetooth/) | 5,280 | Implement, review, test, and troubleshoot Apple Core Bluetooth central/peripheral apps, lifecycle, data flow, and restoration. |
 | [`detekt`](detekt/) | 3,556 | Configure, run, migrate, and troubleshoot detekt static analysis for Kotlin projects. |
 | [`kover`](kover/) | 3,182 | Configure, verify, aggregate, and troubleshoot Kotlinx Kover JVM coverage for Kotlin projects. |
 | [`kotlin-api-reference`](kotlin-api-reference/) | 3,279 | Find and verify versioned, platform-specific Kotlin ecosystem API declarations and source. |
 | [`kotlin-binary-compatibility`](kotlin-binary-compatibility/) | 4,351 | Configure, run, migrate, and review Kotlin ABI validation with built-in KGP or the legacy validator. |
 | [`kotlin-coroutines`](kotlin-coroutines/) | 4,709 | Design, implement, test, and troubleshoot Kotlin coroutines, Flow, channels, cancellation, and structured concurrency. |
-| [`kotlin-development`](kotlin-development/) | 3,245 | Implement, review, build, test, and troubleshoot Kotlin projects across JVM, Android, Kotlin Multiplatform, JavaScript, Wasm, and Native. |
+| [`kotlin-development`](kotlin-development/) | 3,262 | Implement, review, build, test, and troubleshoot Kotlin projects across JVM, Android, Kotlin Multiplatform, JavaScript, Wasm, and Native. |
 | [`kotlin-gradle`](kotlin-gradle/) | 4,366 | Configure, migrate, optimize, and troubleshoot Kotlin Gradle builds, toolchains, compiler options, and caches. |
 | [`kotlin-multiplatform`](kotlin-multiplatform/) | 4,276 | Design, configure, migrate, test, publish, and troubleshoot Kotlin Multiplatform targets, source sets, hierarchies, and variants. |
 | [`kotlin-native-apple-interop`](kotlin-native-apple-interop/) | 4,644 | Configure, export, import, and troubleshoot Kotlin/Native interoperability with Swift, Objective-C, and Apple frameworks. |

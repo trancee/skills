@@ -9,7 +9,7 @@ metadata:
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T10:56:53+02:00"
   updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-30T11:48:01+02:00"
+  updatedAt: "2026-08-31T12:36:26+02:00"
 ---
 
 # Kotlin development
@@ -29,7 +29,7 @@ metadata:
    - build/deps/toolchain/version -> `references/build-tools.md`
    - KMP plugin/source sets/multi-target -> `references/multiplatform.md`
    - null/Java/coroutine/public API/style -> `references/language-safety.md`
-   - tests -> `references/testing.md`
+   - test framework/layer -> `references/testing.md`; example-based test structure/refactoring -> `arrange-act-assert`
 
 ## 2. Establish behavior
 

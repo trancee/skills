@@ -9,7 +9,7 @@ metadata:
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T18:15:26+02:00"
   updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-31T09:38:56+02:00"
+  updatedAt: "2026-08-31T12:36:26+02:00"
 ---
 
 # Compose Multiplatform
@@ -98,7 +98,7 @@ Completion: native and Compose ownership/disposal are single-valued and interact
 
 ## Step 8: Test shared and platform UI
 
-READ `references/testing.md`.
+READ `references/testing.md`; use `arrange-act-assert` when structuring or refactoring individual example-based UI tests.
 
 1. PUT shared semantics/state-transition tests in `commonTest` using `runComposeUiTest`; use finders/actions/assertions on user-observable semantics.
 2. PUT rendering, interop, lifecycle, input, accessibility, and distribution tests in the owning platform test source set/runner.
