@@ -28,9 +28,10 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 | --- | ---: | --- |
 | [`android-ble`](android-ble/) | 5,895 | Implement, migrate, test, and troubleshoot Android BLE scanning, GATT lifecycle, background, permissions, and Android 17 behavior. |
 | [`android-ble-gatt-queue`](android-ble-gatt-queue/) | 4,664 | Implement, review, test, and debug coroutine-serialized Android GATT operations, callbacks, cancellation, and timeout reset. |
-| [`ble-protocol-stack`](ble-protocol-stack/) | 5,486 | Design, validate, and troubleshoot BLE GAP, GATT, ATT, L2CAP schemas, procedures, caching, and channels. |
+| [`ble-protocol-stack`](ble-protocol-stack/) | 5,495 | Design, validate, and troubleshoot BLE GAP, GATT, ATT, L2CAP schemas, procedures, caching, and channels. |
 | [`ble-throughput`](ble-throughput/) | 5,004 | Measure, model, diagnose, and optimize BLE throughput across PHY, Link Layer, ATT/GATT, mobile, and application queues. |
 | [`compose-multiplatform`](compose-multiplatform/) | 5,483 | Design, implement, test, and ship shared Compose UI across Android, iOS, desktop, and web. |
+| [`corebluetooth`](corebluetooth/) | 5,280 | Implement, review, test, and troubleshoot Apple Core Bluetooth central/peripheral apps, lifecycle, data flow, and restoration. |
 | [`detekt`](detekt/) | 3,556 | Configure, run, migrate, and troubleshoot detekt static analysis for Kotlin projects. |
 | [`kover`](kover/) | 3,182 | Configure, verify, aggregate, and troubleshoot Kotlinx Kover JVM coverage for Kotlin projects. |
 | [`kotlin-api-reference`](kotlin-api-reference/) | 3,279 | Find and verify versioned, platform-specific Kotlin ecosystem API declarations and source. |
