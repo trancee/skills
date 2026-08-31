@@ -1,6 +1,6 @@
 ---
 name: android-ble
-description: "Implements, migrates, tests, and troubleshoots Android Bluetooth Low Energy GATT clients and peripherals. Use when building scan, advertise, GATT connection lifecycle, or subscription flows; handling Nearby Devices permissions; maintaining background connections with CompanionDeviceService or connectedDevice foreground services; adopting Android 17 BluetoothGattConnectionSettings and autonomous re-pairing; or diagnosing scan, bond, MTU, process-death, and OEM failures. Don't use for coroutine GATT operation-queue internals, BluetoothSocket RFCOMM or LE L2CAP CoC transports, Bluetooth Classic profiles, generic GAP/GATT schema design, PHY and throughput tuning, iOS CoreBluetooth, pairing cryptography, or UI unrelated to BLE."
+description: "Implements, migrates, tests, and troubleshoots Android Bluetooth Low Energy discovery, advertising, GATT client, and platform lifecycle. Use when building scan, advertise, GATT connection, or subscription flows; handling Nearby Devices permissions; maintaining background connections with CompanionDeviceService or connectedDevice foreground services; adopting Android 17 BluetoothGattConnectionSettings and autonomous re-pairing; or diagnosing scan, bond, MTU, process-death, and OEM failures. Don't use for local GATT server request/response internals, coroutine GATT operation-queue internals, BluetoothSocket RFCOMM or LE L2CAP CoC transports, Bluetooth Classic profiles, generic GAP/GATT schema design, PHY and throughput tuning, iOS CoreBluetooth, pairing cryptography, or UI unrelated to BLE."
 compatibility: "Targets Android 17/API 37 while preserving explicit branches for Android 12/API 31 Nearby Devices permissions, Android 13/API 33 memory-safe GATT APIs, and Android 14/API 34 foreground-service types/MTU behavior. Android 17 affects all apps and target-37 apps differently; verify live behavior pages and SDK stubs. Helper requires Python 3.11+."
 metadata:
   category: "development"
@@ -9,7 +9,7 @@ metadata:
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T23:09:17+02:00"
   updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-31T08:58:21+02:00"
+  updatedAt: "2026-08-31T09:30:06+02:00"
 ---
 
 # Android BLE
@@ -23,7 +23,7 @@ metadata:
 5. TREAT pairing/link protection as shared device transport security, not app isolation. For sensitive data, define application-layer confidentiality, authentication, and key ownership.
 6. READ the official [Android BLE background guide](https://developer.android.com/develop/connectivity/bluetooth/ble/background), [Bluetooth permissions](https://developer.android.com/develop/connectivity/bluetooth/bt-permissions), and relevant API-level branch before editing.
 7. READ `references/source-audit.md` before applying Android 17 claims from secondary sources. Separate all-app changes, target-37 changes, older enforced requirements, empirical OEM behavior, and Bluetooth Classic-only changes.
-8. ROUTE coroutine GATT operation serialization/races to `android-ble-gatt-queue`, RFCOMM and LE L2CAP CoC socket transports to `android-bluetooth-sockets`, logical GAP/GATT/ATT/L2CAP design to `ble-protocol-stack`, PHY/MTU throughput tuning to `ble-throughput`, application security protocols to `noise-protocol`, and generic Kotlin/coroutine/build mechanics to their dedicated skills.
+8. ROUTE local `BluetoothGattServer` database/request/notification internals to `android-ble-gatt-server`, remote client operation serialization/races to `android-ble-gatt-queue`, RFCOMM and LE L2CAP CoC socket transports to `android-bluetooth-sockets`, logical GAP/GATT/ATT/L2CAP design to `ble-protocol-stack`, PHY/MTU throughput tuning to `ble-throughput`, application security protocols to `noise-protocol`, and generic Kotlin/coroutine/build mechanics to their dedicated skills.
 
 Completion: SDK/device matrix, both role axes, permission/background model, transport/application security boundary, connection/operation owner, and observable success/failure states are explicit.
 

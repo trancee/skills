@@ -1,6 +1,6 @@
 ---
 name: android-ble-gatt-queue
-description: "Implements, reviews, tests, and debugs coroutine-based serialization for Android BluetoothGatt operations. Use when reads, writes, descriptors, MTU, discovery, or subscriptions overlap; callbacks complete the wrong request; operations hang or time out; caller cancellation races callbacks; reconnects deliver stale events; or a bounded Channel, actor, or CompletableDeferred adapter is needed. Don't use for scanning, advertising, background permissions, generic GATT schema design, BLE throughput tuning, non-Android stacks, ordinary coroutine pipelines, or concurrent EATT bearer scheduling."
+description: "Implements, reviews, tests, and debugs coroutine-based serialization for Android BluetoothGatt client operations. Use when reads, writes, descriptors, MTU, discovery, or subscriptions overlap; callbacks complete the wrong request; operations hang or time out; caller cancellation races callbacks; reconnects deliver stale events; or a bounded Channel, actor, or CompletableDeferred adapter is needed. Don't use for local BluetoothGattServer request/response callbacks, scanning, advertising, background permissions, generic GATT schema design, BLE throughput tuning, non-Android stacks, ordinary coroutine pipelines, or concurrent EATT bearer scheduling."
 compatibility: "Targets Android BluetoothGatt through API 37 and kotlinx.coroutines 1.11.0. Prefer API 33+ value-taking writes and value-bearing read/notification callbacks; onCharacteristicWrite/onDescriptorWrite callbacks do not contain written value. API 37 supports Executor-based GATT callbacks. Helper requires Python 3.11+."
 metadata:
   category: "development"
@@ -9,7 +9,7 @@ metadata:
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-31T08:23:27+02:00"
   updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-31T08:23:27+02:00"
+  updatedAt: "2026-08-31T09:30:06+02:00"
 ---
 
 # Android BLE GATT Queue
@@ -20,7 +20,7 @@ metadata:
 2. IDENTIFY connection owner/epoch, callback executor/thread, supported GATT operations, submission return contract, expected callback type/target/result, per-operation timeout, caller cancellation semantics, queue capacity, reconnect policy, and unsolicited event consumers.
 3. READ the official [`BluetoothGatt`](https://developer.android.com/reference/android/bluetooth/BluetoothGatt) and [`BluetoothGattCallback`](https://developer.android.com/reference/android/bluetooth/BluetoothGattCallback) methods for every queued operation/API branch.
 4. READ `references/article-audit.md` before reusing the supplied article's sample; its loop does not wait for callbacks and several callback/signature/value assumptions are incorrect.
-5. ROUTE connection/scan/background/permission ownership to `android-ble`, logical GATT procedure/schema to `ble-protocol-stack`, throughput to `ble-throughput`, and generic structured-concurrency choices to `kotlin-coroutines`.
+5. ROUTE local `BluetoothGattServer` callbacks to `android-ble-gatt-server`, connection/scan/background/permission ownership to `android-ble`, logical GATT procedure/schema to `ble-protocol-stack`, throughput to `ble-throughput`, and generic structured-concurrency choices to `kotlin-coroutines`.
 
 Completion: each operation has one submission, one matching completion callback, one timeout/reset policy, and one caller result type.
 

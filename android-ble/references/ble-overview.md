@@ -14,7 +14,7 @@ Keep the two role axes separate:
 - central/peripheral describes link discovery and establishment: the central scans and initiates; the peripheral advertises and accepts
 - GATT client/server describes attribute procedures after connection: the client requests; the server fulfills
 
-These axes are independent. An Android app can act as a central and GATT client in the common phone-to-sensor flow, or expose a `BluetoothGattServer` and act as a GATT server. Name both roles in designs, states, logs, and tests.
+These axes are independent. An Android app can act as a central and GATT client in the common phone-to-sensor flow, or expose a `BluetoothGattServer` and act as a GATT server. Name both roles in designs, states, logs, and tests; route local server request/response mechanics to `android-ble-gatt-server`.
 
 Use GATT terminology precisely: a service groups characteristics; a characteristic has one value and zero or more descriptors; ATT transports the attributes identified by UUIDs; a Bluetooth SIG profile defines interoperable behavior beyond UUID presence. A discovered UUID alone does not prove profile conformance, value encoding, authorization, or peer identity.
 
