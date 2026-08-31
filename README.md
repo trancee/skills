@@ -26,12 +26,13 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 
 | Skill | Context tokens | Purpose |
 | --- | ---: | --- |
-| [`android-ble`](android-ble/) | 6,509 | Implement, migrate, test, and troubleshoot Android BLE scanning, GATT lifecycle, background, permissions, and Android 17 behavior. |
+| [`android-ble`](android-ble/) | 6,526 | Implement, migrate, test, and troubleshoot Android BLE scanning, GATT lifecycle, background, permissions, and Android 17 behavior. |
 | [`android-ble-gatt-queue`](android-ble-gatt-queue/) | 4,702 | Implement, review, test, and debug coroutine-serialized Android GATT client operations, callbacks, cancellation, and timeout reset. |
 | [`android-ble-gatt-server`](android-ble-gatt-server/) | 5,110 | Implement, review, test, and troubleshoot Android local GATT databases, ATT requests, prepared writes, subscriptions, and updates. |
-| [`android-ble-gatt-status`](android-ble-gatt-status/) | 5,270 | Diagnose, mitigate, and test Android GATT connection/status failures, including opaque legacy status 133. |
+| [`android-ble-gatt-status`](android-ble-gatt-status/) | 5,294 | Diagnose, mitigate, and test Android GATT connection/status failures, including opaque legacy status 133. |
 | [`android-ble-inspector`](android-ble-inspector/) | 4,890 | Build, review, test, and troubleshoot Android Compose BLE scanners, GATT trees, operation controls, and value decoders. |
 | [`android-bluetooth-sockets`](android-bluetooth-sockets/) | 5,438 | Implement, review, test, and troubleshoot Android RFCOMM and LE CoC socket clients, servers, streams, and lifecycle. |
+| [`android-debug-bridge`](android-debug-bridge/) | 5,229 | Install, configure, use, and troubleshoot adb device targeting, USB/Wi-Fi transports, shell commands, apps, files, ports, and diagnostics. |
 | [`ble-protocol-stack`](ble-protocol-stack/) | 5,532 | Design, validate, and troubleshoot BLE GAP, GATT, ATT, L2CAP schemas, procedures, caching, and channels. |
 | [`ble-throughput`](ble-throughput/) | 5,004 | Measure, model, diagnose, and optimize BLE throughput across PHY, Link Layer, ATT/GATT, mobile, and application queues. |
 | [`compose-multiplatform`](compose-multiplatform/) | 5,498 | Design, implement, test, and ship shared Compose UI across Android, iOS, desktop, and web. |

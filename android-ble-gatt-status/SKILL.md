@@ -9,7 +9,7 @@ metadata:
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-31T09:54:21+02:00"
   updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-31T09:54:21+02:00"
+  updatedAt: "2026-08-31T10:08:58+02:00"
 ---
 
 # Android BLE GATT Status Diagnosis
@@ -22,7 +22,7 @@ metadata:
 4. EVALUATE callback `status` before accepting `newState`. Only `GATT_SUCCESS` plus `STATE_CONNECTED` establishes a usable connection.
 5. READ `references/status-semantics.md` and exact current `BluetoothGatt`/`BluetoothGattCallback` symbols before classifying a status.
 6. READ `references/article-audit.md` before copying the supplied retry, close, delay, address, auto-connect, or adapter-reset examples.
-7. ROUTE ordinary lifecycle changes to `android-ble`, client operation serialization to `android-ble-gatt-queue`, local server failures to `android-ble-gatt-server`, and inspector UI to `android-ble-inspector`.
+7. ROUTE ADB executable/device selection/shell/logcat/dumpsys/bugreport mechanics to `android-debug-bridge`, ordinary BLE lifecycle changes to `android-ble`, client operation serialization to `android-ble-gatt-queue`, local server failures to `android-ble-gatt-server`, and inspector UI to `android-ble-inspector`.
 
 Completion: the failure is an observed stage/status/state/timeline/matrix, not “status 133 means X.”
 
