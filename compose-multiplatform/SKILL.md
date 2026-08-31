@@ -9,7 +9,7 @@ metadata:
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T18:15:26+02:00"
   updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-30T18:15:26+02:00"
+  updatedAt: "2026-08-31T09:38:56+02:00"
 ---
 
 # Compose Multiplatform
@@ -20,7 +20,7 @@ metadata:
 2. IDENTIFY products/modules, Android/iOS/desktop/JS/Wasm targets, minimum OS/browser/JDK, shared versus native UI, platform entry points, window/safe-area/input behavior, state owner, navigation owner, resources, accessibility contract, host matrix, and distribution artifacts.
 3. READ the current [Compose Multiplatform overview](https://kotlinlang.org/docs/multiplatform/compose-multiplatform.html), [compatibility table](https://kotlinlang.org/docs/multiplatform/compose-compatibility-and-versioning.html), and destination release notes before setup or upgrade.
 4. PRESERVE existing module/source-set boundaries, design system, state/event contract, navigation routes, resource IDs, platform shells, and distribution identifiers unless the request changes them.
-5. ROUTE generic KMP targets/hierarchy/publication to `kotlin-multiplatform`, compiler/toolchain/cache mechanics to `kotlin-gradle`, Kotlin behavior to `kotlin-development`, and Swift framework/device deployment to `kotlin-native-apple-interop`/`xtool`.
+5. ROUTE Android BLE inspector/diagnostic surfaces to `android-ble-inspector`, generic KMP targets/hierarchy/publication to `kotlin-multiplatform`, compiler/toolchain/cache mechanics to `kotlin-gradle`, Kotlin behavior to `kotlin-development`, and Swift framework/device deployment to `kotlin-native-apple-interop`/`xtool`.
 
 Completion: target/host matrix, shared UI boundary, platform shells, state/navigation ownership, accessibility behavior, and proof surfaces are explicit.
 

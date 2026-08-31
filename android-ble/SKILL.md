@@ -9,7 +9,7 @@ metadata:
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T23:09:17+02:00"
   updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-31T09:30:06+02:00"
+  updatedAt: "2026-08-31T09:38:56+02:00"
 ---
 
 # Android BLE
@@ -23,7 +23,7 @@ metadata:
 5. TREAT pairing/link protection as shared device transport security, not app isolation. For sensitive data, define application-layer confidentiality, authentication, and key ownership.
 6. READ the official [Android BLE background guide](https://developer.android.com/develop/connectivity/bluetooth/ble/background), [Bluetooth permissions](https://developer.android.com/develop/connectivity/bluetooth/bt-permissions), and relevant API-level branch before editing.
 7. READ `references/source-audit.md` before applying Android 17 claims from secondary sources. Separate all-app changes, target-37 changes, older enforced requirements, empirical OEM behavior, and Bluetooth Classic-only changes.
-8. ROUTE local `BluetoothGattServer` database/request/notification internals to `android-ble-gatt-server`, remote client operation serialization/races to `android-ble-gatt-queue`, RFCOMM and LE L2CAP CoC socket transports to `android-bluetooth-sockets`, logical GAP/GATT/ATT/L2CAP design to `ble-protocol-stack`, PHY/MTU throughput tuning to `ble-throughput`, application security protocols to `noise-protocol`, and generic Kotlin/coroutine/build mechanics to their dedicated skills.
+8. ROUTE Android BLE inspector/diagnostic Compose surfaces to `android-ble-inspector`, local `BluetoothGattServer` database/request/notification internals to `android-ble-gatt-server`, remote client operation serialization/races to `android-ble-gatt-queue`, RFCOMM and LE L2CAP CoC socket transports to `android-bluetooth-sockets`, logical GAP/GATT/ATT/L2CAP design to `ble-protocol-stack`, PHY/MTU throughput tuning to `ble-throughput`, application security protocols to `noise-protocol`, and generic Kotlin/coroutine/build mechanics to their dedicated skills.
 
 Completion: SDK/device matrix, both role axes, permission/background model, transport/application security boundary, connection/operation owner, and observable success/failure states are explicit.
 
