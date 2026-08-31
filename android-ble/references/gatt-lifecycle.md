@@ -16,7 +16,7 @@ Optional opportunistic/RSSI/pathloss thresholds have specific semantics/version 
 
 Model one owner:
 `Idle -> Scanning/Connecting -> Connected -> Discovering -> Configuring -> Ready -> Disconnecting -> Closed/RetryWait`.
-Every attempt gets an epoch and GATT instance. A callback advances state only when both match. Evaluate status before newState. On terminal failure cancel timeout/current/queued operations, disconnect when meaningful, close exactly once, then schedule policy retry.
+Every attempt gets an epoch and GATT instance. A callback advances state only when both match. Evaluate status before newState. On terminal failure cancel timeout/current/queued operations, disconnect when meaningful, close exactly once, then route cause/evidence/retry diagnosis to `android-ble-gatt-status`.
 
 Delegate asynchronous request serialization, callback matching, cancellation, timeout reset, and subscription composites to `android-ble-gatt-queue`. This lifecycle owns GATT instance/epoch/readiness and must reset that queue before retiring the epoch.
 

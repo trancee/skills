@@ -9,7 +9,7 @@ metadata:
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-31T08:23:27+02:00"
   updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-31T09:30:06+02:00"
+  updatedAt: "2026-08-31T09:54:21+02:00"
 ---
 
 # Android BLE GATT Queue
@@ -20,7 +20,7 @@ metadata:
 2. IDENTIFY connection owner/epoch, callback executor/thread, supported GATT operations, submission return contract, expected callback type/target/result, per-operation timeout, caller cancellation semantics, queue capacity, reconnect policy, and unsolicited event consumers.
 3. READ the official [`BluetoothGatt`](https://developer.android.com/reference/android/bluetooth/BluetoothGatt) and [`BluetoothGattCallback`](https://developer.android.com/reference/android/bluetooth/BluetoothGattCallback) methods for every queued operation/API branch.
 4. READ `references/article-audit.md` before reusing the supplied article's sample; its loop does not wait for callbacks and several callback/signature/value assumptions are incorrect.
-5. ROUTE local `BluetoothGattServer` callbacks to `android-ble-gatt-server`, connection/scan/background/permission ownership to `android-ble`, logical GATT procedure/schema to `ble-protocol-stack`, throughput to `ble-throughput`, and generic structured-concurrency choices to `kotlin-coroutines`.
+5. ROUTE connection/status failures to `android-ble-gatt-status`, local `BluetoothGattServer` callbacks to `android-ble-gatt-server`, connection/scan/background/permission ownership to `android-ble`, logical GATT procedure/schema to `ble-protocol-stack`, throughput to `ble-throughput`, and generic structured-concurrency choices to `kotlin-coroutines`.
 
 Completion: each operation has one submission, one matching completion callback, one timeout/reset policy, and one caller result type.
 

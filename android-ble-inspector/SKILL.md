@@ -9,7 +9,7 @@ metadata:
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-31T09:38:56+02:00"
   updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-31T09:38:56+02:00"
+  updatedAt: "2026-08-31T09:54:21+02:00"
 ---
 
 # Android BLE Inspector
@@ -20,7 +20,7 @@ metadata:
 2. IDENTIFY Android/device/OEM and peer matrix, supported roles, intended users, foreground-only lifecycle, permission profiles, scan power/time/filter policy, device identity/display policy, connection/GATT owners, safe operation set, write confirmation, raw-data sensitivity/retention, decoder source/version, and evidence to capture.
 3. DEFAULT to read-only inspection. Enable writes, subscriptions, adapter mutation, or local peripheral behavior only through explicit visible user actions and capability checks.
 4. READ `references/article-audit.md` before copying the supplied sample’s operation mutex, address deduplication, health parsers, advertisement sizing, name resolution, or adapter-name behavior.
-5. ROUTE platform lifecycle to `android-ble`, remote GATT serialization to `android-ble-gatt-queue`, local GATT server behavior to `android-ble-gatt-server`, logical schemas to `ble-protocol-stack`, and general Compose architecture to `compose-multiplatform`.
+5. ROUTE GATT connection/status failures to `android-ble-gatt-status`, platform lifecycle to `android-ble`, remote GATT serialization to `android-ble-gatt-queue`, local GATT server behavior to `android-ble-gatt-server`, logical schemas to `ble-protocol-stack`, and general Compose architecture to `compose-multiplatform`.
 
 Completion: diagnostic questions, allowed radio mutations, ownership, data sensitivity, decoder authority, device matrix, and proof outputs are explicit.
 
