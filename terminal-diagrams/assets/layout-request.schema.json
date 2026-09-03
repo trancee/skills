@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/terminal-diagram-layout.schema.json",
+  "title": "Terminal diagram layout request",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["target_environment", "canvas", "nodes", "edges"],
+  "properties": {
+    "target_environment": {"enum": ["markdown_code_block", "ansi_terminal"]},
+    "charset": {"enum": ["unicode", "ascii"], "default": "unicode"},
+    "flow": {"enum": ["top_to_bottom", "left_to_right"], "default": "top_to_bottom"},
+    "canvas": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["max_width"],
+      "properties": {
+        "max_width": {"type": "integer", "minimum": 10},
+        "padding_style": {"enum": ["left", "centered", "right"], "default": "centered"},
+        "ambiguous_width": {"enum": [1, 2], "default": 1},
+        "rectangular": {"type": "boolean", "default": false}
+      }
+    },
+    "nodes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "label"],
+        "properties": {
+          "id": {"type": "string", "minLength": 1},
+          "label": {"type": "string"},
+          "body": {"type": "array", "items": {"type": "string"}, "default": []},
+          "border": {"enum": ["single", "double", "ascii"], "default": "single"},
+          "style": {"enum": ["none", "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white", "bold"], "default": "none"},
+          "align": {"enum": ["left", "centered", "right"], "default": "centered"}
+        }
+      }
+    },
+    "edges": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["from", "to", "type"],
+        "properties": {
+          "from": {"type": "string"},
+          "to": {"type": "string"},
+          "type": {"enum": ["directed", "reverse", "bidirectional", "undirected"]},
+          "label": {"type": "string", "default": ""},
+          "style": {"enum": ["none", "black", "red", "green", "yellow", "blue", "magenta", "cyan", "white", "bold"], "default": "none"}
+        }
+      }
+    }
+  }
+}

@@ -54,6 +54,7 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 | [`lincheck`](lincheck/) | 3,787 | Design, run, interpret, and troubleshoot JVM concurrency tests with Lincheck model checking and stress strategies. |
 | [`skie`](skie/) | 3,315 | Install, migrate, configure, and troubleshoot Touchlab SKIE for Kotlin Multiplatform Swift interop. |
 | [`spotless`](spotless/) | 3,947 | Configure, apply, verify, migrate, and troubleshoot Spotless formatting for Gradle and Maven projects. |
+| [`terminal-diagrams`](terminal-diagrams/) | 4,993 | Design, render, and validate aligned ASCII, Unicode box-drawing, and ANSI-colored terminal or Markdown diagrams. |
 | [`xtool`](xtool/) | 2,285 | Install, configure, use, and troubleshoot xtool for SwiftPM-driven iOS development and device deployment. |
 
 ### Documentation

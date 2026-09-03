@@ -1,0 +1,38 @@
+{
+  "target_environment": "markdown_code_block",
+  "charset": "unicode",
+  "flow": "top_to_bottom",
+  "canvas": {
+    "max_width": 80,
+    "padding_style": "centered",
+    "ambiguous_width": 1,
+    "rectangular": false
+  },
+  "nodes": [
+    {
+      "id": "gateway",
+      "label": "API Gateway",
+      "body": ["Status: ACTIVE", "Port: 443"],
+      "border": "double",
+      "style": "cyan",
+      "align": "centered"
+    },
+    {
+      "id": "auth",
+      "label": "Auth Service",
+      "body": [],
+      "border": "single",
+      "style": "green",
+      "align": "centered"
+    }
+  ],
+  "edges": [
+    {
+      "from": "gateway",
+      "to": "auth",
+      "type": "directed",
+      "label": "gRPC",
+      "style": "none"
+    }
+  ]
+}
