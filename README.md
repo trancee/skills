@@ -33,6 +33,7 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 | [`android-ble-inspector`](android-ble-inspector/) | 4,890 | Build, review, test, and troubleshoot Android Compose BLE scanners, GATT trees, operation controls, and value decoders. |
 | [`android-bluetooth-sockets`](android-bluetooth-sockets/) | 5,438 | Implement, review, test, and troubleshoot Android RFCOMM and LE CoC socket clients, servers, streams, and lifecycle. |
 | [`android-debug-bridge`](android-debug-bridge/) | 5,229 | Install, configure, use, and troubleshoot adb device targeting, USB/Wi-Fi transports, shell commands, apps, files, ports, and diagnostics. |
+| [`android-material3-compose`](android-material3-compose/) | 7,323 | Design, implement, review, test, and migrate Android Material 3 interfaces with Jetpack Compose. |
 | [`arrange-act-assert`](arrange-act-assert/) | 4,174 | Structure, review, and refactor example-based tests into clear Arrange, Act, and Assert phases. |
 | [`ble-protocol-stack`](ble-protocol-stack/) | 5,532 | Design, validate, and troubleshoot BLE GAP, GATT, ATT, L2CAP schemas, procedures, caching, and channels. |
 | [`ble-throughput`](ble-throughput/) | 5,004 | Measure, model, diagnose, and optimize BLE throughput across PHY, Link Layer, ATT/GATT, mobile, and application queues. |
