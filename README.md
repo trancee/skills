@@ -54,6 +54,7 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 | [`kotlinx-serialization`](kotlinx-serialization/) | 4,613 | Design, configure, evolve, test, and troubleshoot kotlinx.serialization wire formats and schemas. |
 | [`ksp`](ksp/) | 5,118 | Configure, author, test, migrate, and troubleshoot Kotlin Symbol Processing consumers and processors. |
 | [`lincheck`](lincheck/) | 3,787 | Design, run, interpret, and troubleshoot JVM concurrency tests with Lincheck model checking and stress strategies. |
+| [`libacvp-json-kotlin`](libacvp-json-kotlin/) | 7,552 | Model, parse, validate, and test libacvp and ACVP JSON artifacts in Kotlin. |
 | [`skie`](skie/) | 3,315 | Install, migrate, configure, and troubleshoot Touchlab SKIE for Kotlin Multiplatform Swift interop. |
 | [`spotless`](spotless/) | 3,947 | Configure, apply, verify, migrate, and troubleshoot Spotless formatting for Gradle and Maven projects. |
 | [`terminal-diagrams`](terminal-diagrams/) | 4,993 | Design, render, and validate aligned ASCII, Unicode box-drawing, and ANSI-colored terminal or Markdown diagrams. |
