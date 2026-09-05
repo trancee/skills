@@ -17,6 +17,7 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 
 | Skill | Context tokens | Purpose |
 | --- | ---: | --- |
+| [`falcon-fn-dsa`](falcon-fn-dsa/) | 6,988 | Implement, integrate, test, audit, and migrate Falcon lattice signatures and the emerging FN-DSA standard. |
 | [`nist-cavp`](nist-cavp/) | 2,729 | Find, download, parse, and integrate NIST CAVP archives and ACVP vector sets for cryptographic primitives and components. |
 | [`noise-protocol`](noise-protocol/) | 4,426 | Design, integrate, test, and review Noise handshakes, protocol suites, transport states, and key lifecycles. |
 | [`ristretto255`](ristretto255/) | 2,790 | Implement, integrate, and review ristretto255, including canonical encoding, hash-to-group, scalars, constant-time operations, protocol use, and RFC vectors. |
