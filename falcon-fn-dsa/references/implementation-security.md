@@ -2,7 +2,7 @@
 
 ## Implementation threshold
 
-Prefer a maintained implementation. Build Falcon internals only when the project can continuously maintain:
+Prefer pinned `pornin/c-fn-dsa` for provisional FN-DSA implementation study and a maintained reviewed implementation for deployment. PQClean is archived and no longer maintained. Build Falcon/FN-DSA internals only when the project can continuously maintain:
 
 - NTRU key generation and exact equation/bound checks.
 - NTT/FFT arithmetic and representation conversions.
@@ -27,6 +27,8 @@ Enforce the selected specification's complete conditions:
 6. Validate generated keys independently before use.
 
 Do not compress a private key to a seed unless the selected normative scheme defines deterministic expansion and interoperability. Falcon v1.2's website notes this only as a theoretical tradeoff; the provisional FN-DSA presentation explicitly planned not to export seeds because valid key-generation implementations may differ.
+
+For c-fn-dsa, store the encoded signing key. Its seeded key-generation API is deterministic but intentionally not fully specified across implementations or repository versions; a seed is not a portable private-key representation.
 
 ## Signing distribution
 
@@ -94,8 +96,10 @@ Stop signing, preserve exact artifacts/build metadata, scope affected keys and s
 
 ## Technical sources
 
+- Active provisional FN-DSA C implementation: https://github.com/pornin/c-fn-dsa
+- PQClean retirement notice: https://github.com/PQClean/PQClean
 - Falcon specification implementation chapters: https://falcon-sign.info/falcon.pdf
-- Corrected reference API: https://falcon-sign.info/impl/falcon.h.html
+- Legacy corrected Falcon API: https://falcon-sign.info/impl/falcon.h.html
 - Constant-time Falcon: https://eprint.iacr.org/2019/893
 - Isochronous Gaussian sampling: https://eprint.iacr.org/2019/1411
 - Gram-Schmidt norm leakage: https://eprint.iacr.org/2019/1180

@@ -12,22 +12,26 @@ Keep each claim attached to its evidence:
 | Interoperability | Cross-sign/verify and byte exchange with an independent matching implementation |
 | Memory safety | Sanitizers plus coverage-guided fuzzing of parsers and API state transitions |
 | Constant-time/side-channel behavior | Exact target/build analysis and measurements tied to threat model |
-| FN-DSA/FIPS conformance | Published FIPS 206 plus applicable validation program evidence |
+| Provisional c-fn-dsa behavior | Reproducible vectors and interoperability pinned to the exact repository commit |
+| Final FN-DSA/FIPS conformance | Published FIPS 206 plus applicable validation program evidence |
 
 No lower row follows automatically from a higher or lower one.
 
 ## Official vectors
 
-Pin the Falcon submission package and record its digest/revision. Run:
+Pin the Falcon submission package or c-fn-dsa commit and record its digest/revision.
+
+For Falcon v1.2, run:
 
 - Key-generation/signature Known Answer Tests for Falcon-512 and Falcon-1024 as supported.
-- Both clean/reference and each optimized/architecture implementation exposed by the library.
+- Both clean/reference and each optimized/architecture implementation exposed by the selected legacy library.
 - SamplerZ vectors from `Supporting_Documentation/additional/test-vector-sampler-falcon{512,1024}.txt` for custom sampler code.
-- Encoded key/signature outputs through the same adapter that production callers use.
 
-Separate deterministic vector seeding from production builds/APIs. Never expose a caller-controlled vector seed as a production signing option.
+For provisional c-fn-dsa, run all repository tests/vectors for the exact commit, including C/Rust interoperability where used. Label results provisional implementation conformance, not FN-DSA or FIPS 206 conformance. Re-run after every source revision because backward compatibility is not promised.
 
-When final FIPS 206 and validation vectors become available, create a distinct FN-DSA adapter. Do not reuse Falcon vector expectations unless the standard explicitly does.
+Separate deterministic vector seeding from production APIs. Never expose a caller-controlled reproducible seed as a production signing option.
+
+When final FIPS 206 and validation vectors become available, build a new normative FN-DSA conformance boundary and migrate provisional artifacts explicitly. Do not assume c-fn-dsa or Falcon vector compatibility unless the published standard confirms it.
 
 ## Functional matrix
 
@@ -49,15 +53,15 @@ If a protocol accepts only one signature format, keep the other formats out of i
 
 ## Interoperability
 
-Build an exchange matrix that records producer, consumer, source revision, parameter, signature format, and message-processing mode.
+Build an exchange matrix that records producer, source revision, declared Falcon/provisional FN-DSA contract, parameter, signature format, context, and message-processing mode.
 
-- Import/export public keys both directions.
+- Import/export public/verifying keys both directions only for matching contracts.
 - Sign in implementation A and verify in B; reverse direction.
-- Exercise compressed/padded/CT only where both peers declare the same format.
-- Verify exact bytes for keys and structural encoding; randomized signatures need not match byte-for-byte.
-- Reject version/parameter/format mismatches rather than silently transcoding.
+- Verify exact bytes for deterministic key derivation/vector paths and structural encoding; randomized signatures need not match byte-for-byte.
+- Reject scheme/version/parameter/format/context/hash-identifier mismatches rather than silently transcoding.
+- Keep Falcon v1.2 and provisional c-fn-dsa rows separate; similar sizes do not establish wire compatibility.
 
-Use at least one implementation with independent code lineage when claiming interoperability. Two wrappers around the same PQClean source do not establish independent agreement.
+Use at least one implementation with independent code lineage when claiming interoperability. Two wrappers around the same archived PQClean or c-fn-dsa source establish wrapper compatibility, not independent agreement.
 
 ## Fuzzing and sanitizers
 

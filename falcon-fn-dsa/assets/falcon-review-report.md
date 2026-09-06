@@ -12,7 +12,9 @@
 ## Implementation
 
 - Library/source revision and provenance:
-- Falcon 2021-11-01 PRNG fix evidence:
+- c-fn-dsa commit and provisional-contract warning:
+- PQClean-derived code present and migration/local-maintenance owner:
+- Legacy Falcon 2021-11-01 PRNG fix evidence, if applicable:
 - Build/compiler/flags/targets:
 - Reference/optimized dispatch paths:
 - Custom sampler/FFT/key-generation code:
@@ -42,7 +44,9 @@
 
 - NIST status checked:
 - Published FIPS 206 revision, if any:
-- Provisional assumptions kept outside production contract:
+- c-fn-dsa revision and vector results:
+- Provisional key/signature compatibility boundary:
+- Assumptions kept outside production contract:
 - Migration trigger/owner:
 
 ## Findings and claims
