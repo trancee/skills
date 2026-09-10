@@ -17,7 +17,7 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 
 | Skill | Context tokens | Purpose |
 | --- | ---: | --- |
-| [`csidh-ctidh`](csidh-ctidh/) | 6,269 | Design, integrate, implement, review, and test CSIDH-family isogeny group actions and NIKE protocols. |
+| [`csidh-ctidh`](csidh-ctidh/) | 7,231 | Design, integrate, implement, review, and test CSIDH-family isogeny group actions, NIKE protocols, and hardware golden models. |
 | [`falcon-fn-dsa`](falcon-fn-dsa/) | 8,426 | Implement, integrate, test, and audit Falcon signatures and provisional FN-DSA using the active c-fn-dsa reference. |
 | [`nist-cavp`](nist-cavp/) | 2,729 | Find, download, parse, and integrate NIST CAVP archives and ACVP vector sets for cryptographic primitives and components. |
 | [`noise-protocol`](noise-protocol/) | 4,426 | Design, integrate, test, and review Noise handshakes, protocol suites, transport states, and key lifecycles. |

@@ -85,6 +85,15 @@ def iter_files(root: Path) -> Iterable[Path]:
         except OSError:
             continue
 
+def iter_all_files(root: Path) -> Iterable[Path]:
+    for path in sorted(root.rglob("*")):
+        if not path.is_file():
+            continue
+        relative = path.relative_to(root)
+        if any(part in SKIP_DIRS for part in relative.parts):
+            continue
+        yield path
+
 
 def read_text(path: Path) -> str:
     try:
@@ -105,6 +114,7 @@ def names(root: Path, paths: Iterable[Path], limit: int = 24) -> tuple[str, ...]
 
 def inspect(root: Path) -> dict[str, object]:
     files = list(iter_files(root))
+    all_files = list(iter_all_files(root))
     texts = {path: read_text(path) for path in files}
     code_files = tuple(
         path
@@ -121,7 +131,7 @@ def inspect(root: Path) -> dict[str, object]:
     csidh_files = matching(isogeny_files, texts, r"\b(?:d?CSIDH)\b|\bd?csidh_")
     ctidh_files = matching(isogeny_files, texts, r"\b(?:d?CTIDH)\b|\bd?ctidh_")
     dummy_free_files = matching(isogeny_files, texts, r"\bd(?:CSIDH|CTIDH)\b|\bd(?:csidh|ctidh)_|dummy[-_ ]free")
-    sidh_sike_files = matching(files, texts, r"\bSIDH\b|\bSIKE\b|sidh_|sike_")
+    sidh_sike_files = matching(files, texts, r"\bSIDH\b|\bSIKE\b|\bsidh_|\bsike_")
     signature_files = matching(files, texts, r"SQISign|SeaSign|isogeny[^\n]{0,40}signature")
 
     source_pin_files = matching(
@@ -220,7 +230,7 @@ def inspect(root: Path) -> dict[str, object]:
     fault_test_files = matching(
         files,
         texts,
-        r"fault[_-]?(?:inject|test|campaign)|glitch|voltage[-_ ]fault|clock[-_ ]fault|skip[-_ ]instruction|power[_-]?analysis|electromagnetic|\bEM trace",
+        r"fault[-_ ]?(?:inject|test|campaign)|glitch|voltage[-_ ]fault|clock[-_ ]fault|skip[-_ ]instruction|power[-_ ]?analysis|electromagnetic|\bEM trace",
     )
     cpu_feature_files = matching(
         files,
@@ -231,15 +241,129 @@ def inspect(root: Path) -> dict[str, object]:
     vectors_files = matching(
         files,
         texts,
-        r"test[_-]?vectors?|known[_-]?answer|\bKATs?\b|commutativ(?:e|ity)[^\n]{0,80}(?:test|check)|agreement[_-]?test",
+        r"test[-_ ]?vectors?|known[-_ ]?answer|\bKATs?\b|commutativ(?:e|ity)[^\n]{0,80}(?:test|check)|agreement[-_ ]?test",
     )
     invalid_key_test_files = matching(
         files,
         texts,
         r"invalid[_-]?(?:public|curve|key)|noncanonical|singular|ordinary[_-]?curve|non[-_]?supersingular|wrong[-_]?(?:parameter|variant)|cross[-_]?(?:parameter|variant)",
     )
+    sina_model_files = matching(
+        files,
+        texts,
+        r"sina1777/CSIDH|arXiv:2508\.11082|Constant-Time Hardware Architecture for the CSIDH|hardware[^\n]{0,80}golden model",
+    )
+    binary_artifacts = tuple(
+        path
+        for path in all_files
+        if path.suffix.lower() in {".so", ".a", ".o", ".elf", ".exe", ".dll"}
+        or (path.name == "main" and any(part.lower() == "sw" for part in path.parts))
+    )
+    ct_contradiction_files = matching(
+        isogeny_files,
+        texts,
+        r"totally not constant[-_ ]time|not constant[-_ ]time|variable[-_ ]time",
+    )
+    secret_diagnostic_files = matching(
+        isogeny_code,
+        texts,
+        r"(?:printf|fprintf|puts)\s*\([^\n]{0,200}(?:private|secret|exponent|isogeny|kernel|dummy|real|elligator|point)",
+    )
+    hardcoded_secret_files = matching(
+        isogeny_code,
+        texts,
+        r"(?:private|secret|exponent)[-_ A-Za-z0-9]*\[[^]]*\]\s*=\s*\{",
+    )
+    native_release_flag_files = matching(
+        files,
+        texts,
+        r"-march=native|-DNDEBUG|\bNDEBUG\b",
+    )
+    process_exiting_rng_files = tuple(
+        path
+        for path in isogeny_code
+        if re.search(r"/dev/urandom|fopen\s*\([^)]*urandom", texts[path], re.IGNORECASE)
+        and re.search(r"\b(?:exit|abort)\s*\(", texts[path], re.IGNORECASE)
+    )
+    license_files = tuple(
+        path
+        for path in all_files
+        if path.name.lower().startswith(("license", "copying"))
+    )
 
     findings: list[Finding] = []
+    if sina_model_files:
+        findings.append(
+            Finding(
+                "info",
+                "HARDWARE_GOLDEN_MODEL_SCOPE",
+                "sina1777/CSIDH hardware/golden-model signals were found. Use SW only for pinned FPGA/ASIC co-verification, not as the canonical or production CSIDH reference.",
+                names(root, sina_model_files),
+            )
+        )
+    if sina_model_files and binary_artifacts:
+        findings.append(
+            Finding(
+                "warning",
+                "COMMITTED_BINARY_ARTIFACTS",
+                "Committed binary/library artifacts accompany the C model. Ignore them and rebuild from reviewed source with an explicit target configuration.",
+                names(root, binary_artifacts),
+            )
+        )
+    if sina_model_files and ct_contradiction_files:
+        findings.append(
+            Finding(
+                "warning",
+                "CONTRADICTORY_CONSTANT_TIME_CLAIM",
+                "Repository-level constant-time characterization conflicts with source comments/paths marked non-constant or variable-time. Trust exact code and target evidence, not the overview claim.",
+                names(root, ct_contradiction_files),
+            )
+        )
+    if secret_diagnostic_files:
+        findings.append(
+            Finding(
+                "warning",
+                "SECRET_DIAGNOSTIC_OUTPUT",
+                "Diagnostic printing appears to expose secret-dependent/internal isogeny values. Remove or isolate it before secret-bearing runs.",
+                names(root, secret_diagnostic_files),
+            )
+        )
+    if hardcoded_secret_files:
+        findings.append(
+            Finding(
+                "warning",
+                "HARDCODED_PRIVATE_VECTOR",
+                "Hard-coded private/secret exponent vectors were found. Keep them test-only and prevent production or benchmark reuse.",
+                names(root, hardcoded_secret_files),
+            )
+        )
+    if sina_model_files and native_release_flag_files:
+        findings.append(
+            Finding(
+                "warning",
+                "NATIVE_NDEBUG_BUILD_FLAGS",
+                "The hardware C model uses -march=native and/or NDEBUG. Replace with a reproducible explicit target and retain required checks before comparison/security claims.",
+                names(root, native_release_flag_files),
+            )
+        )
+    if process_exiting_rng_files:
+        findings.append(
+            Finding(
+                "warning",
+                "PROCESS_EXITING_RNG_FAILURE",
+                "The RNG path appears to terminate the process on /dev/urandom failure. Expose a fail-closed caller-visible error for integration.",
+                names(root, process_exiting_rng_files),
+            )
+        )
+    if sina_model_files and not license_files:
+        findings.append(
+            Finding(
+                "warning",
+                "LICENSE_PROVENANCE_UNRESOLVED",
+                "No LICENSE/COPYING file was found for the modified hardware C model. Resolve provenance and license terms for every copied file before reuse or redistribution.",
+                names(root, sina_model_files),
+            )
+        )
     if not isogeny_files:
         findings.append(Finding("info", "NO_CSIDH_FAMILY_SIGNALS", "No CSIDH/CTIDH/dCSIDH/dCTIDH signals were found."))
     if isogeny_files and not source_pin_files:
@@ -455,6 +579,14 @@ def inspect(root: Path) -> dict[str, object]:
         "vector_or_agreement_test_files": names(root, vectors_files),
         "invalid_key_test_files": names(root, invalid_key_test_files),
         "custom_parameter_files": names(root, custom_parameter_files),
+        "sina_hardware_model_files": names(root, sina_model_files),
+        "committed_binary_artifacts": names(root, binary_artifacts),
+        "constant_time_contradiction_files": names(root, ct_contradiction_files),
+        "secret_diagnostic_files": names(root, secret_diagnostic_files),
+        "hardcoded_secret_files": names(root, hardcoded_secret_files),
+        "native_ndebug_flag_files": names(root, native_release_flag_files),
+        "process_exiting_rng_files": names(root, process_exiting_rng_files),
+        "license_files": names(root, license_files),
     }
     return {
         "root": str(root),

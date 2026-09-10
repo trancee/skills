@@ -5,11 +5,11 @@ compatibility: "Covers research CSIDH-family proposals and implementations avail
 metadata:
   category: "cryptography"
   source: "https://isogeny.org/"
-  sourceVersion: "CSIDH, CTIDH, quantum evaluation, velusqrt, high-security CSIDH, and dCTIDH sources inspected 2026-09-10"
+  sourceVersion: "CSIDH, CTIDH, quantum evaluation, velusqrt, high-security CSIDH, dCTIDH, and sina1777/CSIDH@770d2a198e109f30014af87ae38502f03c61203a inspected 2026-09-10"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-09-10T21:24:48+02:00"
   updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-09-10T21:24:48+02:00"
+  updatedAt: "2026-09-10T21:36:15+02:00"
 ---
 
 # CSIDH and CTIDH
@@ -43,9 +43,11 @@ Completion: all external encodings, secret-action entry points, parameter owners
 1. PIN the exact paper plus source commit/archive and parameter identifier; do not combine constants or claims across CSIDH, CTIDH, dCSIDH/dCTIDH, or independent forks.
 2. REJECT the original CSIDH proof-of-concept as production evidence. Treat CTIDH 20210523 and other historical archives as research baselines with their documented CPU/toolchain limits.
 3. VERIFY current maintenance and independently review active research repositories before adoption; recent commits do not establish deployment suitability.
-4. DOCUMENT prime size, key size, secret space, action cost, validation cost, classical/quantum attack estimates, quantum memory/depth/query assumptions, and estimate date.
-5. AVOID treating the original 511/512-bit proposals as a generic “128-bit post-quantum” choice. Use current conservative analysis for the exact construction; high-security proposals can require much larger primes and substantial latency.
-6. ADOPT `velusqrt` only as a pinned action-implementation optimization whose formulas, degree/preconditions, constant-time behavior, and target performance are verified; never treat it as a protocol or security upgrade.
+4. USE `sina1777/CSIDH@770d2a198e109f30014af87ae38502f03c61203a` `SW/` only as a modified C golden model for that repository's FPGA/ASIC co-verification. Never label it the canonical/official CSIDH reference or production constant-time software.
+5. REBUILD that C model from reviewed source; ignore committed `main`/`libcsidh.so` binaries. Resolve missing repository-level license/provenance before copying or redistribution.
+6. DOCUMENT prime size, key size, secret space, action cost, validation cost, classical/quantum attack estimates, quantum memory/depth/query assumptions, and estimate date.
+7. AVOID treating the original 511/512-bit proposals as a generic “128-bit post-quantum” choice. Use current conservative analysis for the exact construction; high-security proposals can require much larger primes and substantial latency.
+8. ADOPT `velusqrt` only as a pinned action-implementation optimization whose formulas, degree/preconditions, constant-time behavior, and target performance are verified; never treat it as a protocol or security upgrade.
 
 Completion: the selected tuple has current evidence, supported target measurements, explicit uncertainty, and no borrowed security label.
 
@@ -83,6 +85,7 @@ READ `references/implementation-security.md`.
 4. REVIEW real/dummy action schedules for fault injection. Dummy-based balancing can leak secret information when faults distinguish or skip real work.
 5. DEFINE target-specific countermeasures: dummy-free schedule, randomized order/blinding, recomputation/consistency checks, fault detection, physical protections, or explicit absence from the threat model.
 6. PREVENT secret-dependent diagnostics, core dumps, traces, performance counters, or retries from exposing the exponent vector.
+7. FOR the sina1777 C model, audit/remove diagnostic `printf` paths and hard-coded private vectors before any secret-bearing run; its inspected source explicitly contradicts the repository-level constant-time characterization. Treat `-march=native -O3 -DNDEBUG` as an unreviewed target-specific build, and replace process-exiting RNG behavior with caller-visible failure for integration.
 
 Completion: timing/cache/power/fault claims are scoped to exact binaries and targets with both functional and adversarial evidence.
 
@@ -109,6 +112,7 @@ Completion: functional, invalid-input, interoperability, deterministic-build, si
 - CSIDH key is accepted by CTIDH or another parameter set -> add explicit construction/parameter binding and reject before decode/action.
 - Constant-time test passes but target differs -> rerun on the exact compiler/CPU path and narrow the claim.
 - Fault injection distinguishes real/dummy steps -> disable the vulnerable implementation for that threat model and adopt reviewed countermeasures before reuse.
+- sina1777 C model called production/official/constant-time -> reclassify it as a pinned hardware golden-model artifact, rebuild source-only, and require independent CT/fault/licensing evidence.
 - Conservative security estimate makes latency unacceptable -> choose a different reviewed primitive/protocol; never restore an obsolete security label for performance.
 
 ## Primary sources
@@ -118,3 +122,4 @@ Completion: functional, invalid-input, interoperability, deterministic-build, si
 - CTIDH: https://ctidh.isogeny.org/
 - Quantum evaluation: https://quantum.isogeny.org/
 - VeluSqrt: https://velusqrt.isogeny.org/
+- Hardware/C golden model: https://github.com/sina1777/CSIDH/tree/main/SW

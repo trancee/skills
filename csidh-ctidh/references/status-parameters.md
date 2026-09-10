@@ -9,6 +9,7 @@
 | dCSIDH/dCTIDH | Later dummy-free/high-security research variants | In scope only at exact pinned revision |
 | VeluSqrt | Faster large-prime-degree isogeny computation | Optimization primitive, not protocol/parameter security proof |
 | Quantum evaluation | Attack-cost methodology/code for isogenies | Parameter-evidence input, not implementation certification |
+| `sina1777/CSIDH` `SW/` | Modified C model for FPGA/ASIC testbench comparison | Pinned research/hardware co-verification artifact; not canonical or production reference |
 | SIDH/SIKE | Torsion-point key exchange/KEM family | Out of scope and cryptographically broken |
 | SQISign/isogeny signatures | Signature constructions | Out of scope |
 
@@ -38,6 +39,14 @@ The historical CTIDH software archive dated 2021-05-23 provides research impleme
 High-security CSIDH research published in 2023 evaluated much larger primes (roughly 2048 through 9216 bits depending on security level and attack assumptions) and reported handshake latency in the tens-of-seconds regime for conservative sets. Its `kemtls-secsidh/code` repository is archived. Treat the study as dated parameter evidence, not a maintained implementation recommendation.
 
 Later dCTIDH auxiliary implementations include 2047-bit research parameter sets and their own compiler/ADX/test assumptions. Pin exact paper and repository commit; active development alone is not production maintenance.
+
+## Hardware golden-model artifact
+
+At `sina1777/CSIDH@770d2a198e109f30014af87ae38502f03c61203a`, `SW/` is a modified C model adapted from the original CSIDH software for comparison with the repository's Verilog FPGA/ASIC accelerator (arXiv:2508.11082). It contains `p512` and `p1024` variants whose actual field sizes are 511 and 1020 bits, with distinct prime lists and exponent bounds.
+
+Use it only when reproducing or reviewing that hardware project. Pin the commit and parameter directory, rebuild from source, and compare hardware outputs against independently verified vectors/baselines. Do not infer current high-security parameters from its `512`/`1024` labels.
+
+The repository commits built `SW/libcsidh.so` and `SW/main`; do not trust or redistribute these binaries. No repository-level license file or license text was found at the inspected commit; the README attributes the model to modified public-domain original code and points to the original license. Resolve provenance and licensing for every copied file before reuse.
 
 ## Security estimate record
 
@@ -77,3 +86,4 @@ Before selection:
 4. Check repository archive/maintenance/security-response status.
 5. Reproduce tests and benchmarks on the target.
 6. Record all unverified security assumptions.
+7. For hardware co-verification, inspect pinned `https://github.com/sina1777/CSIDH/tree/main/SW` as a modified golden model, not the canonical CSIDH implementation.

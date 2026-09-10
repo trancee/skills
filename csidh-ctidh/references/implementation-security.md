@@ -15,6 +15,21 @@ Prefer a pinned, reviewed implementation matching the exact construction and par
 
 The original CSIDH implementation is proof-of-concept evidence. Historical CTIDH and later dCTIDH repositories are research implementations with specific hardware/toolchain assumptions; re-evaluate, do not inherit suitability.
 
+## sina1777 hardware golden model
+
+At commit `770d2a198e109f30014af87ae38502f03c61203a`, `sina1777/CSIDH/SW` is useful only as the modified C golden model for that repository's RTL co-verification.
+
+Before any use:
+
+1. Rebuild `p512` or `p1024` from source; ignore committed `libcsidh.so` and `main` binaries.
+2. Resolve license/provenance for the exact copied files; the inspected repository has no root license text.
+3. Remove or gate extensive `printf` diagnostics, hard-coded private exponent vectors, and private-key printing before secret-bearing tests.
+4. Treat the source as variable-time: inspected `SW/csidh.c` states it is “totally not constant-time” and branches on secret exponent/real-dummy decisions despite broader repository claims.
+5. Replace `-march=native -O3 -DNDEBUG` with an explicit reproducible target configuration and retain assertions/checks required by verification.
+6. Replace RNG helpers that exit the process on `/dev/urandom` failure with a caller-visible fail-closed interface for integration.
+7. Independently verify public-key validation, parameters, and vectors against the original construction/paper; `csidh()` couples validation and action rather than enforcing a typed validated-key boundary.
+8. Run software CT/fault tests and RTL simulation/synthesis/hardware side-channel tests separately. Golden-output agreement proves functional matching only.
+
 ## Constant-time inventory
 
 Inspect secret influence on:

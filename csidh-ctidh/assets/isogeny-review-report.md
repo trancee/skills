@@ -39,6 +39,11 @@
 - RNG/DRBG:
 - VeluSqrt/other optimizations:
 - Custom parameter generation:
+- Hardware golden-model source/commit/parameter directory:
+- Committed binaries ignored and source-only rebuild:
+- License/provenance resolution:
+- Debug prints/hard-coded secrets removed or isolated:
+- Software-to-RTL comparison and independent baseline:
 
 ## Verification
 
