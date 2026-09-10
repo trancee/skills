@@ -50,6 +50,7 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 | [`kotlin-multiplatform`](kotlin-multiplatform/) | 4,276 | Design, configure, migrate, test, publish, and troubleshoot Kotlin Multiplatform targets, source sets, hierarchies, and variants. |
 | [`kotlin-native-apple-interop`](kotlin-native-apple-interop/) | 4,644 | Configure, export, import, and troubleshoot Kotlin/Native interoperability with Swift, Objective-C, and Apple frameworks. |
 | [`kotlin-power-assert`](kotlin-power-assert/) | 3,850 | Configure, use, debug, and expose Kotlin Power-assert diagnostics, transformed functions, and assertion APIs. |
+| [`kotlinpoet`](kotlinpoet/) | 6,044 | Generate, review, test, and troubleshoot deterministic Kotlin source with Square KotlinPoet. |
 | [`kotlinx-benchmark`](kotlinx-benchmark/) | 4,430 | Configure, run, compare, and troubleshoot multiplatform Kotlin microbenchmarks with kotlinx-benchmark. |
 | [`kotlinx-serialization`](kotlinx-serialization/) | 4,613 | Design, configure, evolve, test, and troubleshoot kotlinx.serialization wire formats and schemas. |
 | [`ksp`](ksp/) | 5,118 | Configure, author, test, migrate, and troubleshoot Kotlin Symbol Processing consumers and processors. |
