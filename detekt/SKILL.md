@@ -1,15 +1,15 @@
 ---
 name: detekt
-description: "Configures, runs, migrates, and troubleshoots detekt static analysis for Kotlin projects. Use when adding the detekt Gradle plugin or CLI, selecting 1.x stable versus 2.x preview, configuring rules, baselines, suppressions, type resolution, reports, CI, auto-correction, or custom rule sets. Don't use for general Kotlin compilation, ktlint without detekt, Android Lint, or formatting tasks that do not use detekt."
+description: "Configures, runs, migrates, and troubleshoots detekt static analysis for Kotlin projects. Use when adding the detekt Gradle plugin or CLI, selecting stable 1.x versus prerelease 2.x, configuring rules, baselines, suppressions, type resolution, reports, CI, auto-correction, or custom rule sets. Don't use for general Kotlin compilation, ktlint without detekt, Android Lint, or formatting tasks that do not use detekt."
 compatibility: "Requires a Kotlin project and either its Gradle wrapper or a detekt CLI. detekt 2.x preview requires newer JDK/Kotlin/Gradle/AGP than 1.x; use the live compatibility table. Helper requires Python 3.11+."
 metadata:
   category: "development"
   source: "https://detekt.dev/docs/intro"
-  sourceVersion: "detekt docs 2.0.0-alpha.6; detekt/detekt@401c64bf232db0dcb054a7cfd0ca5fed3a095bc6; stable 1.23.8@046263730eb5368cb344489ac36543294e8e87bd"
+  sourceVersion: "detekt 2.0.0-alpha.6@401c64bf232db0dcb054a7cfd0ca5fed3a095bc6; 2.x migration guide at detekt/detekt@ee1c04f2d7d2a4b5a181273a4d467e7a5a28c01a checked 2026-10-02; stable 1.23.8@046263730eb5368cb344489ac36543294e8e87bd"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T13:27:09+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-30T13:27:09+02:00"
+  updatedBy: "github-copilot/gpt-6-luna"
+  updatedAt: "2026-10-02T15:18:56+02:00"
 ---
 
 # detekt
@@ -20,7 +20,7 @@ metadata:
 2. INSPECT repository release policy, current plugin/CLI version, Kotlin/Gradle/AGP/JDK/JVM target, modules/source sets/variants, existing config/baselines/reports/plugins.
 3. READ current [intro](https://detekt.dev/docs/intro), [changelog](https://detekt.dev/changelog), and [compatibility](https://detekt.dev/docs/introduction/compatibility) before version changes.
 4. PRESERVE existing major unless migration requested. New project: 2.x only if prerelease policy accepts alpha; otherwise latest stable 1.x.
-5. 1.x->2.x -> READ `references/migration-2.md` before edits.
+5. 1.x->2.x -> READ the official [2.x migration guide](https://detekt.dev/docs/next/introduction/migration) before edits.
 
 ## 2. Inspect
 

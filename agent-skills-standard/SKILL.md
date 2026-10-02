@@ -8,8 +8,8 @@ metadata:
   sourceVersion: "agentskills/agentskills@69ef37e9424c0a7ea9dd2293b559e43ec8176379"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T11:28:53+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-30T12:42:03+02:00"
+  updatedBy: "github-copilot/gpt-6-luna"
+  updatedAt: "2026-10-02T15:18:56+02:00"
 ---
 
 # Agent Skills standard

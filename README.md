@@ -10,7 +10,7 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 
 | Skill | Context tokens | Purpose |
 | --- | ---: | --- |
-| [`agent-skills-standard`](agent-skills-standard/) | 2,880 | Audit new and updated Agent Skills packages, gate skill repository commits, migrate catalogs, and add standards-compatible discovery and activation to agent clients. |
+| [`agent-skills-standard`](agent-skills-standard/) | 2,879 | Audit new and updated Agent Skills packages, gate skill repository commits, migrate catalogs, and add standards-compatible discovery and activation to agent clients. |
 | [`omp-skill-hardener`](omp-skill-hardener/) | 2,412 | Mine repeated failures from OMP sessions, turn them into approved skill or `AGENTS.md` changes, and test the new rules. |
 
 ### Cryptography
@@ -41,7 +41,7 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 | [`ble-throughput`](ble-throughput/) | 5,004 | Measure, model, diagnose, and optimize BLE throughput across PHY, Link Layer, ATT/GATT, mobile, and application queues. |
 | [`compose-multiplatform`](compose-multiplatform/) | 5,518 | Design, implement, test, and ship shared Compose UI across Android, iOS, desktop, and web. |
 | [`corebluetooth`](corebluetooth/) | 5,280 | Implement, review, test, and troubleshoot Apple Core Bluetooth central/peripheral apps, lifecycle, data flow, and restoration. |
-| [`detekt`](detekt/) | 3,556 | Configure, run, migrate, and troubleshoot detekt static analysis for Kotlin projects. |
+| [`detekt`](detekt/) | 3,613 | Configure, run, migrate, and troubleshoot detekt static analysis for Kotlin projects. |
 | [`kover`](kover/) | 3,182 | Configure, verify, aggregate, and troubleshoot Kotlinx Kover JVM coverage for Kotlin projects. |
 | [`kotlin-api-reference`](kotlin-api-reference/) | 3,279 | Find and verify versioned, platform-specific Kotlin ecosystem API declarations and source. |
 | [`kotlin-binary-compatibility`](kotlin-binary-compatibility/) | 4,351 | Configure, run, migrate, and review Kotlin ABI validation with built-in KGP or the legacy validator. |
@@ -57,10 +57,10 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 | [`ksp`](ksp/) | 5,118 | Configure, author, test, migrate, and troubleshoot Kotlin Symbol Processing consumers and processors. |
 | [`lincheck`](lincheck/) | 3,787 | Design, run, interpret, and troubleshoot JVM concurrency tests with Lincheck model checking and stress strategies. |
 | [`libacvp-json-kotlin`](libacvp-json-kotlin/) | 7,552 | Model, parse, validate, and test libacvp and ACVP JSON artifacts in Kotlin. |
-| [`maven-central-publishing`](maven-central-publishing/) | 6,321 | Register, configure, validate, publish, and troubleshoot releases through the Sonatype Central Portal. |
+| [`maven-central-publishing`](maven-central-publishing/) | 6,380 | Register, configure, validate, publish, and troubleshoot releases through the Sonatype Central Portal. |
 | [`skie`](skie/) | 3,315 | Install, migrate, configure, and troubleshoot Touchlab SKIE for Kotlin Multiplatform Swift interop. |
 | [`spotless`](spotless/) | 3,947 | Configure, apply, verify, migrate, and troubleshoot Spotless formatting for Gradle and Maven projects. |
-| [`terminal-diagrams`](terminal-diagrams/) | 4,993 | Design, render, and validate aligned ASCII, Unicode box-drawing, and ANSI-colored terminal or Markdown diagrams. |
+| [`terminal-diagrams`](terminal-diagrams/) | 4,992 | Design, render, and validate aligned ASCII, Unicode box-drawing, and ANSI-colored terminal or Markdown diagrams. |
 | [`xtool`](xtool/) | 2,285 | Install, configure, use, and troubleshoot xtool for SwiftPM-driven iOS development and device deployment. |
 
 ### Documentation

@@ -42,13 +42,9 @@ Keep `maven-publish` as the artifact model owner. Avoid manually duplicating POM
 
 Refresh the [Publisher API](https://central.sonatype.org/publish/publish-portal-api/) before use.
 
-Authentication uses:
+Authentication uses the documented `Authorization` header with the `Bearer` scheme and the Base64 encoding of the Portal token's `username:password`.
 
-```text
-Authorization: Bearer base64(tokenUsername:tokenPassword)
-```
-
-Base64 is encoding, not encryption. Construct the header in memory from secret-store values; never print the combined credentials, Base64 value, or complete request command.
+Construct the value in memory from secret-store token parts. Base64 is not encryption; never print the token parts, encoded value, or complete request command.
 
 A deployment upload includes the bundle and publishing mode and returns a deployment UUID. Persist that UUID in nonsecret release state. Track states:
 
