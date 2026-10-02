@@ -5,11 +5,11 @@ compatibility: "Targets the Sonatype Central Portal workflow documented 2026-09-
 metadata:
   category: "development"
   source: "https://central.sonatype.org/register/central-portal/"
-  sourceVersion: "Central Portal registration, namespace, requirements, publishing, API, tokens, OSSRH migration, and snapshot documentation inspected 2026-09-06"
+  sourceVersion: "Central Portal registration, namespace, requirements, publishing, tokens, OSSRH migration, and snapshots inspected 2026-09-06; Publisher API authentication and deployment lifecycle inspected 2026-10-02"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-09-06T13:28:03+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-09-06T13:28:03+02:00"
+  updatedBy: "github-copilot/gpt-6-luna"
+  updatedAt: "2026-10-02T15:18:56+02:00"
 ---
 
 # Maven Central Publishing
@@ -80,7 +80,7 @@ READ `references/publishing-routes.md`.
 
 1. FOR Maven, prefer the current official Central Publishing Maven Plugin and configure its documented Central Portal flow.
 2. FOR Gradle, select one maintained community Central Portal integration or JReleaser because Sonatype does not provide an official Gradle plugin; document ownership/version and avoid parallel publishers.
-3. FOR direct integration, use the current Portal Publisher API with Bearer base64 of the Portal token username/password and preserve the returned deployment UUID.
+3. FOR direct integration, follow the Publisher API's documented `Authorization` header: its scheme is `Bearer` and its value Base64-encodes the Portal token's `username:password`; construct it in memory and preserve the returned deployment UUID.
 4. FOR a legacy OSSRH migration, inventory namespace ownership, repository URLs, credentials, close/release semantics, and plugin behavior; one namespace cannot be active in incompatible legacy and Portal workflows simultaneously.
 5. FOR snapshots, use only the current snapshot endpoint after namespace enablement; isolate `-SNAPSHOT` routing from releases and accept mutable retention behavior.
 6. DEFAULT release staging to `USER_MANAGED`; avoid `AUTOMATIC` until a proven CI policy intentionally accepts irreversible publication immediately after validation.

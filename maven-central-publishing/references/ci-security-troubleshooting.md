@@ -76,7 +76,7 @@ Request explicit confirmation for that exact deployment. A prior request to “s
 
 ### Authentication
 
-- 401 -> verify Portal token pair, Base64 of `username:password`, expiry, and header scheme.
+- 401 -> verify Portal token pair and expiry, confirm the documented `Authorization` header uses the `Bearer` scheme and Base64-encodes `username:password`, and check secret injection without logging values.
 - 403 -> verify namespace/organization permissions and endpoint; rotating a valid token does not grant a missing role.
 - Token works locally but not CI -> inspect variable scope/protection/newline encoding without echoing values.
 

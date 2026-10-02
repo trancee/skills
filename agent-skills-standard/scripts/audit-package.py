@@ -18,6 +18,7 @@ except ImportError:
 
 NAME_RE = re.compile(r"[a-z0-9]+(?:-[a-z0-9]+)*")
 LINK_RE = re.compile(r"!?\[[^\]]*\]\(([^)]+)\)")
+RESOURCE_RE = re.compile(r"\b((?:scripts|references|assets)/[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+)*)")
 SHARED_FIELDS = {
     "name",
     "description",
@@ -170,6 +171,18 @@ def validate_links(package: Path) -> list[dict[str, str]]:
     return errors
 
 
+def validate_resource_references(package: Path, skill_file: Path, text: str) -> list[dict[str, str]]:
+    errors: list[dict[str, str]] = []
+    root = package.resolve()
+    for target in sorted(set(RESOURCE_RE.findall(text))):
+        destination = (package / target).resolve()
+        if not within(destination, root):
+            errors.append(issue("resource-escape", skill_file, f"Package resource {target!r} resolves outside the package."))
+        elif not destination.exists():
+            errors.append(issue("resource-missing", skill_file, f"Package resource {target!r} does not exist."))
+    return errors
+
+
 def validate_symlinks(package: Path) -> list[dict[str, str]]:
     errors: list[dict[str, str]] = []
     root = package.resolve()
@@ -212,6 +225,7 @@ def audit(package: Path, max_lines: int) -> dict[str, Any]:
         )
 
     errors.extend(validate_links(package))
+    errors.extend(validate_resource_references(package, skill_file, text))
     errors.extend(validate_symlinks(package))
     return {
         "schemaVersion": 1,
