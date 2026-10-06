@@ -24,6 +24,12 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 | [`ristretto255`](ristretto255/) | 2,790 | Implement, integrate, and review ristretto255, including canonical encoding, hash-to-group, scalars, constant-time operations, protocol use, and RFC vectors. |
 | [`wycheproof`](wycheproof/) | 2,060 | Integrate and audit current Project Wycheproof vectors against cryptographic implementations, schemas, and result semantics. |
 
+### Formal methods
+
+| Skill | Context tokens | Purpose |
+| --- | ---: | --- |
+| [`tamarin-prover`](tamarin-prover/) | 5,408 | Install and use Tamarin Prover to model, prove, inspect, and troubleshoot symbolic security protocol properties. |
+
 ### Development
 
 | Skill | Context tokens | Purpose |

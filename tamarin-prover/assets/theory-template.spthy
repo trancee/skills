@@ -1,0 +1,19 @@
+theory ProtocolModel
+begin
+
+builtins: hashing
+
+rule Start:
+  [ Fr(~secret) ]
+--[ Started(~secret) ]->
+  [ Out(h(~secret)) ]
+
+lemma executability:
+  exists-trace
+  "Ex secret #i. Started(secret) @ i"
+
+lemma fresh_value_not_revealed:
+  all-traces
+  "All secret #i. Started(secret) @ i ==> not (Ex #j. K(secret) @ j)"
+
+end
