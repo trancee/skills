@@ -180,8 +180,9 @@ def inspect_gradle(path: Path, root: Path) -> dict[str, Any]:
     for block in extract_blocks(text, "powerAssert"):
         configured_functions.update(value for value in property_literals(block, "functions") if "." in value)
         included_source_sets.update(property_literals(block, "includedSourceSets"))
-        filters.update(re.findall(r"PowerAssertCompilationFilter\.(TESTS|ALL)", block))
-        if re.search(r"\bcompilationFilter\s*\.", block) and not filters:
+        block_filters = re.findall(r"PowerAssertCompilationFilter\.(TESTS|ALL)", block)
+        filters.update(block_filters)
+        if re.search(r"\bcompilationFilter\s*(?:[.=]|\()", block) and not block_filters:
             filters.add("custom")
         runtime_match = re.search(r"\baddRuntimeDependency\s*(?:\.set\s*\(|\.value\s*\(|=)\s*(true|false)", block)
         if runtime_match:
@@ -327,7 +328,9 @@ def inspect(root: Path) -> dict[str, Any]:
         warnings.append(f"Kotlin versions {sorted(kotlin_versions)} do not exactly match Power-assert versions {sorted(power_versions)}.")
     if any(entry["compilation_filters"] for entry in gradle) and "2.4.10" in power_versions:
         warnings.append("compilationFilter is not available in the Kotlin 2.4.10 Power-assert Gradle plugin; use includedSourceSets.")
-    if any("ALL" in entry["compilation_filters"] or any(name.endswith("Main") or name == "main" for name in entry["included_source_sets"]) for entry in gradle):
+    if any(entry["included_source_sets"] and entry["compilation_filters"] for entry in gradle):
+        warnings.append("Nonempty deprecated includedSourceSets overrides compilationFilter; remove it when migrating to the filter API.")
+    if any(("ALL" in entry["compilation_filters"] and not entry["included_source_sets"]) or any(name.endswith("Main") or name == "main" for name in entry["included_source_sets"]) for entry in gradle):
         warnings.append("Power-assert transforms a production/main source set or compilation; verify Experimental runtime and deployment impact.")
     if any(entry["add_runtime_dependency"] is False for entry in gradle) and not runtime_declared:
         warnings.append("Automatic runtime dependency is disabled but no kotlin-power-assert-runtime dependency was detected.")

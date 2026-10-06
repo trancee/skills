@@ -1,15 +1,15 @@
 ---
 name: ble-throughput
 description: "Measures, models, diagnoses, and optimizes Bluetooth Low Energy data throughput. Use when sizing ATT or GATT payloads, enabling DLE or 2M/Coded PHY, choosing connection intervals and packets per event, selecting notifications, write commands, or L2CAP CoC, implementing queue backpressure, segmentation, or reliability, comparing iOS, Android, and embedded behavior, analyzing sniffer traces, or balancing throughput, latency, power, range, and coexistence. Don't use for Bluetooth Classic, LE Audio or ISO stream design, pairing and security architecture, RF certification, generic app networking, or unsupported headline-speed guarantees."
-compatibility: "Uses Bluetooth Core 6.2 terminology while preserving the legacy 7.5 ms/1.25 ms connection-interval baseline. Shorter Connection Intervals down to 375 us require Core 6.2 SCI support on both peers/hosts/controllers. Mobile behavior is device/OS dependent. Calculator models one-direction ATT traffic on uncoded 1M/2M PHY only and requires Python 3.11+."
+compatibility: "Bluetooth Core 6.3; SCI introduced in 6.2 and retained in 6.3. Sub-7.5 ms intervals require negotiated SCI support. Calculator: one-direction ATT on uncoded 1M/2M only; no Coded/EATT/CoC/HDT prediction. Mobile behavior depends on device/OS. Python 3.11+."
 metadata:
   category: "development"
   source: "https://interrupt.memfault.com/blog/ble-throughput-primer"
-  sourceVersion: "Bluetooth Core 6.2; supplied sources reviewed 2026-08-30"
+  sourceVersion: "Bluetooth Core 6.3 (current); SCI introduced in Core 6.2, retained in 6.3; supplied sources reviewed 2026-10-06"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T18:55:31+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-30T18:55:31+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T15:43:04+02:00"
 ---
 
 # BLE Throughput
@@ -38,7 +38,7 @@ Completion: application counters and trace/stack evidence identify the first uns
 
 ## Step 3: Model bounds without claiming prediction
 
-RUN the one-direction uncoded ATT model:
+RUN the one-direction uncoded ATT model from the activated skill package root (`scripts/` lives in the skill package, not the consumer project):
 ```bash
 python3 scripts/calculate.py \
   --phy 2m \
@@ -57,7 +57,7 @@ READ `references/throughput-model.md`.
 2. COMPARE radio-continuous, event-airtime, packet-cap, and request/confirmation-limited bounds with measured useful throughput.
 3. USE aligned ATT value sizes derived from actual MTU/LL payload; 244 and 495 bytes are examples for 251-octet LL payloads, not universal constants.
 4. ACCOUNT separately for application headers, security framing, ACK windows, flash/storage, parsing, and retransmissions.
-5. MODEL Coded PHY, EATT, L2CAP CoC, bidirectional traffic, Core 6 frame-space updates, and 6.2 SCI only from negotiated trace/controller specifics; the bundled uncoded ATT model intentionally excludes them.
+5. MODEL Coded PHY, EATT, L2CAP CoC, bidirectional traffic, Core 6 frame-space updates, and SCI (Core 6.2 feature, retained in Core 6.3) only from negotiated trace/controller specifics; the bundled uncoded ATT model intentionally excludes them.
 
 Completion: each bound states assumptions, and the measured gap points to a layer instead of a headline PHY rate.
 
@@ -121,7 +121,7 @@ Completion: the target is met across the declared matrix or the first immutable 
 ## Error Handling
 
 - Requested 2M/DLE/MTU/interval differs from effective -> use callback/HCI/sniffer evidence and optimize the negotiated value; never report the request as applied.
-- Calculator rejects interval below 7.5 ms -> add `--shorter-connection-intervals` only when both peers/controllers/hosts negotiate Core 6.2 SCI; otherwise use baseline intervals.
+- Calculator rejects interval below 7.5 ms -> add `--shorter-connection-intervals` only when both peers/controllers/hosts negotiate Core 6.2 SCI (retained in Core 6.3); otherwise use baseline intervals.
 - MTU increases but throughput does not -> inspect DLE, LL fragmentation, aligned payload size, packets/event, queue starvation, and operation type.
 - One-byte size increase causes regression -> it crossed an LL-fragment boundary; select the previous aligned size after application overhead.
 - Write without response fails/stalls -> stop enqueueing at platform backpressure and resume only from the ready callback; never busy-loop.

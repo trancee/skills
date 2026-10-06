@@ -8,8 +8,8 @@ metadata:
   sourceVersion: "Android API 37.2 documentation 2026-08-31; API 37.0/37.1 public SDK stubs verified 2026-08-31"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-31T09:30:06+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-31T09:30:06+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T15:38:18+02:00"
 ---
 
 # Android BLE GATT Server
@@ -26,9 +26,9 @@ Completion: database, every ATT callback/response, per-central state, transactio
 
 ## Step 2: Inspect the Android project
 
-RUN from the Android project root:
+Resolve `scripts/inspect-project.py` from the skill package; pass the Android project via `--root`:
 ```bash
-python3 scripts/inspect-project.py --root . --json
+python3 scripts/inspect-project.py --root path/to/android-project --json
 ```
 
 CONFIRM manifest/SDK, `openGattServer`, retained/closed server ownership, service-add callback sequencing, characteristic/descriptor properties and permissions, request offset/length/status/response handling, prepared-write staging/execute, per-device CCCD state, API 33 notifications, `onNotificationSent` serialization, unsupported server profile calls, callback confinement, and teardown.

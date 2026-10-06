@@ -10,71 +10,71 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 
 | Skill | Context tokens | Purpose |
 | --- | ---: | --- |
-| [`agent-skills-standard`](agent-skills-standard/) | 2,879 | Audit new and updated Agent Skills packages, gate skill repository commits, migrate catalogs, and add standards-compatible discovery and activation to agent clients. |
+| [`agent-skills-standard`](agent-skills-standard/) | 2,934 | Audit new and updated Agent Skills packages, gate skill repository commits, migrate catalogs, and add standards-compatible discovery and activation to agent clients. |
 | [`omp-skill-hardener`](omp-skill-hardener/) | 2,412 | Mine repeated failures from OMP sessions, turn them into approved skill or `AGENTS.md` changes, and test the new rules. |
 
 ### Cryptography
 
 | Skill | Context tokens | Purpose |
 | --- | ---: | --- |
-| [`csidh-ctidh`](csidh-ctidh/) | 7,231 | Design, integrate, implement, review, and test CSIDH-family isogeny group actions, NIKE protocols, and hardware golden models. |
-| [`falcon-fn-dsa`](falcon-fn-dsa/) | 8,426 | Implement, integrate, test, and audit Falcon signatures and provisional FN-DSA using the active c-fn-dsa reference. |
+| [`csidh-ctidh`](csidh-ctidh/) | 7,247 | Design, integrate, implement, review, and test CSIDH-family isogeny group actions, NIKE protocols, and hardware golden models. |
+| [`falcon-fn-dsa`](falcon-fn-dsa/) | 8,508 | Implement, integrate, test, and audit Falcon signatures and provisional FN-DSA using the active c-fn-dsa reference. |
 | [`nist-cavp`](nist-cavp/) | 2,729 | Find, download, parse, and integrate NIST CAVP archives and ACVP vector sets for cryptographic primitives and components. |
-| [`noise-protocol`](noise-protocol/) | 4,426 | Design, integrate, test, and review Noise handshakes, protocol suites, transport states, and key lifecycles. |
+| [`noise-protocol`](noise-protocol/) | 4,441 | Design, integrate, test, and review Noise handshakes, protocol suites, transport states, and key lifecycles. |
 | [`ristretto255`](ristretto255/) | 2,790 | Implement, integrate, and review ristretto255, including canonical encoding, hash-to-group, scalars, constant-time operations, protocol use, and RFC vectors. |
-| [`wycheproof`](wycheproof/) | 2,060 | Integrate and audit current Project Wycheproof vectors against cryptographic implementations, schemas, and result semantics. |
+| [`wycheproof`](wycheproof/) | 2,184 | Integrate and audit current Project Wycheproof vectors against cryptographic implementations, schemas, and result semantics. |
 
 ### Formal methods
 
 | Skill | Context tokens | Purpose |
 | --- | ---: | --- |
-| [`tamarin-prover`](tamarin-prover/) | 5,408 | Install and use Tamarin Prover to model, prove, inspect, and troubleshoot symbolic security protocol properties. |
+| [`tamarin-prover`](tamarin-prover/) | 4,525 | Install and use Tamarin Prover to model, prove, inspect, and troubleshoot symbolic security protocol properties. |
 
 ### Development
 
 | Skill | Context tokens | Purpose |
 | --- | ---: | --- |
-| [`android-ble`](android-ble/) | 6,526 | Implement, migrate, test, and troubleshoot Android BLE scanning, GATT lifecycle, background, permissions, and Android 17 behavior. |
-| [`android-ble-gatt-queue`](android-ble-gatt-queue/) | 4,702 | Implement, review, test, and debug coroutine-serialized Android GATT client operations, callbacks, cancellation, and timeout reset. |
-| [`android-ble-gatt-server`](android-ble-gatt-server/) | 5,110 | Implement, review, test, and troubleshoot Android local GATT databases, ATT requests, prepared writes, subscriptions, and updates. |
-| [`android-ble-gatt-status`](android-ble-gatt-status/) | 5,294 | Diagnose, mitigate, and test Android GATT connection/status failures, including opaque legacy status 133. |
-| [`android-ble-inspector`](android-ble-inspector/) | 4,890 | Build, review, test, and troubleshoot Android Compose BLE scanners, GATT trees, operation controls, and value decoders. |
-| [`android-bluetooth-sockets`](android-bluetooth-sockets/) | 5,438 | Implement, review, test, and troubleshoot Android RFCOMM and LE CoC socket clients, servers, streams, and lifecycle. |
-| [`android-debug-bridge`](android-debug-bridge/) | 5,229 | Install, configure, use, and troubleshoot adb device targeting, USB/Wi-Fi transports, shell commands, apps, files, ports, and diagnostics. |
-| [`android-material3-compose`](android-material3-compose/) | 7,323 | Design, implement, review, test, and migrate Android Material 3 interfaces with Jetpack Compose. |
-| [`arrange-act-assert`](arrange-act-assert/) | 4,174 | Structure, review, and refactor example-based tests into clear Arrange, Act, and Assert phases. |
-| [`ble-protocol-stack`](ble-protocol-stack/) | 5,532 | Design, validate, and troubleshoot BLE GAP, GATT, ATT, L2CAP schemas, procedures, caching, and channels. |
-| [`ble-throughput`](ble-throughput/) | 5,004 | Measure, model, diagnose, and optimize BLE throughput across PHY, Link Layer, ATT/GATT, mobile, and application queues. |
-| [`compose-multiplatform`](compose-multiplatform/) | 5,518 | Design, implement, test, and ship shared Compose UI across Android, iOS, desktop, and web. |
-| [`corebluetooth`](corebluetooth/) | 5,280 | Implement, review, test, and troubleshoot Apple Core Bluetooth central/peripheral apps, lifecycle, data flow, and restoration. |
-| [`detekt`](detekt/) | 3,613 | Configure, run, migrate, and troubleshoot detekt static analysis for Kotlin projects. |
-| [`kover`](kover/) | 3,182 | Configure, verify, aggregate, and troubleshoot Kotlinx Kover JVM coverage for Kotlin projects. |
-| [`kotlin-api-reference`](kotlin-api-reference/) | 3,279 | Find and verify versioned, platform-specific Kotlin ecosystem API declarations and source. |
-| [`kotlin-binary-compatibility`](kotlin-binary-compatibility/) | 4,351 | Configure, run, migrate, and review Kotlin ABI validation with built-in KGP or the legacy validator. |
-| [`kotlin-coroutines`](kotlin-coroutines/) | 4,709 | Design, implement, test, and troubleshoot Kotlin coroutines, Flow, channels, cancellation, and structured concurrency. |
-| [`kotlin-development`](kotlin-development/) | 3,262 | Implement, review, build, test, and troubleshoot Kotlin projects across JVM, Android, Kotlin Multiplatform, JavaScript, Wasm, and Native. |
-| [`kotlin-gradle`](kotlin-gradle/) | 4,366 | Configure, migrate, optimize, and troubleshoot Kotlin Gradle builds, toolchains, compiler options, and caches. |
-| [`kotlin-multiplatform`](kotlin-multiplatform/) | 4,276 | Design, configure, migrate, test, publish, and troubleshoot Kotlin Multiplatform targets, source sets, hierarchies, and variants. |
-| [`kotlin-native-apple-interop`](kotlin-native-apple-interop/) | 4,644 | Configure, export, import, and troubleshoot Kotlin/Native interoperability with Swift, Objective-C, and Apple frameworks. |
-| [`kotlin-power-assert`](kotlin-power-assert/) | 3,850 | Configure, use, debug, and expose Kotlin Power-assert diagnostics, transformed functions, and assertion APIs. |
-| [`kotlinpoet`](kotlinpoet/) | 6,044 | Generate, review, test, and troubleshoot deterministic Kotlin source with Square KotlinPoet. |
-| [`kotlinx-benchmark`](kotlinx-benchmark/) | 4,430 | Configure, run, compare, and troubleshoot multiplatform Kotlin microbenchmarks with kotlinx-benchmark. |
-| [`kotlinx-serialization`](kotlinx-serialization/) | 4,613 | Design, configure, evolve, test, and troubleshoot kotlinx.serialization wire formats and schemas. |
-| [`ksp`](ksp/) | 5,118 | Configure, author, test, migrate, and troubleshoot Kotlin Symbol Processing consumers and processors. |
-| [`lincheck`](lincheck/) | 3,787 | Design, run, interpret, and troubleshoot JVM concurrency tests with Lincheck model checking and stress strategies. |
-| [`libacvp-json-kotlin`](libacvp-json-kotlin/) | 7,552 | Model, parse, validate, and test libacvp and ACVP JSON artifacts in Kotlin. |
-| [`maven-central-publishing`](maven-central-publishing/) | 6,380 | Register, configure, validate, publish, and troubleshoot releases through the Sonatype Central Portal. |
-| [`skie`](skie/) | 3,315 | Install, migrate, configure, and troubleshoot Touchlab SKIE for Kotlin Multiplatform Swift interop. |
-| [`spotless`](spotless/) | 3,947 | Configure, apply, verify, migrate, and troubleshoot Spotless formatting for Gradle and Maven projects. |
-| [`terminal-diagrams`](terminal-diagrams/) | 4,992 | Design, render, and validate aligned ASCII, Unicode box-drawing, and ANSI-colored terminal or Markdown diagrams. |
-| [`xtool`](xtool/) | 2,285 | Install, configure, use, and troubleshoot xtool for SwiftPM-driven iOS development and device deployment. |
+| [`android-ble`](android-ble/) | 6,545 | Implement, migrate, test, and troubleshoot Android BLE scanning, GATT lifecycle, background, permissions, and Android 17 behavior. |
+| [`android-ble-gatt-queue`](android-ble-gatt-queue/) | 4,721 | Implement, review, test, and debug coroutine-serialized Android GATT client operations, callbacks, cancellation, and timeout reset. |
+| [`android-ble-gatt-server`](android-ble-gatt-server/) | 5,129 | Implement, review, test, and troubleshoot Android local GATT databases, ATT requests, prepared writes, subscriptions, and updates. |
+| [`android-ble-gatt-status`](android-ble-gatt-status/) | 5,313 | Diagnose, mitigate, and test Android GATT connection/status failures, including opaque legacy status 133. |
+| [`android-ble-inspector`](android-ble-inspector/) | 4,909 | Build, review, test, and troubleshoot Android Compose BLE scanners, GATT trees, operation controls, and value decoders. |
+| [`android-bluetooth-sockets`](android-bluetooth-sockets/) | 5,457 | Implement, review, test, and troubleshoot Android RFCOMM and LE CoC socket clients, servers, streams, and lifecycle. |
+| [`android-debug-bridge`](android-debug-bridge/) | 5,241 | Install, configure, use, and troubleshoot adb device targeting, USB/Wi-Fi transports, shell commands, apps, files, ports, and diagnostics. |
+| [`android-material3-compose`](android-material3-compose/) | 7,329 | Design, implement, review, test, and migrate Android Material 3 interfaces with Jetpack Compose. |
+| [`arrange-act-assert`](arrange-act-assert/) | 3,158 | Structure, review, and refactor example-based tests into clear Arrange, Act, and Assert phases. |
+| [`ble-protocol-stack`](ble-protocol-stack/) | 5,621 | Design, validate, and troubleshoot BLE GAP, GATT, ATT, L2CAP schemas, procedures, caching, and channels. |
+| [`ble-throughput`](ble-throughput/) | 5,141 | Measure, model, diagnose, and optimize BLE throughput across PHY, Link Layer, ATT/GATT, mobile, and application queues. |
+| [`compose-multiplatform`](compose-multiplatform/) | 5,634 | Design, implement, test, and ship shared Compose UI across Android, iOS, desktop, and web. |
+| [`corebluetooth`](corebluetooth/) | 5,295 | Implement, review, test, and troubleshoot Apple Core Bluetooth central/peripheral apps, lifecycle, data flow, and restoration. |
+| [`detekt`](detekt/) | 3,629 | Configure, run, migrate, and troubleshoot detekt static analysis for Kotlin projects. |
+| [`kover`](kover/) | 3,197 | Configure, verify, aggregate, and troubleshoot Kotlinx Kover JVM coverage for Kotlin projects. |
+| [`kotlin-api-reference`](kotlin-api-reference/) | 3,295 | Find and verify versioned, platform-specific Kotlin ecosystem API declarations and source. |
+| [`kotlin-binary-compatibility`](kotlin-binary-compatibility/) | 4,525 | Configure, run, migrate, and review Kotlin ABI validation with built-in KGP or the legacy validator. |
+| [`kotlin-coroutines`](kotlin-coroutines/) | 4,725 | Design, implement, test, and troubleshoot Kotlin coroutines, Flow, channels, cancellation, and structured concurrency. |
+| [`kotlin-development`](kotlin-development/) | 3,306 | Implement, review, build, test, and troubleshoot Kotlin projects across JVM, Android, Kotlin Multiplatform, JavaScript, Wasm, and Native. |
+| [`kotlin-gradle`](kotlin-gradle/) | 4,450 | Configure, migrate, optimize, and troubleshoot Kotlin Gradle builds, toolchains, compiler options, and caches. |
+| [`kotlin-multiplatform`](kotlin-multiplatform/) | 4,318 | Design, configure, migrate, test, publish, and troubleshoot Kotlin Multiplatform targets, source sets, hierarchies, and variants. |
+| [`kotlin-native-apple-interop`](kotlin-native-apple-interop/) | 4,690 | Configure, export, import, and troubleshoot Kotlin/Native interoperability with Swift, Objective-C, and Apple frameworks. |
+| [`kotlin-power-assert`](kotlin-power-assert/) | 3,929 | Configure, use, debug, and expose Kotlin Power-assert diagnostics, transformed functions, and assertion APIs. |
+| [`kotlinpoet`](kotlinpoet/) | 6,058 | Generate, review, test, and troubleshoot deterministic Kotlin source with Square KotlinPoet. |
+| [`kotlinx-benchmark`](kotlinx-benchmark/) | 4,500 | Configure, run, compare, and troubleshoot multiplatform Kotlin microbenchmarks with kotlinx-benchmark. |
+| [`kotlinx-serialization`](kotlinx-serialization/) | 4,628 | Design, configure, evolve, test, and troubleshoot kotlinx.serialization wire formats and schemas. |
+| [`ksp`](ksp/) | 5,645 | Configure, author, test, migrate, and troubleshoot Kotlin Symbol Processing consumers and processors. |
+| [`lincheck`](lincheck/) | 3,803 | Design, run, interpret, and troubleshoot JVM concurrency tests with Lincheck model checking and stress strategies. |
+| [`libacvp-json-kotlin`](libacvp-json-kotlin/) | 7,584 | Model, parse, validate, and test libacvp and ACVP JSON artifacts in Kotlin. |
+| [`maven-central-publishing`](maven-central-publishing/) | 6,397 | Register, configure, validate, publish, and troubleshoot releases through the Sonatype Central Portal. |
+| [`skie`](skie/) | 3,415 | Install, migrate, configure, and troubleshoot Touchlab SKIE for Kotlin Multiplatform Swift interop. |
+| [`spotless`](spotless/) | 3,938 | Configure, apply, verify, migrate, and troubleshoot Spotless formatting for Gradle and Maven projects. |
+| [`terminal-diagrams`](terminal-diagrams/) | 4,507 | Design, render, and validate aligned ASCII, Unicode box-drawing, and ANSI-colored terminal or Markdown diagrams. |
+| [`xtool`](xtool/) | 2,508 | Install, configure, use, and troubleshoot xtool for SwiftPM-driven iOS development and device deployment. |
 
 ### Documentation
 
 | Skill | Context tokens | Purpose |
 | --- | ---: | --- |
-| [`diataxis`](diataxis/) | 2,693 | Write, audit, and improve tutorials, how-to guides, reference, explanation, documentation architecture, and documentation quality. |
-| [`dokka`](dokka/) | 4,486 | Configure, generate, publish, migrate, and troubleshoot Dokka API documentation for Kotlin and mixed Java projects. |
+| [`diataxis`](diataxis/) | 2,724 | Write, audit, and improve tutorials, how-to guides, reference, explanation, documentation architecture, and documentation quality. |
+| [`dokka`](dokka/) | 4,501 | Configure, generate, publish, migrate, and troubleshoot Dokka API documentation for Kotlin and mixed Java projects. |
 
 Open a skill's `SKILL.md` for its full procedure and source material.
 
@@ -178,7 +178,7 @@ metadata:
 
 - `name` matches the lower-kebab-case directory name.
 - `description` states what the skill does and the distinct situations that should trigger it.
-- `metadata.category` groups the skill under `agent-tooling`, `cryptography`, `development`, or `documentation` in this repository.
+- `metadata.category` groups skills under `agent-tooling`, `cryptography`, `development`, `documentation`, or `formal-methods`.
 - `metadata.source` identifies the canonical source used to author and refresh the skill.
 - `metadata.sourceVersion` records the upstream release, document identifier, dated page revision, or commit used to author or refresh the skill.
 - `metadata.createdBy` records the `provider/model` identifier that first created the skill.
@@ -190,13 +190,13 @@ metadata:
 
 ## Contributing
 
-Write for the consumer. Keep `SKILL.md`, agent-facing references, and agent-filled templates terse. Use stable labels, fragments, symbols, and exact commands when they preserve meaning. Remove connective prose. Write human-facing documentation, including this README, in clear natural English.
+Skill packages are instructions for AI agents, not human tutorials. Use terse imperative steps, explicit branches, exact commands, constraints, and completion gates. Load branch-specific references only when needed; remove repeated explanation without weakening semantics or safety. Human-facing repository documentation, including this README, remains separate.
 
 1. Use `skill-creator` to create a skill or revise its procedure.
 2. Run `agent-skills-standard` on every new or updated package before calling the package complete.
 3. Give the skill one focused responsibility and a precise discovery description.
 4. Put the main procedure in `SKILL.md`. Move fixtures and templates to `assets/`, detailed guidance to `references/`, and executable helpers to `scripts/`.
-5. Prefer primary, versioned sources. State which source wins when references disagree.
+5. Check canonical origins before refreshes. Compare the pinned baseline with current stable releases or document revisions; distinguish prereleases and historical compatibility branches. Apply relevant upstream changes across the procedure and resources, record exact source evidence, and leave unchanged guidance intact. A newer date alone is not a migration.
 6. Keep secrets, credentials, generated output, and machine-specific paths out of the skill.
 7. Exercise commands and behavioral procedures in an appropriate disposable environment.
 8. After any `SKILL.md`, direct `references/*`, or direct `assets/*` change, run `python3 agent-skills-standard/scripts/count-context.py --root . --baseline HEAD path/to/skill`. Record the `o200k_base` core, resource, total, baseline, and delta counts.

@@ -8,8 +8,8 @@ metadata:
   sourceVersion: "Android API 37/37.1 documentation and public SDK stubs; pages updated 2026-08-03 through 2026-08-14"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-31T08:45:01+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-31T08:45:01+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T15:38:18+02:00"
 ---
 
 # Android Bluetooth Sockets
@@ -26,9 +26,9 @@ Completion: transport, API branch, peer rendezvous, security, blocking-call owne
 
 ## Step 2: Inspect the Android project
 
-RUN from the Android project root:
+Resolve `scripts/inspect-project.py` from the skill package; pass the Android project via `--root`:
 ```bash
-python3 scripts/inspect-project.py --root . --json
+python3 scripts/inspect-project.py --root path/to/android-project --json
 ```
 
 CONFIRM SDK/permissions/features, socket API pairing, settings fields, secure/insecure choice, discovery cancellation, blocking-call execution, accept/connect cancellation by close, stream EOF/partial reads, framing, serialized writes, bounded buffers, exceptions, server/connected socket cleanup, and process-lifetime mechanism.

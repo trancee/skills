@@ -2,7 +2,7 @@
 
 Source: [Gradle plugin guide](https://github.com/diffplug/spotless/tree/main/plugin-gradle) and [changelog](https://github.com/diffplug/spotless/blob/main/plugin-gradle/CHANGES.md).
 
-Current 8.10.1 requires JRE 17+ and, per the 8.1.0 changelog, Gradle 8.1+. Use 7.2.1 or older for JRE 11; 6.13.0 or older for JRE 8. Verify the live changelog before selecting a legacy line.
+Current 8.10.3 requires JRE 17+ and Gradle 8.1+. Use 7.2.1 or older for JRE 11; 6.13.0 or older for JRE 8. Verify the release changelog before selecting a legacy line.
 
 ## Install
 

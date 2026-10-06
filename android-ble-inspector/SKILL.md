@@ -8,8 +8,8 @@ metadata:
   sourceVersion: "gist revision 506e408d1fa9f7616c4b4c00d7efb43ddd414cd8; repository inspected 2026-08-31"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-31T09:38:56+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-31T09:54:21+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T15:38:18+02:00"
 ---
 
 # Android BLE Inspector
@@ -26,9 +26,9 @@ Completion: diagnostic questions, allowed radio mutations, ownership, data sensi
 
 ## Step 2: Inspect the project
 
-RUN from the Android project root:
+Resolve `scripts/inspect-project.py` from the skill package; pass the Android project via `--root`:
 ```bash
-python3 scripts/inspect-project.py --root . --json
+python3 scripts/inspect-project.py --root path/to/android-project --json
 ```
 
 CONFIRM Compose/ViewModel/lifecycle collection, permission profiles, scan callback cleanup/timeout/failure, filter/power policy, device identity, connection/GATT queue, explicit operation UI states, CCCD subscription, raw-byte rendering, decoder bounds/special values, advertiser failure/size handling, adapter-name mutation, test coverage, and device-data logging.

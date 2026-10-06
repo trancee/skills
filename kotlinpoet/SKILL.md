@@ -8,8 +8,8 @@ metadata:
   sourceVersion: "square/kotlinpoet 2.4.0@97e504bbcece8100b653c5d7d7cd1bba0a55b0b3 (2026-09-07)"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-09-10T19:10:35+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-09-10T19:10:35+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T16:00:11+02:00"
 ---
 
 # KotlinPoet
@@ -26,9 +26,9 @@ Completion: input-to-output mapping, owning module/processor, generated API, det
 
 ## Step 2: Inspect the generator project
 
-RUN from the target repository root:
+RUN from the activated skill package; `--root` points to the target repository:
 ```bash
-python3 scripts/inspect-project.py --root . --json
+python3 scripts/inspect-project.py --root path/to/target-project --json
 ```
 
 1. CONFIRM KotlinPoet artifacts/versions, builders/specs, format placeholders, raw code/string interpolation, type/name/import handling, KSP/metadata interop, originating files, aggregating mode, output path, ordering, timestamps/absolute paths, and compile tests.

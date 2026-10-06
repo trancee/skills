@@ -8,11 +8,13 @@ metadata:
   sourceVersion: "agentskills/agentskills@69ef37e9424c0a7ea9dd2293b559e43ec8176379"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T11:28:53+02:00"
-  updatedBy: "github-copilot/gpt-6-luna"
-  updatedAt: "2026-10-02T15:18:56+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T15:15:21+02:00"
 ---
 
 # Agent Skills standard
+
+PATHS: resources resolve from the activated package. `<skill-directory>` below = that package path; target repositories are separate. Never assume bundled scripts exist in the target's `scripts/`.
 
 ## 1. Route
 
@@ -35,13 +37,13 @@ metadata:
 1. READ `references/package-spec.md`.
 2. RUN:
    ```bash
-   python3 scripts/audit-package.py path/to/skill
+   python3 <skill-directory>/scripts/audit-package.py path/to/skill
    skills-ref validate path/to/skill  # iff installed
    ```
 3. CHECK: spec errors; package integrity; coherent scope; decisions; done criteria; progressive disclosure; root-relative resources.
 4. Any created/changed `SKILL.md`, direct `references/*`, or direct `assets/*` -> RUN from skill repository:
    ```bash
-   python3 scripts/count-context.py --root . --baseline HEAD path/to/skill
+   python3 <skill-directory>/scripts/count-context.py --root . --baseline HEAD path/to/skill
    ```
 5. RECORD encoding, core/resource/total tokens, baseline, delta. New package baseline=0. Local count=`o200k_base` ordinary text; provider framing/tools excluded.
 6. Trigger/output concerns -> READ `references/evaluation.md`.
@@ -82,8 +84,8 @@ metadata:
 1. INSPECT status+full diff; enumerate created/changed/renamed/deleted packages+catalog effects.
 2. RUN each changed package:
    ```bash
-   python3 scripts/audit-package.py path/to/skill --strict
-   python3 scripts/count-context.py --root . --baseline HEAD path/to/skill
+   python3 <skill-directory>/scripts/audit-package.py path/to/skill --strict
+   python3 <skill-directory>/scripts/count-context.py --root . --baseline HEAD path/to/skill
    ```
 3. RECORD final encoding, token total, baseline, delta; recalculate after every later AI-facing edit.
 4. RUN repo metadata validator + local-link checker.

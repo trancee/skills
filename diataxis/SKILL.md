@@ -7,8 +7,8 @@ metadata:
   sourceVersion: "evildmp/diataxis-documentation-framework@957c09ca40b4a1edc23874f713e01937d50d54d5"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-28T19:26:56+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-30T11:48:01+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T15:15:21+02:00"
 ---
 
 # Diátaxis
@@ -67,8 +67,9 @@ Then judge fit, flow, anticipation, coherence, usability. Classification alone !
 1. RUN repo doc formatter/linter/build.
 2. RUN:
    ```bash
-   python3 scripts/check-links.py path/to/docs
+   python3 <skill-directory>/scripts/check-links.py path/to/docs
    ```
+   `<skill-directory>` = activated package path; `path/to/docs` = target docs. No script copy into the target repository.
 3. READ required external links; checker is local-only.
 4. RERUN affected examples/journeys; record exact evidence.
 5. CONFIRM titles/nav/cross-links expose need without Diátaxis terminology.

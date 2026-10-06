@@ -4,12 +4,12 @@ description: "Implements/reviews/builds/tests/debugs Kotlin across JVM, Android,
 metadata:
   category: "development"
   source: "https://kotlinlang.org/docs/home.html"
-  sourceVersion: "Kotlin 2.4.10; Kotlin Help build 1155; Kotlin Multiplatform Help build 554"
-  sourceBuiltAt: "2026-08-26"
+  sourceVersion: "Kotlin 2.4.20@890ac1d94fdb80eb85f0eeb5be5e4352df987b2f; Kotlin Help build 1292; Kotlin Multiplatform Help build 617"
+  sourceBuiltAt: "2026-10-06"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T10:56:53+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-31T12:36:26+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T15:30:00+02:00"
 ---
 
 # Kotlin development
@@ -20,9 +20,9 @@ metadata:
 2. RECORD affected modules, targets, public API, runtime, minimum Kotlin/Java/Gradle/Maven/AGP/native toolchain.
 3. PRESERVE current build/Kotlin/language/API/plugin/style/test versions unless migration requested.
 4. Version/new API => READ current [docs](https://kotlinlang.org/docs/home.html)+[releases](https://kotlinlang.org/docs/releases.html).
-5. RUN from target root:
+5. RUN the helper from the skill package, with the target project as `--root`:
    ```bash
-   python3 scripts/inspect-project.py --root . --json
+   python3 scripts/inspect-project.py --root <target-project> --json
    ```
 6. VERIFY detected build, wrapper, files, plugins, source sets, targets, Kotlin count.
 7. JIT READ:

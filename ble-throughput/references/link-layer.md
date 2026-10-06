@@ -6,7 +6,7 @@ DLE raises the LL data payload ceiling from 27 to 251 octets. Both peers negotia
 
 A connection interval starts opportunities; event duration and stack/controller packet/buffer limits determine how much air time is used. The central chooses effective parameters. A longer interval can preserve streaming throughput if events stay open and supplied, while increasing latency; a shorter interval may only expose the same packet cap more often.
 
-Legacy intervals start at 7.5 ms. Core 6.2 SCI can negotiate 375 us only with both controller and host support and new connection-rate procedures. Mobile framework exposure/support cannot be inferred from Core version.
+Legacy intervals start at 7.5 ms. SCI (introduced in Core 6.2, retained in 6.3) can negotiate 375 us only with both controller and host support and new connection-rate procedures. Mobile framework exposure/support cannot be inferred from Core version.
 
 Peripheral latency/subrating saves power by skipping opportunities. Its directional impact depends on who has data and continuation behavior. Measure rather than applying zero universally.
 

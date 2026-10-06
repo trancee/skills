@@ -47,6 +47,8 @@ commonMain.dependencies {
 ```
 Dependencies/exported external code require Gradle config.
 
+SKIE 0.10.15 also accepts FlowInterop configuration annotations on constructors; inspect constructor/property ownership before applying a broad Gradle group. [Versioned changelog](https://skie.touchlab.co/changelog/0.10.15).
+
 ## Feature switches
 
 Defaults at SKIE 0.10.14 snapshot:

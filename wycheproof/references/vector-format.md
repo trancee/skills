@@ -24,6 +24,8 @@ Interpret header+schema+flags+operation together.
 
 Never skip/default `acceptable`; report accept/reject+flags separately.
 
+Pin `3fa63dd0344abb611f1fb1d77e119938603ea230` adds ML-KEM seed-key `MalleableCiphertext` cases. They are marked `valid`: decapsulation must take implicit rejection and return the exact expected `K`, not throw solely because ciphertext was modified. Use the group's operation and flag notes, not English meanings of `valid`/`invalid`.
+
 ## Encodings
 
 - `HexBytes`: even hex bytes
@@ -41,5 +43,5 @@ Full clone, pinned docs:
 GOEXPERIMENT=jsonv2 go run ./tools/vectorgen fmt --check 'testvectors_v1/*.json'
 GOEXPERIMENT=jsonv2 go run ./tools/vectorgen lint
 ```
-Current pin requires Go 1.26+ and `GOEXPERIMENT=jsonv2` until Go 1.27; recheck `doc/vectorgen.md`.
+vectorgen requires Go 1.26+ (go.mod pins `go 1.26.4`). On Go 1.26 set `GOEXPERIMENT=jsonv2` to expose `encoding/json/jsontext`; Go 1.27+ ships `json/v2` and `jsontext` as standard packages (no flag needed). Recheck `doc/vectorgen.md`.
 Vendored subset: exact JSON Schema+transitive refs, then `scripts/check-vectors.py` for duplicate keys/count/ID/result/flag. Structural checker != schema validation.

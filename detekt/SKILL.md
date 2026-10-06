@@ -8,8 +8,8 @@ metadata:
   sourceVersion: "detekt 2.0.0-alpha.6@401c64bf232db0dcb054a7cfd0ca5fed3a095bc6; 2.x migration guide at detekt/detekt@ee1c04f2d7d2a4b5a181273a4d467e7a5a28c01a checked 2026-10-02; stable 1.23.8@046263730eb5368cb344489ac36543294e8e87bd"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T13:27:09+02:00"
-  updatedBy: "github-copilot/gpt-6-luna"
-  updatedAt: "2026-10-02T15:18:56+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T15:34:20+02:00"
 ---
 
 # detekt
@@ -24,9 +24,9 @@ metadata:
 
 ## 2. Inspect
 
-RUN from repository root:
+RUN from the skill package, with `--root` pointing to the target project:
 ```bash
-python3 scripts/inspect-project.py --root . --json
+python3 scripts/inspect-project.py --root /path/to/target/project
 ```
 CONFIRM plugin ID/version/module, `toolVersion`, config/baseline paths, rule plugins, Gradle options, reports, Kotlin project kind. Then list wrapper tasks; never guess variant/source-set names.
 

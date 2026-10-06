@@ -24,3 +24,19 @@ Resolution is explicit and expensive: inspect `KSTypeReference.element`/referenc
 Use `validate()` only as broad convenience. Define the exact required properties; defer only source symbols that can become valid from later generated files. Classpath/library error types cannot be fixed by another source-generation round.
 
 Diagnostics use `KSPLogger.error/warn/info` and attach the closest offending `KSNode`. Avoid dumping symbol/source content that may contain secrets.
+
+## Backing fields (KSP 2.3.12+)
+
+KSP 2.3.12 explicitly models Kotlin/Java backing fields for properties ([#2873](https://github.com/google/ksp/issues/2873)). New behavior is opt-in so existing processors are not broken.
+
+After opt-in, observe:
+- `Resolver.getSymbolsWithAnnotation` returns a `KSBackingField` when the annotation targets a field (previously a `KSProperty`).
+- `Resolver.effectiveJavaModifiers` returns fewer modifiers for a `KSPropertyDeclaration` that has a backing field, since JVM-specific annotations attach to the backing field; call it on the property's `KSBackingField` for JVM modifiers.
+- Java fields are modeled as properties with backing fields; some modifiers move to the backing field.
+- `KSBackingField.property` identifies the owning property; don't substitute the field declaration's name/identity for that property's declaration.
+
+Opt in with both steps simultaneously (neither alone is supported):
+1. Create the `SymbolProcessor`, call `environment.registerProcessorForNewFeatures(processor)` exactly once, then return that same instance from the provider. The registration takes the processor, not a no-argument opt-in.
+2. move `KSVisitor` implementations to `KSVisitorNext`; if extending a KSP-provided visitor, extend `KSTopDownVisitor(enableNewFeatures = true)` and override `visitBackingField`.
+
+Sources: [KSP 2.3.12 release](https://github.com/google/ksp/releases/tag/2.3.12), [registration API](https://github.com/google/ksp/blob/a3c38590913b863cc6b73b41d54ff8afa625f642/api/src/main/kotlin/com/google/devtools/ksp/processing/SymbolProcessorEnvironment.kt), [visitor contract](https://github.com/google/ksp/blob/a3c38590913b863cc6b73b41d54ff8afa625f642/api/src/main/kotlin/com/google/devtools/ksp/visitor/KSTopDownVisitor.kt).

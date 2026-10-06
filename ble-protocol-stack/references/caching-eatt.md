@@ -1,6 +1,6 @@
 # GATT caching, Service Changed, and EATT
 
-Source: [Bluetooth Core 6.2 GATT caching](https://www.bluetooth.com/wp-content/uploads/Files/Specification/HTML/Core-62/out/en/host/generic-attribute-profile--gatt-.html).
+Source: [Bluetooth Core 6.3 GATT caching](https://www.bluetooth.com/wp-content/uploads/Files/Specification/HTML/Core_v6.3/out/en/host/generic-attribute-profile--gatt-.html).
 
 Clients may cache handles/database definitions. If a server's GATT database never changes during usable lifetime, Service Changed should not exist. If services can be added/removed/modified or handle bindings change, Service Changed must exist and affected ranges must be indicated.
 

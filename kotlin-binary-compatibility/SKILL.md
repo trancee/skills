@@ -1,15 +1,15 @@
 ---
 name: kotlin-binary-compatibility
 description: "Configures, runs, migrates, and reviews Kotlin binary compatibility validation. Use when enabling Kotlin Gradle plugin ABI validation, maintaining ABI dumps, running checkKotlinAbi or updateKotlinAbi, using legacy apiCheck or apiDump, filtering public API, validating published artifacts, handling unsupported targets, or migrating from kotlinx binary-compatibility-validator. Don't use for source compatibility, runtime behavior testing, Java-only compatibility tools, semantic-version decisions without ABI review, or general Kotlin compilation."
-compatibility: "Built-in ABI validation is experimental in Kotlin Gradle plugin 2.2.0+; verify the current Kotlin DSL before changes. Legacy binary-compatibility-validator 0.18.1 requires Gradle 6.1.1+ and Kotlin 1.6.20+, is in maintenance mode, and may require a pre-JDK-25 build runtime. Helper requires Python 3.11+."
+compatibility: "Built-in ABI validation is experimental in Kotlin Gradle plugin 2.2.0+; verify the current Kotlin DSL before changes. Legacy binary-compatibility-validator 0.18.2 requires Gradle 6.1.1+ and Kotlin 1.6.20+, is in maintenance mode, and may require a pre-JDK-25 build runtime. Helper requires Python 3.11+."
 metadata:
   category: "development"
   source: "https://kotlinlang.org/docs/gradle-binary-compatibility-validation.html"
-  sourceVersion: "Kotlin 2.4.10 ABI validation docs (2026-04-28); binary-compatibility-validator 0.18.1@af4772c7cf1901fb0b824d4d5343353aa4eadcb7"
+  sourceVersion: "Kotlin 2.4.20@890ac1d94fdb80eb85f0eeb5be5e4352df987b2f (2026-09-07); binary-compatibility-validator 0.18.2@534b4eb256fdf5625ab1047d3091670308c84f04 (2026-09-02)"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T14:24:21+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-30T14:24:21+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T16:00:11+02:00"
 ---
 
 # Kotlin binary compatibility
@@ -26,9 +26,9 @@ Completion: validator, modules/targets, artifact boundary, baseline, host policy
 
 ## Step 2: Inspect configuration and dumps
 
-RUN from the repository root:
+RUN from the activated skill package; `--root` points to the target repository:
 ```bash
-python3 scripts/inspect-project.py --root . --json
+python3 scripts/inspect-project.py --root path/to/target-project --json
 ```
 
 CONFIRM built-in/legacy configuration, plugin/Kotlin versions, task names, filters, dump paths/files, publication source, KLib/unsupported-target settings, disabled validation, and modules. Then list Gradle wrapper tasks and resolve every version-catalog/convention-plugin indirection.
@@ -125,7 +125,7 @@ Completion: one validator and one authoritative dump set remain; CI detects the 
 - Check passes after a seeded break -> inspect `enabled`/`validationDisabled`, `check` wiring, filters, target support, dump directory, and selected variant.
 - Dump changes on unchanged source -> compare Kotlin/compiler/plugin/host/target/root-project versions before updating baseline.
 - Update and check fail with Gradle implicit-dependency validation -> run update and check as separate Gradle invocations.
-- Legacy validator reports `Unsupported class file major version 69` -> run Gradle with a supported runtime; JDK 21 is verified for 0.18.1.
+- Legacy validator reports `Unsupported class file major version 69` -> select a supported Gradle runtime. Historical 0.18.1 checks passed on JDK 21; verify 0.18.2 on the selected runtime rather than inheriting that proof.
 - Unsupported Apple target differs by host -> regenerate on a capable host or select/document strict versus inferred policy.
 - Published JAR differs from dump -> select Maven publications or the legacy task's final input JAR where supported.
 - Migration produces unrelated churn -> keep both baselines, compare declaration-by-declaration, and delay cutover; never accept wholesale replacement without review.

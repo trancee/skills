@@ -4,7 +4,7 @@ REFRESH [host guide](https://xtool.sh/documentation/xtool/installation-linux).
 
 ## Prereqs
 
-Official [Swift.org](https://swift.org/install/linux)/Swiftly required version preferred; distro build may omit Apple cross-target modules.
+Current guide: official Swift 6.4 from [Swift.org](https://swift.org/install/linux)/Swiftly; distro builds may omit Apple cross-target modules.
 ```bash
 which swift
 swift --version
@@ -12,8 +12,7 @@ usbmuxd --help
 ```
 Debian/Ubuntu: `sudo apt-get install usbmuxd`.
 Windows: WSL+USBIPD; bind+attach device to active distro; xtool runs inside WSL.
-Download required Apple `Xcode.xip`; major version insufficient.
-Observed xtool 1.17.0 pairing: Swiftly Swift 6.3.2 + Xcode 26.4.1 PASS; Xcode 26.6 SDK finalization/module maps FAIL. Recheck releases/issues.
+Current guide requires Apple `Xcode 27.xip`; preserve the exact point release/path. Historical xtool 1.17.0 proof: Swiftly 6.3.2 + Xcode 26.4.1 passed, Xcode 26.6 failed SDK finalization/module maps. That evidence does not validate xtool 1.21.0; rerun a linked-app build with the current tuple.
 
 ## AppImage
 
@@ -38,6 +37,8 @@ xtool sdk status
 swift sdk list
 ```
 Require auth, installed SDK path, `darwin`; then disposable `xtool dev build` proof.
+
+1.21.0 obtains clang resources from the Swift toolchain, prunes Xcode during XIP installation, and dynamically links the AppImage executable. [Release notes](https://github.com/xtool-org/xtool/releases/tag/1.21.0): diagnose toolchain/library/resource paths before altering extracted SDK files.
 
 ## Device
 

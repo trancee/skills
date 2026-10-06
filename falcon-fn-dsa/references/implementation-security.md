@@ -57,6 +57,8 @@ Pin and inspect:
 
 Test generated artifacts on every supported target. Source equality does not imply identical floating-point or timing behavior.
 
+Current pin `1b858880dcac091b5e5f84f0e4d8617c35ba1392` restores a norm-conversion function needed by FP-emulated signing. Rebuild and run vectors for the selected native/emulated arithmetic branch; a native-FP pass alone does not cover emulation.
+
 NIST's 2025 provisional FIPS 206 presentation planned exact KAT matching for signing, explicit operation order, and no fused multiply-add; it allowed more key-generation latitude with explicit validation checks. Treat this as design preview until FIPS 206 is published.
 
 ## Timing, power, cache, and fault behavior

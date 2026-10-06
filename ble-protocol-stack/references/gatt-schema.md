@@ -1,6 +1,6 @@
 # GATT schema design
 
-Source: [Bluetooth Core 6.2 GATT Sections 2–3](https://www.bluetooth.com/wp-content/uploads/Files/Specification/HTML/Core-62/out/en/host/generic-attribute-profile--gatt-.html).
+Source: [Bluetooth Core 6.3 GATT Sections 2–3](https://www.bluetooth.com/wp-content/uploads/Files/Specification/HTML/Core_v6.3/out/en/host/generic-attribute-profile--gatt-.html).
 
 A profile contains services; a service contains included services and characteristics; a characteristic has declaration, value, and optional descriptors. Each is represented by attributes.
 

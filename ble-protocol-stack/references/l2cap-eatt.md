@@ -1,6 +1,6 @@
 # L2CAP channels, SDUs, MPS, and credits
 
-Source: [Bluetooth Core 6.2 L2CAP](https://www.bluetooth.com/wp-content/uploads/Files/Specification/HTML/Core-62/out/en/host/logical-link-control-and-adaptation-protocol-specification.html).
+Source: [Bluetooth Core 6.3 L2CAP](https://www.bluetooth.com/wp-content/uploads/Files/Specification/HTML/Core_v6.3/out/en/host/logical-link-control-and-adaptation-protocol-specification.html).
 
 L2CAP multiplexes upper protocols by CID and carries upper-layer SDUs. Distinguish:
 - SDU segmentation/reassembly: L2CAP credit/retransmission modes split an upper SDU into K/I frames using MPS

@@ -8,8 +8,8 @@ metadata:
   sourceVersion: "Central Portal registration, namespace, requirements, publishing, tokens, OSSRH migration, and snapshots inspected 2026-09-06; Publisher API authentication and deployment lifecycle inspected 2026-10-02"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-09-06T13:28:03+02:00"
-  updatedBy: "github-copilot/gpt-6-luna"
-  updatedAt: "2026-10-02T15:18:56+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T15:34:20+02:00"
 ---
 
 # Maven Central Publishing
@@ -27,9 +27,9 @@ Completion: owner, coordinates, version, artifacts, route, staging mode, credent
 
 ## Step 2: Inspect the publication project
 
-RUN from the repository root:
+RUN from the skill package, with `--root` pointing to the target project:
 ```bash
-python3 scripts/inspect-project.py --root . --json
+python3 scripts/inspect-project.py --root /path/to/target/project --json
 ```
 
 1. CONFIRM publication plugins, coordinates, release/snapshot version, POM metadata, binary/sources/Javadoc artifacts, signing, checksums/bundle tasks, current/legacy endpoints, token indirection, automatic publication, and CI workflows.

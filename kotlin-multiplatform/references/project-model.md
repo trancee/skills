@@ -18,7 +18,7 @@ Declare only required targets and environments:
 - Native: architecture-specific targets
 - Android: current Google `com.android.kotlin.multiplatform.library` path and `android` DSL where applicable
 
-Current KMP 2.4.10 fully supports Gradle 7.6.3–9.5.0, AGP 8.5.2–9.1.0, Xcode 26.4. Live table wins.
+Current KMP 2.4.20 fully supports Gradle 7.6.3–9.7.0, AGP 8.5.2–9.3.1, Xcode 26.4. Live table wins.
 
 Multiple same-platform targets in one Gradle project are discouraged/error-prone. Split implementations into projects and depend on shared API module.
 

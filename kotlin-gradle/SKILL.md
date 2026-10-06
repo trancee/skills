@@ -1,15 +1,15 @@
 ---
 name: kotlin-gradle
 description: "Configures, migrates, optimizes, and troubleshoots Kotlin Gradle builds. Use when applying the Kotlin Gradle plugin, aligning Kotlin, Gradle, JDK, or Android Gradle plugin versions, configuring compilerOptions, toolchains, dependencies, source sets, generated sources, incremental compilation, caches, build reports, daemon behavior, or Kotlin Gradle plugin variants. Don't use for Kotlin source implementation, Maven-only builds, general Gradle plugin authoring, or dedicated detekt, Dokka, Kover, Spotless, ABI-validation, and benchmarking setup."
-compatibility: "Current Kotlin Gradle plugin 2.4.10 is fully supported with Gradle 7.6.3–9.5.0 and AGP 8.5.2–9.1.0. Live compatibility tables override this snapshot. Helper requires Python 3.11+."
+compatibility: "Current Kotlin Gradle plugin 2.4.20 is fully supported with Gradle 7.6.3–9.7.0 and AGP 8.5.2–9.3.1. Live compatibility tables override this snapshot. Helper requires Python 3.11+."
 metadata:
   category: "development"
   source: "https://kotlinlang.org/docs/gradle.html"
-  sourceVersion: "Kotlin 2.4.10; Kotlin Help build 1155 (2026-08-26)"
+  sourceVersion: "Kotlin 2.4.20@890ac1d94fdb80eb85f0eeb5be5e4352df987b2f; Kotlin Help build 1292 (2026-10-06)"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T14:42:58+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-30T14:42:58+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T15:30:00+02:00"
 ---
 
 # Kotlin Gradle
@@ -26,9 +26,9 @@ Completion: exact module/target, version tuple, configuration owner, requested b
 
 ## Step 2: Inspect effective configuration
 
-RUN from repository root:
+RUN the helper from the skill package, with the target project as `--root`:
 ```bash
-python3 scripts/inspect-project.py --root . --json
+python3 scripts/inspect-project.py --root <target-project> --json
 ```
 
 CONFIRM wrapper/KGP/AGP/JDK targets, plugin aliases, compiler-option levels, source sets, Kotlin dependencies, repositories, generated sources, cache/daemon/report properties, deprecated DSL, and warning suppressions. Then run `./gradlew projects` and `./gradlew tasks --all`; use `--info`/`--debug` only for variant/compiler-argument evidence.

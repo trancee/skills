@@ -175,7 +175,7 @@ def inspect(root: Path) -> dict[str, object]:
     c_fn_dsa_pin_files = matching(
         c_fn_dsa_files,
         falcon_text,
-        r"c-fn-dsa@[0-9a-f]{7,40}|a5f15894bf1a68017074650d5298cecf9bb29a79",
+        r"c-fn-dsa@[0-9a-f]{7,40}|(?:source[-_ ]?)?commit\s*[:=@]\s*[0-9a-f]{7,40}",
     )
     c_fn_dsa_provisional_files = matching(
         c_fn_dsa_files,

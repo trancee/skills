@@ -2,7 +2,7 @@
 
 Source: [repository README](https://github.com/Kotlin/kotlinx-benchmark) and [JVM setup](https://github.com/Kotlin/kotlinx-benchmark/blob/master/docs/kotlin-jvm-project-setup.md).
 
-Current 0.4.19 requires Kotlin 2.2.0+ and Gradle 8.0+. Apply `org.jetbrains.kotlinx.benchmark` and `org.jetbrains.kotlinx:kotlinx-benchmark-runtime` at the same version. Plugin resolution needs Gradle Plugin Portal; runtime resolution needs Maven Central.
+Current 0.5.0 requires Kotlin 2.2.0+ and Gradle 8.0+. Align plugin/runtime versions; plugin from Gradle Plugin Portal, runtime from Maven Central. KSP-based analysis runs internally in standalone mode: do not add a consumer KSP plugin solely for benchmark generation.
 
 ## Kotlin Multiplatform
 
@@ -51,4 +51,4 @@ Create and register the Native target. Only the host target executes. Release bu
 
 ## Wasm
 
-Configure `wasmJs { nodejs() }` or corresponding WasmWasi execution and register the exact target. Wasm support is experimental and tied to the Kotlin version used to build the release: 0.4.19 uses Kotlin 2.2.0.
+Wasm is experimental and tied to the release's build Kotlin version: 0.5.0 uses Kotlin 2.2.0. Configure wasmJs/wasmWasi Node execution and register the exact target; JVM/JS/Native consumer versions are not that exact Wasm requirement.

@@ -5,11 +5,11 @@ compatibility: "Requires a Gradle Kotlin Multiplatform module producing Apple fr
 metadata:
   category: "development"
   source: "https://skie.touchlab.co/intro"
-  sourceVersion: "SKIE 0.10.14 (touchlab/SKIE@2fdb1a3937530540e6c850a2a8362d41f20da77a)"
+  sourceVersion: "SKIE 0.10.15@7e7b8b597a4da8ba121a33775799ad51e517beb5; release/changelog checked 2026-10-06"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T13:07:08+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-30T13:07:08+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T16:00:11+02:00"
 ---
 
 # SKIE
@@ -23,9 +23,9 @@ metadata:
 
 ## 2. Inspect
 
-RUN from repository root:
+RUN from the activated skill package; `--root` points to the target repository:
 ```bash
-python3 scripts/inspect-project.py --root . --json
+python3 scripts/inspect-project.py --root path/to/target-project --json
 ```
 CONFIRM: KMP module; `framework`/CocoaPods signal; plugin application location/version; Kotlin version; annotations version; repositories; SKIE config; Swift source/tests.
 
@@ -51,7 +51,7 @@ New project: keep SKIE defaults unless a verified requirement differs.
    ```
 2. If unresolved, ensure `pluginManagement.repositories` includes `mavenCentral()`; preserve existing `google()`/`gradlePluginPortal()` policy.
 3. RUN wrapper framework link task. Never add undocumented runtime dependencies; plugin manages generated/runtime artifacts.
-4. Version gate: current docs authoring snapshot supports Kotlin 2.0.0..2.4.10 and Swift >=5.8/Xcode>=14.3. Re-read live intro/changelog; SKIE rejects unsupported Kotlin.
+4. Version gate: SKIE 0.10.15 adds Kotlin 2.4.20 support; the intro page's 2.4.10 ceiling lags that release. Use the exact release/changelog over stale overview text. Retain Swift >=5.8/Xcode >=14.3 floors and the live Kotlin/Xcode compatibility tuple; never bypass SKIE's checks.
 
 ## 5. Configure
 

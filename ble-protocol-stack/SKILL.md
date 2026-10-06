@@ -1,15 +1,15 @@
 ---
 name: ble-protocol-stack
 description: "Designs, implements, validates, and troubleshoots Bluetooth Low Energy GAP, GATT, ATT, and L2CAP interactions. Use when defining advertising, scanning, and connection roles; modeling GATT services, characteristics, descriptors, properties, permissions, and values; implementing ATT reads, writes, subscriptions, notifications, indications, long values, and caching; configuring L2CAP fixed, credit-based, or enhanced ATT bearers; or diagnosing discovery, UUID, MTU, CCCD, and cross-platform interoperability failures. Don't use for Bluetooth Classic, LE Audio or ISO streams, RF and PHY tuning, throughput optimization, pairing cryptography, platform UI, or generic network protocols."
-compatibility: "Uses Bluetooth Core Specification 6.2 terminology and requirements. Platform/controller APIs expose subsets and may synthesize GATT declarations/descriptors. Verify mandatory specification updates, assigned numbers, profile specifications, and platform behavior for the product's claimed Core/profile versions. Schema validator requires Python 3.11+."
+compatibility: "Bluetooth Core 6.3; 6.2 GAP/GATT/ATT/L2CAP baseline retained. Platform/controller APIs expose subsets and may synthesize attributes. Verify mandatory updates, assigned numbers, profiles, and platform behavior for the claimed version. Schema validator requires Python 3.11+."
 metadata:
   category: "development"
   source: "https://argenox.com/blog/understanding-ble-gap-gatt-and-l2cap"
-  sourceVersion: "Bluetooth Core Specification 6.2; Argenox article 2026-04-08"
+  sourceVersion: "Bluetooth Core Specification 6.3 (current); 6.2 retained as supported baseline; Argenox article 2026-04-08 (verified)."
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T22:55:25+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-30T22:55:25+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T15:43:04+02:00"
 ---
 
 # BLE Protocol Stack
@@ -18,7 +18,7 @@ metadata:
 
 1. DEFINE advertising/discovery | connection lifecycle | GATT database | client procedure | notification/indication | caching/versioning | ATT bearer/EATT | L2CAP CoC | interoperability defect.
 2. IDENTIFY GAP roles, Link Layer central/peripheral, GATT client/server per procedure, service owner, peer/platform/controller/stack/Core/profile versions, UUID namespace, value schemas, permissions/security levels, cache policy, ATT bearers, L2CAP channels, failure/reconnect behavior, and compatibility matrix.
-3. READ `references/layers-roles.md`, then the current Core 6.2 GAP/GATT/ATT/L2CAP sections it identifies for the change.
+3. READ `references/layers-roles.md`, then the identified Core 6.3 GAP/GATT/ATT/L2CAP sections for the change; retained 6.2 host semantics are unchanged in scope.
 4. SEPARATE roles: central/peripheral controls link establishment; client/server controls each GATT procedure. Either connected peer can be client, server, or both.
 5. ROUTE Apple platform mechanics to `corebluetooth`, Android GATT client/platform mechanics to `android-ble`, Android local GATT server mechanics to `android-ble-gatt-server`, Android RFCOMM/LE CoC socket mechanics to `android-bluetooth-sockets`, PHY/DLE/interval/throughput tuning to `ble-throughput`, and application cryptographic handshakes to `noise-protocol`.
 
@@ -30,7 +30,7 @@ Completion: roles, discovery/connection flow, logical schema, wire procedures, s
 2. ASSIGN stable logical IDs distinct from runtime attribute handles; handles are server-instance bindings discovered by clients.
 3. USE 16-bit UUIDs only for Bluetooth SIG-assigned definitions and 128-bit UUIDs for vendor definitions. Verify every SIG UUID/profile against [Assigned Numbers](https://www.bluetooth.com/specifications/assigned-numbers) and its profile specification.
 4. DEFINE each value's byte length, encoding, byte order, units/scaling/range/sentinel/version, properties, permissions, subscription security, and error behavior.
-5. RUN:
+5. RUN from the activated skill package root (`scripts/` lives in the skill package, not the consumer project):
 ```bash
 python3 scripts/validate-schema.py path/to/gatt-schema.json --json
 ```

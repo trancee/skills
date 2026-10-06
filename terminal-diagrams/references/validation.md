@@ -31,3 +31,5 @@ Component ranges refer to unfenced input lines, inclusive and 1-based. Empty sep
 Exit codes: 0 valid, 1 validation errors, 2 invalid CLI/input. JSON output contains line widths, errors, warnings, and component results.
 
 Passing the conservative validator is not proof for every terminal. Exercise the actual renderer when labels include non-ASCII text, the terminal uses a different Unicode width table, or fonts/locale resolve ambiguous characters differently.
+
+Record the validator's Python Unicode database separately from the renderer's Unicode profile (`python3 -c 'import unicodedata; print(unicodedata.unidata_version)'`). For Unicode 18 additions or changed Indic segmentation, use the destination's pinned width/grapheme implementation and fresh render evidence.

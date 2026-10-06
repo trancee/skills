@@ -1,6 +1,6 @@
 # Testing and migration
 
-Sources: [quickstart](https://kotlinlang.org/docs/ksp-quickstart.html), [kapt migration](https://kotlinlang.org/docs/ksp-kapt-migration.html), [FAQ](https://kotlinlang.org/docs/ksp-faq.html), and [KSP 2.3.11 release](https://github.com/google/ksp/releases/tag/2.3.11).
+Sources: [quickstart](https://kotlinlang.org/docs/ksp-quickstart.html), [kapt migration](https://kotlinlang.org/docs/ksp-kapt-migration.html), [FAQ](https://kotlinlang.org/docs/ksp-faq.html), and [KSP 2.3.12 release](https://github.com/google/ksp/releases/tag/2.3.12).
 
 ## Processor test pyramid
 

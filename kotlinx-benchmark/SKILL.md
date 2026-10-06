@@ -1,15 +1,15 @@
 ---
 name: kotlinx-benchmark
 description: "Configures, runs, compares, and troubleshoots kotlinx-benchmark for Kotlin/JVM, Java, JavaScript, Native, and Wasm projects. Use when adding the benchmark plugin and runtime, defining benchmark source sets, targets or profiles, choosing warmups, iterations, modes, forks or report formats, building JMH benchmark JARs, analyzing JSON results, or diagnosing missing benchmarks and toolchain failures. Don't use for production profiling, AndroidX Benchmark or Macrobenchmark, Java JMH without kotlinx-benchmark, load testing, or performance claims without controlled measurements."
-compatibility: "kotlinx-benchmark 0.4.19 requires Kotlin 2.2.0+ and Gradle 8.0+; its experimental Wasm targets require the exact Kotlin version used to build the release (2.2.0 for 0.4.19). Native benchmarks run only for the host target. Helper requires Python 3.11+."
+compatibility: "kotlinx-benchmark 0.5.0 requires Kotlin 2.2.0+ and Gradle 8.0+; its experimental Wasm targets require the exact Kotlin version used to build the release (2.2.0 for 0.5.0). 0.5.0 rewrote the code generator to use KSP, removing dependency on internal Kotlin compiler APIs removed in Kotlin 2.5. Native benchmarks run only for the host target. Helper requires Python 3.11+."
 metadata:
   category: "development"
   source: "https://github.com/Kotlin/kotlinx-benchmark"
-  sourceVersion: "kotlinx-benchmark 0.4.19@73284a133f1c3546668764a48d4b57663786d04b"
+  sourceVersion: "kotlinx-benchmark 0.5.0@6181dd9623dba5311131c97bd3471a620e080189"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T14:34:58+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-30T14:34:58+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T15:34:20+02:00"
 ---
 
 # kotlinx-benchmark
@@ -26,9 +26,9 @@ Completion: hypothesis, metric, workload, target, toolchain, comparison method, 
 
 ## Step 2: Inspect the project
 
-RUN from repository root:
+RUN from the skill package, with `--root` pointing to the target project:
 ```bash
-python3 scripts/inspect-project.py --root . --json
+python3 scripts/inspect-project.py --root /path/to/target/project
 ```
 
 CONFIRM plugin/runtime versions, Kotlin/Gradle versions, source sets/compilations, registered benchmark targets, configuration profiles, generated task names, JMH/all-open setup, report formats, and platform-specific advanced options. Resolve version-catalog and convention-plugin indirection before editing.
@@ -116,7 +116,7 @@ COPY `assets/benchmark-report.md`; fill exact hypothesis, code boundary, version
 
 - No benchmark discovered -> verify runtime dependency, source set/compilation association, target registration, public `@Benchmark`, include regex, and task name.
 - JVM generation fails on final class/method -> apply all-open for `org.openjdk.jmh.annotations.State` or mark benchmark types/methods open.
-- Plugin/runtime linkage fails -> align both to one version and verify Kotlin/Gradle compatibility; 0.4.18 had recent-Kotlin breakage reverted in 0.4.19.
+- Plugin/runtime linkage fails -> align both to one version and verify Kotlin/Gradle compatibility; 0.5.0 replaced the compiler-API-based code generator with KSP, resolving Kotlin 2.5 linkage issues that motivated the 0.4.18/0.4.19 reverts.
 - Native task absent/fails -> run only the host target and verify target registration/build type.
 - JS/Wasm task fails -> verify Node environment, executor, bridge option, and exact Wasm Kotlin version.
 - Result is implausibly fast/zero -> return/consume outputs, inspect constant folding/dead-code elimination, enlarge representative state, and use profiler/generated-code evidence.

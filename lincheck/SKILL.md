@@ -5,11 +5,11 @@ compatibility: "Current Lincheck 3.7 uses coordinates org.jetbrains.lincheck:lin
 metadata:
   category: "development"
   source: "https://kotlinlang.org/docs/lincheck-guide.html"
-  sourceVersion: "Lincheck 3.7 (JetBrains/lincheck@a1e02bfda2948c02605ef7ac83c433c71c67ec6c); Kotlin Help build 1155"
+  sourceVersion: "Lincheck 3.7 (JetBrains/lincheck@a1e02bfda2948c02605ef7ac83c433c71c67ec6c); Kotlin Help build 1292"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T15:18:42+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-30T15:18:42+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T16:00:11+02:00"
 ---
 
 # Lincheck
@@ -26,9 +26,9 @@ Completion: shared state, operation boundaries, oracle/property, strategy, bound
 
 ## Step 2: Inspect project and tests
 
-RUN from repository root:
+RUN from the activated skill package; `--root` points to the target repository:
 ```bash
-python3 scripts/inspect-project.py --root . --json
+python3 scripts/inspect-project.py --root path/to/target-project --json
 ```
 
 CONFIRM current/legacy coordinates/imports, Lincheck version/test scope, JVM test source set, arbitrary/declarative entry points, operations/parameters/validation, strategies/verifier/specification, scenario bounds, suspension/blocking flags, and progress checks. Treat source findings as candidates; inspect enclosing test classes before claims.

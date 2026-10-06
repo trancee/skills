@@ -2,13 +2,9 @@
 
 ## Refresh gate
 
-Before changing a host, read:
+REFRESH [install guide](https://tamarin-prover.com/install.html), [latest release/assets](https://github.com/tamarin-prover/tamarin-prover/releases/latest), and selected release notes before host changes.
 
-- Official install page: https://tamarin-prover.com/install.html
-- Latest release and assets: https://github.com/tamarin-prover/tamarin-prover/releases/latest
-- Release notes for the selected version
-
-Record the selected version, asset/package origin, OS, architecture, and dependency compatibility. The baseline inspected for this skill is Tamarin Prover 1.12.0 (`82780bbaf3328a45f624ddb41e51bf75425f851c`, released 2026-03-07). Its release notes allow Maude through 3.5.1. Re-check the selected release rather than inheriting this range.
+RECORD version, origin, OS/architecture, dependency compatibility. Baseline: 1.12.0@82780bbaf3328a45f624ddb41e51bf75425f851c (2026-03-07), Maude supported through 3.5.1. Recheck selected release; not a universal future range.
 
 ## Select one installation route
 
@@ -18,7 +14,7 @@ Record the selected version, asset/package origin, OS, architecture, and depende
 brew install tamarin-prover/tap/tamarin-prover
 ```
 
-Use the tap's packaged Maude and Graphviz dependencies. Pin or record the resolved formula version where reproducibility matters.
+USE packaged Maude/Graphviz dependencies; record resolved formula version.
 
 ### Arch Linux
 
@@ -40,7 +36,7 @@ For NixOS, add `tamarin-prover` to `environment.systemPackages` and rebuild the 
 
 ### Windows
 
-Use WSL2 with Ubuntu. Install and run Tamarin inside WSL, not as a native Windows binary. Access Windows files under `/mnt/c/...`. For interactive mode, start Tamarin in WSL and open `http://127.0.0.1:3001` in the Windows browser.
+RUN inside WSL2/Ubuntu, not native Windows. Windows files: `/mnt/c/...`; interactive browser URL: `http://127.0.0.1:3001`.
 
 ### Release archive
 
@@ -67,7 +63,7 @@ Use this route only for Tamarin development or a required unreleased feature.
 3. Add `~/.local/bin` to `PATH` if required.
 4. Record the commit, compiler/Stack resolver, build command, and resulting binary digest.
 
-The official guide notes that source builds install many Haskell dependencies and are substantially slower than packaged installs. If Stack fails after an update, refresh Stack using its current official upgrade procedure before rebuilding.
+Source builds compile many Haskell dependencies. Stack update failure -> current official upgrade procedure, then rebuild.
 
 ## Runtime verification
 
@@ -96,7 +92,7 @@ Run precomputation only after Maude is verified:
 tamarin-prover --quit-on-warning --precompute-only assets/theory-template.spthy
 ```
 
-A usable installation resolves the intended binaries, prints the pinned Tamarin version, passes the installation self-test, parses the theory without diagnostics, and completes precomputation without well-formedness warnings.
+GATE: intended binaries/version; self-test passes; theory parses; precomputation has no well-formedness warnings.
 
 ## Interactive and remote use
 
@@ -106,7 +102,7 @@ Local interactive mode:
 tamarin-prover interactive model.spthy
 ```
 
-Open `http://127.0.0.1:3001`. The server loads `.spthy` files in the theory directory; start it from a directory whose models are intended for disclosure through that interface.
+OPEN `http://127.0.0.1:3001`. Server loads theories in the model directory; expose only intended models.
 
 For a trusted remote host, bind the GUI to the remote loopback and forward port 3001:
 
@@ -114,8 +110,8 @@ For a trusted remote host, bind the GUI to the remote loopback and forward port 
 ssh -L 3001:localhost:3001 SERVERNAME
 ```
 
-Start Tamarin in a persistent terminal multiplexer on the server, then open `http://127.0.0.1:3001` locally. Do not expose the proof server on a public interface.
+RUN in a persistent server terminal; open local loopback URL. No public proof-server bind.
 
 ## Editor support
 
-The official VS Code extension provides syntax highlighting, parser diagnostics, and well-formedness checks. Editor feedback complements but does not replace `--parse-only`, `--precompute-only`, or proof execution with the pinned binary.
+VS Code extension: highlighting/parser/well-formedness feedback; not a replacement for pinned CLI/proof execution.

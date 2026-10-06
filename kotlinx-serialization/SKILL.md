@@ -8,8 +8,8 @@ metadata:
   sourceVersion: "kotlinx.serialization 1.11.0@6956af2e6073347c7832c3c5b374fa3b5a345956; Kotlin Help build 1155"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T15:10:58+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-30T15:10:58+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T15:34:20+02:00"
 ---
 
 # kotlinx.serialization
@@ -26,9 +26,9 @@ Completion: format, schema, compatibility directions, trust/privacy constraints,
 
 ## Step 2: Inspect configuration and serialization sites
 
-RUN from repository root:
+RUN from the skill package, with `--root` pointing to the target project:
 ```bash
-python3 scripts/inspect-project.py --root . --json
+python3 scripts/inspect-project.py --root /path/to/target/project
 ```
 
 CONFIRM compiler plugin/Kotlin version alignment, runtime format modules/versions/scopes, targets, `@Serializable` models, serial names/defaults/contextual/polymorphic/custom serializers, Json options, alternative formats, and shrinker risks. Treat source findings as candidates; inspect enclosing model/format instance before claims.

@@ -8,8 +8,8 @@ metadata:
   sourceVersion: "Dokka 2.2.0 (Kotlin/dokka@656ca46fbbd676d872b0bd383042fc12ae7adcdd)"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T14:08:32+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-30T14:08:32+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T16:00:11+02:00"
 ---
 
 # Dokka
@@ -26,9 +26,9 @@ Completion: runner, version, mode, source sets, output formats, aggregation boun
 
 ## Step 2: Inspect configuration
 
-RUN from the repository root:
+RUN from the activated skill package; `--root` points to the target repository:
 ```bash
-python3 scripts/inspect-project.py --root . --json
+python3 scripts/inspect-project.py --root path/to/target-project --json
 ```
 
 CONFIRM plugin IDs/versions, legacy DGP v1 APIs, migration flags, Dokka dependencies/plugins, aggregation edges, source-set options, warning policy, output paths, runner goals/tasks, and CLI configuration. Then query build-tool-native tasks/effective configuration; resolve every alias/property before editing.

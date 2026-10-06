@@ -8,8 +8,8 @@ metadata:
   sourceVersion: "Apple Core Bluetooth documentation 2026-08-31; archived background guide 2013-09-18"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-31T08:33:01+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-31T08:33:01+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T16:00:11+02:00"
 ---
 
 # Core Bluetooth
@@ -26,9 +26,9 @@ Completion: roles, platforms, privacy/background requirements, state owner, call
 
 ## Step 2: Inspect the Apple project
 
-RUN from the project root:
+RUN from the activated skill package; `--root` points to the target repository:
 ```bash
-python3 scripts/inspect-project.py --root . --json
+python3 scripts/inspect-project.py --root path/to/target-project --json
 ```
 
 CONFIRM manager/delegate ownership, `poweredOn` gating, privacy keys, background modes, scan filters/stopping, retained peripherals, connection cancellation, discovery callbacks, write/notification flow control, local service publication, ATT responses/offsets, restoration identifiers, and unsupported subclassing.

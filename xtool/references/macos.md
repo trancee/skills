@@ -23,3 +23,5 @@ REFRESH [host guide](https://xtool.sh/documentation/xtool/installation-macos).
 5. Disposable project -> `xtool dev build` before device deployment.
 
 xtool bypasses Xcode build system but requires Xcode iOS SDK+toolchain.
+
+xtool 1.21.0 raises its Darwin deployment targets to macOS 14/iOS 17; Swift 6-compatible macOS CLI toolchains need macOS 14.5+. This floor concerns xtool/XKit/XToolSupport, not an inferred minimum for every generated app. Verify the project's explicit app deployment target separately.

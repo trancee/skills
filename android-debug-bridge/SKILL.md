@@ -8,8 +8,8 @@ metadata:
   sourceVersion: "Android Developers ADB guide and Platform-Tools 37.0.1 release notes, 2026-08-31"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-31T10:08:58+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-31T10:08:58+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T15:38:18+02:00"
 ---
 
 # Android Debug Bridge
@@ -26,7 +26,7 @@ Completion: one target, adb executable, command/effect class, expected output, t
 
 ## Step 2: Inspect host and device state
 
-RUN:
+Resolve `scripts/inspect-adb.py` from the skill package:
 ```bash
 python3 scripts/inspect-adb.py --json
 ```

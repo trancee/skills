@@ -8,8 +8,8 @@ metadata:
   sourceVersion: "Android API 37 documentation (2026-08-28); supplied article reviewed 2026-08-31; kotlinx.coroutines 1.11.0"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-31T08:23:27+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-31T09:54:21+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T15:38:18+02:00"
 ---
 
 # Android BLE GATT Queue
@@ -26,9 +26,9 @@ Completion: each operation has one submission, one matching completion callback,
 
 ## Step 2: Inspect queue candidates
 
-RUN from the Android project root:
+Resolve `scripts/inspect-project.py` from the skill package; pass the Android project via `--root`:
 ```bash
-python3 scripts/inspect-project.py --root . --json
+python3 scripts/inspect-project.py --root path/to/android-project --json
 ```
 
 CONFIRM GATT calls/callbacks, queue/actor/channel capacity, in-flight slot/operation IDs, callback matching, epoch checks, API 33 value APIs, timeout/reset, cancellation, notification stream, CCCD composite operations, disconnect draining, `GlobalScope`, delay polling, value-keyed completion maps, and nonexistent callback overloads.

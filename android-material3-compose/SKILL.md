@@ -5,11 +5,11 @@ compatibility: "Targets Android-only Jetpack Compose Material 3 apps. Current st
 metadata:
   category: "development"
   source: "https://m3.material.io/develop/android/jetpack-compose"
-  sourceVersion: "Material Design 3 Android guidance; AndroidX Compose Material3 1.4.0 stable and 1.5.0-alpha27 (release notes updated 2026-08-26; inspected 2026-09-04)"
+  sourceVersion: "Material Design 3 Android guidance; AndroidX Material3 1.4.0 stable, 1.5.0-alpha29 preview; release notes checked 2026-10-06"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-09-04T00:00:00+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-09-04T00:00:00+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T16:00:11+02:00"
 ---
 
 # Android Material 3 Compose
@@ -26,9 +26,9 @@ Completion: platform/version matrix, visual hierarchy, states, window classes, a
 
 ## Step 2: Inspect the Android project
 
-RUN from the repository root:
+RUN from the activated skill package; `--root` points to the target repository:
 ```bash
-python3 scripts/inspect-project.py --root . --json
+python3 scripts/inspect-project.py --root path/to/target-project --json
 ```
 
 CONFIRM app modules, Compose enablement/compiler plugin, Compose BOM and Material3/adaptive artifacts, Material 2 coexistence, theme definitions, dynamic color, edge-to-edge/insets, adaptive APIs, previews, semantic UI tests, and experimental opt-ins.

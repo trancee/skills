@@ -72,7 +72,7 @@ The NIST 2025 FIPS 206 status presentation previewed, but did not standardize:
 - 79 sampler-randomness bits per coefficient.
 - Uniform 40-byte pseudorandom seeds except a 32-byte key-generation seed.
 
-`pornin/c-fn-dsa` is the active C implementation reference for provisional FN-DSA work. At commit `a5f15894bf1a68017074650d5298cecf9bb29a79`, its README states that no FN-DSA draft has been published, the code reflects a best guess of future FIPS 206, backward compatibility is not promised, and stable version 1.0 will follow the final standard. Pin every use and keep its keys, signatures, vectors, and APIs outside permanent interoperability contracts.
+`pornin/c-fn-dsa@1b858880dcac091b5e5f84f0e4d8617c35ba1392` is the active provisional C reference. README: best guess of future FIPS 206; no compatibility promise until version 1.0 after the final standard. The 2026-09-21 commit restores `mqpoly_sqnorm_int_to_signed` for FP-emulated builds. Pin every use; keep provisional keys/signatures/vectors/APIs outside permanent interoperability contracts.
 
 PQClean is archived read-only and explicitly retired. Existing PQClean-derived Falcon code may still be audited as deployed legacy code, but new work should use a maintained source; for provisional FN-DSA implementation study, use pinned c-fn-dsa instead.
 

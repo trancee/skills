@@ -20,6 +20,6 @@ The model reports:
 
 Indications/write requests are conservatively capped to one value per event because confirmation/response serialization dominates and varies by stack. Measure callback cadence for the real bound.
 
-Assumptions deliberately excluded: Coded PHY coding/header timing, configurable Core 6 frame spacing negotiation, Core 6.2 SCI scheduling, EATT, L2CAP CoC/credits, bidirectional useful data, retransmissions, host latency, buffer drops, application headers/security/reliability, and power/coexistence.
+Assumptions deliberately excluded: Coded PHY coding/header timing, configurable Core 6 frame spacing negotiation, SCI scheduling (SCI introduced in Core 6.2, retained in 6.3), EATT, L2CAP CoC/credits, the draft Bluetooth HDT PHY (up to 7.5 Mbps, not adopted in 6.3), bidirectional useful data, retransmissions, host latency, buffer drops, application headers/security/reliability, and power/coexistence.
 
 With LL payload 251, value 244 fills one LL packet (`244+3+4=251`); value 495 fills two (`495+3+4=502`). At ATT MTU 517, the 512-byte attribute maximum needs three LL packets, so the largest value is not automatically the most efficient.

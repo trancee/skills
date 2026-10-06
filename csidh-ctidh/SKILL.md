@@ -8,8 +8,8 @@ metadata:
   sourceVersion: "CSIDH, CTIDH, quantum evaluation, velusqrt, high-security CSIDH, dCTIDH, and sina1777/CSIDH@770d2a198e109f30014af87ae38502f03c61203a inspected 2026-09-10"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-09-10T21:24:48+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-09-10T21:36:15+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T15:47:14+02:00"
 ---
 
 # CSIDH and CTIDH
@@ -27,9 +27,9 @@ Completion: every key/action binds one exact construction, implementation revisi
 
 ## Step 2: Inspect the project boundary
 
-RUN from the repository root:
+RUN from the skill package, with `--root` pointing to the target project:
 ```bash
-python3 scripts/inspect-project.py --root . --json
+python3 scripts/inspect-project.py --root /path/to/target/project --json
 ```
 
 1. CONFIRM CSIDH/CTIDH/dCTIDH source and parameter pins, public/secret APIs, validation, shared-action callsites, KDF/transcript binding, secret-independent execution, dummy operations, fault tests, RNG, CPU dispatch, CT tooling, custom parameter generation, and SIDH/SIKE naming.

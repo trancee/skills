@@ -45,7 +45,7 @@ Use full module task paths in multi-project builds. List tasks after configurati
 
 - `advanced("jvmForks", n)`: default 1; 0 disables forks; `definedByJmh` uses `@Fork`/JMH default
 - `advanced("jmhIgnoreLock", true)`: sets JMH lock property
-- `JvmBenchmarkTarget.jmhVersion`: default 1.37 in 0.4.19; multiple JVM targets with different JMH versions are unsupported
+- `JvmBenchmarkTarget.jmhVersion`: default 1.37 in 0.5.0; multiple JVM targets with different JMH versions are unsupported
 
 ## Platform options
 

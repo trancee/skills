@@ -28,6 +28,8 @@ kotlin {
 
 `MAVEN_PUBLICATIONS` requires `maven-publish`; it does not apply to Kotlin/Android or KMP projects with an Android target because those publications do not provide JARs through this path. Other enum choices are `MAIN_COMPILATION` and `NON_TEST_COMPILATIONS`.
 
+Kotlin 2.4.20 (KT-85950) extends built-in BCV to recognize the `com.android.kotlin.multiplatform.library` plugin, so KMP-with-Android-library projects are no longer uniformly excluded from ABI validation; still validate Apple/KLib targets from an authoritative host because they remain host-dependent.
+
 Legacy validator can point `apiBuild.inputJar` at `jar`, `jvmJar`, or `shadowJar` archive output.
 
 Verify artifact authority by listing final archive entries and matching transformed public classes to the dump. A task dependency alone does not prove the correct binary was inspected.

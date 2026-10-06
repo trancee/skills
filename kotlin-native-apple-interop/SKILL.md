@@ -5,11 +5,11 @@ compatibility: "Apple framework linking, cinterop against Apple SDKs, Xcode inte
 metadata:
   category: "development"
   source: "https://kotlinlang.org/docs/native-objc-interop.html"
-  sourceVersion: "Kotlin 2.4.10; Kotlin Help build 1155; Apple framework and native import docs 2026"
+  sourceVersion: "Kotlin 2.4.20@890ac1d94fdb80eb85f0eeb5be5e4352df987b2f; Kotlin Help build 1292; Apple framework/native import docs checked 2026-10-06"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T15:28:38+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-30T15:28:38+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T16:00:11+02:00"
 ---
 
 # Kotlin/Native Apple interop
@@ -26,9 +26,9 @@ Completion: direction, module, targets, artifact, consumer, distribution, deploy
 
 ## Step 2: Inspect configuration and exported API
 
-RUN from repository root:
+RUN from the activated skill package; `--root` points to the target repository:
 ```bash
-python3 scripts/inspect-project.py --root . --json
+python3 scripts/inspect-project.py --root path/to/target-project --json
 ```
 
 CONFIRM Apple targets/frameworks/XCFrameworks, base names/static mode/exports, CocoaPods/cinterops, `.def` properties, linker/compiler options, package names, binary options, export annotations, native types in public signatures, StableRef/native allocation balance, and strong-link candidates. Inspect generated Gradle task names afterward.

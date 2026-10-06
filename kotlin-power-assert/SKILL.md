@@ -1,15 +1,15 @@
 ---
 name: kotlin-power-assert
 description: "Configures, uses, debugs, and exposes Kotlin Power-assert integrations. Use when applying the Power-assert compiler plugin in Gradle, Maven, JVM, or Multiplatform builds; selecting transformed functions or compilations; interpreting expression-value diagrams; authoring @PowerAssert assertion APIs, soft assertions, or CallExplanation renderers; and diagnosing missing transformations or runtime intrinsic failures. Don't use for general Kotlin tests, assertion-library selection without Power-assert, compiler-plugin implementation, or non-Kotlin assertions."
-compatibility: "Power-assert is Experimental in Kotlin 2.4.10. Keep the compiler plugin, Kotlin compiler, Gradle plugin, Maven plugin artifact, and runtime library on one Kotlin version. Kotlin 2.4.10 selects source sets with includedSourceSets; compilationFilter exists only in later source and must be version-gated. Helper requires Python 3.11+."
+compatibility: "Power-assert is Experimental in Kotlin 2.4.20. Keep the compiler plugin, Kotlin compiler, Gradle plugin, Maven plugin artifact, and runtime library on one Kotlin version. Kotlin 2.4.20 selects compilations with `compilationFilter` (`PowerAssertCompilationFilter.TESTS` default, `ALL`, or a predicate); `includedSourceSets` is deprecated. Helper requires Python 3.11+."
 metadata:
   category: "development"
   source: "https://kotlinlang.org/docs/power-assert.html"
-  sourceVersion: "Kotlin 2.4.10; Kotlin Help build 1155 (2026-08-26)"
+  sourceVersion: "Kotlin 2.4.20@890ac1d94fdb80eb85f0eeb5be5e4352df987b2f (2026-09-07); Kotlin Help build 1292 (2026-10-06)"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T17:43:53+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-30T17:43:53+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T16:00:11+02:00"
 ---
 
 # Kotlin Power-assert
@@ -26,9 +26,9 @@ Completion: owning module, transformed compilations/functions, failure semantics
 
 ## Step 2: Inspect current integration
 
-RUN from the target repository root:
+RUN from the activated skill package; `--root` points to the target repository:
 ```bash
-python3 scripts/inspect-project.py --root . --json
+python3 scripts/inspect-project.py --root path/to/target-project --json
 ```
 
 CONFIRM Gradle/Maven plugin application, Kotlin and Power-assert versions, `powerAssert` options, transformed functions, source-set/compilation selectors, runtime dependencies, annotated APIs, explanation consumers, assertion call sites, and production-source instrumentation.
@@ -54,7 +54,7 @@ READ `references/configuration.md`.
 1. KEEP `kotlin.assert` as the default unless another assertion function is used.
 2. ADD exact fully-qualified callable names through `functions`; configuration is a set, not an overload signature matcher.
 3. OMIT `@PowerAssert`-annotated functions from `functions`; the annotation makes calls discoverable when the caller's compilation has the plugin.
-4. ON Kotlin 2.4.10, set `includedSourceSets` to exact source-set names; use `compilationFilter` only after the target Kotlin version's released API documents it.
+4. ON Kotlin 2.4.20, use `compilationFilter` (`PowerAssertCompilationFilter.TESTS`/`ALL` or a predicate over `KotlinCompilation`). Remove deprecated nonempty `includedSourceSets`: it overrides the filter; empty/default sets leave the filter effective.
 5. CONFIRM every configured function has a supported Boolean condition plus final `String`/message-lambda shape before relying on transformation.
 
 Completion: each intended call is selected once and each unintended compilation remains untransformed.
@@ -117,7 +117,7 @@ Completion: the original assertion path emits the expected diagram and the norma
 - No value diagram -> inspect caller module, source-set/compilation selection, exact fully-qualified function name, supported shape, and expression structure.
 - `NotImplementedError` from `PowerAssert.explanation` -> apply/align the plugin where the annotated function is compiled and verify the runtime dependency; never call the intrinsic from an unannotated function.
 - Gradle Experimental warning -> add the narrow documented `ExperimentalKotlinGradlePluginApi` opt-in around the DSL after accepting stability; do not suppress all compiler warnings.
-- Gradle selector unresolved -> use `includedSourceSets` on Kotlin 2.4.10; adopt `compilationFilter` only with a released Kotlin version that provides it, then verify every intended target compilation.
+- Gradle selector unresolved -> use the version's `compilationFilter` API; match compilation names (`main`/`test`), not source-set names. Remove nonempty deprecated `includedSourceSets` overrides; verify every intended target.
 - JVM `assert` does not fail -> enable assertions for that runtime/test task or use `require`/`check` when enforcement must be unconditional.
 - Maven transforms nothing -> configure both `<compilerPlugins><plugin>power-assert</plugin>` and the matching `kotlin-maven-power-assert` plugin dependency.
 - Library consumer fails at runtime -> test plugin-enabled and fallback consumers; align `kotlin-power-assert-runtime` with the compiler plugin.

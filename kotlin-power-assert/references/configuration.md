@@ -1,17 +1,17 @@
 # Functions and source selection
 
-Sources: [Power-assert guide](https://kotlinlang.org/docs/power-assert.html), [Kotlin 2.4.10 `PowerAssertGradleExtension`](https://github.com/JetBrains/kotlin/blob/v2.4.10/libraries/tools/kotlin-power-assert/src/common/kotlin/org/jetbrains/kotlin/powerassert/gradle/PowerAssertGradleExtension.kt), and [development-branch extension](https://github.com/JetBrains/kotlin/blob/master/libraries/tools/kotlin-power-assert/src/common/kotlin/org/jetbrains/kotlin/powerassert/gradle/PowerAssertGradleExtension.kt).
+Sources: [Power-assert guide](https://kotlinlang.org/docs/power-assert.html) and [Kotlin 2.4.20 `PowerAssertGradleExtension`](https://github.com/JetBrains/kotlin/blob/v2.4.20/libraries/tools/kotlin-power-assert/src/common/kotlin/org/jetbrains/kotlin/powerassert/gradle/PowerAssertGradleExtension.kt).
 
 ## Functions
 
-`functions` is a `SetProperty<String>` of fully-qualified callable paths and defaults to `kotlin.assert`.
+`functions` is a `SetProperty<String>` of fully-qualified callable paths, defaulting to `kotlin.assert`. Assignment replaces the set, so include `kotlin.assert` when it must remain transformed:
 
 ```kotlin
 powerAssert {
-    functions.addAll(
-        "kotlin.require",
-        "kotlin.check",
+    functions = listOf(
+        "kotlin.assert",
         "kotlin.test.assertTrue",
+        "kotlin.test.assertEquals",
         "com.example.assertThat",
     )
 }
@@ -23,16 +23,25 @@ Transformable functions accept the Boolean condition and a final `String` or `()
 
 ## Source-set and compilation selection
 
-Kotlin 2.4.10 exposes `includedSourceSets: SetProperty<String>`. Empty/default means all test source sets:
+Kotlin 2.4.20: `compilationFilter` is a `Property<PowerAssertCompilationFilter>` over `KotlinCompilation` objects; default = test compilations.
 
 ```kotlin
 powerAssert {
-    includedSourceSets.addAll("commonTest", "jvmTest")
+    compilationFilter.set(PowerAssertCompilationFilter.TESTS)
 }
 ```
 
-Use exact Kotlin source-set names. Adding `main`, `commonMain`, or a platform main source set instruments production code and adds the runtime dependency there by default.
+Predefined filters:
+- `PowerAssertCompilationFilter.TESTS` (default): test compilations.
+- `PowerAssertCompilationFilter.ALL`: every compilation, including production.
 
-The development branch replaces source-set selection with `compilationFilter` presets/predicates and deprecates `includedSourceSets`. That API is not present in the released Kotlin 2.4.10 plugin. Select configuration from the exact target version's released source/docs; never copy master-branch DSL into a stable build.
+Custom predicate: compilation names are `main`/`test` (plus declared custom compilation names), not `commonMain`/`jvmTest` source-set names:
+```kotlin
+powerAssert {
+    compilationFilter.set(PowerAssertCompilationFilter { compilation ->
+        compilation.name == "test"
+    })
+}
+```
 
-When migrating to a version that provides `compilationFilter`, compare affected compilations because one compilation can include several source sets, especially in KMP. Compile every selected target after migration.
+Selecting `main` instruments production code and adds the runtime there. Deprecated `includedSourceSets` takes precedence only when nonempty; empty/default sets use `compilationFilter`. Remove old selectors when migrating; inspect target/compilation identities and compile every selected target.

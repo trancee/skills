@@ -1,8 +1,8 @@
 # Legacy binary-compatibility-validator
 
-Source: [Kotlin/binary-compatibility-validator](https://github.com/Kotlin/binary-compatibility-validator). Current 0.18.1 is in maintenance mode. It requires Gradle 6.1.1+ and Kotlin 1.6.20+.
+Source: [Kotlin/binary-compatibility-validator](https://github.com/Kotlin/binary-compatibility-validator). Current 0.18.2 is in maintenance mode. It requires Gradle 6.1.1+ and Kotlin 1.6.20+.
 
-Run the build on a runtime supported by the plugin's bytecode reader. BCV 0.18.1 fails under JDK 25 with `Unsupported class file major version 69`; JDK 21 is verified.
+Use a runtime supported by the plugin's bytecode reader. Historical BCV 0.18.1 checks failed on JDK 25 with `Unsupported class file major version 69` and passed on JDK 21. This does not verify 0.18.2; exercise the selected runtime/version before adoption.
 
 ## Apply
 

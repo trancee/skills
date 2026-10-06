@@ -35,7 +35,7 @@ Tasks:
 - `checkKotlinAbi`: compare current ABI with reference dumps; added to `check`
 - `updateKotlinAbi`: overwrite reference dumps with current ABI
 
-Run update and check in separate Gradle invocations. With KGP 2.4.10 and Gradle 9.6.1, requesting both together triggers Gradle implicit-dependency validation because the check consumes the update output in the same task graph.
+Run update and check in separate Gradle invocations. Historical KGP 2.4.10/Gradle 9.6.1 checks found implicit-dependency validation when both were requested together. KGP 2.4.20/Gradle 9.6.1 update then check passed in separate invocations; the combined 2.4.20 task graph was not exercised.
 
 Useful extension properties include `enabled`, `referenceDumpDir`, `filters`, `keepLocallyUnsupportedTargets`, `binariesSource`, variants, and task providers.
 

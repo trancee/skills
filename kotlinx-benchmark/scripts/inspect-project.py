@@ -278,8 +278,9 @@ def inspect(root: Path) -> dict[str, Any]:
     if jvm_registered and state_benchmarks and not all_open and not any(entry["explicit_open"] for entry in source_entries):
         warnings.append("JVM state benchmarks are not explicitly open and no JMH State all-open configuration was found.")
     wasm_registered = any("wasm" in target.lower() for target in benchmark_targets)
-    if wasm_registered and "0.4.19" in resolved_plugins and any(version != "2.2.0" for version in kotlin_versions if not version.startswith("version.ref:")):
-        warnings.append("kotlinx-benchmark 0.4.19 Wasm support requires Kotlin 2.2.0 exactly.")
+    wasm_release = next((version for version in ("0.5.0", "0.4.19") if version in resolved_plugins), None)
+    if wasm_registered and wasm_release and any(version != "2.2.0" for version in kotlin_versions if not version.startswith("version.ref:")):
+        warnings.append(f"kotlinx-benchmark {wasm_release} Wasm support requires Kotlin 2.2.0 exactly.")
     if len(jmh_versions) > 1:
         warnings.append("Multiple JMH versions found; different versions across JVM benchmark targets are unsupported.")
     if any("0" in values for entry in entries for key, values in entry["advanced_options"].items() if key == "jvmForks"):

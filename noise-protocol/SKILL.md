@@ -8,8 +8,8 @@ metadata:
   sourceVersion: "Noise Protocol Framework revision 34 (2018-07-11)"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T17:56:22+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-30T17:56:22+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T15:47:14+02:00"
 ---
 
 # Noise Protocol
@@ -26,9 +26,9 @@ Completion: roles, authentication, secrecy/identity/replay properties, early-dat
 
 ## Step 2: Inspect the integration and choose a library
 
-RUN from the target repository root:
+RUN from the skill package, with `--root` pointing to the target project:
 ```bash
-python3 scripts/inspect-project.py --root . --json
+python3 scripts/inspect-project.py --root /path/to/target/project --json
 ```
 
 CONFIRM protocol names, patterns/modifiers, algorithms, library/version/features, prologue/PSK/static/remote-static inputs, handshake and transport calls, handshake-hash use, rekey/nonce handling, framing limits, hard-coded secrets, and custom crypto/state-machine candidates.

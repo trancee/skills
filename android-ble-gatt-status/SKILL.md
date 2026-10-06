@@ -8,8 +8,8 @@ metadata:
   sourceVersion: "supplied article 2026-04-04; Android API 37.2 docs and API 37.1 public SDK stubs verified 2026-08-31"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-31T09:54:21+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-31T10:08:58+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T15:38:18+02:00"
 ---
 
 # Android BLE GATT Status Diagnosis
@@ -28,9 +28,9 @@ Completion: the failure is an observed stage/status/state/timeline/matrix, not â
 
 ## Step 2: Inspect connection and retry code
 
-RUN from the Android project root:
+Resolve `scripts/inspect-project.py` from the skill package; pass the Android project via `--root`:
 ```bash
-python3 scripts/inspect-project.py --root . --json
+python3 scripts/inspect-project.py --root path/to/android-project --json
 ```
 
 CONFIRM status-first callback handling, attempt/epoch/GATT matching, API 37 settings/executor, one connection owner, timeout/cleanup, fresh GATT per retry, retry classification/budget/backoff/jitter, service-discovery sequencing, fixed delays, raw-address identity/logging, hidden refresh, adapter toggling, permission branches, and diagnostic evidence.

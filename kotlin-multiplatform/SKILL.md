@@ -1,15 +1,15 @@
 ---
 name: kotlin-multiplatform
 description: "Designs, configures, migrates, tests, and publishes Kotlin Multiplatform projects. Use when choosing targets and source sets, applying hierarchy templates, sharing dependencies, introducing expect/actual or platform interfaces, configuring Android, JVM, JS, Wasm or Native compilations, running target tests, publishing root and target variants, or diagnosing source-set and variant-resolution failures. Don't use for single-platform Kotlin, Compose UI implementation, Apple framework or Objective-C interop, Gradle-only compiler and cache tuning, or platform application code unrelated to sharing."
-compatibility: "Current Kotlin Multiplatform plugin 2.4.10 is fully supported with Gradle 7.6.3–9.5.0, AGP 8.5.2–9.1.0, and Xcode 26.4. Target build/test support depends on host. Helper requires Python 3.11+."
+compatibility: "Current Kotlin Multiplatform plugin 2.4.20 is fully supported with Gradle 7.6.3–9.7.0, AGP 8.5.2–9.3.1, and Xcode 26.4. Target build/test support depends on host. Helper requires Python 3.11+."
 metadata:
   category: "development"
   source: "https://kotlinlang.org/docs/multiplatform/get-started.html"
-  sourceVersion: "Kotlin 2.4.10; Kotlin Multiplatform Help build 554 (2026-08-26)"
+  sourceVersion: "Kotlin 2.4.20@890ac1d94fdb80eb85f0eeb5be5e4352df987b2f; Kotlin Multiplatform Help build 617 (2026-10-06)"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T15:40:43+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-30T15:40:43+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T15:30:00+02:00"
 ---
 
 # Kotlin Multiplatform
@@ -26,9 +26,9 @@ Completion: target matrix, host matrix, shared boundary, module owners, publicat
 
 ## Step 2: Inspect project structure
 
-RUN from repository root:
+RUN the helper from the skill package, with the target project as `--root`:
 ```bash
-python3 scripts/inspect-project.py --root . --json
+python3 scripts/inspect-project.py --root <target-project> --json
 ```
 
 CONFIRM KMP plugin/version, wrapper/AGP, targets/environments, source-set directories, hierarchy/dependsOn edges, dependencies, expect/actual declarations, platform imports in shared code, tests, publications, and host-disabled targets. Then run `./gradlew projects` and `./gradlew tasks --all`.

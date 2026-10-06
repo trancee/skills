@@ -8,8 +8,8 @@ metadata:
   sourceVersion: "Android BLE overview 2026-02-26; Android 17 API 37/37.1 documentation 2026-08-28; supplied articles reviewed 2026-08-30"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T23:09:17+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-31T10:08:58+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T15:38:18+02:00"
 ---
 
 # Android BLE
@@ -29,9 +29,9 @@ Completion: SDK/device matrix, both role axes, permission/background model, tran
 
 ## Step 2: Inspect the app
 
-RUN from the Android project root:
+Resolve `scripts/inspect-project.py` from the skill package; pass the Android project via `--root`:
 ```bash
-python3 scripts/inspect-project.py --root . --json
+python3 scripts/inspect-project.py --root path/to/android-project --json
 ```
 
 CONFIRM SDK levels, BLE features/permissions, `neverForLocation`, foreground service types/permissions, scan API/filter/failure handling, advertisement callbacks, legacy/new `connectGatt`, connection settings/executor, GATT operation serialization, API 33 value-taking methods/callbacks, CCCD writes, MTU handling, Companion Device APIs, bond/pairing-context handling, background activity/audio/loopback paths, device-address identity, and cleanup.

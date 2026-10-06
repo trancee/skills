@@ -8,8 +8,8 @@ metadata:
   sourceVersion: "Kotlin API references; Kotlin Help build 1155 (2026-08-26)"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T14:52:35+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-30T14:52:35+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T15:30:00+02:00"
 ---
 
 # Kotlin API reference
@@ -25,9 +25,9 @@ Completion: one exact symbol/artifact/version/platform question is stated withou
 
 ## Step 2: Inspect dependency evidence
 
-RUN from repository root:
+RUN the helper from the skill package, with the target project as `--root`:
 ```bash
-python3 scripts/inspect-project.py --root . --json
+python3 scripts/inspect-project.py --root <target-project> --json
 ```
 
 For an isolated coordinate, add `--coordinate group:artifact:version`. CONFIRM detected literal/catalog/Maven coordinates, version resolution, Kotlin plugin/stdlib inference, API portal, and source repository. Resolve aliases, BOMs, constraints, parent properties, and dependency locking with the build tool before trusting a version.

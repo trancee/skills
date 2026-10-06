@@ -6,7 +6,7 @@ Current plugin:
 ```kotlin
 plugins {
     kotlin("jvm") version kotlinVersion
-    id("com.google.devtools.ksp") version "2.3.11"
+    id("com.google.devtools.ksp") version "2.3.12"
 }
 
 dependencies {

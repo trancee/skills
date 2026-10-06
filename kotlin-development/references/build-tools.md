@@ -6,7 +6,7 @@ Preserve wrapper/DSL/plugin aliases/dependency policy.
 
 - use `./gradlew`/`gradlew.bat`
 - inspect `settings.gradle.kts`, affected `build.gradle.kts`, `gradle.properties`, `gradle/libs.versions.toml`
-- version change -> live [KGP/Gradle/AGP table](https://kotlinlang.org/docs/gradle-configure-project.html); resolution success != supported
+- version change -> live [KGP/Gradle/AGP table](https://kotlinlang.org/docs/gradle-configure-project.html); resolution success does not imply support
 - compiler config=`compilerOptions {}`; `kotlinOptions {}` deprecated
 - precedence: extension default < target override < task override
 - JVM: existing Java toolchain; align `jvmTarget`+`targetCompatibility`; Gradle>=8 mismatch default=error
@@ -38,4 +38,4 @@ Library omits `-include-runtime`; consumer supplies runtime. `kotlinc -help`; `-
 
 ## Upgrade
 
-READ [releases](https://kotlinlang.org/docs/releases.html)+destination migration guide. Update kotlinx/compiler plugins only for compatibility. Separate upgrade from behavior fix unless compiler is cause. Authoring snapshot=Kotlin 2.4.10 on 2026-08-30; live docs win.
+READ [releases](https://kotlinlang.org/docs/releases.html)+destination migration guide. Update kotlinx/compiler plugins only for compatibility. Separate upgrade from behavior fix unless compiler is cause. Authoring snapshot=Kotlin 2.4.20 on 2026-10-06; live docs win.

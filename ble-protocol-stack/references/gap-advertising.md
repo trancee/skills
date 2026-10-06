@@ -1,6 +1,6 @@
 # GAP advertising, scanning, and connection
 
-Source: [Bluetooth Core 6.2 GAP](https://www.bluetooth.com/wp-content/uploads/Files/Specification/HTML/Core-62/out/en/host/generic-access-profile.html) and [Argenox layer guide](https://argenox.com/blog/understanding-ble-gap-gatt-and-l2cap).
+Source: [Bluetooth Core 6.3 GAP](https://www.bluetooth.com/wp-content/uploads/Files/Specification/HTML/Core_v6.3/out/en/host/generic-access-profile.html) and [Argenox layer guide](https://argenox.com/blog/understanding-ble-gap-gatt-and-l2cap).
 
 Legacy advertising/scan-response data each allow 31 encoded octets. Each AD structure consumes one length octet, one AD type octet, and its data. Extended/periodic advertising has different controller/platform limits, fragmentation, PHY, and compatibility; query capabilities and preserve legacy advertising when target scanners require it.
 

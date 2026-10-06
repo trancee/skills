@@ -1,128 +1,98 @@
 ---
 name: terminal-diagrams
-description: "Designs, renders, and validates aligned ASCII, Unicode box-drawing, and ANSI-colored terminal diagrams. Use when translating architectures, data schemas, network topologies, process flows, dependency graphs, state machines, or aligned tables into terminal or Markdown text; calculating display-cell widths; routing labeled connectors; or repairing broken borders and ANSI padding. Don't use for pixel graphics, freehand illustrations, charts requiring quantitative axes, interactive TUIs, browser-native SVG or Canvas output, Mermaid when text art is not required, or terminal capability detection unrelated to diagram rendering."
-compatibility: "Targets monospaced UTF-8 terminals and Markdown fenced code blocks. Display width depends on terminal, font, Unicode version, locale, and emoji policy; declare the width profile and avoid unsupported grapheme sequences. Validator uses a conservative Unicode 17-style cell model, accepts SGR color only, and requires Python 3.11+."
+description: "Renders and validates ASCII/Unicode/ANSI terminal diagrams. Use for text architectures, schemas, topology, flow/state/dependency graphs, aligned tables, display-cell widths, connectors, or broken borders. Don't use for pixel graphics, quantitative charts, interactive TUIs, browser SVG/Canvas, or Mermaid when text art is not required."
+compatibility: "Monospaced UTF-8 terminals/Markdown. Declare terminal/font/locale/Unicode/emoji width policy. Python 3.11+ validator uses runtime unicodedata plus conservative overrides, not full Unicode segmentation; accepts SGR only."
 metadata:
   category: "development"
   source: "https://www.unicode.org/reports/tr11/"
-  sourceVersion: "Unicode 17 UAX #11 revision 44; UAX #29 revision 47; xterm control sequences patch 411; user specification 2026-09-03"
+  sourceVersion: "Unicode 18 UAX #11 revision 46 and UAX #29 revision 49; xterm patch 411; checked 2026-10-06; user specification 2026-09-03"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-09-03T17:34:22+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-09-03T17:34:22+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T15:15:21+02:00"
 ---
 
-# Terminal Diagrams
+# Terminal diagrams
 
-## Step 1: Define the rendering contract
+## 1. Contract and semantic graph
 
-1. IDENTIFY architecture | schema | topology | process | dependency graph | state machine | table | repair.
-2. RECORD target environment (`markdown_code_block` or `ansi_terminal`), charset (`unicode` or `ascii`), maximum canvas columns, width profile, alignment, flow direction, node hierarchy, edge directions/labels, required emphasis, and whether every canvas row or only named rectangular components must share a width.
-3. COPY `assets/layout-request.json` when the request is structured; validate its shape against `assets/layout-request.schema.json` before layout.
-4. READ `references/width-model.md` before measuring non-ASCII labels or adding ANSI.
-5. CHOOSE Mermaid/SVG instead when exact graph routing or browser-native scaling matters more than terminal fidelity; keep text diagrams for genuine terminal/Markdown output.
+1. RECORD architecture/schema/topology/process/dependency/state/table/repair scope, target (`markdown_code_block` | `ansi_terminal`), charset, max columns, width policy, alignment/flow/hierarchy/emphasis, and rectangular component boundaries.
+2. STRUCTURED request -> COPY `assets/layout-request.json`; validate against `assets/layout-request.schema.json`.
+3. LIST stable node IDs, labels/body/border/style and edge direction/label/route. Collapse only decorative distinctions.
+4. ORDER by reading flow/dependencies; top-down for long sequences, left-right for compact pipelines. Label return edges for cycles; placement/color alone cannot imply direction.
+5. CHOOSE Mermaid/SVG if browser scaling/exact graph routing is required instead of terminal text.
 
-Completion: target, character repertoire, cell-width policy, canvas bound, components, and edge semantics are explicit.
+Gate: each box/edge maps to semantics; no orphan or ambiguous direction.
 
-## Step 2: Normalize the semantic graph
+## 2. Width
 
-1. LIST nodes with stable IDs, labels, body rows, border emphasis, and optional style.
-2. LIST directed, reverse, bidirectional, and undirected edges with source, target, label, and required route.
-3. COLLAPSE decorative nodes that add no semantic distinction; group repeated siblings only when the grouping remains clear.
-4. ORDER nodes by reading flow and dependencies. Use top-to-bottom for sequences/hierarchies and left-to-right for compact pipelines.
-5. BREAK cycles with a clearly labeled return edge; never imply direction solely through placement or color.
+READ `references/width-model.md` for non-ASCII or ANSI.
 
-Completion: every visible box and connector maps to one semantic node/edge, with no orphan or ambiguous direction.
+1. MEASURE display cells, not bytes/code points/grapheme count. ANSI SGR = zero cells; apply only after geometry.
+2. DECLARE ambiguous width 1/2 and renderer Unicode tables; Wide/Fullwidth = 2, supported box glyphs = 1, combining advance = 0 under the chosen profile.
+3. AVOID unstable ZWJ/flags/keycaps/variation/private-use glyphs and tabs unless the destination profile is pinned and exercised.
+4. NORMALIZE line endings; change label Unicode normalization only by explicit contract.
+5. CHECK runtime table version. Unicode 18 references do not upgrade Python's `unicodedata` or establish terminal/UAX conformance.
 
-## Step 3: Establish the width profile
+Gate: deterministic measured fragments under one documented renderer policy.
 
-1. MEASURE terminal display cells, not bytes, Unicode scalar count, grapheme count, or language `len`.
-2. TREAT ANSI SGR sequences as zero cells; inject them only after plain layout geometry is complete.
-3. TREAT box-drawing glyphs as one cell, combining marks as zero advance, and East Asian Wide/Fullwidth characters as two cells under the declared profile.
-4. SET ambiguous-width policy to 1 or 2 explicitly. Avoid emoji ZWJ, flags, keycaps, variation-sensitive glyphs, tabs, and private-use symbols unless the destination terminal is known and exercised.
-5. NORMALIZE line endings. Preserve label Unicode normalization unless the contract allows normalization; visually equivalent sequences can have different width behavior.
+## 3. Nodes and canvas
 
-Completion: every content fragment has a deterministic visible-cell width under one declared profile.
+READ `references/box-grammar.md`; placement branch -> READ `references/layout-strategies.md`; examples -> READ `references/examples.md`.
 
-## Step 4: Size and render nodes
+1. WRAP semantic labels before sizing; never cut grapheme/ANSI sequences.
+2. SET inner width = max visible content + declared padding; one complete single/double/ASCII border family per box.
+3. PAD then style; left/right/center by cells. ASSERT equal visible width for every row including dividers/corners.
+4. ASSIGN non-overlapping origins; reserve blank separation and corridors for arrows/labels. Align siblings intentionally.
+5. REDUCE crossings. Width overflow -> wrap/stack/split named panels or shorten nonessential labels; preserve semantics, never truncate silently.
 
-READ `references/box-grammar.md`.
+Gate: rectangular nodes fit canvas, leave corridors, and avoid collisions.
 
-1. COMPUTE each content row’s visible width; choose inner width as the maximum content width plus declared left/right padding.
-2. WRAP at semantic boundaries before sizing when a label exceeds the canvas. Never slice through a grapheme cluster or ANSI sequence.
-3. RENDER one consistent border family per box: single, double, or raw ASCII. Match all corners, sides, dividers, and junctions.
-4. PAD content rows to the inner width before styling. Apply left, right, or centered alignment from cell widths.
-5. ASSERT every row in that rectangular node has identical visible width, including corners and dividers.
+## 4. Connectors and tables
 
-Completion: each node is rectangular, internally aligned, and within its allocated columns.
+1. ROUTE orthogonal segments; Unicode `─│┌┐└┘├┤┬┴┼` or ASCII `-|+`.
+2. END directed edges with `►◄▼▲` or documented `><v^` fallback; preserve bidirectional/undirected meaning.
+3. RESERVE full label width, e.g. `──[ gRPC ]──►`. Keep arrowhead at target-facing segment.
+4. JOIN only real connections at T/cross-junctions; reroute visual crossings or declare a nonjoining convention. Never cross node/text.
+5. TABLE branch: size header/body columns by display cells + padding, wrap into physical rows, preserve constant boundaries/separator junctions. Text left, numbers right, statuses consistent; color not sole signal. Headers repeat/omit only as requested.
 
-## Step 5: Place nodes on the canvas
+Gate: every edge reaches correct ports/direction/label; physical table rows align and fit.
 
-READ `references/layout-strategies.md`.
-
-1. ASSIGN non-overlapping row/column origins on a conceptual cell grid.
-2. RESERVE at least one blank column/row between unrelated boxes and enough corridor space for arrows and edge labels.
-3. ALIGN sibling boxes consistently by top, centerline, or column; avoid accidental near-alignment.
-4. KEEP the reading order monotonic where possible. Minimize crossings before adding junction glyphs.
-5. IF the canvas exceeds `max_width`, wrap labels, stack siblings, shorten nonessential labels, or split into named panels; never silently truncate semantics.
-
-Completion: node rectangles fit the canvas and leave routable corridors without collisions.
-
-## Step 6: Route connectors
-
-1. ROUTE orthogonal horizontal/vertical segments through reserved corridors. Use `─`, `│`, `┌┐└┘`, `├┤┬┴┼` for Unicode or `-`, `|`, `+` for ASCII.
-2. TERMINATE directed horizontal edges with `►`/`◄` and vertical edges with `▼`/`▲`; use a documented ASCII fallback such as `>`/`<`/`v`/`^`.
-3. PLACE labels in a deliberate edge gap: `──[ gRPC ]──►`. Include label brackets/spaces in the route width calculation.
-4. USE T-junctions/cross-junctions only when lines actually connect. For visual crossings without connection, reroute or state the convention explicitly.
-5. KEEP arrowheads adjacent to the target-facing segment and never let ANSI styling separate an arrowhead from its geometry.
-
-Completion: each edge reaches its intended ports, preserves direction/label, and crosses no node or unrelated text.
-
-## Step 7: Render tables and schema grids
-
-1. CALCULATE each column width from header and body cell display widths plus padding.
-2. WRAP cells into physical rows before drawing horizontal separators; keep every physical table row at the same total width.
-3. ALIGN text by meaning: labels left, numbers right, status consistently; do not use color as the only status signal.
-4. USE matching junctions for the selected border family and include one padding cell on both sides unless the compact contract says otherwise.
-5. REPEAT or omit headers only by request; split tables that cannot fit without unreadable abbreviations.
-
-Completion: all separators meet, every column boundary is constant, and every physical row fits the canvas.
-
-## Step 8: Apply target-specific styling
+## 5. Target styling
 
 READ `references/ansi-markdown.md`.
 
-1. FOR `markdown_code_block`, emit no raw ANSI. Wrap the plain diagram in a fence longer than any backtick run in the content, or use a tilde fence.
-2. FOR `ansi_terminal`, start from verified plain geometry; wrap only text/border spans with SGR and reset each styled span/line to prevent bleed.
-3. ALLOW SGR color/emphasis only. Exclude cursor movement, erasure, hyperlinks, OSC/DCS/APC strings, and terminal queries from static diagram output.
-4. PRESERVE a non-color semantic cue for every emphasized state.
-5. GENERATE an ASCII fallback when Unicode support is unknown or explicitly requested.
+- Markdown -> no ANSI; fence longer than internal backtick runs or use tildes; preserve spaces.
+- ANSI -> verified plain geometry first; SGR spans reset each span/line; strip SGR to recover exactly the plain layout.
+- Static output -> exclude cursor/erase/OSC/DCS/APC/query controls.
+- Unknown/requested repertoire -> ASCII fallback, relayout and revalidate.
+- Emphasis -> redundant text/symbol cue, not color alone.
 
-Completion: stripping SGR from terminal output yields exactly the verified plain layout; Markdown contains no escape bytes.
+Gate: capture-safe styling; Markdown has no escape bytes.
 
-## Step 9: Validate and self-correct
+## 6. Validate and deliver
 
-READ `references/validation.md`.
+READ `references/validation.md`. Resolve `scripts/` from the skill package; input file is unfenced:
 
-1. SAVE the unfenced diagram to a file and run:
 ```bash
 python3 scripts/validate-layout.py diagram.txt --target markdown_code_block --canvas-width 80 --component 1:5
 ```
-2. FOR ANSI output, pass `--target ansi_terminal`; list every rectangular component with repeatable `--component START:END`. Use `--equal-width` only when the entire canvas is intentionally rectangular.
-3. FIX the first reported line/component by recalculating visible cells and padding; rerun until exit code 0.
-4. VISUALLY inspect the actual destination terminal/Markdown renderer, especially wide/ambiguous characters and labeled junctions.
-5. COPY `assets/layout-report.md` for load-bearing diagrams and record width profile, component ranges, validation, and renderer limitations.
 
-Completion: validator passes, actual rendering preserves alignment, and every semantic edge/node is present.
+1. DECLARE each rectangular range with repeatable `--component START:END`; `--equal-width` only for intentionally rectangular whole canvas.
+2. ANSI -> `--target ansi_terminal`; explicit `--ambiguous-width`.
+3. FIX first diagnostic by recomputing cells/padding; repeat to exit 0.
+4. INSPECT actual destination rendering, especially non-ASCII, ambiguous glyphs and junctions.
+5. LOAD-BEARING output -> COPY `assets/layout-report.md`; record policy, ranges, proof and renderer limits.
 
-## Error Handling
+Gate: validator and actual renderer preserve geometry; every semantic node/edge present.
 
-- Borders look jagged after color -> remove ANSI, fix plain cell geometry, then reapply SGR around already-padded spans.
-- Python/string lengths match but columns do not -> use display-cell width; inspect wide, combining, ambiguous, emoji, tab, and control characters.
-- Validator rejects complex grapheme -> replace it with stable text/glyphs or validate with the exact destination terminal’s pinned width library/profile.
-- Markdown shows color escapes -> strip ANSI and regenerate the `markdown_code_block` branch.
-- Box mixes `│` with double corners -> choose one complete border family and regenerate every edge/junction.
-- Edge label pushes past target -> reserve the full `[ label ]` width, shorten/wrap the label, or reroute vertically.
-- Connectors cross ambiguously -> reroute; use `┼` only for a real connection and document nonconnecting crossings.
-- Diagram exceeds canvas -> stack, wrap, abbreviate with a legend, or split panels; preserve semantic labels.
-- Fence closes inside content -> use a longer backtick fence or tilde fence.
+## Failure routing
+
+- Color breaks borders -> fix plain cells first, then SGR.
+- String lengths agree but columns differ -> width profile; inspect wide/combining/emoji/tab/control glyphs.
+- Complex grapheme rejected -> stable label or exact renderer/pinned segmentation profile.
+- Mixed border families -> regenerate one complete family.
+- Label collision -> reserve full width, wrap/shorten label or reroute.
+- Ambiguous crossing -> reroute; junction only for connection.
+- Too wide -> stack/wrap/legend/named panels without losing semantics.
+- Premature fence closure -> longer backtick/tilde fence.

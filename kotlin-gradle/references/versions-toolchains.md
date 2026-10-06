@@ -4,7 +4,7 @@ Sources: [project configuration](https://kotlinlang.org/docs/gradle-configure-pr
 
 ## Compatibility snapshot
 
-KGP 2.4.0–2.4.10 is fully supported with Gradle 7.6.3–9.5.0 and AGP 8.5.2–9.1.0. Newer Gradle/AGP may resolve but can expose deprecations or unsupported features. Always use the live table for other KGP versions.
+KGP 2.4.20 is fully supported with Gradle 7.6.3–9.7.0 and AGP 8.5.2–9.3.1; the 2.4.0–2.4.10 line remains fully supported with Gradle 7.6.3–9.5.0 and AGP 8.5.2–9.1.0. Newer Gradle/AGP may resolve but can expose deprecations or unsupported features. Always use the live table for other KGP versions.
 
 Keep version ownership in existing catalog/root settings/convention build. KGP adds matching stdlib automatically unless explicitly disabled/overridden.
 

@@ -1,15 +1,15 @@
 ---
 name: spotless
 description: "Configures, applies, verifies, migrates, and troubleshoots Spotless formatting for Gradle and Maven projects. Use when adding Spotless, selecting and pinning formatter steps, defining targets and exclusions, enforcing formatting in CI, ratcheting legacy code, managing line endings or license headers, or diagnosing non-idempotent and formatter dependency failures. Don't use for direct ESLint, Prettier, or ktlint invocation, SBT integration, general lint-rule design, IDE-only formatting, or Spotless library development."
-compatibility: "Current Gradle plugin 8.10.1 requires JRE 17+ and Gradle 8.1+; current Maven plugin 3.10.1 requires JRE 17+ and Maven 3.1+. Older runtimes require the documented legacy plugin line. Helper requires Python 3.11+."
+compatibility: "Current Gradle plugin 8.10.3 requires JRE 17+ and Gradle 8.1+; current Maven plugin 3.10.3 requires JRE 17+ and Maven 3.1+. Older runtimes require the documented legacy plugin line. Helper requires Python 3.11+."
 metadata:
   category: "development"
   source: "https://github.com/diffplug/spotless"
-  sourceVersion: "Gradle plugin 8.10.1@f2f2348ba1f28f84e7fa0d41373190478718d55e; Maven plugin 3.10.1@4ea1c6cbf46f4e60eb9e621406bf2621e28f2d68"
+  sourceVersion: "Gradle plugin 8.10.3@eae36d86664fb5b186eb4e082fd319709e528178; Maven plugin 3.10.3@61e2016ee3ac82fb565b587e04408ae45dc5b709"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T13:56:22+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-30T13:56:22+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T15:34:20+02:00"
 ---
 
 # Spotless
@@ -26,9 +26,9 @@ Completion: exact integration, versions, modules, formats, targets, steps, and r
 
 ## Step 2: Inspect configuration
 
-RUN from the repository root:
+RUN from the skill package, with `--root` pointing to the target project:
 ```bash
-python3 scripts/inspect-project.py --root . --json
+python3 scripts/inspect-project.py --root /path/to/target/project
 ```
 
 CONFIRM every reported plugin declaration, version, format, formatter step, target/exclusion, ratchet ref, line-ending/encoding override, skip, error suppression, and CI task. Then list wrapper tasks or Maven effective configuration; treat unresolved aliases/properties as unresolved until traced.

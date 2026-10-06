@@ -4,7 +4,7 @@
 
 1. Confirm the caller's module applies the plugin.
 2. Confirm compiler/plugin/runtime versions match.
-3. Map the call site to its Kotlin source set and the target version's selector (`includedSourceSets` in 2.4.10; version-gated compilation filter later).
+3. Map the call site to its Kotlin compilation and the target version's `compilationFilter` (`PowerAssertCompilationFilter.TESTS`/`ALL` or a predicate over compilation name).
 4. Confirm exact fully-qualified callable name or `@PowerAssert` metadata.
 5. Confirm supported Boolean/message parameter shape.
 6. Move causal subexpressions into the transformed call; a precomputed Boolean can expose only its final value.
@@ -24,7 +24,7 @@ Power-assert is Experimental since Kotlin 2.0.0. For each Kotlin upgrade:
 
 1. read release/migration notes and current runtime/Gradle source
 2. align all plugin/runtime artifacts
-3. keep `includedSourceSets` on Kotlin 2.4.10; migrate to `compilationFilter` only when the destination release provides it
+3. adopt `compilationFilter`; remove nonempty deprecated `includedSourceSets` overrides (empty/default sets do not override the filter)
 4. compile every transformed JVM/JS/Native/Wasm/Android compilation
 5. verify representative default/custom/annotated calls and renderers
 6. verify published library consumers

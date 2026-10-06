@@ -4,7 +4,7 @@
 
 ### Multiset rewriting rules
 
-Use rules when exact facts, transitions, action labels, or low-level source reasoning must remain visible. A rule has premises, action facts, and conclusions:
+CHOOSE rules for explicit facts/transitions/actions/source reasoning:
 
 ```text
 [ premises ] --[ actions ]-> [ conclusions ]
@@ -18,19 +18,19 @@ Use rules when exact facts, transitions, action labels, or low-level source reas
 
 ### SAPIC+
 
-Use one top-level process when sequencing, parallelism, replication, branching, channels, or global store operations are clearer in process syntax. Tamarin translates the process to rules. Use `new`, `in`, `out`, `event`, `!P`, `insert`, `lookup`, `delete`, `lock`, and `unlock` only with their documented semantics.
+CHOOSE one top-level SAPIC+ process for sequencing/parallelism/replication/branching/channels/global store. Translation generates rules and restrictions; review `new`, `in`, `out`, `event`, `!P`, `insert`, `lookup`, `delete`, `lock`, `unlock` semantics before use.
 
-Avoid combining handwritten rules and a process unless the translation-generated actions/restrictions and their interaction with the rules have been reviewed.
+MIX process and handwritten rules only after reviewing translation-generated interactions.
 
 ## Terms and equations
 
-Built-ins include hashing, asymmetric/symmetric encryption, signing, revealing signing, Diffie-Hellman, bilinear pairing, XOR, multisets, natural numbers, and reliable channels. Enable only those used by the protocol.
+ENABLE only used built-ins: hashing, asymmetric/symmetric encryption, signing/revealing signing, DH, bilinear pairing, XOR, multisets, natural numbers, reliable channels.
 
-Public constants such as `'label'` are attacker-known. Fresh values model random nonces and keys. Public variables `$A`, fresh variables `~n`, natural variables `%n`, and temporal variables `#i` have different sorts.
+SORTS: quoted constants/`$A` public; `~n` fresh; `%n` natural counter; `#i` temporal. Public constants attacker-known.
 
-Custom equations must be convergent and have the finite variant property. Tamarin does not validate that mathematical requirement. Prefer subterm-convergent equations because unsupported theories can cause non-termination or incorrect results without warning. Never infer implementation-level algebraic properties that are absent from the model.
+CUSTOM equations need external convergence/FVP evidence. Prefer subterm-convergent theories. Tamarin does not check this condition; unsupported equations can silently invalidate results. Do not infer unmodeled implementation algebra.
 
-Private function symbols prevent adversary application; they do not automatically model fresh secret values and do not establish an implementation security boundary.
+PRIVATE function symbols block attacker application; neither freshness nor implementation isolation follows.
 
 ## State and protocol control
 
@@ -44,22 +44,22 @@ Private function symbols prevent adversary application; they do not automaticall
 
 ### Executability
 
-Prove an `exists-trace` lemma that reaches every claimed completion event under honest conditions. This catches disconnected states and over-strong restrictions.
+PROVE honest `exists-trace` paths reaching every claimed completion event; catch disconnected state/over-strong restrictions.
 
 ### Secrecy
 
-Label the claim point, then exclude adversary knowledge except for explicit compromise cases:
+LABEL claim actions. Schematic secrecy form (replace exception with a guarded formula):
 
 ```text
 All x #i. Secret(x) @ i ==>
   (not Ex #j. K(x) @ j) | compromise_exception
 ```
 
-Decide whether compromise may occur before, after, or at any time relative to the claim.
+SPECIFY compromise ordering: before | after | any time relative to claim.
 
 ### Authentication
 
-Use separate running/sending and commit/receiving actions. Bind identities, roles, and all agreed data. Require the matching peer event before the commit. Add injectivity through uniqueness only when replay/session uniqueness is part of the claim.
+USE distinct running/send and commit/receive actions; bind identities, roles, agreed data, prior peer event. Injectivity requires uniqueness.
 
 ### Guardedness
 
@@ -69,11 +69,11 @@ Use separate running/sending and commit/receiving actions. Bind identities, role
 
 ### Observational equivalence
 
-Use `diff`, `diff_rule`, and equivalence lemmas only after both sides and restrictions follow the documented diff-mode semantics. Tamarin's observational-equivalence mode soundly approximates equivalence but requires a strict one-to-one rule mapping and has limited restriction support; failure may reflect the approximation.
+USE `--diff`, `diff` terms, and documented per-side rule/lemma syntax. Review both sides/restrictions. Sound approximation requires strict one-to-one rule mapping; limited restrictions. Failure can reflect approximation rather than protocol inequivalence.
 
 ### Accountability
 
-Define corruption semantics, case tests with free blamed-party variables, and accountability lemmas. Verify every generated condition and the replacement property. Treat this as a separate property branch, not a synonym for authentication.
+DEFINE corruption, case-test blamed variables, accountability lemma. VERIFY every generated condition plus replacement property; separate from authentication.
 
 ## Proof evidence
 
@@ -87,4 +87,4 @@ For each lemma, record:
 - source/partial-deconstruction status;
 - assumptions and restrictions used.
 
-A verified model is not an implementation proof. Compare serialization, parsing, role transitions, compromise behavior, and acceptance conditions against the implementation separately.
+MODEL proof != implementation proof. Compare encoding/parsing/transitions/compromise/acceptance separately.

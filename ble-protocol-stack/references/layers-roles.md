@@ -1,6 +1,6 @@
 # Layers and roles
 
-Sources: Bluetooth Core 6.2 [GAP](https://www.bluetooth.com/wp-content/uploads/Files/Specification/HTML/Core-62/out/en/host/generic-access-profile.html), [GATT](https://www.bluetooth.com/wp-content/uploads/Files/Specification/HTML/Core-62/out/en/host/generic-attribute-profile--gatt-.html), [ATT](https://www.bluetooth.com/wp-content/uploads/Files/Specification/HTML/Core-62/out/en/host/attribute-protocol--att-.html), and [L2CAP](https://www.bluetooth.com/wp-content/uploads/Files/Specification/HTML/Core-62/out/en/host/logical-link-control-and-adaptation-protocol-specification.html).
+Sources: Bluetooth Core 6.3 (6.2 retained as supported baseline; GAP/GATT/ATT/L2CAP sections unchanged in 6.3) [GAP](https://www.bluetooth.com/wp-content/uploads/Files/Specification/HTML/Core_v6.3/out/en/host/generic-access-profile.html), [GATT](https://www.bluetooth.com/wp-content/uploads/Files/Specification/HTML/Core_v6.3/out/en/host/generic-attribute-profile--gatt-.html), [ATT](https://www.bluetooth.com/wp-content/uploads/Files/Specification/HTML/Core_v6.3/out/en/host/attribute-protocol--att-.html), and [L2CAP](https://www.bluetooth.com/wp-content/uploads/Files/Specification/HTML/Core_v6.3/out/en/host/logical-link-control-and-adaptation-protocol-specification.html).
 
 Layer ownership:
 - GAP: discoverability, advertising/scanning, connection modes/procedures, generic security modes and identity/privacy behavior

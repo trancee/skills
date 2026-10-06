@@ -8,8 +8,8 @@ metadata:
   sourceVersion: "Kover 0.9.9 (Kotlin/kotlinx-kover@95de3ac635494dc745ecc264344190a6c789abe8); published plugin docs examples 0.9.8"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T13:45:53+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-30T13:45:53+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T15:34:20+02:00"
 ---
 
 # Kover
@@ -23,9 +23,9 @@ metadata:
 
 ## 2. Inspect
 
-RUN from repository root:
+RUN from the skill package, with `--root` pointing to the target project:
 ```bash
-python3 scripts/inspect-project.py --root . --json
+python3 scripts/inspect-project.py --root /path/to/target/project
 ```
 CONFIRM plugin/version/modules, project types, `kover(project(...))`, engine, variants, filters, verification bounds, disabled test tasks/source sets, Maven goals, report paths. Discover wrapper tasks; use full task paths.
 

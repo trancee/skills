@@ -1,15 +1,15 @@
 ---
 name: libacvp-json-kotlin
 description: "Models, parses, validates, and tests libacvp and ACVP JSON artifacts in Kotlin. Use when mapping protocol envelopes, offline bundles, session files, registrations, vector sets, test groups, test cases, responses, or algorithm-specific fields to kotlinx.serialization models. Don't use for operating ACVP sessions, implementing cryptographic algorithms, parsing legacy CAVP response files, generic JSON tutorials, or claiming algorithm validation."
-compatibility: "Targets cisco/libacvp 2.3.1 at commit 1877259518794f43e4e679f4c5864efa12c32e13 and ACVP protocol 1.0. Confirm current libacvp and NIST algorithm specifications before schema changes. Kotlin examples use kotlinx.serialization JSON. Inspector requires Python 3.11+."
+compatibility: "Targets cisco/libacvp 2.3.1-derived main commit 1877259518794f43e4e679f4c5864efa12c32e13 and ACVP protocol 1.0. Verify current libacvp/NIST algorithm specs, including HMAC revision 2.0 default and RSA/ECDSA 186-4/186-5 support, before schema changes. Kotlin examples use kotlinx.serialization JSON; inspector requires Python 3.11+."
 metadata:
   category: "development"
   source: "https://github.com/cisco/libacvp"
-  sourceVersion: "cisco/libacvp@1877259518794f43e4e679f4c5864efa12c32e13; libacvp 2.3.1; ACVP protocol 1.0; inspected 2026-09-05"
+  sourceVersion: "cisco/libacvp@1877259518794f43e4e679f4c5864efa12c32e13 (current main, 2.3.1-derived); ACVP protocol 1.0; checked 2026-10-06"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-09-05T19:01:40+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-09-05T19:01:40+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T15:34:20+02:00"
 ---
 
 # libacvp JSON in Kotlin
@@ -26,7 +26,7 @@ Completion: one artifact kind, producer revision, algorithm tuple, direction, tr
 
 ## Step 2: Inspect representative files without exposing values
 
-RUN on local artifact samples:
+RUN the inspector from the skill package on local artifact samples:
 ```bash
 python3 scripts/inspect-acvp-json.py path/to/file.json --json
 ```

@@ -2,7 +2,7 @@
 
 Source: [Maven plugin guide](https://github.com/diffplug/spotless/tree/main/plugin-maven) and [changelog](https://github.com/diffplug/spotless/blob/main/plugin-maven/CHANGES.md).
 
-Current 3.10.1 requires Maven 3.1+ running on JRE 17+. Use 2.46.1 for JRE 11 or 2.30.0 and older for JRE 8. Verify the live changelog before selecting a legacy line.
+Current 3.10.3 requires Maven 3.1+ on JRE 17+. JRE 11 -> 2.46.1; JRE 8 -> 2.30.0 or older. Verify the release changelog before selecting a legacy line.
 
 ## Install
 

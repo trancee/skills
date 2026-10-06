@@ -5,11 +5,11 @@ compatibility: "Covers Falcon v1.2 and provisional pornin/c-fn-dsa at pinned rev
 metadata:
   category: "cryptography"
   source: "https://github.com/pornin/c-fn-dsa"
-  sourceVersion: "pornin/c-fn-dsa@a5f15894bf1a68017074650d5298cecf9bb29a79; Falcon v1.2; NIST FIPS 206 status and PQClean retirement checked 2026-09-06"
+  sourceVersion: "pornin/c-fn-dsa@1b858880dcac091b5e5f84f0e4d8617c35ba1392; Falcon v1.2; NIST FIPS 206 status and PQClean retirement checked 2026-10-06"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-09-05T15:32:36+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-09-06T11:20:38+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T15:47:14+02:00"
 ---
 
 # Falcon and FN-DSA
@@ -28,9 +28,9 @@ Completion: every serialized key/signature and signing request binds one exact s
 
 ## Step 2: Inspect the implementation boundary
 
-RUN from the target repository root:
+RUN from the skill package, with `--root` pointing to the target project:
 ```bash
-python3 scripts/inspect-project.py --root . --json
+python3 scripts/inspect-project.py --root /path/to/target/project --json
 ```
 
 1. CONFIRM library/version provenance, Falcon/FN-DSA identifiers, parameter sets, formats, sign/verify paths, RNG calls, streaming pairs, custom FFT/sampler code, expanded-key handling, secret export/logging, and tests.

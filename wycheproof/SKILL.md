@@ -4,11 +4,11 @@ description: "Integrates/audits Project Wycheproof vectors. Use for current corp
 metadata:
   category: "cryptography"
   source: "https://github.com/C2SP/wycheproof"
-  sourceVersion: "C2SP/wycheproof@dac1dd4729fd1f8dd9e1e9f3dce51d783da6c166"
+  sourceVersion: "C2SP/wycheproof@3fa63dd0344abb611f1fb1d77e119938603ea230"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-28T19:26:56+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-30T11:48:01+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T15:47:14+02:00"
 ---
 
 # Wycheproof

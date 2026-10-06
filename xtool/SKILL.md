@@ -4,11 +4,11 @@ description: "Installs/configures/builds/deploys/debugs xtool SwiftPM iOS apps o
 metadata:
   category: "development"
   source: "https://xtool.sh/"
-  sourceVersion: "xtool 1.17.0 (9e8bfd432c99c7ef9ade6c4b6723f1321ed0e7ed)"
+  sourceVersion: "xtool 1.21.0@d76498a3d7d889111a564db52013b6ea5a10cabc; Swift 6.4/Xcode 27 install guide checked 2026-10-06"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-28T19:26:56+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-30T11:48:01+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T16:00:11+02:00"
 ---
 
 # xtool
@@ -21,6 +21,8 @@ metadata:
 4. Linux: prefer official Swift.org/Swiftly; matching version string insufficient.
 
 ## 2. Preflight
+
+Resolve `scripts/` from the activated package, not the target Swift project. Current Linux baseline: official Swift 6.4 + Xcode 27; refresh the host guide before installing.
 
 ```bash
 python3 scripts/check-environment.py --min-swift CURRENT_REQUIRED

@@ -1,6 +1,6 @@
 # Gradle and Maven setup
 
-Sources: [Power-assert guide](https://kotlinlang.org/docs/power-assert.html) and [Kotlin 2.4.10 Gradle plugin source](https://github.com/JetBrains/kotlin/blob/v2.4.10/libraries/tools/kotlin-power-assert/build.gradle.kts).
+Sources: [Power-assert guide](https://kotlinlang.org/docs/power-assert.html) and [Kotlin 2.4.20 Gradle plugin source](https://github.com/JetBrains/kotlin/blob/v2.4.20/libraries/tools/kotlin-power-assert/build.gradle.kts).
 
 ## Gradle
 

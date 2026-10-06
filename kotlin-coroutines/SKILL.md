@@ -8,8 +8,8 @@ metadata:
   sourceVersion: "kotlinx.coroutines 1.11.0@8564f65764d3d05893cec026c6e94250e2b23874; Kotlin Help build 1155"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T15:00:36+02:00"
-  updatedBy: "github-copilot/gpt-5.6-sol"
-  updatedAt: "2026-08-30T15:00:36+02:00"
+  updatedBy: "github-copilot/gpt-6.1-sol"
+  updatedAt: "2026-10-06T15:30:00+02:00"
 ---
 
 # Kotlin coroutines
@@ -26,9 +26,9 @@ Completion: scope owner, lifetime, success result, cancellation path, failure pr
 
 ## Step 2: Inspect dependencies and risk sites
 
-RUN from repository root:
+RUN the helper from the skill package, with the target project as `--root`:
 ```bash
-python3 scripts/inspect-project.py --root . --json
+python3 scripts/inspect-project.py --root <target-project> --json
 ```
 
 CONFIRM coroutines modules/versions, core/test/platform integrations, Kotlin targets, scope/builders, dispatchers, Flow/channel/shared-state constructs, blocking calls, broad catches, `GlobalScope`, detached `Job`, and test scheduler usage. Treat reported sites as candidates; inspect enclosing functions/classes before claims.
