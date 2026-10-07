@@ -64,6 +64,7 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 | [`lincheck`](lincheck/) | 3,803 | Design, run, interpret, and troubleshoot JVM concurrency tests with Lincheck model checking and stress strategies. |
 | [`libacvp-json-kotlin`](libacvp-json-kotlin/) | 7,584 | Model, parse, validate, and test libacvp and ACVP JSON artifacts in Kotlin. |
 | [`maven-central-publishing`](maven-central-publishing/) | 6,397 | Register, configure, validate, publish, and troubleshoot releases through the Sonatype Central Portal. |
+| [`remote-xcode-signing`](remote-xcode-signing/) | 9,564 | Build, sign, archive, and export iOS apps on remote Macs over SSH; configure keychain access and evaluate Xcode MCP orchestration. |
 | [`skie`](skie/) | 3,415 | Install, migrate, configure, and troubleshoot Touchlab SKIE for Kotlin Multiplatform Swift interop. |
 | [`spotless`](spotless/) | 3,938 | Configure, apply, verify, migrate, and troubleshoot Spotless formatting for Gradle and Maven projects. |
 | [`terminal-diagrams`](terminal-diagrams/) | 4,507 | Design, render, and validate aligned ASCII, Unicode box-drawing, and ANSI-colored terminal or Markdown diagrams. |
