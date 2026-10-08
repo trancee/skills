@@ -48,6 +48,7 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 | [`compose-multiplatform`](compose-multiplatform/) | 5,634 | Design, implement, test, and ship shared Compose UI across Android, iOS, desktop, and web. |
 | [`corebluetooth`](corebluetooth/) | 5,295 | Implement, review, test, and troubleshoot Apple Core Bluetooth central/peripheral apps, lifecycle, data flow, and restoration. |
 | [`detekt`](detekt/) | 3,629 | Configure, run, migrate, and troubleshoot detekt static analysis for Kotlin projects. |
+| [`gobley`](gobley/) | 8,607 | Embed Rust in Kotlin Multiplatform with Gobley; generate UniFFI bindings, package native libraries, and diagnose interop builds and lifetimes. |
 | [`kover`](kover/) | 3,197 | Configure, verify, aggregate, and troubleshoot Kotlinx Kover JVM coverage for Kotlin projects. |
 | [`kotlin-api-reference`](kotlin-api-reference/) | 3,295 | Find and verify versioned, platform-specific Kotlin ecosystem API declarations and source. |
 | [`kotlin-binary-compatibility`](kotlin-binary-compatibility/) | 4,525 | Configure, run, migrate, and review Kotlin ABI validation with built-in KGP or the legacy validator. |

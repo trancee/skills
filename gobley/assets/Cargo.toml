@@ -1,0 +1,12 @@
+[package]
+name = "gobley-core"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+name = "gobley_core"
+crate-type = ["cdylib", "staticlib"]
+
+[dependencies]
+uniffi = "=0.29.4"
+thiserror = "2"
