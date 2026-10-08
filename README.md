@@ -69,6 +69,7 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 | [`skie`](skie/) | 3,415 | Install, migrate, configure, and troubleshoot Touchlab SKIE for Kotlin Multiplatform Swift interop. |
 | [`spotless`](spotless/) | 3,938 | Configure, apply, verify, migrate, and troubleshoot Spotless formatting for Gradle and Maven projects. |
 | [`terminal-diagrams`](terminal-diagrams/) | 4,507 | Design, render, and validate aligned ASCII, Unicode box-drawing, and ANSI-colored terminal or Markdown diagrams. |
+| [`ubique-uniffi`](ubique-uniffi/) | 9,666 | Integrate Rust with Kotlin Multiplatform using Ubique UniFFI; generate bindings, compose shared types across modules, package target binaries, and diagnose runtime ownership and ABI failures. |
 | [`xtool`](xtool/) | 2,508 | Install, configure, use, and troubleshoot xtool for SwiftPM-driven iOS development and device deployment. |
 
 ### Documentation
