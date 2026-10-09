@@ -1,0 +1,43 @@
+name: Local act smoke
+on:
+  workflow_dispatch:
+    inputs:
+      MESSAGE:
+        description: Public smoke message
+        required: true
+        type: string
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        flavor: [alpha, beta]
+    outputs:
+      result: ${{ steps.produce.outputs.result }}
+    steps:
+      - id: produce
+        shell: bash
+        env:
+          MESSAGE: ${{ inputs.MESSAGE }}
+          CHANNEL: ${{ vars.CHANNEL }}
+          PROBE: ${{ secrets.LOCAL_PROBE }}
+          FLAVOR: ${{ matrix.flavor }}
+        run: |
+          set -euo pipefail
+          test "$MESSAGE" = "Grüezi = local"
+          test "$CHANNEL" = "local"
+          test "$PROBE" = "public-smoke-sentinel"
+          test "$FLAVOR" = "beta"
+          printf 'result=%s/%s/%s\n' "$MESSAGE" "$CHANNEL" "$FLAVOR" >> "$GITHUB_OUTPUT"
+  verify:
+    needs: prepare
+    runs-on: ubuntu-latest
+    steps:
+      - shell: bash
+        env:
+          RESULT: ${{ needs.prepare.outputs.result }}
+        run: |
+          set -euo pipefail
+          test "$RESULT" = "Grüezi = local/local/beta"
+          printf '%s\n' "$RESULT" > act-smoke-result.txt
+          printf 'Observed dependency output: %s\n' "$RESULT"

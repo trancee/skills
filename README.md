@@ -34,6 +34,7 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 
 | Skill | Context tokens | Purpose |
 | --- | ---: | --- |
+| [`act`](act/) | 6,626 | Install, configure, run, and troubleshoot local GitHub Actions with nektos act; select events, jobs, matrices, runner images, and safe credentials while tracking GitHub parity gaps. |
 | [`android-ble`](android-ble/) | 6,545 | Implement, migrate, test, and troubleshoot Android BLE scanning, GATT lifecycle, background, permissions, and Android 17 behavior. |
 | [`android-ble-gatt-queue`](android-ble-gatt-queue/) | 4,721 | Implement, review, test, and debug coroutine-serialized Android GATT client operations, callbacks, cancellation, and timeout reset. |
 | [`android-ble-gatt-server`](android-ble-gatt-server/) | 5,129 | Implement, review, test, and troubleshoot Android local GATT databases, ATT requests, prepared writes, subscriptions, and updates. |
