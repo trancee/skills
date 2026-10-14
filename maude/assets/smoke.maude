@@ -1,0 +1,13 @@
+load finite-state.maude
+set show timing off .
+set show stats off .
+reduce in COUNTER-DATA : twice(3) == 6 .
+rewrite [1] in FINITE-COUNTER : q0 .
+search [1] in FINITE-COUNTER : q0 =>* q2 .
+show path labels 2 .
+search in FINITE-COUNTER : q0 =>* bad .
+reduce in COUNTER-CHECK : modelCheck(q0, [] safe) .
+reduce in COUNTER-CHECK : modelCheck(q0, <> at-q2) .
+srewrite [1] in COUNTER-STRATEGY : q0 using reach-two .
+reduce in COUNTER-META : downTerm(getTerm(metaReduce(upModule('COUNTER-DATA, false), upTerm(twice(3)))), 0) == 6 .
+quit

@@ -1,0 +1,45 @@
+fmod COUNTER-DATA is
+  protecting NAT .
+  op twice : Nat -> Nat .
+  var N : Nat .
+  eq twice(N) = N + N .
+endfm
+
+mod FINITE-COUNTER is
+  sorts CounterState .
+  ops q0 q1 q2 bad : -> CounterState [ctor] .
+  rl [advance-0] : q0 => q1 .
+  rl [advance-1] : q1 => q2 .
+  rl [retry] : q1 => q0 .
+  rl [reset] : q2 => q0 .
+endm
+
+load model-checker.maude
+
+mod COUNTER-PROPS is
+  including FINITE-COUNTER .
+  including SATISFACTION .
+  subsort CounterState < State .
+  ops safe at-q2 : -> Prop [ctor] .
+  var S : CounterState .
+  eq bad |= safe = false .
+  eq S |= safe = true [owise] .
+  eq q2 |= at-q2 = true .
+  eq S |= at-q2 = false [owise] .
+endm
+
+mod COUNTER-CHECK is
+  including COUNTER-PROPS .
+  including MODEL-CHECKER .
+endm
+
+smod COUNTER-STRATEGY is
+  protecting FINITE-COUNTER .
+  strat reach-two : @ CounterState .
+  sd reach-two := advance-0 ; advance-1 .
+endsm
+
+fmod COUNTER-META is
+  protecting COUNTER-DATA .
+  protecting META-LEVEL .
+endfm

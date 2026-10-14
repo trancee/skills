@@ -28,6 +28,7 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 
 | Skill | Context tokens | Purpose |
 | --- | ---: | --- |
+| [`maude`](maude/) | 10,183 | Install, model, execute, and analyze Maude rewriting-logic specifications with search, LTL checking, strategies, symbolic narrowing, reflection, and SMT prerequisites. |
 | [`tamarin-prover`](tamarin-prover/) | 4,525 | Install and use Tamarin Prover to model, prove, inspect, and troubleshoot symbolic security protocol properties. |
 
 ### Development

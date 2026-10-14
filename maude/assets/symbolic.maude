@@ -1,0 +1,22 @@
+fmod BIT-DATA is
+  sort Bit .
+  ops zero one : -> Bit [ctor] .
+  op flip : Bit -> Bit .
+  var B : Bit .
+  eq flip(zero) = one [variant] .
+  eq flip(one) = zero [variant] .
+endfm
+
+mod BIT-STEP is
+  protecting BIT-DATA .
+  sort Config .
+  op cell : Bit -> Config [ctor] .
+  var B : Bit .
+  rl [toggle] : cell(B) => cell(flip(B)) [narrowing] .
+endm
+
+unify in BIT-DATA : flip(B:Bit) =? flip(zero) .
+variant unify in BIT-DATA : flip(B:Bit) =? one .
+get variants in BIT-DATA : flip(B:Bit) .
+vu-narrow [1, 1] in BIT-STEP : cell(B:Bit) =>1 cell(one) .
+quit
