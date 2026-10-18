@@ -3,13 +3,13 @@ name: ubique-uniffi
 description: "Integrates Rust with Kotlin Multiplatform using Ubique's UniFFI bindings. Use when configuring ch.ubique.uniffi.plugin and ch.ubique.uniffi:runtime, generating bindings with uniffi-bindgen-kotlin-multiplatform, sharing Rust objects across modules, selecting Android/JVM/Native builds, or migrating Ubique and legacy Trixnity integrations. Don't use for Gobley plugins, stock UniFFI Swift/Python generators, Kotlin-to-Swift framework export, or JS/Wasm interop."
 compatibility: "Baseline: Ubique plugin/runtime/bindgen 1.3.1 with UniFFI exactly 0.32.0; Rust >=1.91, Gradle >=9.6.1, Kotlin >=2.4.0, JDK >=17. Android requires AGP 9 Android-KMP plugin and NDK; Apple execution requires macOS/Xcode. Native requires cinterop commonization. Lockfile helper requires Python 3.11+."
 metadata:
-  category: "development"
+  category: "kotlin-multiplatform"
   source: "https://github.com/UbiqueInnovation/uniffi-kotlin-multiplatform-bindings"
   sourceVersion: "v1.3.1@b819fb4ea33d0ddeb3f1970e5b0d7367c3c7d300; UniFFI 0.32.0; repository and documentation inspected 2026-10-08"
   createdBy: "github-copilot/gpt-6.1-sol"
   createdAt: "2026-10-08T13:30:08+02:00"
   updatedBy: "github-copilot/gpt-6.1-sol"
-  updatedAt: "2026-10-08T13:57:46+02:00"
+  updatedAt: "2026-10-18T17:55:52+02:00"
 ---
 
 # Ubique UniFFI Kotlin Multiplatform

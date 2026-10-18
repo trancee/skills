@@ -3,13 +3,13 @@ name: kotlinx-serialization
 description: "Designs, implements, configures, tests, and troubleshoots kotlinx.serialization across JSON and other formats. Use when applying the serialization compiler plugin and runtime, annotating models, configuring Json, writing custom or contextual serializers, modeling polymorphism, evolving wire schemas, supporting multiplatform formats, or diagnosing missing serializers and decoding failures. Don't use for Java Serializable, Android Parcelize, database ORM mapping, reflection-only object mappers, protocol-schema compiler design, or general Kotlin models with no serialization boundary."
 compatibility: "Current kotlinx.serialization runtime 1.11.0 is built with Kotlin 2.3.20. The serialization compiler plugin version matches the Kotlin compiler, while runtime/format libraries use independent kotlinx.serialization versions. JSON is stable; bundled non-JSON formats are experimental. Helper requires Python 3.11+."
 metadata:
-  category: "development"
+  category: "kotlin-multiplatform"
   source: "https://kotlinlang.org/docs/serialization.html"
   sourceVersion: "kotlinx.serialization 1.11.0@6956af2e6073347c7832c3c5b374fa3b5a345956; Kotlin Help build 1155"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T15:10:58+02:00"
   updatedBy: "github-copilot/gpt-6.1-sol"
-  updatedAt: "2026-10-06T15:34:20+02:00"
+  updatedAt: "2026-10-18T17:55:52+02:00"
 ---
 
 # kotlinx.serialization

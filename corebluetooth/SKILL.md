@@ -3,13 +3,13 @@ name: corebluetooth
 description: "Implements, reviews, tests, and troubleshoots Apple Core Bluetooth central and peripheral apps. Use when scanning, connecting, discovering services, reading, writing, subscribing, advertising, publishing local GATT services, restoring state, handling background execution, opening L2CAP channels, or diagnosing CBError, CBATTError, write backpressure, stale peripherals, and delegate races. Don't use for Android BluetoothGatt, platform-independent BLE schema design, throughput or PHY tuning, pairing cryptography, Nearby Interaction, MultipeerConnectivity, External Accessory, unsupported arbitrary Bluetooth Classic profiles, or UI unrelated to Bluetooth."
 compatibility: "Uses Apple Core Bluetooth documentation available 2026-08-31. Verify API/platform availability at the deployment target: CBPeripheralManager advertising is unavailable on watchOS, tvOS, and visionOS; Core Bluetooth background modes are unavailable to iPad apps running on macOS. iOS 26 adds documented Live Activity background privileges. Inspector requires Python 3.11+."
 metadata:
-  category: "development"
+  category: "bluetooth"
   source: "https://developer.apple.com/documentation/corebluetooth"
   sourceVersion: "Apple Core Bluetooth documentation 2026-08-31; archived background guide 2013-09-18"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-31T08:33:01+02:00"
   updatedBy: "github-copilot/gpt-6.1-sol"
-  updatedAt: "2026-10-06T16:00:11+02:00"
+  updatedAt: "2026-10-18T17:55:52+02:00"
 ---
 
 # Core Bluetooth

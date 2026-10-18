@@ -3,13 +3,13 @@ name: android-ble-inspector
 description: "Builds, reviews, tests, and troubleshoots Android BLE inspector and diagnostic-tool apps with Jetpack Compose. Use when creating scanner device lists, GATT trees, read or write controls, subscription progress, raw and decoded value views, local advertiser/server demos, standard health decoders, or real-device investigation workflows. Don't use for headless production BLE libraries, standalone GATT queue or server implementations, platform-independent schema design, Bluetooth Classic or socket transports, RF or throughput optimization, general Compose UI, or medical diagnosis and interpretation."
 compatibility: "Targets Android-only Jetpack Compose diagnostic apps and composes Android BLE platform skills through API 37. Source project uses min SDK 26, target SDK 36, Kotlin 2.2.10, and AGP 9.2.1; verify current project versions rather than copying them. Physical devices are required for BLE behavior. Analyzer requires Python 3.11+."
 metadata:
-  category: "development"
+  category: "bluetooth"
   source: "https://gist.githubusercontent.com/roywatson/7ce389862e245a622dba2e34e28331e6/raw/506e408d1fa9f7616c4b4c00d7efb43ddd414cd8/android_ble_tools.md"
   sourceVersion: "gist revision 506e408d1fa9f7616c4b4c00d7efb43ddd414cd8; repository inspected 2026-08-31"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-31T09:38:56+02:00"
   updatedBy: "github-copilot/gpt-6.1-sol"
-  updatedAt: "2026-10-06T15:38:18+02:00"
+  updatedAt: "2026-10-18T17:55:52+02:00"
 ---
 
 # Android BLE Inspector

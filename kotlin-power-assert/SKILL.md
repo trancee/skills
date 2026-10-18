@@ -3,13 +3,13 @@ name: kotlin-power-assert
 description: "Configures, uses, debugs, and exposes Kotlin Power-assert integrations. Use when applying the Power-assert compiler plugin in Gradle, Maven, JVM, or Multiplatform builds; selecting transformed functions or compilations; interpreting expression-value diagrams; authoring @PowerAssert assertion APIs, soft assertions, or CallExplanation renderers; and diagnosing missing transformations or runtime intrinsic failures. Don't use for general Kotlin tests, assertion-library selection without Power-assert, compiler-plugin implementation, or non-Kotlin assertions."
 compatibility: "Power-assert is Experimental in Kotlin 2.4.20. Keep the compiler plugin, Kotlin compiler, Gradle plugin, Maven plugin artifact, and runtime library on one Kotlin version. Kotlin 2.4.20 selects compilations with `compilationFilter` (`PowerAssertCompilationFilter.TESTS` default, `ALL`, or a predicate); `includedSourceSets` is deprecated. Helper requires Python 3.11+."
 metadata:
-  category: "development"
+  category: "testing-quality"
   source: "https://kotlinlang.org/docs/power-assert.html"
   sourceVersion: "Kotlin 2.4.20@890ac1d94fdb80eb85f0eeb5be5e4352df987b2f (2026-09-07); Kotlin Help build 1292 (2026-10-06)"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T17:43:53+02:00"
   updatedBy: "github-copilot/gpt-6.1-sol"
-  updatedAt: "2026-10-06T16:00:11+02:00"
+  updatedAt: "2026-10-18T17:55:52+02:00"
 ---
 
 # Kotlin Power-assert

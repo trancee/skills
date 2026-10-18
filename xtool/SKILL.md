@@ -2,13 +2,13 @@
 name: xtool
 description: "Installs/configures/builds/deploys/debugs xtool SwiftPM iOS apps on Linux, WSL, macOS. Use for Darwin SDK, Apple auth, device pairing, Developer Mode, signing/install/launch. Don't use for Xcode-only, Android, or unrelated Swift."
 metadata:
-  category: "development"
+  category: "build-delivery"
   source: "https://xtool.sh/"
   sourceVersion: "xtool 1.21.0@d76498a3d7d889111a564db52013b6ea5a10cabc; Swift 6.4/Xcode 27 install guide checked 2026-10-06"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-28T19:26:56+02:00"
   updatedBy: "github-copilot/gpt-6.1-sol"
-  updatedAt: "2026-10-06T16:00:11+02:00"
+  updatedAt: "2026-10-18T17:55:52+02:00"
 ---
 
 # xtool

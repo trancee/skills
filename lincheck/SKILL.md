@@ -3,13 +3,13 @@ name: lincheck
 description: "Designs, runs, interprets, and troubleshoots Lincheck concurrency tests on the JVM. Use when exploring thread interleavings, testing arbitrary concurrent code, declaring concurrent data-structure operations, checking linearizability or other sequential specifications, comparing model checking with stress testing, validating obstruction freedom, or reproducing deadlocks and races. Don't use for performance benchmarking, non-JVM execution, distributed consistency, production race detection without a Lincheck model, or formal proof beyond configured executions."
 compatibility: "Current Lincheck 3.7 uses coordinates org.jetbrains.lincheck:lincheck and packages org.jetbrains.lincheck. Lincheck executes only on JVM; Kotlin Multiplatform projects place Lincheck tests in JVM/Android host-test source sets. Helper requires Python 3.11+."
 metadata:
-  category: "development"
+  category: "testing-quality"
   source: "https://kotlinlang.org/docs/lincheck-guide.html"
   sourceVersion: "Lincheck 3.7 (JetBrains/lincheck@a1e02bfda2948c02605ef7ac83c433c71c67ec6c); Kotlin Help build 1292"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T15:18:42+02:00"
   updatedBy: "github-copilot/gpt-6.1-sol"
-  updatedAt: "2026-10-06T16:00:11+02:00"
+  updatedAt: "2026-10-18T17:55:52+02:00"
 ---
 
 # Lincheck

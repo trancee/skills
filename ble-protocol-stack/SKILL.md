@@ -3,13 +3,13 @@ name: ble-protocol-stack
 description: "Designs, implements, validates, and troubleshoots Bluetooth Low Energy GAP, GATT, ATT, and L2CAP interactions. Use when defining advertising, scanning, and connection roles; modeling GATT services, characteristics, descriptors, properties, permissions, and values; implementing ATT reads, writes, subscriptions, notifications, indications, long values, and caching; configuring L2CAP fixed, credit-based, or enhanced ATT bearers; or diagnosing discovery, UUID, MTU, CCCD, and cross-platform interoperability failures. Don't use for Bluetooth Classic, LE Audio or ISO streams, RF and PHY tuning, throughput optimization, pairing cryptography, platform UI, or generic network protocols."
 compatibility: "Bluetooth Core 6.3; 6.2 GAP/GATT/ATT/L2CAP baseline retained. Platform/controller APIs expose subsets and may synthesize attributes. Verify mandatory updates, assigned numbers, profiles, and platform behavior for the claimed version. Schema validator requires Python 3.11+."
 metadata:
-  category: "development"
+  category: "bluetooth"
   source: "https://argenox.com/blog/understanding-ble-gap-gatt-and-l2cap"
   sourceVersion: "Bluetooth Core Specification 6.3 (current); 6.2 retained as supported baseline; Argenox article 2026-04-08 (verified)."
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T22:55:25+02:00"
   updatedBy: "github-copilot/gpt-6.1-sol"
-  updatedAt: "2026-10-06T15:43:04+02:00"
+  updatedAt: "2026-10-18T17:55:52+02:00"
 ---
 
 # BLE Protocol Stack

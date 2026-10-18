@@ -3,13 +3,13 @@ name: kover
 description: "Configures, verifies, and troubleshoots Kotlinx Kover coverage for JVM, Android, and Kotlin Multiplatform projects. Use when adding Gradle or Maven Kover, aggregating multi-module coverage, filtering reports, enforcing line, branch, or instruction thresholds, choosing the IntelliJ or JaCoCo engine, merging binary reports, or diagnosing instrumentation gaps. Don't use for JavaScript or Native coverage, Android device tests, non-JVM coverage, or generic test writing without Kover."
 compatibility: "Measures JVM bytecode. Gradle path requires Gradle 6.8.3+; Android requires AGP 7+; Maven path requires Maven 3+ and Java 8+. Helper requires Python 3.11+. Verify live requirements before version changes."
 metadata:
-  category: "development"
+  category: "testing-quality"
   source: "https://kotlin.github.io/kotlinx-kover/"
   sourceVersion: "Kover 0.9.9 (Kotlin/kotlinx-kover@95de3ac635494dc745ecc264344190a6c789abe8); published plugin docs examples 0.9.8"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T13:45:53+02:00"
   updatedBy: "github-copilot/gpt-6.1-sol"
-  updatedAt: "2026-10-06T15:34:20+02:00"
+  updatedAt: "2026-10-18T17:55:52+02:00"
 ---
 
 # Kover

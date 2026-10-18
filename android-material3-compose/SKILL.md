@@ -3,13 +3,13 @@ name: android-material3-compose
 description: "Designs, implements, reviews, tests, and migrates Android Material 3 interfaces with Jetpack Compose. Use when configuring Compose Material 3, themes, color schemes, typography, shapes, dynamic color, components, adaptive layouts, edge-to-edge UI, accessibility, motion, previews, UI tests, or Material 2 migration. Don't use for Android Views or XML, Wear OS Material 3, Compose Multiplatform shared UI, custom non-Material design systems, or state and business architecture unrelated to the interface."
 compatibility: "Targets Android-only Jetpack Compose Material 3 apps. Current stable androidx.compose.material3 release is 1.4.0; prefer the current stable Compose BOM and verify adaptive artifacts separately. Dynamic color requires Android 12/API 31+. Edge-to-edge and predictive-back behavior depend on target/device SDK. Inspector requires Python 3.11+."
 metadata:
-  category: "development"
+  category: "android-compose"
   source: "https://m3.material.io/develop/android/jetpack-compose"
   sourceVersion: "Material Design 3 Android guidance; AndroidX Material3 1.4.0 stable, 1.5.0-alpha29 preview; release notes checked 2026-10-06"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-09-04T00:00:00+02:00"
   updatedBy: "github-copilot/gpt-6.1-sol"
-  updatedAt: "2026-10-06T16:00:11+02:00"
+  updatedAt: "2026-10-18T17:55:52+02:00"
 ---
 
 # Android Material 3 Compose

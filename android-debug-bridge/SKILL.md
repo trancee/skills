@@ -3,13 +3,13 @@ name: android-debug-bridge
 description: "Installs, configures, uses, and troubleshoots Android Debug Bridge (adb). Use when selecting USB, emulator, or Wi-Fi devices; pairing wireless debugging; running shell, package, and activity commands; installing APKs; copying files; forwarding ports; collecting logcat, dumpsys, bugreports, screenshots, or recordings; scripting device checks; or diagnosing unauthorized, offline, mDNS, server, and USB failures. Don't use for fastboot flashing or bootloader unlocks, Android app implementation, production device management, bypassing device authorization, destructive factory resets without explicit approval, or non-Android remote shells."
 compatibility: "Uses Android SDK Platform-Tools/adb 37.0.1 documentation. Prefer the latest Platform-Tools, which are intended to remain backward compatible. Wireless pairing requires Android 11+ phones or Android 13+ TV/Wear; ADB Wi-Fi 2.0 requires Android 17+ and adb 37+. Inspector requires Python 3.11+."
 metadata:
-  category: "development"
+  category: "android-compose"
   source: "https://developer.android.com/tools/adb"
   sourceVersion: "Android Developers ADB guide and Platform-Tools 37.0.1 release notes, 2026-08-31"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-31T10:08:58+02:00"
   updatedBy: "github-copilot/gpt-6.1-sol"
-  updatedAt: "2026-10-06T15:38:18+02:00"
+  updatedAt: "2026-10-18T17:55:52+02:00"
 ---
 
 # Android Debug Bridge

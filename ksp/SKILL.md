@@ -3,13 +3,13 @@ name: ksp
 description: "Configures, authors, tests, migrates, and troubleshoots Kotlin Symbol Processing. Use when applying com.google.devtools.ksp, consuming processors on JVM, Android, or Multiplatform targets, implementing SymbolProcessorProvider or SymbolProcessor, traversing KS declarations, types, and annotations, generating Kotlin, Java, or resources, handling multi-round deferral, declaring isolating or aggregating dependencies, preserving incremental and build-cache behavior, migrating kapt or KSP1, or diagnosing generated-source, task, and provider failures. Don't use for compiler plugins that change semantics, expression or statement analysis, source rewriting, runtime reflection, Java-only processors without KSP support, or generic Gradle tuning."
 compatibility: "Current KSP 2.3.12 is KSP2-only. Since KSP 2.3.0 its version is independent of Kotlin; it is a standalone tool over stable compiler APIs and works with the Kotlin 2.4.0 default module (the Kotlin 2.4.20 quickstart pairs KSP 2.3.x with Kotlin 2.4.20). KSP 2.3.12 requires AGP 8.12.0+, Gradle 8.13+ (Gradle 9.x for AGP 9.0+), JDK 17+. KSP1 has been removed and is unsupported. Verify the release against the project's exact Kotlin/KGP/AGP/Gradle tuple. Helper requires Python 3.11+."
 metadata:
-  category: "development"
+  category: "kotlin-multiplatform"
   source: "https://kotlinlang.org/docs/ksp-overview.html"
   sourceVersion: "KSP 2.3.12 (google/ksp@a3c38590913b863cc6b73b41d54ff8afa625f642); Kotlin Help build 1292 (2026-10-06)"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T22:40:37+02:00"
   updatedBy: "github-copilot/gpt-6.1-sol"
-  updatedAt: "2026-10-06T16:00:11+02:00"
+  updatedAt: "2026-10-18T17:55:52+02:00"
 ---
 
 # Kotlin Symbol Processing

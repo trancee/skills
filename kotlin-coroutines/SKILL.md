@@ -3,13 +3,13 @@ name: kotlin-coroutines
 description: "Designs, implements, tests, and troubleshoots Kotlin coroutines and Flow with structured concurrency. Use when choosing CoroutineScope, Job, dispatchers, launch or async composition, handling cancellation, timeouts or exceptions, building Flow pipelines, coordinating channels or shared state, using virtual-time coroutine tests, or diagnosing leaks, deadlocks and hangs. Don't use for threads or executors without coroutines, Reactive Streams without coroutine interop, UI lifecycle work unrelated to coroutine ownership, or generic Kotlin code with no suspension or concurrency."
 compatibility: "Current kotlinx.coroutines 1.11.0 is built with Kotlin 2.2.20 and supports JVM, JS/Wasm web, and Native variants as published. Platform integrations require matching modules. Helper requires Python 3.11+."
 metadata:
-  category: "development"
+  category: "kotlin-multiplatform"
   source: "https://kotlinlang.org/docs/coroutines-guide.html"
   sourceVersion: "kotlinx.coroutines 1.11.0@8564f65764d3d05893cec026c6e94250e2b23874; Kotlin Help build 1155"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T15:00:36+02:00"
   updatedBy: "github-copilot/gpt-6.1-sol"
-  updatedAt: "2026-10-06T15:30:00+02:00"
+  updatedAt: "2026-10-18T17:55:52+02:00"
 ---
 
 # Kotlin coroutines

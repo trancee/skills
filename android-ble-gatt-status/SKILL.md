@@ -3,13 +3,13 @@ name: android-ble-gatt-status
 description: "Diagnoses, mitigates, and tests Android BluetoothGatt connection and status failures, including legacy status 133. Use when onConnectionStateChange reports non-success, connections fail intermittently, callbacks arrive for stale attempts, reconnect loops leak GATT objects, service discovery fails after connect, behavior differs by OEM or device, or HCI and logcat evidence is needed to separate app, stack, controller, RF, security, and peripheral causes. Don't use for ordinary BLE feature implementation, local GATT server requests, operation-queue design without connection failures, BluetoothSocket errors, generic retry libraries, or non-Android BLE stacks."
 compatibility: "Targets Android BluetoothGatt through API 37.2 documentation. Current public API 37/37.1 exposes GATT_FAILURE=257, GATT_CONNECTION_CONGESTED=143, and GATT_CONNECTION_TIMEOUT=147; it does not expose a GATT_ERROR/status-133 constant. Treat raw 133/0x85 as opaque evidence, not a diagnosis. Analyzer requires Python 3.11+."
 metadata:
-  category: "development"
+  category: "bluetooth"
   source: "https://dev.to/ble_advertiser/demystifying-android-ble-gatt-status-133-common-causes-and-robust-solutions-for-connection-32la"
   sourceVersion: "supplied article 2026-04-04; Android API 37.2 docs and API 37.1 public SDK stubs verified 2026-08-31"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-31T09:54:21+02:00"
   updatedBy: "github-copilot/gpt-6.1-sol"
-  updatedAt: "2026-10-06T15:38:18+02:00"
+  updatedAt: "2026-10-18T17:55:52+02:00"
 ---
 
 # Android BLE GATT Status Diagnosis

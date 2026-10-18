@@ -3,13 +3,13 @@ name: android-bluetooth-sockets
 description: "Implements, reviews, tests, and troubleshoots Android BluetoothSocket and BluetoothServerSocket transports. Use when building RFCOMM or SPP clients and servers, Bluetooth LE L2CAP CoC channels, blocking connect, accept, read, and write loops, Kotlin coroutine adapters, stream framing, cancellation by close, API 36 BluetoothSocketSettings migration, or diagnosing EOF, timeout, pairing, permission, SDP UUID, PSM, and socket exception failures. Don't use for GATT operations, BLE advertising or scanning alone, audio profiles or SCO, raw Link Layer work, non-Android sockets, generic TCP, or protocol cryptography."
 compatibility: "Covers Android BluetoothSocket APIs through API 37.1: RFCOMM since API 5, public LE L2CAP CoC since API 29, BluetoothSocketException since API 34, and BluetoothSocketSettings/TYPE_LE since API 36. Target-37 RFCOMM streams return -1 at EOF. The API 36 settings docs contain stale data-path links absent from API 37.0/37.1 public SDK stubs; verify future SDKs before adopting them. Inspector requires Python 3.11+."
 metadata:
-  category: "development"
+  category: "bluetooth"
   source: "https://developer.android.com/reference/android/bluetooth/BluetoothSocket"
   sourceVersion: "Android API 37/37.1 documentation and public SDK stubs; pages updated 2026-08-03 through 2026-08-14"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-31T08:45:01+02:00"
   updatedBy: "github-copilot/gpt-6.1-sol"
-  updatedAt: "2026-10-06T15:38:18+02:00"
+  updatedAt: "2026-10-18T17:55:52+02:00"
 ---
 
 # Android Bluetooth Sockets

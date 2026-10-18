@@ -3,13 +3,13 @@ name: android-ble-gatt-queue
 description: "Implements, reviews, tests, and debugs coroutine-based serialization for Android BluetoothGatt client operations. Use when reads, writes, descriptors, MTU, discovery, or subscriptions overlap; callbacks complete the wrong request; operations hang or time out; caller cancellation races callbacks; reconnects deliver stale events; or a bounded Channel, actor, or CompletableDeferred adapter is needed. Don't use for local BluetoothGattServer request/response callbacks, scanning, advertising, background permissions, generic GATT schema design, BLE throughput tuning, non-Android stacks, ordinary coroutine pipelines, or concurrent EATT bearer scheduling."
 compatibility: "Targets Android BluetoothGatt through API 37 and kotlinx.coroutines 1.11.0. Prefer API 33+ value-taking writes and value-bearing read/notification callbacks; onCharacteristicWrite/onDescriptorWrite callbacks do not contain written value. API 37 supports Executor-based GATT callbacks. Helper requires Python 3.11+."
 metadata:
-  category: "development"
+  category: "bluetooth"
   source: "https://dev.to/ble_advertiser/solving-the-android-ble-gatt-race-condition-reliable-sequential-operations-with-kotlin-coroutines-k04"
   sourceVersion: "Android API 37 documentation (2026-08-28); supplied article reviewed 2026-08-31; kotlinx.coroutines 1.11.0"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-31T08:23:27+02:00"
   updatedBy: "github-copilot/gpt-6.1-sol"
-  updatedAt: "2026-10-06T15:38:18+02:00"
+  updatedAt: "2026-10-18T17:55:52+02:00"
 ---
 
 # Android BLE GATT Queue

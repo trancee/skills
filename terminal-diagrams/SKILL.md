@@ -3,13 +3,13 @@ name: terminal-diagrams
 description: "Renders and validates ASCII/Unicode/ANSI terminal diagrams. Use for text architectures, schemas, topology, flow/state/dependency graphs, aligned tables, display-cell widths, connectors, or broken borders. Don't use for pixel graphics, quantitative charts, interactive TUIs, browser SVG/Canvas, or Mermaid when text art is not required."
 compatibility: "Monospaced UTF-8 terminals/Markdown. Declare terminal/font/locale/Unicode/emoji width policy. Python 3.11+ validator uses runtime unicodedata plus conservative overrides, not full Unicode segmentation; accepts SGR only."
 metadata:
-  category: "development"
+  category: "documentation"
   source: "https://www.unicode.org/reports/tr11/"
   sourceVersion: "Unicode 18 UAX #11 revision 46 and UAX #29 revision 49; xterm patch 411; checked 2026-10-06; user specification 2026-09-03"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-09-03T17:34:22+02:00"
   updatedBy: "github-copilot/gpt-6.1-sol"
-  updatedAt: "2026-10-06T15:15:21+02:00"
+  updatedAt: "2026-10-18T17:55:52+02:00"
 ---
 
 # Terminal diagrams

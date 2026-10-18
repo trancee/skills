@@ -3,13 +3,13 @@ name: ble-throughput
 description: "Measures, models, diagnoses, and optimizes Bluetooth Low Energy data throughput. Use when sizing ATT or GATT payloads, enabling DLE or 2M/Coded PHY, choosing connection intervals and packets per event, selecting notifications, write commands, or L2CAP CoC, implementing queue backpressure, segmentation, or reliability, comparing iOS, Android, and embedded behavior, analyzing sniffer traces, or balancing throughput, latency, power, range, and coexistence. Don't use for Bluetooth Classic, LE Audio or ISO stream design, pairing and security architecture, RF certification, generic app networking, or unsupported headline-speed guarantees."
 compatibility: "Bluetooth Core 6.3; SCI introduced in 6.2 and retained in 6.3. Sub-7.5 ms intervals require negotiated SCI support. Calculator: one-direction ATT on uncoded 1M/2M only; no Coded/EATT/CoC/HDT prediction. Mobile behavior depends on device/OS. Python 3.11+."
 metadata:
-  category: "development"
+  category: "bluetooth"
   source: "https://interrupt.memfault.com/blog/ble-throughput-primer"
   sourceVersion: "Bluetooth Core 6.3 (current); SCI introduced in Core 6.2, retained in 6.3; supplied sources reviewed 2026-10-06"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T18:55:31+02:00"
   updatedBy: "github-copilot/gpt-6.1-sol"
-  updatedAt: "2026-10-06T15:43:04+02:00"
+  updatedAt: "2026-10-18T17:55:52+02:00"
 ---
 
 # BLE Throughput

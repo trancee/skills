@@ -3,13 +3,13 @@ name: kotlinpoet
 description: "Generates, reviews, tests, and troubleshoots deterministic Kotlin source with Square KotlinPoet. Use when building FileSpec, TypeSpec, FunSpec, PropertySpec, CodeBlock, TypeName, MemberName, imports, annotations, type aliases, KSP output, metadata stubs, or compile-tested code generators. Don't use for ordinary Kotlin implementation, JavaPoet, source parsing or rewriting, compiler plugins, template engines, or KSP lifecycle work unrelated to source emission."
 compatibility: "Targets KotlinPoet 2.4.0. Core supports current JVM, JS, and WasmJS artifacts; kotlinpoet-ksp and kotlinpoet-metadata remain JVM-specific. Verify the release and Kotlin/KSP compatibility before upgrades. Inspector requires Python 3.11+."
 metadata:
-  category: "development"
+  category: "kotlin-multiplatform"
   source: "https://square.github.io/kotlinpoet/"
   sourceVersion: "square/kotlinpoet 2.4.0@97e504bbcece8100b653c5d7d7cd1bba0a55b0b3 (2026-09-07)"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-09-10T19:10:35+02:00"
   updatedBy: "github-copilot/gpt-6.1-sol"
-  updatedAt: "2026-10-06T16:00:11+02:00"
+  updatedAt: "2026-10-18T17:55:52+02:00"
 ---
 
 # KotlinPoet

@@ -3,13 +3,13 @@ name: kotlin-native-apple-interop
 description: "Configures, implements, and troubleshoots Kotlin/Native interoperability with Swift, Objective-C, and Apple frameworks. Use when producing frameworks or XCFrameworks, exporting Kotlin APIs, consuming Objective-C or C libraries through cinterop or CocoaPods, mapping names, types, blocks and errors, managing ARC/GC lifetimes, stabilizing native imports, or diagnosing header and linker failures. Don't use for SKIE-specific generated Swift APIs, Swift-only implementation, generic multiplatform architecture, Android JNI, or non-Apple native interop."
 compatibility: "Apple framework linking, cinterop against Apple SDKs, Xcode integration, and Swift consumer verification require macOS with a Kotlin-compatible Xcode. Native library import is Beta. Helper requires Python 3.11+."
 metadata:
-  category: "development"
+  category: "kotlin-multiplatform"
   source: "https://kotlinlang.org/docs/native-objc-interop.html"
   sourceVersion: "Kotlin 2.4.20@890ac1d94fdb80eb85f0eeb5be5e4352df987b2f; Kotlin Help build 1292; Apple framework/native import docs checked 2026-10-06"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T15:28:38+02:00"
   updatedBy: "github-copilot/gpt-6.1-sol"
-  updatedAt: "2026-10-06T16:00:11+02:00"
+  updatedAt: "2026-10-18T17:55:52+02:00"
 ---
 
 # Kotlin/Native Apple interop

@@ -3,13 +3,13 @@ name: remote-xcode-signing
 description: "Builds, archives, exports, and diagnoses signed iOS apps on remote Macs over SSH. Use when configuring Xcode CI keychains, certificate trust and private-key access, provisioning profiles, xcodebuild signing, or SSH-connected Xcode MCP servers. Don't use for notarizing macOS apps, App Store uploads, Linux cross-compilation with xtool, unrelated SSH administration, or bypassing macOS security approvals."
 compatibility: "Build/sign execution requires a remote macOS account, full compatible Xcode, authorized signing assets, and SSH access. Apple MCP: traditional open-Xcode bridge or version-specific Xcode 27 headless preview. MobileBuildMCP 2.7.1 is separate. Settings inspector requires Python 3.11+."
 metadata:
-  category: "development"
+  category: "build-delivery"
   source: "https://developer.apple.com/documentation/technotes/tn3161-inside-code-signing-certificates"
   sourceVersion: "Apple signing threads 690923/253761477; Xcode external-agent docs and Xcode 27 headless preview; MobileBuildMCP 2.7.1@d13ff0c707b0681769cf31da0eb42c4f94ceafff; inspected 2026-10-07"
   createdBy: "github-copilot/gpt-6.1-sol"
   createdAt: "2026-10-07T12:13:08+02:00"
   updatedBy: "github-copilot/gpt-6.1-sol"
-  updatedAt: "2026-10-07T12:13:08+02:00"
+  updatedAt: "2026-10-18T17:55:52+02:00"
 ---
 
 # Remote Xcode signing

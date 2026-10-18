@@ -3,13 +3,13 @@ name: compose-multiplatform
 description: "Designs, implements, tests, and ships shared Compose Multiplatform UI. Use when configuring Compose and compiler plugins; choosing Android, iOS, desktop, JS, or Wasm UI sharing; structuring common composables and platform entry points; managing state, lifecycle, ViewModel, navigation, resources, localization, accessibility, previews, or native-view interop; testing UI semantics; packaging apps; and diagnosing recomposition or platform-specific behavior. Don't use for non-Compose Kotlin Multiplatform architecture, Android Views or XML-only UI, SwiftUI-only apps, raw Skia rendering, or Gradle and toolchain work unrelated to Compose."
 compatibility: "Compose Multiplatform 1.12.1; Android API 21+, iOS 14+, macOS 13 arm64, Windows 10/Ubuntu 20.04 x86-64 or arm64, WasmGC browsers. Kotlin 2.1+; 2.2.20+ recommended for iOS/web. Compose compiler version equals Kotlin/KMP version. Desktop JDK 11+; native packaging JDK 17+. Python 3.11+ helper."
 metadata:
-  category: "development"
+  category: "android-compose"
   source: "https://kotlinlang.org/docs/multiplatform/compose-multiplatform.html"
   sourceVersion: "Compose Multiplatform 1.12.1@bdd8e879b2fc4960934a99959d82400c96b7c590; Kotlin 2.4.20; compatibility guide checked 2026-10-06"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T18:15:26+02:00"
   updatedBy: "github-copilot/gpt-6.1-sol"
-  updatedAt: "2026-10-06T16:00:11+02:00"
+  updatedAt: "2026-10-18T17:55:52+02:00"
 ---
 
 # Compose Multiplatform

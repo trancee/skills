@@ -3,13 +3,13 @@ name: detekt
 description: "Configures, runs, migrates, and troubleshoots detekt static analysis for Kotlin projects. Use when adding the detekt Gradle plugin or CLI, selecting stable 1.x versus prerelease 2.x, configuring rules, baselines, suppressions, type resolution, reports, CI, auto-correction, or custom rule sets. Don't use for general Kotlin compilation, ktlint without detekt, Android Lint, or formatting tasks that do not use detekt."
 compatibility: "Requires a Kotlin project and either its Gradle wrapper or a detekt CLI. detekt 2.x preview requires newer JDK/Kotlin/Gradle/AGP than 1.x; use the live compatibility table. Helper requires Python 3.11+."
 metadata:
-  category: "development"
+  category: "testing-quality"
   source: "https://detekt.dev/docs/intro"
   sourceVersion: "detekt 2.0.0-alpha.6@401c64bf232db0dcb054a7cfd0ca5fed3a095bc6; 2.x migration guide at detekt/detekt@ee1c04f2d7d2a4b5a181273a4d467e7a5a28c01a checked 2026-10-02; stable 1.23.8@046263730eb5368cb344489ac36543294e8e87bd"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T13:27:09+02:00"
   updatedBy: "github-copilot/gpt-6.1-sol"
-  updatedAt: "2026-10-06T15:34:20+02:00"
+  updatedAt: "2026-10-18T17:55:52+02:00"
 ---
 
 # detekt

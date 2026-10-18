@@ -3,13 +3,13 @@ name: kotlinx-benchmark
 description: "Configures, runs, compares, and troubleshoots kotlinx-benchmark for Kotlin/JVM, Java, JavaScript, Native, and Wasm projects. Use when adding the benchmark plugin and runtime, defining benchmark source sets, targets or profiles, choosing warmups, iterations, modes, forks or report formats, building JMH benchmark JARs, analyzing JSON results, or diagnosing missing benchmarks and toolchain failures. Don't use for production profiling, AndroidX Benchmark or Macrobenchmark, Java JMH without kotlinx-benchmark, load testing, or performance claims without controlled measurements."
 compatibility: "kotlinx-benchmark 0.5.0 requires Kotlin 2.2.0+ and Gradle 8.0+; its experimental Wasm targets require the exact Kotlin version used to build the release (2.2.0 for 0.5.0). 0.5.0 rewrote the code generator to use KSP, removing dependency on internal Kotlin compiler APIs removed in Kotlin 2.5. Native benchmarks run only for the host target. Helper requires Python 3.11+."
 metadata:
-  category: "development"
+  category: "testing-quality"
   source: "https://github.com/Kotlin/kotlinx-benchmark"
   sourceVersion: "kotlinx-benchmark 0.5.0@6181dd9623dba5311131c97bd3471a620e080189"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T14:34:58+02:00"
   updatedBy: "github-copilot/gpt-6.1-sol"
-  updatedAt: "2026-10-06T15:34:20+02:00"
+  updatedAt: "2026-10-18T17:55:52+02:00"
 ---
 
 # kotlinx-benchmark

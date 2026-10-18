@@ -3,13 +3,13 @@ name: kotlin-binary-compatibility
 description: "Configures, runs, migrates, and reviews Kotlin binary compatibility validation. Use when enabling Kotlin Gradle plugin ABI validation, maintaining ABI dumps, running checkKotlinAbi or updateKotlinAbi, using legacy apiCheck or apiDump, filtering public API, validating published artifacts, handling unsupported targets, or migrating from kotlinx binary-compatibility-validator. Don't use for source compatibility, runtime behavior testing, Java-only compatibility tools, semantic-version decisions without ABI review, or general Kotlin compilation."
 compatibility: "Built-in ABI validation is experimental in Kotlin Gradle plugin 2.2.0+; verify the current Kotlin DSL before changes. Legacy binary-compatibility-validator 0.18.2 requires Gradle 6.1.1+ and Kotlin 1.6.20+, is in maintenance mode, and may require a pre-JDK-25 build runtime. Helper requires Python 3.11+."
 metadata:
-  category: "development"
+  category: "testing-quality"
   source: "https://kotlinlang.org/docs/gradle-binary-compatibility-validation.html"
   sourceVersion: "Kotlin 2.4.20@890ac1d94fdb80eb85f0eeb5be5e4352df987b2f (2026-09-07); binary-compatibility-validator 0.18.2@534b4eb256fdf5625ab1047d3091670308c84f04 (2026-09-02)"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T14:24:21+02:00"
   updatedBy: "github-copilot/gpt-6.1-sol"
-  updatedAt: "2026-10-06T16:00:11+02:00"
+  updatedAt: "2026-10-18T17:55:52+02:00"
 ---
 
 # Kotlin binary compatibility

@@ -3,13 +3,13 @@ name: kotlin-api-reference
 description: "Finds and verifies Kotlin API declarations across official Kotlin and kotlinx libraries and tools. Use when locating a symbol's canonical reference, matching API availability to dependency version and platform, resolving overload, extension, or expect-actual signatures, checking deprecation, opt-in, or Since metadata, tracing API docs to source, or comparing releases. Don't use for generating API documentation, general Kotlin implementation, third-party libraries outside the Kotlin ecosystem, Java-only APIs, or inferring runtime behavior from signatures alone."
 compatibility: "Requires access to official Kotlin API portals or versioned source. API portals may document current releases and link moving master branches; verify against the project's exact dependency version. Helper requires Python 3.11+."
 metadata:
-  category: "development"
+  category: "kotlin-multiplatform"
   source: "https://kotlinlang.org/docs/api-references.html"
   sourceVersion: "Kotlin API references; Kotlin Help build 1155 (2026-08-26)"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T14:52:35+02:00"
   updatedBy: "github-copilot/gpt-6.1-sol"
-  updatedAt: "2026-10-06T15:30:00+02:00"
+  updatedAt: "2026-10-18T17:55:52+02:00"
 ---
 
 # Kotlin API reference

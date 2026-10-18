@@ -3,13 +3,13 @@ name: maven-central-publishing
 description: "Registers, configures, validates, publishes, and troubleshoots releases through the Sonatype Central Portal. Use when creating accounts or namespaces, verifying groupId ownership, generating user tokens, signing artifacts, configuring Maven or Gradle publication, building upload bundles, using the Portal API, migrating from OSSRH, publishing snapshots, or diagnosing deployment failures. Don't use for dependency consumption, private Nexus repositories, Gradle Plugin Portal, npm or PyPI, or treating an upload as legal or certification approval."
 compatibility: "Targets the Sonatype Central Portal workflow documented 2026-09-06. Portal UI, APIs, supported plugins, terms, namespace rules, and snapshot behavior can change; refresh official documentation before onboarding or release. Inspector supports Maven/Gradle/JReleaser text configuration and requires Python 3.11+."
 metadata:
-  category: "development"
+  category: "build-delivery"
   source: "https://central.sonatype.org/register/central-portal/"
   sourceVersion: "Central Portal registration, namespace, requirements, publishing, tokens, OSSRH migration, and snapshots inspected 2026-09-06; Publisher API authentication and deployment lifecycle inspected 2026-10-02"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-09-06T13:28:03+02:00"
   updatedBy: "github-copilot/gpt-6.1-sol"
-  updatedAt: "2026-10-06T15:34:20+02:00"
+  updatedAt: "2026-10-18T17:55:52+02:00"
 ---
 
 # Maven Central Publishing

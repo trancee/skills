@@ -3,13 +3,13 @@ name: act
 description: "Installs, configures, runs, and troubleshoots nektos act for local GitHub Actions execution. Use when selecting workflows, events, jobs or matrix cells, configuring runner images and Docker access, supplying local inputs/secrets, or investigating differences from GitHub-hosted runs. Don't use for Arrange-Act-Assert testing, general Docker administration, or operating production GitHub runners."
 compatibility: "Baseline: act 0.2.89. Container execution requires a reachable Docker Engine API; host execution requires the actual OS/toolchains and is not isolated. Podman is experimental, not a supported-equivalence guarantee. Event helper requires Python 3.9+; downloads and uncached actions/images require network access."
 metadata:
-  category: "development"
+  category: "build-delivery"
   source: "https://github.com/nektos/act"
   sourceVersion: "v0.2.89@4f411281417e88660bea1c1a1749aa71ae0bd60f; act-docs@35cab6107d2afb3269a61dc5de5c15c151a4574f; inspected 2026-10-09"
   createdBy: "github-copilot/gpt-6.1-sol"
   createdAt: "2026-10-09T11:18:41+02:00"
   updatedBy: "github-copilot/gpt-6.1-sol"
-  updatedAt: "2026-10-09T11:18:41+02:00"
+  updatedAt: "2026-10-18T17:55:52+02:00"
 ---
 
 # act: local GitHub Actions

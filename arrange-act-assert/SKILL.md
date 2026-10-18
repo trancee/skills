@@ -3,13 +3,13 @@ name: arrange-act-assert
 description: "Structures and refactors example-based tests with Arrange-Act-Assert. Use for hidden focal actions, mixed phases, unrelated assertions, oversized setup, nondeterministic synchronization, or test-helper design. Don't use for test strategy, TDD sequencing, benchmarks, property/model tests, or mechanically adding phase comments."
 compatibility: "Framework/language-agnostic. Python 3.11+ inspector uses heuristics; review candidates against the test's public contract."
 metadata:
-  category: "development"
+  category: "testing-quality"
   source: "https://automationpanda.com/2020/07/07/arrange-act-assert-a-pattern-for-writing-good-tests/"
   sourceVersion: "Automation Panda 2020-07-07 (modified_time unchanged, checked 2026-10-06); Semaphore 2025-01-17; supplied Medium articles 2017-09-09 and 2023-05-09"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-31T12:36:26+02:00"
   updatedBy: "github-copilot/gpt-6.1-sol"
-  updatedAt: "2026-10-06T15:15:21+02:00"
+  updatedAt: "2026-10-18T17:55:52+02:00"
 ---
 
 # Arrange Act Assert

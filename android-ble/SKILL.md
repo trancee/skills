@@ -3,13 +3,13 @@ name: android-ble
 description: "Implements, migrates, tests, and troubleshoots Android Bluetooth Low Energy discovery, advertising, GATT client, and platform lifecycle. Use when building scan, advertise, GATT connection, or subscription flows; handling Nearby Devices permissions; maintaining background connections with CompanionDeviceService or connectedDevice foreground services; adopting Android 17 BluetoothGattConnectionSettings and autonomous re-pairing; or diagnosing scan, bond, MTU, process-death, and OEM failures. Don't use for local GATT server request/response internals, coroutine GATT operation-queue internals, BluetoothSocket RFCOMM or LE L2CAP CoC transports, Bluetooth Classic profiles, generic GAP/GATT schema design, PHY and throughput tuning, iOS CoreBluetooth, pairing cryptography, or UI unrelated to BLE."
 compatibility: "Targets Android 17/API 37 while preserving explicit branches for Android 12/API 31 Nearby Devices permissions, Android 13/API 33 memory-safe GATT APIs, and Android 14/API 34 foreground-service types/MTU behavior. Android 17 affects all apps and target-37 apps differently; verify live behavior pages and SDK stubs. Helper requires Python 3.11+."
 metadata:
-  category: "development"
+  category: "bluetooth"
   source: "https://developer.android.com/develop/connectivity/bluetooth/ble/ble-overview"
   sourceVersion: "Android BLE overview 2026-02-26; Android 17 API 37/37.1 documentation 2026-08-28; supplied articles reviewed 2026-08-30"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T23:09:17+02:00"
   updatedBy: "github-copilot/gpt-6.1-sol"
-  updatedAt: "2026-10-06T15:38:18+02:00"
+  updatedAt: "2026-10-18T17:55:52+02:00"
 ---
 
 # Android BLE

@@ -3,13 +3,13 @@ name: skie
 description: "Installs, migrates, configures, and troubleshoots Touchlab SKIE for Kotlin Multiplatform Swift interop. Use when adding co.touchlab.skie to an Apple framework module, exposing Kotlin Flow, suspend functions, enums, sealed types, or default arguments to Swift, tuning SKIE features or analytics, or fixing SKIE build and migration failures. Don't use for general Kotlin or Swift work without SKIE, non-Apple KMP targets, or Swift-only projects."
 compatibility: "Requires a Gradle Kotlin Multiplatform module producing Apple frameworks. Framework/Swift verification requires macOS, Xcode, and a supported Kotlin/Swift/SKIE combination. Helper requires Python 3.11+."
 metadata:
-  category: "development"
+  category: "kotlin-multiplatform"
   source: "https://skie.touchlab.co/intro"
   sourceVersion: "SKIE 0.10.15@7e7b8b597a4da8ba121a33775799ad51e517beb5; release/changelog checked 2026-10-06"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-30T13:07:08+02:00"
   updatedBy: "github-copilot/gpt-6.1-sol"
-  updatedAt: "2026-10-06T16:00:11+02:00"
+  updatedAt: "2026-10-18T17:55:52+02:00"
 ---
 
 # SKIE

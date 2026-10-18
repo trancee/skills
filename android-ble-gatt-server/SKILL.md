@@ -3,13 +3,13 @@ name: android-ble-gatt-server
 description: "Implements, reviews, tests, and troubleshoots Android BluetoothGattServer applications. Use when publishing local services, characteristics, and descriptors; handling characteristic or descriptor reads and writes, prepared-write transactions, CCCD subscriptions, per-central MTU and state, notification or indication flow control, service-add sequencing, and GATT server shutdown. Don't use for remote GATT client operation queues, scanning or advertising lifecycle, RFCOMM or LE CoC sockets, platform-independent schema design, throughput tuning, pairing cryptography, or non-Android stacks."
 compatibility: "Targets Android BluetoothGattServer from API 18 through API 37.2 documentation. Prefer API 33+ value-taking notifyCharacteristicChanged; mutable attribute value APIs are deprecated. API 37.2 adds connection-update callback symbols absent from public API 37.0/37.1 SDK stubs, so branch by the actual compile SDK. Inspector requires Python 3.11+."
 metadata:
-  category: "development"
+  category: "bluetooth"
   source: "https://developer.android.com/reference/android/bluetooth/BluetoothGattServer"
   sourceVersion: "Android API 37.2 documentation 2026-08-31; API 37.0/37.1 public SDK stubs verified 2026-08-31"
   createdBy: "github-copilot/gpt-5.6-sol"
   createdAt: "2026-08-31T09:30:06+02:00"
   updatedBy: "github-copilot/gpt-6.1-sol"
-  updatedAt: "2026-10-06T15:38:18+02:00"
+  updatedAt: "2026-10-18T17:55:52+02:00"
 ---
 
 # Android BLE GATT Server

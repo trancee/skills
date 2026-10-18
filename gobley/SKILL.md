@@ -3,13 +3,13 @@ name: gobley
 description: "Integrates Rust libraries into Kotlin Multiplatform with Gobley. Use when configuring dev.gobley.cargo or dev.gobley.uniffi, generating UniFFI Kotlin bindings, packaging native libraries for Android/JVM/Kotlin Native, mapping custom types, or diagnosing Rust cross-compilation and FFI lifetime failures. Don't use for standalone Rust development, UniFFI Swift/Python bindings, Kotlin-to-Swift interop, or unsupported JS/Wasm targets."
 compatibility: "Baseline: Gobley 0.3.7 with UniFFI 0.29.4. Requires Cargo/Rust, a compatible Kotlin/Gradle/JDK tuple, Android SDK/NDK for Android, and macOS/Xcode for Apple builds. Inspector requires Python 3.11+. JS/Wasm UniFFI implementations are stubs, not working Rust interop."
 metadata:
-  category: "development"
+  category: "kotlin-multiplatform"
   source: "https://github.com/gobley/gobley"
   sourceVersion: "Gobley v0.3.7@0309dc04fd8dbf89eb3cf9cd796c746b1979cce2; UniFFI 0.29.4; documentation checked 2026-10-08"
   createdBy: "github-copilot/gpt-6.1-sol"
   createdAt: "2026-10-08T13:13:46+02:00"
   updatedBy: "github-copilot/gpt-6.1-sol"
-  updatedAt: "2026-10-08T13:13:46+02:00"
+  updatedAt: "2026-10-18T17:55:52+02:00"
 ---
 
 # Gobley
