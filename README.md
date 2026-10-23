@@ -92,6 +92,7 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 | [`kotlinx-benchmark`](kotlinx-benchmark/) | 4,501 | Configure, run, compare, and troubleshoot multiplatform Kotlin microbenchmarks with kotlinx-benchmark. |
 | [`kover`](kover/) | 3,198 | Configure, verify, aggregate, and troubleshoot Kotlinx Kover JVM coverage for Kotlin projects. |
 | [`lincheck`](lincheck/) | 3,804 | Design, run, interpret, and troubleshoot JVM concurrency tests with Lincheck model checking and stress strategies. |
+| [`miri`](miri/) | 6,643 | Install, run, and troubleshoot Miri for Rust undefined-behavior detection, pointer provenance, aliasing, races, cross-target tests, and CI with explicit coverage limits. |
 | [`spotless`](spotless/) | 3,939 | Configure, apply, verify, migrate, and troubleshoot Spotless formatting for Gradle and Maven projects. |
 
 ### Documentation
