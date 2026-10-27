@@ -60,6 +60,7 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 | Skill | Context tokens | Purpose |
 | --- | ---: | --- |
 | [`act`](act/) | 6,628 | Install, configure, run, and troubleshoot local GitHub Actions with nektos act; select events, jobs, matrices, runner images, and safe credentials while tracking GitHub parity gaps. |
+| [`ios-device-support`](ios-device-support/) | 5,402 | Find legacy iPhone DeviceSupport files across filsv and iGhibli using exact iOS/build metadata; distinguish missing images, dropped Xcode support, and modern personalized images. |
 | [`kotlin-gradle`](kotlin-gradle/) | 4,452 | Configure, migrate, optimize, and troubleshoot Kotlin Gradle builds, toolchains, compiler options, and caches. |
 | [`maven-central-publishing`](maven-central-publishing/) | 6,399 | Register, configure, validate, publish, and troubleshoot releases through the Sonatype Central Portal. |
 | [`remote-xcode-signing`](remote-xcode-signing/) | 9,566 | Build, sign, archive, and export iOS apps on remote Macs over SSH; configure keychain access and evaluate Xcode MCP orchestration. |
