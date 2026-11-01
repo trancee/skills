@@ -17,6 +17,7 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 
 | Skill | Context tokens | Purpose |
 | --- | ---: | --- |
+| [`aws-lc`](aws-lc/) | 9,831 | Build, integrate, port, test, and troubleshoot AWS-LC libcrypto/libssl, OpenSSL 3 providers, target toolchains, and FIPS build/approval boundaries. |
 | [`csidh-ctidh`](csidh-ctidh/) | 7,247 | Design, integrate, implement, review, and test CSIDH-family isogeny group actions, NIKE protocols, and hardware golden models. |
 | [`falcon-fn-dsa`](falcon-fn-dsa/) | 8,508 | Implement, integrate, test, and audit Falcon signatures and provisional FN-DSA using the active c-fn-dsa reference. |
 | [`libacvp-json-kotlin`](libacvp-json-kotlin/) | 7,585 | Model, parse, validate, and test libacvp and ACVP JSON artifacts in Kotlin. |
