@@ -1,0 +1,28 @@
+[project]
+site_name = "Project documentation"
+site_url = "https://example.com/project/"
+docs_dir = "docs"
+site_dir = "site"
+nav = [
+  { "Home" = "index.md" },
+  { "Guide" = "guide.md" },
+]
+extra_css = ["stylesheets/extra.css"]
+exclude_docs = "/private/"
+draft_docs = "/drafts/"
+
+[project.theme]
+variant = "modern"
+features = ["navigation.instant", "navigation.footer", "content.code.copy"]
+
+[project.markdown_extensions]
+admonition = {}
+attr_list = {}
+toc.permalink = true
+pymdownx.highlight = {}
+pymdownx.superfences = {}
+pymdownx.tabbed.alternate_style = true
+
+[project.validation]
+invalid_links = true
+invalid_link_anchors = true

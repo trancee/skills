@@ -104,6 +104,7 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 | [`diataxis`](diataxis/) | 2,724 | Write, audit, and improve tutorials, how-to guides, reference, explanation, documentation architecture, and documentation quality. |
 | [`dokka`](dokka/) | 4,501 | Configure, generate, publish, migrate, and troubleshoot Dokka API documentation for Kotlin and mixed Java projects. |
 | [`terminal-diagrams`](terminal-diagrams/) | 4,507 | Design, render, and validate aligned ASCII, Unicode box-drawing, and ANSI-colored terminal or Markdown diagrams. |
+| [`zensical`](zensical/) | 6,063 | Install, configure, preview, build, and troubleshoot Zensical documentation sites; migrate MkDocs/Material and prepare static publishing. |
 
 Open a skill's `SKILL.md` for its full procedure and source material.
 

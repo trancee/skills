@@ -1,0 +1,30 @@
+site_name: Project documentation
+site_url: https://example.com/project/
+docs_dir: docs
+site_dir: migration-site
+nav:
+  - Home: index.md
+  - Guide: guide.md
+theme:
+  name: material
+  variant: classic
+extra_css:
+  - stylesheets/extra.css
+exclude_docs: |
+  /private/
+draft_docs: |
+  /drafts/
+markdown_extensions:
+  - admonition
+  - attr_list
+  - toc:
+      permalink: true
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+plugins:
+  - search
+  - redirects:
+      redirect_maps:
+        old-guide.md: guide.md
