@@ -1,0 +1,28 @@
+# Five-second scheduling capture; add app/profiling sources only when needed.
+duration_ms: 5000
+buffers {
+  size_kb: 32768
+  fill_policy: DISCARD
+}
+data_sources {
+  config {
+    name: "linux.ftrace"
+    target_buffer: 0
+    ftrace_config {
+      ftrace_events: "sched/sched_switch"
+      ftrace_events: "sched/sched_waking"
+      ftrace_events: "sched/sched_wakeup_new"
+      ftrace_events: "task/task_newtask"
+      ftrace_events: "task/task_rename"
+    }
+  }
+}
+data_sources {
+  config {
+    name: "linux.process_stats"
+    target_buffer: 0
+    process_stats_config {
+      scan_all_processes_on_start: true
+    }
+  }
+}
