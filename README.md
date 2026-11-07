@@ -95,6 +95,7 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 | [`kover`](kover/) | 3,198 | Configure, verify, aggregate, and troubleshoot Kotlinx Kover JVM coverage for Kotlin projects. |
 | [`lincheck`](lincheck/) | 3,804 | Design, run, interpret, and troubleshoot JVM concurrency tests with Lincheck model checking and stress strategies. |
 | [`miri`](miri/) | 6,643 | Install, run, and troubleshoot Miri for Rust undefined-behavior detection, pointer provenance, aliasing, races, cross-target tests, and CI with explicit coverage limits. |
+| [`mobile-power-profiling`](mobile-power-profiling/) | 6,691 | Profile iOS/iPadOS and Android app power use, capture device traces, and compare controlled before/after measurements with explicit attribution limits. |
 | [`perfetto`](perfetto/) | 8,228 | Record Android/Linux traces, instrument applications, and analyze performance with Perfetto UI, Trace Processor, and PerfettoSQL. |
 | [`robolectric`](robolectric/) | 7,799 | Configure and test Android JVM behavior with Robolectric: resources, lifecycle, loopers, SDK matrices, AndroidX, shadows, native graphics, and CI. |
 | [`spotless`](spotless/) | 3,939 | Configure, apply, verify, migrate, and troubleshoot Spotless formatting for Gradle and Maven projects. |
