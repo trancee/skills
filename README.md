@@ -89,6 +89,7 @@ The repository uses the Agent Skills layout understood by Oh My Pi and compatibl
 | --- | ---: | --- |
 | [`arrange-act-assert`](arrange-act-assert/) | 3,159 | Structure, review, and refactor example-based tests into clear Arrange, Act, and Assert phases. |
 | [`detekt`](detekt/) | 3,630 | Configure, run, migrate, and troubleshoot detekt static analysis for Kotlin projects. |
+| [`jazzer`](jazzer/) | 8,336 | Integrate and run coverage-guided JVM fuzzing with JUnit or standalone targets, structured mutation, corpus management, and reproducible finding triage. |
 | [`kotlin-binary-compatibility`](kotlin-binary-compatibility/) | 4,526 | Configure, run, migrate, and review Kotlin ABI validation with built-in KGP or the legacy validator. |
 | [`kotlin-power-assert`](kotlin-power-assert/) | 3,930 | Configure, use, debug, and expose Kotlin Power-assert diagnostics, transformed functions, and assertion APIs. |
 | [`kotlinx-benchmark`](kotlinx-benchmark/) | 4,501 | Configure, run, compare, and troubleshoot multiplatform Kotlin microbenchmarks with kotlinx-benchmark. |
